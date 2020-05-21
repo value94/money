@@ -34,20 +34,52 @@
                         <em>自由块</em>
                     </a>
                 </li>
-                <li id="nav_Log_index">
-                    <a href="{:U(GROUP_NAME.'/Log/index')}">
-                        <i class="theme"></i>
-                        <em>操作记录</em>
+                <li id="nav_Log_bind">
+                    <a href="{:U(GROUP_NAME.'/Log/bind')}">
+                        <i class="product"></i>
+                        <em>用户绑定记录</em>
+                    </a>
+                </li>
+                <li id="nav_Log_unBind">
+                    <a href="{:U(GROUP_NAME.'/Log/unBind')}">
+                        <i class="product"></i>
+                        <em>用户解绑记录</em>
+                    </a>
+                </li>
+                <li id="nav_Log_userDelete">
+                    <a href="{:U(GROUP_NAME.'/Log/userDelete')}">
+                        <i class="product"></i>
+                        <em>用户删除记录</em>
+                    </a>
+                </li>
+                <li id="nav_Log_orderDelete">
+                    <a href="{:U(GROUP_NAME.'/Log/orderDelete')}">
+                        <i class="product"></i>
+                        <em>订单删除记录</em>
                     </a>
                 </li>
                 <li id="nav_Daikuan_orders">
                     <a href="{:U(GROUP_NAME.'/Daikuan/orders')}">
                         <i class="product"></i>
-                        <em>订单列表</em>
+                        <em>订单列表状态</em>
                     </a>
                 </li>
             </ul>
         </if>
+        <ul>
+            <li id="nav_Article_catlist">
+                <a href="{:U(GROUP_NAME.'/Article/catlist')}">
+                    <i class="articleCat"></i>
+                    <em>文章分类</em>
+                </a>
+            </li>
+            <li id="nav_Article_index">
+                <a href="{:U(GROUP_NAME.'/Article/index')}">
+                    <i class="article"></i>
+                    <em>文章列表</em>
+                </a>
+            </li>
+        </ul>
         <ul>
             <li id="nav_User_users">
                 <a href="{:U('User/users')}">
@@ -93,8 +125,8 @@
             </li>
             <li id="nav_Daikuan_voucher">
                 <a href="{:U(GROUP_NAME.'/Daikuan/voucher',array('type'=>0))}">
-                    <i class="product"></i>
-                    <em>待还款</em>
+                    <i class="guestbook"></i>
+                    <em>还款列表</em>
                 </a>
             </li>
             <li id="nav_Daikuan_vouchers">
@@ -118,20 +150,7 @@
             </li>
 
         </ul>
-        <ul>
-            <li id="nav_Article_catlist">
-                <a href="{:U(GROUP_NAME.'/Article/catlist')}">
-                    <i class="articleCat"></i>
-                    <em>文章分类</em>
-                </a>
-            </li>
-            <li id="nav_Article_index">
-                <a href="{:U(GROUP_NAME.'/Article/index')}">
-                    <i class="article"></i>
-                    <em>文章列表</em>
-                </a>
-            </li>
-        </ul>
+
     </div>
 </div>
 <style>
