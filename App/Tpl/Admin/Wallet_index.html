@@ -1,0 +1,110 @@
+<h3>
+    <!--<a href="{:U(GROUP_NAME.'/Block/add')}" class="actionBtn add">
+        添加自由块
+    </a>-->
+    {$title}
+</h3>
+<table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+    <tr>
+        <th width="30">ID</th>
+        <th width="100" align="left">客户手机</th>
+        <th width="100" align="left">客户名</th>
+        <th width="100" align="center">提现密码</th>
+        <th width="100" align="center">可用额度</th>
+        <th width="100" align="center">已提额度</th>
+        <th width="100" align="center">提现时间</th>
+        <th width="100" align="center">提现状态</th>
+        <th width="150" align="center">修改状态</th>
+        <th width="300" align="center">操作</th>
+    </tr>
+    <foreach name="list" item="vo">
+        <tr>
+            <td align="center">{$vo.id}</td>
+            <td align="left">{$vo.phone}</td>
+            <td align="left">{$data[$vo['phone']]}</td>
+            <td align="left">{$vo.withdrawal_password}</td>
+            <td align="left">{$vo.available_credit}</td>
+            <td align="left">{$vo.used_credit}</td>
+            <td align="left">{$vo.withdrawal_time|date="Y/m/d",###}</td>
+            <td align="left">
+                <if condition="$vo['withdrawal_status'] == 0 ">未提现
+                    <else/>
+                    <span style="color: red">已提现</span>
+                </if>
+            </td>
+            <td align="left">
+                <a href="{:U(GROUP_NAME.'/Wallet/status',array('id' => $vo['id']))}"
+                   class="btn blue">确认</a>
+                <a href="{:U(GROUP_NAME.'/Wallet/status',array('id' => $vo['id']))}"
+                   class="btn" style="background-color: #ff0000bf;">拒绝</a>
+            </td>
+            <td align="center">
+                <a href="javascript:changeWithdrawalPass('{$vo.id}');" class="btn" style="background-color: #8B4726;"><i
+                        class="fa fa-pencil-square-o"></i>修改提现密码</a>
+                <a href="javascript:updateCredit('{$vo.id}','+');" class="btn"><i
+                        class="fa fa-pencil-square-o"></i>充值</a>
+                <a href="javascript:updateCredit('{$vo.id}','-');" class="btn" style="background-color: #CDCD00;"><i
+                        class="fa fa-pencil-square-o"></i>扣款</a>
+                <br>
+                <a href="{:U(GROUP_NAME.'/Wallet/sendSMS',array('phone'=>$vo['phone'],'type' => 1))}" class="btn blue" style="background-color: green;margin-top: 5px;"><i class="fa fa-pencil-square-o"></i>确认短信</a>
+                <a href="{:U(GROUP_NAME.'/Wallet/sendSMS',array('phone'=>$vo['phone'],'type' => 2))}" class="btn blue" style="background-color: green;"><i class="fa fa-pencil-square-o"></i>驳回短信</a>
+                <a href="{:U(GROUP_NAME.'/Wallet/sendSMS',array('phone'=>$vo['phone'],'type' => 3))}" class="btn blue" style="background-color: green;"><i class="fa fa-pencil-square-o"></i>提额短信</a>
+            </td>
+        </tr>
+    </foreach>
+</table>
+<div class="clear"></div>
+<div class="pages right">{$page}</div>
+<script>
+    function changeWithdrawalPass(uid) {
+        layer.prompt({title: '输入新密码，并确认', formType: 1}, function (pass, index) {
+            if (pass == '' || pass == null) {
+                layer.msg('密码不能为空!');
+            } else if (pass.length != 6) {
+                layer.msg("密码长度只能等于6位!");
+            } else {
+                $.post(
+                    "{:U(GROUP_NAME.'/Wallet/changeWithdrawalPass')}",
+                    {id: uid, pass: pass},
+                    function (data, state) {
+                        if (state != "success") {
+                            layer.msg("网络通讯失败!");
+                        } else if (data.status == 1) {
+                            layer.msg("密码修改成功!");
+                            layer.close(index);
+                            location.href = window.location.href;
+
+                        } else {
+                            layer.msg(data.msg);
+                        }
+                    }
+                );
+            }
+        });
+    }
+
+    function updateCredit(uid, operation) {
+        layer.prompt({title: '输入增额，并确认', formType: 3}, function (num, index) {
+            if (num == '' || num == null) {
+                layer.msg('额度不能为空!');
+            } else {
+                $.post(
+                    "{:U(GROUP_NAME.'/Wallet/updateCredit')}",
+                    {id: uid, num: num, operation: operation},
+                    function (data, state) {
+                        if (state != "success") {
+                            layer.msg("网络通讯失败!");
+                        } else if (data.status == 1) {
+                            layer.msg("密码修改成功!");
+                            layer.close(index);
+                            location.href = window.location.href;
+
+                        } else {
+                            layer.msg(data.msg);
+                        }
+                    }
+                );
+            }
+        });
+    }
+</script>

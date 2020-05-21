@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title> <Somnus:sitecfg name="sitetitle"/> </title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="description" content=" <Somnus:sitecfg name="sitedescription"/> ">
+<meta name="Keywords" content=" <Somnus:sitecfg name="sitekeywords"/> ">
+   <link rel="stylesheet" type="text/css" href="/Public/cj/mui.min_2.css">
+    <link rel="stylesheet" type="text/css" href="/Public/cj/feiqi-ee5401a8e6_1.css">
+    <link rel="stylesheet" type="text/css" href="/Public/cj/newpay-bb7fcb5546_2.css">
+    <link rel="stylesheet" type="text/css" href="/Public/cj/newindex-09d04b32f3.css">
+
+  <link rel="icon" href="__PUBLIC__/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="__PUBLIC__/favicon.ico" type="image/x-icon" />
+<style>
+.dant a {
+    font-size: 13px;
+    display: inline-block;
+}
+.posfix{
+	position: fixed;
+	bottom: 0;
+}
+.jumpdown{
+	width: 100%;
+}
+.jumpdown img{
+	padding-top: 10px;
+	width: 100%;
+}
+.orange{
+	color: #fb6f00;!important;
+}
+</style>
+  <script>
+        if(('standalone' in window.navigator)&&window.navigator.standalone){
+var noddy,remotes=false;
+document.addEventListener('click',function(event){
+noddy=event.target;
+while(noddy.nodeName!=='A'&& noddy.nodeName!=='HTML') 
+  noddy=noddy.parentNode;
+if('href' in noddy && noddy.href.indexOf('http')!==-1&&(noddy.href.indexOf(document.location.host)!==-1||remotes)){
+event.preventDefault();
+document.location.href=noddy.href;
+}
+},false);
+        }
+</script>
+</head>
+<body>
+    <!-- header -->
+    <header class="mui-bar mui-bar-nav hnav">
+		<a class="back" href="{:U('User/index')}" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">我的借款</h1>
+	</header>
+	<!-- header end-->
+<div class="mui-content">
+	<empty name="data">
+		<div class="xinf">
+			<div class="mydiv">
+				<img src="__PUBLIC__/home/imgs/p_01.png" alt="">
+			</div>
+		</div>
+		<div class="atxt">
+			您还未提交任何借款申请哦。
+		</div>
+		<section class="bbtn">
+			<button onclick="toorder();" class="combtn" type="button">去申请借款</button>
+		</section>
+	<else />
+		<foreach name="data" item="vo">
+		<article class="mt10 jiekuan">
+			<div class="cf dant">
+				<a href="{:U('Order/info',array('oid' => $vo['id']))}">
+				借款编号：{$vo.ordernum}
+				</a>
+				<a class="fr f13 danstate datalose" href="{:U('Order/info',array('oid' => $vo['id']))}">
+					<php>
+							
+							 if($vo['status'] == 9)echo "正在审核";
+                                    if($vo['status'] == 2)echo "审核通过";
+                                    if($vo['status'] == 3)echo "提现已提交,打款处理中";
+                                    if($vo['status'] == 4)echo "首期";
+                                    if($vo['status'] == -1)echo "审核不通过";
+                                    if($vo['status'] == -2)echo "临时冻结";
+                                    if($vo['status'] == 5)echo "退款中";
+                                    if($vo['status'] == 7)echo "打款中";
+                                    if($vo['status'] == 11)echo "提现处理";
+                                    if($vo['status'] == 12)echo "到帐成功";
+                                    if($vo['status'] == 13)echo "保险";
+                                    if($vo['status'] == 14)echo "第一期还款";
+                                    if($vo['status'] == 15)echo "提现失败";
+                                    if($vo['status'] == 18)echo "征信不良";
+                                    if($vo['status'] == 17)echo "核实失败";
+                                    if($vo['status'] == 8)echo "绑卡失败";
+                     </php>
+					<span class="fr rightarr"></span>
+				</a>
+			</div>
+			<a class="hlist cf phlist" href="{:U('Order/info',array('oid' => $vo['id']))}">
+				<img src="__PUBLIC__/home/imgs/b_03.png" alt="">
+				<div class="f14">
+					<p class="grey"><span class="fc9">金额</span>：¥{$vo.money}</p>
+					<p class="grey "><span class="fc9 ">月供</span>：¥{$vo.monthmoney}X{$vo.months}期</p>
+					订单生成时间：{$vo.addtime|date='Y-m-d H:i:s',###}
+				</div>
+			</a>
+
+		</article>
+		</foreach>
+	</empty>
+</div>
+<script src="__PUBLIC__/home/js/jquery-1-fe84a54bc0.11.1.min.js"></script>	
+<script>
+$('.bottom-bar a').click(function(){
+	$('.bottom-bar a').removeClass('cur');
+	$('.bottom-bar a span').removeClass('cur');
+	$(this).addClass('cur');
+	$(this).find('span').eq(0).addClass('cur');
+});
+function toorder(){
+	window.location.href = "{:U('Index/index')}";
+}
+</script>
+<div style="display: none;">
+	<Somnus:sitecfg name="sitecode"/>
+</div>
+</body>
+  
+</html>

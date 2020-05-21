@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        <Somnus:sitecfg name="sitetitle"/>
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="description" content=" <Somnus:sitecfg name=" sitedescription
+    "/> ">
+    <meta name="Keywords" content=" <Somnus:sitecfg name=" sitekeywords
+    "/> ">
+   <link rel="stylesheet" type="text/css" href="/Public/cj/mui.min_2.css">
+    <link rel="stylesheet" type="text/css" href="/Public/cj/feiqi-ee5401a8e6_1.css">
+    <link rel="stylesheet" type="text/css" href="/Public/cj/newpay-bb7fcb5546_2.css">
+
+    <script>
+        document.addEventListener('plusready', function () {
+            var webview = plus.webview.currentWebview();
+            plus.key.addEventListener('backbutton', function () {
+                webview.canBack(function (e) {
+                    if (e.canBack) {
+                        webview.back();
+                    } else {
+                        webview.close();//hide,quit
+                    }
+                })
+            });
+
+        });
+    </script>
+  <script>
+        if(('standalone' in window.navigator)&&window.navigator.standalone){
+var noddy,remotes=false;
+document.addEventListener('click',function(event){
+noddy=event.target;
+while(noddy.nodeName!=='A'&& noddy.nodeName!=='HTML') 
+  noddy=noddy.parentNode;
+if('href' in noddy && noddy.href.indexOf('http')!==-1&&(noddy.href.indexOf(document.location.host)!==-1||remotes)){
+event.preventDefault();
+document.location.href=noddy.href;
+}
+},false);
+        }
+</script>
+</head>
+<body>
+<!-- header -->
+<header class="mui-bar mui-bar-nav hnav">
+
+    <a class="back"href="{:U('Order/info',array('oid' => $order['id']))}" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <h1 class="mui-title">{:C('cfg_sitename')} 借款人与平台 电子合同</h1>
+
+</header>
+
+<!-- header end-->
+<div class="mui-content">
+<p>
+    <span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">合同编号</span>:__{$order.ordernum}____</span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">借款人：</span>__{$user.name}_____</span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">身份证号码：</span>_________{$user.usercard}________</span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">出借人：</span>__{:C('cfg_sitename')}______</span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px">&nbsp;</span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px">&nbsp;</span>
+</p>
+<p style="text-indent:28px">
+    <span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">借款人为符合中国法律规定的年满十八周岁的具有完全民事权利能力和民事行为能力，能够独立承担本项权利义务的自然人。本合同各方根据《中华人民共和国合同法》等规定，本着平等</span></span><span style="font-family: Arial;color: rgb(84, 84, 84);letter-spacing: 0;font-size: 16px;background: rgb(255, 255, 255)"><span style="font-family:宋体">、</span></span><span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">自愿</span></span><span style="font-family: Arial;color: rgb(84, 84, 84);letter-spacing: 0;font-size: 16px;background: rgb(255, 255, 255)"><span style="font-family:宋体">、</span></span><span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">诚实守信</span></span><span style="font-family: Arial;color: rgb(84, 84, 84);letter-spacing: 0;font-size: 16px;background: rgb(255, 255, 255)"><span style="font-family:宋体">、</span></span><span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">协商一致的原则，为明确责任</span></span><span style="font-family: Arial;color: rgb(84, 84, 84);letter-spacing: 0;font-size: 16px;background: rgb(255, 255, 255)"><span style="font-family:宋体">、</span></span><span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">恪守信用</span></span><span style="font-family: Arial;color: rgb(84, 84, 84);letter-spacing: 0;font-size: 16px;background: rgb(255, 255, 255)"><span style="font-family:宋体">、</span></span><span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">签订本合同，并保证共同遵守。</span></span>
+</p>
+<p>
+    <span style="font-family:宋体;font-size:14px">第一条&nbsp;</span><span style=";font-family:宋体;font-size:14px">&nbsp;<span style="font-family:宋体">借贷用途</span></span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px">&nbsp;<span style="font-family:宋体">本合同项下之借款用于各种消费，不得用于风险投资。</span></span>
+</p>
+<p style="margin-left:0;text-indent:0">
+    <span style="font-family:宋体;font-size:14px">第二条&nbsp;</span><span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">借款金额</span></span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px">&nbsp;&nbsp;<span style="font-family:宋体">借款金额为人民币：</span>__{$order.money}元____。</span>
+</p>
+<p style="margin-left:0;text-indent:0">
+    <span style="font-family:宋体;font-size:14px">第三条&nbsp;</span><span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">付款方式</span></span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px">&nbsp;&nbsp;<span style="font-family:宋体">借款人委托出借人将借款，以网站平台系统自动方式汇入指定帐户。</span></span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px">&nbsp;&nbsp;<span style="font-family:宋体">出借人汇入该指定帐户视为履行出借义务，借款人应出具借条</span></span><span style="font-family: Arial;color: rgb(84, 84, 84);letter-spacing: 0;font-size: 16px;background: rgb(255, 255, 255)"><span style="font-family:宋体">、</span></span><span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">收据。</span></span>
+</p>
+<p style="margin-left:0;text-indent:0">
+    <span style="font-family:宋体;font-size:14px">第四条&nbsp;</span><span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">借款期限</span></span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px">&nbsp;&nbsp;&nbsp;<span style="font-family:宋体">借款期限为</span>___{$order.months}_个月_,<span style="font-family:宋体">从出借人借款到帐之日起计算。</span></span>
+</p>
+<p style="margin-left:0;text-indent:0">
+    <span style="font-family:宋体;font-size:14px">第五条&nbsp;</span><span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">借款利息</span></span>
+</p>
+<p>
+
+    <span style=";font-family:宋体;font-size:14px">&nbsp;&nbsp;&nbsp;<span style="font-family:宋体">借款利率为</span>__{$f}___</span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px">&nbsp;&nbsp;&nbsp;<span style="font-family:宋体">借款人可以任意选择一种还款帐户。</span></span>
+</p>
+<p style="margin-left:0;text-indent:0">
+    <span style="font-family:宋体;font-size:14px">第六条&nbsp;</span><span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">如出现下列情形，出借人有权随时要求借款人提前清偿部分或全部贷款本息，并承担全部损失（包括但不限于诉讼费和律师费等）</span></span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px">&nbsp;&nbsp;&nbsp;1<span style="font-family:宋体">借款人将所借款项用于非法活动。</span></span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px">&nbsp;&nbsp;&nbsp;2<span style="font-family:宋体">借款人的资信出现危机（包括但不限于涉及失信</span></span><span style="font-family: Arial;color: rgb(84, 84, 84);letter-spacing: 0;font-size: 16px;background: rgb(255, 255, 255)"><span style="font-family:宋体">、</span></span><span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">诉讼仲裁</span></span><span style="font-family: Arial;color: rgb(84, 84, 84);letter-spacing: 0;font-size: 16px;background: rgb(255, 255, 255)"><span style="font-family:宋体">、</span></span><span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">行政</span></span><span style="font-family: Arial;color: rgb(84, 84, 84);letter-spacing: 0;font-size: 16px;background: rgb(255, 255, 255)"><span style="font-family:宋体">、</span></span><span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">刑事处罚等），有可能导致出借人无法收回借款的。</span></span>
+</p>
+<p style="margin-left:0;text-indent:0">
+    <span style="font-family:宋体;font-size:14px">第七条&nbsp;</span><span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">借款人的权利和义务</span></span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px">&nbsp;&nbsp;1<span style="font-family:宋体">如实提供有关证件，证明和其它材料，并接受出借人的监督和检查。</span></span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px">&nbsp;&nbsp;2<span style="font-family:宋体">保证本借款不用于非法活动。</span></span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px">&nbsp;&nbsp;3<span style="font-family:宋体">按照本合同的约定取得借款本金，并按时偿还借款本息。</span></span>
+</p>
+<p style="margin-left:0;text-indent:0">
+    <span style="font-family:宋体;font-size:14px">第八条&nbsp;</span><span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">出借人的权利和义务</span></span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px">&nbsp;&nbsp;1<span style="font-family:宋体">当用户使用本公司服务时，本公司会向用户收取贷款总额的百分之十，作为诚信担保金。</span></span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px">&nbsp;&nbsp;2<span style="font-family:宋体">如果客户在款项使用周期之内，没有发生逾期的情况下，百分之十的诚信担保金会一次性退还到客户注册时的帐户内。</span></span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px">&nbsp;&nbsp;3<span style="font-family:宋体">用户在使用本公司服务过程中（如充值或取现等）可能需要向第三方（如银行或第三方支付公司等）支付一定的费用，具体收费标准详见第三方网站相关页面，或本公司平台的提示。</span></span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px">&nbsp;4<span style="font-family:宋体">所有费用提前收取，是为了维护双方的权益，督促客户不要产生逾期征信问题。</span></span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px">&nbsp;5<span style="font-family:宋体">保证资金来源合法。</span></span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px">&nbsp;6<span style="font-family:宋体">有权按照本合同的约定收取借款本金和利息。</span></span>
+</p>
+<p style="margin-left:0;text-indent:0">
+    <span style="font-family:宋体;font-size:14px">第九条&nbsp;</span><span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">违约责任</span></span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px">&nbsp;&nbsp;<span style="font-family:宋体">下列情况均构成违约，违约方应承担违约责任。</span></span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px">&nbsp;&nbsp;1<span style="font-family:宋体">借款人提供的证件，证明等有虚假，非法的情况，出借人可要求借款人立即偿还全部借款及相应利息。</span></span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px">2<span style="font-family:宋体">借款人在还款期限届满时，未能足额偿还借款本息的，视为严重违约，应另行向出借人支付全部贷款本金百分之十的违约金，并承担出借人为实现债权支付的全部费用（包括但不限于诉讼费和律师费等）。</span></span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px">3<span style="font-family:宋体">借款人提出申请，通过出借方官方平台审核，审核一经通过，具备相应的法律约束力，出借方履行合同协议条款，随机发放款项。</span></span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px">4<span style="font-family:宋体">借款人应履行合司协议，办理诚信担保金款项，否则出借人有权向司法机关提出诉讼，并上传征信系统。</span></span>
+</p>
+<p style="margin-left:0;text-indent:0">
+    <span style="font-family:宋体;font-size:14px">第十条&nbsp;</span><span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">争议解决方式</span></span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px">&nbsp;&nbsp;<span style="font-family:宋体">本合同在履行过程中发生的争议，由当事人协商解决，协商不成的，依法向合同签订地人民法院提出诉讼。</span></span>
+</p>
+<p style="margin-left:0;text-indent:0">
+    <span style="font-family:宋体;font-size:14px">第十一条&nbsp;</span><span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">生效</span></span><span style="font-family: Arial;color: rgb(84, 84, 84);letter-spacing: 0;font-size: 16px;background: rgb(255, 255, 255)"><span style="font-family:宋体">、</span></span><span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">变更</span></span><span style="font-family: Arial;color: rgb(84, 84, 84);letter-spacing: 0;font-size: 16px;background: rgb(255, 255, 255)"><span style="font-family:宋体">、</span></span><span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">解除</span></span><span style="font-family: Arial;color: rgb(84, 84, 84);letter-spacing: 0;font-size: 16px;background: rgb(255, 255, 255)"><span style="font-family:宋体">、</span></span><span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">终止</span></span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px">&nbsp;1<span style="font-family:宋体">在签订本合同前，合同各方已完全理解并接受本合同的内容，在本合同项下全部意思表示均真实有效，合同自各方签字后生效。</span></span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px">&nbsp;2<span style="font-family:宋体">本合同项下借款本息和相关费用合部清偿完毕后，本合同终止。</span></span>
+</p>
+<p>
+    <span style=";font-family:宋体;font-size:14px">&nbsp;3<span style="font-family:宋体">本合同如需要变更或解除，应由合同各方共内达成书面合同。</span></span>
+</p>
+<p style=";text-indent:28px">
+    <span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">借款人：</span>_{$user.name}__</span>
+</p>
+<p style=";text-indent:28px">
+    <span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">出借人：</span>___{:C('cfg_sitename')}__</span>
+</p>
+<p style=";text-indent:28px">
+    <span style=";font-family:宋体;font-size:14px"><span style="font-family:宋体">签订时间：</span>____{$order.addtime|date='Y-m-d',###}___</span>
+</p >
+<p>
+    <br/>
+</p>
+</div>
+ 
+  

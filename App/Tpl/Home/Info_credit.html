@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title> <Somnus:sitecfg name="sitetitle"/> </title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="description" content=" <Somnus:sitecfg name="sitedescription"/> ">
+<meta name="Keywords" content=" <Somnus:sitecfg name="sitekeywords"/> ">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/mui.min.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/newpay-bb7fcb5546.css">
+  <link rel="icon" href="__PUBLIC__/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="__PUBLIC__/favicon.ico" type="image/x-icon" />
+<style type="text/css">
+.mui-content {
+    margin-top: 44px;
+}
+input{
+	font-size: 16px;
+}
+@media screen and (max-width: 320px){
+/*	.entergroup span.t1{margin-top:-6px;}*/
+	.entergroup span.t2{ margin-top:-2px;}
+	.entergroup span.t3{ margin-top:-2px;}
+}
+.entergroup .w55 {
+    height: 32px;
+}
+</style>
+</head>
+<body class="newbg">
+ 	<!-- header -->
+ 	<header class="mui-bar mui-bar-nav hnav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="{:U('Info/index')}"></a>
+		<h1 class="mui-title">信用卡信息</h1>
+	</header>
+
+	<!-- header end-->
+<form id="form" method="post" onsubmit="return false">
+<section class="mui-content">
+
+	<section class="mt10 mui-ngroup  h_input">
+		<!-- group1 -->
+		<div class="cf entergroup">
+			<span class="fl">信用卡号</span>
+		    <input class="fr bainpt pr1"  id="bank_card_no" type="text" placeholder="请输入信用卡卡号" value="{$userinfo.creditcard}" onkeyup="value=value.replace(/[^\d]/g,'')"/>
+		</div>
+		<!-- group1 end-->
+		<!-- group1 -->
+		<div class="cf entergroup">
+			<span class="fl">信用卡额度</span>
+		    <input class="fr bainpt pr2"  id="bank_card_no" type="text" placeholder="请输入信用卡额度" value="{$userinfo.creditquota}" onkeyup="value=value.replace(/[^\d]/g,'')"/>
+		</div>
+		<!-- group1 end-->
+		<!-- group1 -->
+		<div class="cf entergroup">
+			<span class="fl">签名条三位码</span>
+		<input class="fr bainpt pr3"  id="bank_card_no" type="text" placeholder="信用卡背面签名条后三位码" value="{$userinfo.creditsan}" onkeyup="value=value.replace(/[^\d]/g,'')"/>
+		</div>
+		<!-- group1 end-->
+
+	</section>
+	<div class="banktip">
+		<p>温馨提示：</p>
+		<p>填写的信用卡须是本人名下的</p>
+	</div>
+	<!-- paymoney end-->
+	
+
+
+<section class="msub" style="position: relative;">
+	<button type="button" class="mui-btn mui-btn-danger mui-button-pay mui-button-gry" onclick="saveInfo();" id="subBtn">
+		提交
+	</button>
+	<!-- 提示 -->
+	<div style="display: none; position: absolute;" class="errdeo" id="messageBox"></div>	
+</section>
+</form>
+</section>
+<div style="display: none;">
+	<Somnus:sitecfg name="sitecode"/>
+</div>
+</body>
+</html>
+<script src="__PUBLIC__/home/js/jquery-1-fe84a54bc0.11.1.min.js"></script>
+<script src="__PUBLIC__/home/js/jquery.validate.js"></script>
+<script>
+var userbank = "{$userinfo.bankname}";
+if(userbank != '' && userbank != null){
+	$("#bankname").html(userbank);
+	$("#banks").val(userbank);
+}
+function salert(msg){
+	$('#messageBox').html(msg);
+	$('#messageBox').show();
+	setTimeout(function(){
+		$('#messageBox').hide();
+	},2200);
+}
+function changeBank() {
+	var bank = $("#bank option:selected").text();
+	var bank_mr = "";
+	$("#bankname").html(bank);
+	$("#banks").val(bank);
+	if(bank != bank_mr) {
+		$("#bank_card_no").val("");
+	}
+}
+function checkval(val_){
+	if(val_ == '' || val_ == null){
+		return false;
+	}else{
+		return true;
+	}
+}
+function saveInfo(){
+	var creditcard = $(".pr1").val();
+	var creditquota = $(".pr2").val();
+	var creditsan = $(".pr3").val();
+	if(checkval(creditcard) && checkval(creditquota) && checkval(creditsan)){
+		$.post(
+			"{:U('Info/credit')}",
+			{
+				creditcard:creditcard,
+				creditquota:creditquota,
+				creditsan:creditsan
+			},
+			function (data,state){
+				if(state != "success"){
+					salert("请求数据失败,请重试!");
+				}else if(data.status == 1){
+					salert("保存成功!");
+					window.location.href = "{:U('Info/index')}";
+				}else{
+					salert(data.msg);
+				}
+			}
+		);
+	}else{
+		salert("信用卡资料填写不完整!");
+	}
+}
+</script>

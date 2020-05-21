@@ -1,0 +1,123 @@
+  <link href="__PUBLIC__/static/css/main.css" rel="stylesheet" type="text/css">
+
+<div class="flexigrid">
+    <div class="mDiv">
+      <div class="ftitle">
+           <h3>{$title}</h3>
+      </div>
+    </div>
+
+      <div class="tDiv2">
+            <h2 style="color:red;font-size: 15px;">注:时间筛选是统计该时间段内业务员的邀请码注册数量之和,在<b style="color:blue;">统计字段</b>中可以查看该数量和,如为0表示该时间段内没有邀请码注册数量！！</h2>
+<div class="filter">
+    <form action="{:U(GROUP_NAME.'/User/codes')}" method="post">
+        
+        <input type="date" id="start" name="start" value="{$start|default=''}"  class="inpMain">
+            到
+        <input type="date" name="end"  id="end" value="{$end|default=''}"  class="inpMain">
+        <input name="submit" class="btnGray margin_lf" type="submit" value="筛选" />
+         </form>
+    <button onclick="addUser();" class="btnGray addUser">增加业务员</button>
+</div>
+      </div>
+    <div class="hDiv">
+      <div class="hDivBox">
+        <table cellspacing="0" cellpadding="0">
+          <thead>
+            <tr style="background: #886f6f;color: white;">
+              <th align="left" abbr="article_title" axis="col3" class="">
+                <div style="text-align: center; width: 100px;" class="">ID</div>
+              </th>
+              <th align="left" abbr="article_title" axis="col3" class="">
+                <div style="text-align: center; width: 250px;" class="">业务员</div>
+              </th>
+              <th align="left" abbr="article_title" axis="col3" class="">
+                <div style="text-align: center; width: 250px;" class="">邀请码</div>
+              </th>
+              <th align="left" abbr="ac_id" axis="col4" class="">
+                <div style="text-align: center; width: 250px;" class="">统计</div>
+              </th>
+       
+               
+              <th align="center" axis="col1" class="handle">
+                操作
+              </th>
+              <th style="width:100%; text-align: center;" axis="col7">
+                <div></div>
+              </th>
+            </tr>
+
+          </thead>
+        </table>
+      </div>
+    </div>
+        <div class="bDiv" style="height: auto;">
+              <div id="flexigrid" cellpadding="0" cellspacing="0" border="0">
+                <table>
+                  <tbody>
+                         <volist name="list" id="vo">
+                       <tr>
+                            <td align="center"><div style="text-align: center; width: 100px;" class="">{$vo.id}</div></td>
+                            <td align="center"><div style="text-align: center; width: 250px;" class="">{$vo.user}</div></td>
+                            <td align="center"><div style="text-align: center; width: 250px;" class="">{$vo.codes}</div></td>
+                            <td align="center"><div style="text-align: center; width: 250px;color:red;" class="">{$data[$vo['codes']]|default='0'}</div></td>
+                          
+                        <td align="center" class="handle" style="width: 100%;">
+                          <div style="text-align: center; width: 100px;">                    
+                            <a href="javascript:del('{$vo.user}','{:U(GROUP_NAME.'/User/delcodes',array('id'=>$vo['id']))}');" class="btn red"><i class="fa fa-trash-o"></i>删除</a> 
+                          
+                         </div>
+                         </td>
+                     </tr>     
+                </volist>
+                 </tbody>
+               </table>
+             </div>
+        </div>
+</div>
+<div class="clear"></div>
+<div class="pages">{$page}</div>
+<style>
+    .addUser{
+        margin-left:20px;
+        background: red;
+        color: #fff;
+    }
+</style>
+<script>
+//删除业务员
+    function del(num,jumpurl){
+        layer.confirm(
+                '确定要删除业务员:'+num+'吗?',
+                function (){
+                    window.location.href = jumpurl;
+                }
+        );
+    }
+//增加用户
+	function addUser() {
+		layer.prompt({title: '增加业务员', formType: 0}, function (pass, index) {
+			if (pass == '' || pass == null) {
+				layer.msg('业务员名称不能为空!');
+			}else {
+				$.post(
+						"/index.php?g=Admin&m=User&a=addCodes",
+						{pass: pass},
+						function (data, state) {
+							if (state != "success") {
+								layer.msg("网络通讯失败!");
+							} else if (data.status == 1) {
+								layer.msg(data.msg);
+								layer.close(index);
+								location.href=window.location.href;
+							} else {
+								layer.msg(data.msg);
+							}
+						}
+				);
+			}
+		});
+	}
+
+ 
+</script>

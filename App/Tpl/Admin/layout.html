@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>{$title} -
+        <somnus:sitecfg name="sitetitle"/>
+    </title>
+    <link href="__PUBLIC__/main/css/public.css" rel="stylesheet" type="text/css">
+
+    <!--  <link href="__PUBLIC__/static/css/page.css" rel="stylesheet"> -->
+    <link href="__PUBLIC__/static/font/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="icon" href="__PUBLIC__/favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="__PUBLIC__/favicon.ico" type="image/x-icon"/>
+    <style>
+        .pages {
+            margin-left: 50%;
+        }
+
+        .pages a,
+        .pages span {
+            display: inline-block;
+            padding: 2px 5px;
+            margin: 0 1px;
+            border: 1px solid #f0f0f0;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+        }
+
+        .pages a,
+        .pages li {
+            display: inline-block;
+            list-style: none;
+            text-decoration: none;
+            color: #58A0D3;
+        }
+
+        .pages a.first,
+        .pages a.prev,
+        .pages a.next,
+        .pages a.end {
+            margin: 0;
+        }
+
+        .pages a:hover {
+            border-color: #50A8E6;
+        }
+
+        .pages span.current {
+            background: #50A8E6;
+            color: #FFF;
+            font-weight: 700;
+            border-color: #50A8E6;
+        }
+    </style>
+    <script type="text/javascript" src="__PUBLIC__/main/js/jquery.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/main/js/global.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/main/js/jquery.tab.js"></script>
+    <script src="__PUBLIC__/layer/layer.js"></script>
+</head>
+<body style="background-color: #eee;verflow-y:scroll;">
+<div id="dcWrap">
+
+    <include file="Public/header"/>
+    <!-- dcHead 结束 -->
+    <include file="Public/left"/>
+
+
+    <div id="dcMain"> <!-- 当前位置 -->
+
+        <div id="index" class="mainBox" style="padding-top:18px;height:auto!important;height:950px;min-height:950px;">
+
+
+            {__CONTENT__}
+
+
+        </div>
+    </div>
+    <div class="clear"></div>
+    <!--  <include file='Public/footer' />
+    dcFooter 结束 -->
+    <div class="clear"></div>
+</div>
+</body>
+</html>

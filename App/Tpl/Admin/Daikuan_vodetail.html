@@ -1,0 +1,246 @@
+{__NOLAYOUT__}
+     <link href="__PUBLIC__/main/css/public.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="__PUBLIC__/main/js/jquery.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/main/js/global.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/main/js/jquery.tab.js"></script>
+    <script src="__PUBLIC__/layer/layer.js"></script>
+<style type="text/css">
+  table.hovertable {
+     font-family: verdana,arial,sans-serif;
+      font-size:11px;
+      color:#333333;
+      border-width: 1px;
+      border-color: #999999;
+      border-collapse: collapse;
+ }
+ table.hovertable th {
+     background-color:#c3dde0;     border-width: 1px;
+     padding: 2px;
+     border-style: solid;
+     border-color: #a9c6c9;
+ }
+ table.hovertable tr {
+     background-color:#d4e3e5;
+ }
+ table.hovertable td {
+     border-width: 1px;
+     padding: 8px;
+     border-style: solid;
+     border-color: #a9c6c9;
+ }
+ .sw{
+ 	background: #395852;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    color: #fff;
+    border: 1px solid;
+    height: 30px;
+    line-height: 30px;
+    padding: 0px 5px;
+    cursor:pointer;
+ }
+</style>
+
+<div id="list">
+        <table width="100%" border="0" cellpadding="8" cellspacing="0" class="hovertable">
+            <tr>
+                <th width="50" align="center">期数</th>
+                <th width="100" align="center">订单号</th>
+                <th width="100" align="center">手机号</th>
+                <th width="50">客户姓名</th>
+                <th width="50" align="center">还款状态</th>
+                <th width="50" align="center">还款金额</th>
+                <th width="100" align="center">还款日期</th>
+                <th align="center">支付日期</th>
+                <if condition="$type neq 16">
+                	<th align="center">操作</th>
+                </if>
+            </tr>
+            <volist name="list" id="vo">
+                <tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';">
+                    <td align="center">第{$vo.ofnumber}期</td>
+                    <td align="center">{$vo.ordernum}</td>
+                    <td align="center">{$vo.user}</td>
+                    <td align="center">{$data[$vo['user']]}</td>
+                    <if condition="$vo.status eq 1"><td align="center" style="color:green;font-weight:bolder;" id="st1_{$vo.id}">已支付</td></if>
+					<if condition="$vo.status eq 0">
+						<td align="center" id="st_1{$vo.id}">
+							<if condition="$time gt $vo['huantime']">
+								<b style="color:red;">逾期-未支付</b>
+							<else/>
+								未支付
+							</if>
+						</td>
+					</if>
+
+                     <td align="center" style="color:red;">{$vo.monthmoney}</td>
+                    <td align="center">{$vo.huantime} | <span class="sw" onclick="editdate('{$vo.id}','{$vo.huantime}','{$vo.ofnumber}')"">编辑日期</span></td>
+                     <td align="center">{$vo.paytime|default="无"}</td>
+                      <if condition="$type neq 16">
+	                    <td align="center">
+	                    	<if condition="$vo['zfimg'] neq ''">
+	                         <a class="sw" href="javascript:codes('{$vo.zfimg}');"><b>查看支付凭证</b></a> 
+		                         <if condition="$vo['status'] eq 0">
+		                         	<span class="sw" onclick="savestatus('{$vo.id}',1,'{$vo.months}','{$vo.ofnumber}','{$vo.ordernum}');" id="st_{$vo.id}" style="color:red;">设为已支付</span>
+		                         <else/>
+		                            <span class="sw" onclick="savestatus('{$vo.id}',0,'{$vo.months}','{$vo.ofnumber}','{$vo.ordernum}');" id="st_{$vo.id}">设为未支付</span>
+		                         </if>
+	                         <else/>
+	                         	未上传支付凭证
+	                        </if>
+	                    </td>
+	                  </if>
+                </tr>
+            </volist>
+        </table>
+</div>
+
+<div class="pager">
+    {$page}
+</div>
+</div> 
+
+<div style="display: none;" id="changemoney_div">
+    <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+   
+        <tr>
+            <td align="right">日期</td>
+        <td>
+                <label>
+                    <input type="hidden" id="dateid" value="">
+                    <input type="date" id="jkje" name="data_date" value="" style="border:1px solid;border-radius:2px;">
+                </label>
+            </td>
+        </tr>
+   
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" onclick="savedate();" class="btn" value="修改" />
+            </td>
+        </tr>
+    </table>
+</div>
+
+<style>
+    body{
+        overflow-y:scroll;
+        overflow-x:scroll;
+    }
+</style>
+<script type="text/javascript">
+//编辑日期
+function editdate(id,date,num){
+      $("#dateid").val(id);
+      $("#jkje").val(date);
+
+      layer.open({
+          type: 1,
+          title: '第'+num+'期',
+          skin: 'layui-layer-rim', //加上边框
+          area: ['400px', '150px'], //宽高
+          content: $("#changemoney_div")
+      });
+  }
+
+     function savedate(){
+        var id = $("#dateid").val();
+        var huantime = $("#jkje").val();
+       
+        if(!id){
+          layer.msg("参数id获取错误!");
+        }
+         var msg = '确定修改日期吗?';
+        if(huantime != 'undefined' && huantime != '' && huantime != null){
+          layer.confirm(
+             msg,
+           function (){
+             $.post(
+                "{:U(GROUP_NAME.'/Daikuan/savedate')}",
+                {id:id,huantime:huantime},
+                function(data,state){
+                  if(state != "success"){
+                    layer.msg("请求数据失败!");
+                  }else if(data.status == 1){
+                    layer.msg("保存成功!");
+                    setTimeout(function(){
+                      window.location.href = window.location.href;
+                    },2000);
+                  }else{
+                    layer.msg(data.msg);
+                  }
+                }
+              )
+
+              }
+           );
+          }else{
+            layer.msg("参数获取错误!");
+          }
+    }
+function codes(img){
+  
+     layer.open({
+                    type: 2,
+                    title:'支付凭证',
+                    skin: 'layui-layer-lan', //加上边框
+                    content:img,
+                    shadeClose: true, //点击遮罩区域是否关闭页面
+  					shade: 0.8,  //遮罩透明度
+  					maxmin:true,
+                    //btn: ['关闭'],
+                        area: ['550px', '350px'],
+                  /*  end:function(){
+                       // window.location.reload()
+                    }*/
+                })
+  
+}
+
+ function savestatus(id,status,months,ofnumber,ordernum){
+ 		if(!id || !months || !ofnumber || !ordernum){
+		   layer.msg("参数有误!");
+		   return false;
+ 		}
+
+ 		var url = "{:U(GROUP_NAME.'/Daikuan/vodetail')}&ordernum="+ordernum;
+ 		var msg = '确定要变更为已支付状态吗?';
+ 		if(status==0){
+			var msg = '确定要变更为未支付状态吗?';
+		}
+ 		var type =1;
+ 		if(months==ofnumber && status==1){
+ 			var type =2;
+ 			var msg = '此款项为最后一期,设置后表明订单处于已结清状态,可到已结清列表查看;您确定变更吗?';
+ 		}
+ 	  layer.confirm(
+       msg,
+        function (){
+                 $.post(
+                    "{:U(GROUP_NAME.'/Daikuan/changepaystatus')}",
+                    {id:id,status:status,type:type,ordernum:ordernum},
+                    function(data,state){
+                        if(state != "success"){
+                            layer.msg("请求数据失败!");
+                        }else if(data.status == 1 || data.success== false){
+                            layer.msg("设置成功!");
+                    		setTimeout(function(){
+	    						window.location.href = window.location.href;
+	    					},2000);
+	    					if(type==2){
+	    						var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+								parent.layer.close(index);
+	    					}
+                        }else{
+                            layer.msg(data.msg);
+                        }
+                    }
+                );
+          
+        }
+     );
+        
+
+    }
+</script>

@@ -1,0 +1,545 @@
+<h3>
+    <a href="{:U(GROUP_NAME.'/User/index')}" class="actionBtn">返回列表</a>
+    基本资料
+</h3>
+<p> 
+<img src="http://1001.ys.zmkj.net/jg.png"  /> 
+</p> 
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/pay-2b02ca7987.css">
+<style type="text/css">
+  table.hovertable {
+     font-family: verdana,arial,sans-serif;
+      font-size:11px;
+      color:#333333;
+      border-width: 1px;
+      border-color: #999999;
+      border-collapse: collapse;
+ }
+ table.hovertable th {
+     background-color:#c3dde0;     border-width: 1px;
+     padding: 2px;
+     border-style: solid;
+     border-color: #a9c6c9;
+ }
+ table.hovertable tr {
+     background-color:#d4e3e5;
+ }
+ table.hovertable td {
+     border-width: 1px;
+     padding: 8px;
+     border-style: solid;
+     border-color: #a9c6c9;
+ }
+  table.hovertable span{
+ 
+    border-radius: 3px;
+    font-size:15px;
+    color: green;
+   
+ }
+
+.sfzwrap {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    height: 200px;
+    width: 310px;
+   display: inline-block;
+}
+.sfztip {
+    color: #fff;
+    font-size: 14px;
+    line-height: 28px;
+    width: 162px;
+    top: 74%;
+    left: 50%;
+    margin-left: -81px;
+    background: #9cf;
+    opacity: .5;
+    padding: 0 9px;
+    text-align: center;
+}
+</style>
+    <table width="100%" border="0" cellpadding="8" cellspacing="0" class="hovertable">
+        <tr>
+            <td width="100" align="right">手机号/用户名</td>
+            <td>
+                <span>{$baseinfo.user}</span>
+            </td>
+        </tr>
+        <tr>
+            <td width="100" align="right">姓名/身份证号</td>
+            <td>
+                <span>{$baseinfo.name} | {$baseinfo.usercard}</span>
+            </td>
+        </tr>
+        <tr>
+            <td width="100" align="right">身份证拍照</td>
+            <td>
+                <span>
+
+                    <div class="sfzwrap prel">
+                        <div class="phoes" id="mode1" class="uploader-list">
+                            <input type="hidden" id="sfz_zm" value='{$baseinfo.cardphoto_1|default=""}'/>
+                                <div class="sfzp" id="sfz_zm_div">
+                                    <img src='{$baseinfo.cardphoto_1|default="__PUBLIC__/home/imgs/uppic1.png"}' alt="">
+                                </div>
+                                <div style="display:none;">
+                                    <input type="file" id="sfz_zm_input" onchange="uploadImg('sfz_zm','sfz_zm_div',this);" />
+                                </div>
+                                <div class="hcamera pab" onclick="Selfile('sfz_zm_input');">
+                                    <img src="__PUBLIC__/home/imgs/hcamera.png" alt="">
+                                </div>
+                            <div class="sfztip pab">身份证正面</div>
+                            <a class="sw" href="{$baseinfo.cardphoto_1}" target="_blank">点击查看大图</a>
+                        </div>  
+                    </div>
+                    <div class="sfzwrap prel">
+                        <div class="phoes" id="mode2" class="uploader-list">
+                            <input type="hidden" id="sfz_fm" value='{$baseinfo.cardphoto_2|default=""}'/>
+                            <div class="sfzp" id="sfz_fm_div">
+                               <img src='{$baseinfo.cardphoto_2|default="__PUBLIC__/home/imgs/uppic1.png"}' alt="">
+                            </div>
+                            <div style="display:none;">
+                                <input type="file" id="sfz_fm_input" onchange="uploadImg('sfz_fm','sfz_fm_div',this);" />
+                            </div>
+                            <div class="hcamera pab" onclick="Selfile('sfz_fm_input');">
+                                <img src="__PUBLIC__/home/imgs/hcamera.png" alt="">
+                            </div>
+                            <div class="sfztip pab">身份证反面照</div>
+                            <a class="sw" href="{$baseinfo.cardphoto_2}" target="_blank">点击查看大图</a>
+                        </div>
+                    </div>
+                     <div class="sfzwrap prel h130">
+                        <div class="phoes" id="mode3" class="uploader-list">
+                            <input type="hidden" id="sfz_sc" value='{$baseinfo.cardphoto_3|default=""}'/>
+                            <div class="sfzp"  id="sfz_sc_div">
+                                <img src='{$baseinfo.cardphoto_3|default="__PUBLIC__/home/imgs/uppic1.png"}' alt="">
+                            </div>
+                            <div style="display:none;">
+                                <input type="file" id="sfz_sc_input" onchange="uploadImg('sfz_sc','sfz_sc_div',this);" />
+                            </div>
+                            <div class="hcamera pab" onclick="Selfile('sfz_sc_input');">
+                                 <img src="__PUBLIC__/home/imgs/hcamera.png" alt="">
+                            </div>
+                            <div class="sfztip pab">手持身份证照</div>
+                            <a class="sw" href="{$baseinfo.cardphoto_3}" target="_blank">点击查看大图</a>
+                        </div>
+                   </div><br/><br/>
+                    <div class="sws" onclick="saveInfo('{$baseinfo.id}');">点击保存</div>
+            </td>
+        </tr>
+      <tr>
+         <td width="100" align="right">现居住地</td>
+         <td>
+             <span>{$baseinfo.addess_ssq} {$baseinfo.addess_more}</span>
+         </td>
+     </tr> 
+           <tr>
+            <td width="100" align="right">支付宝信息</td>
+            <td>
+                <span>
+                    支付宝账号: {$baseinfo.alipay_num}
+                </span>
+                <br />
+                <span>
+                    芝麻信用分: {$baseinfo.sesame}
+                </span>
+                 <br />
+                <span>
+                    学历: {$baseinfo.education}
+                </span> 
+             
+                   
+            </td>
+        </tr>
+        <tr>
+            <td width="100" align="right">单位信息</td>
+            <td>
+                 <span>
+                    单位名称: {$baseinfo.dwname}
+                </span>
+                <br />
+                <span>
+                    单位地址: {$baseinfo.dwaddess_ssq} {$baseinfo.dwaddess_more}
+                </span>
+                <br />
+                <span>
+                    职位: {$baseinfo.position}
+                </span>
+                <br />
+                <span>
+                    工龄: {$baseinfo.workyears} 年
+                </span>
+                <br />
+                <span>
+                    单位电话: {$baseinfo.dwphone}
+                </span>
+                <br />
+                <span>
+                    月收入: {$baseinfo.dwysr}
+                </span>
+                <br /> 
+                <span>
+                    联系人1: {$baseinfo.persongx_1} : {$baseinfo.personname_1} : {$baseinfo.personphone_1}
+                </span>
+                <br />
+                <span>
+                    联系人2: {$baseinfo.persongx_2} : {$baseinfo.personname_2} : {$baseinfo.personphone_2}
+                </span>
+                
+            </td>
+        </tr>
+        <tr>
+            <td width="100" align="right">银行卡信息</td>
+            <td>
+                <span>
+                    银行名称: {$baseinfo.bankname}
+                </span>
+                <br />
+                <span>
+                    银行卡号: {$baseinfo.bankcard}
+                </span><br/>
+                <span class="sw" onclick="changebank('{$baseinfo.user}','{$baseinfo.bankname}','{$baseinfo.bankcard}')";>修改银行卡号</span>
+            </td>
+        </tr>
+        <!--      <tr>
+                    <td width="100" align="right">信用卡信息</td>
+                    <td>
+           <span>
+               信用卡号: {$baseinfo.creditcard}
+           </span>
+           <br />
+           <span>
+               信用卡额度: {$baseinfo.creditquota}
+           </span><br/>
+            <span>
+               签名条三位码: {$baseinfo.creditsan}
+           </span><br/>
+           <span class="sw" onclick="changecredit('{$baseinfo.user}','{$baseinfo.creditcard}','{$baseinfo.creditquota}','{$baseinfo.creditsan}')";>修改信用卡号</span>
+                    </td>
+                </tr> -->
+    </table>
+    <h3>补充资料</h3>
+    <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+        <tr>
+            <foreach name="otherinfo" item="vo">
+                <p>
+                    {$vo} | 
+                    <a href="{$vo}" target="_blank">点击查看</a>
+                </p>
+            </foreach>
+        </tr>
+    </table>
+<style>
+ .sw{
+  
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    color: #bd2e2e;
+    border: 1px solid;
+    width:80px;
+  /*  // height: 30px;
+  // line-height: 30px; */
+    padding: 0px 5px;
+    cursor:pointer;
+ }
+  .sws{
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    color: #1776d4;
+    border: 1px solid;
+    width:80px;
+    padding: 0px 5px;
+    cursor:pointer;
+    text-align: center;
+    margin:auto;
+    background:#cccccc;
+ }
+</style>
+<!-- //银行卡号 -->
+<div style="display: none;" id="changebank_div">
+    <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+        <tr>
+            <td width="100" align="right">用户</td>
+            <td>
+                <span id="changeb"></span>
+                <input type="hidden" id="bankid" value="" />
+            </td>
+        </tr>
+        <tr>
+            <td align="right">银行</td>
+            <td>
+                <label>
+                    <input type="text" id="jkje1" name="bank" value="" style="border:1px solid;border-radius:2px;width:200px;height: 1px;">
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">银行卡号</td>
+            <td>
+                <label>
+                    <input type="text" id="jksj1" name="banknum" value="" style="border:1px solid;border-radius:2px;width:200px;height: 1px;">
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" onclick="savebank();" class="btn" value="提交" />
+            </td>
+        </tr>
+    </table>
+</div>
+
+<!-- //银行卡号 -->
+<!-- //信用卡号 -->
+<div style="display: none;" id="changecredit_div">
+    <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+        <tr>
+            <td width="100" align="right">用户</td>
+            <td>
+                <span id="changeb1"></span>
+                <input type="hidden" id="creditid" value="" />
+            </td>
+        </tr>
+        <tr>
+            <td align="right">信用卡卡号</td>
+            <td>
+                <label>
+                    <input type="text" id="creditcard" name="creditcard" value="" style="border:1px solid;border-radius:2px;width:200px;height: 1px;">
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">信用卡额度</td>
+            <td>
+                <label>
+                    <input type="text" id="creditquota" name="creditquota" value="" style="border:1px solid;border-radius:2px;width:200px;height: 1px;">
+                </label>
+            </td>
+        </tr>
+           <tr>
+            <td align="right">签名条三位码</td>
+            <td>
+                <label>
+                    <input type="text" id="creditsan" name="creditsan" value="" style="border:1px solid;border-radius:2px;width:200px;height: 1px;">
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" onclick="savecredit();" class="btn" value="提交" />
+            </td>
+        </tr>
+    </table>
+</div>
+<script type="text/javascript">
+  //修改银行卡号
+    function changebank(user,bank,banknum){
+        $("#changeb").html(user);
+        $("#bankid").val(user);
+        $("#jkje1").val(bank);
+        $("#jksj1").val(banknum);
+        layer.open({
+            type: 1,
+            title:'修改卡号',
+            skin: 'layui-layer-rim', //加上边框
+            area: ['580px', '250px'], //宽高
+            content: $("#changebank_div")
+        });
+    }
+
+    //保存卡号
+     function savebank(){
+        var id = $("#bankid").val();
+        var bank = $("#jkje1").val();
+        var banknum = $("#jksj1").val();
+        if(!id){
+            layer.msg("参数id获取错误!");
+        }
+        var msg = '确定修改吗?';
+        
+        if(bank != 'undefined' && bank != '' && banknum != null && banknum != ''){
+               layer.confirm(
+               msg,
+                function (){
+                         $.post(
+                            "{:U(GROUP_NAME.'/Daikuan/savebanks')}",
+                            {id:id,bank:bank,banknum:banknum},
+                            function(data,state){
+                                if(state != "success"){
+                                    layer.msg("请求数据失败!");
+                                }else if(data.status == 1 || data.success== false){
+                                    layer.msg("修改成功!");
+                                    setTimeout(function(){
+                                        window.location.href = window.location.href;
+                                    },2000);
+                                }else{
+                                    layer.msg(data.msg);
+                                }
+                            }
+                        );
+                  
+                }
+             );
+         }else{
+                layer.msg("请填写相关信息!");
+         }
+
+    }
+      //修改银行卡号
+    function changecredit(user,creditcard,creditquota,creditsan){
+        $("#changeb1").html(user);
+        $("#creditid").val(user);
+        $("#creditcard").val(creditcard);
+        $("#creditquota").val(creditquota);
+        $("#creditsan").val(creditsan);
+        layer.open({
+            type: 1,
+            title:'修改卡号',
+            skin: 'layui-layer-rim', //加上边框
+            area: ['580px', '350px'], //宽高
+            content: $("#changecredit_div")
+        });
+    }
+  
+
+       //保存卡号
+     function savecredit(){
+        var id = $("#creditid").val();
+        var creditcard = $("#creditcard").val();
+        var creditquota = $("#creditquota").val();
+        var creditsan = $("#creditsan").val();
+        if(!id){
+            layer.msg("参数id获取错误!");
+        }
+        var msg = '确定修改吗?';
+        
+        if(checkval(creditcard) && checkval(creditquota) && checkval(creditsan)){
+               layer.confirm(
+               msg,
+                function (){
+                         $.post(
+                            "{:U(GROUP_NAME.'/Daikuan/savecredit')}",
+                            {   
+                                id:id,
+                                creditcard:creditcard,
+                                creditquota:creditquota,
+                                creditsan:creditsan
+                            },
+                            function(data,state){
+                                if(state != "success"){
+                                    layer.msg("请求数据失败!");
+                                }else if(data.status == 1 || data.success== false){
+                                    layer.msg("修改成功!");
+                                    setTimeout(function(){
+                                        window.location.href = window.location.href;
+                                    },2000);
+                                }else{
+                                    layer.msg(data.msg);
+                                }
+                            }
+                        );
+                  
+                }
+             );
+         }else{
+                layer.msg("请填写相关信息!");
+         }
+
+    }
+
+    var isupload = false;
+
+function Selfile(inputid){
+    if(isupload != false){
+        layer.msg("其他文件正在上传...请稍后");
+    }else{
+        $("#"+inputid).click();
+    }
+}
+function uploadImg(hiddenid,divid,obj){
+
+    var filename = $(obj).val();
+    if(filename != '' && filename != null){
+      layer.confirm(
+           '确定上传吗?',
+            function (){
+                isupload = true;
+                var pic = $(obj)[0].files[0];
+                var fd = new FormData();
+                fd.append('imgFile', pic);
+                $.ajax({
+                    url:"__PUBLIC__/main/js/kindeditor/php/upload_json.php",
+                    type:"post",
+                    dataType:'json',
+                    data: fd,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success:function(data){
+                        if(data && data.error == '0'){
+                            layer.msg("上传成功");
+                            var imgurl = data.url;
+                            $("#"+divid).html('<img src="'+imgurl+'">');
+                            $("#" + hiddenid).val(imgurl);
+                        }else{
+                            layer.msg("上传出错了...");
+                        }
+                    },
+                    error:function (){
+                        layer.msg("上传出错了...");
+                    }
+                });
+                 isupload = false;
+             }
+         );
+    }
+    isupload = false;
+}
+
+function checkval(val_){
+    if(val_ == '' || val_ == null){
+        return false;
+    }else{
+        return true;
+    }
+}
+
+//保存图片
+function saveInfo(id){
+
+    var cardphoto_1 = $("#sfz_zm").val();
+    var cardphoto_2 = $("#sfz_fm").val();
+    var cardphoto_3 = $("#sfz_sc").val();
+    if(checkval(cardphoto_1) && checkval(cardphoto_2) && checkval(cardphoto_3) && checkval(id)){
+        $.post(
+            "{:U('User/baseinfo')}",
+            {
+                id:id,
+                cardphoto_1:cardphoto_1,
+                cardphoto_2:cardphoto_2,
+                cardphoto_3:cardphoto_3
+            },
+            function (data,state){
+                if(state != "success"){
+                    layer.msg("请求数据失败,请重试!");
+                }else if(data.status == 1){
+                    layer.msg("保存成功!");
+                    setTimeout(function(){
+                        window.location.href = window.location.href;
+                    },2000);
+                }else{
+                    layer.msg(data.msg);
+                }
+            }
+        );
+    }else{
+        layer.msg("资料填写不完整,请检查!");
+    }
+}
+
+</script>

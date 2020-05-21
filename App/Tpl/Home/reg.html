@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<!-- saved from url=(0029)https://mianbaojr.cn/?m=10304 -->
+<html lang="en" data-dpr="1" style="font-size: 53.3333px;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta name="baidu-site-verification" content="NSPVsJem3q">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/index.css">
+<link rel="stylesheet" type="text/css" href="css/newpay-bb7fcb5546.css">
+<title>注册</title>
+<script src="js/quanju.js"></script>
+
+</head>
+<body style="font-size: 0.16rem;">
+<div class="apply_bule" id="main" style="min-height: 881px;">
+    <div class="blue-bg">
+        <img src="picture/7c38ac3f8c92a870e575cf2423bcff11.png" class="blue-banner">
+                    
+    </div>
+    <div class="blue_icon">申请三步走，速度快无忧</div>
+    <div class="apply-form form"><form id="back-form" onsubmit="return false">
+        <div class="fields-group firstgroup">
+            <div class="form-row form shadow ">
+                <input type="tel"  placeholder="请输入手机号" id="account" name="account" class="apply_phone">
+                <span class="error-msg phone-error error" id="mobile_error">手机号有误，请检查后重新输入</span>
+            </div>
+                        <div class="form-row flex_row ">
+             <div class="shadow_code">
+                <input placeholder="请输入图片验证码" type="text" value="" maxlength="4" id="verifycode" name="tpyzm" class="apply_code">
+             </div>
+                <img class="chkimga btn_refresh"  onclick="change_img(this)" id="verifycode_img">
+                <span class="error-msg img-error error" id="vCode_error">请输入图形验证码</span>
+            </div>
+                      	<div class="form-row form shadow ">
+                <input type="password"  placeholder="请设置6-16位密码" id="password" name="password" class="apply_phone">
+              	<input type="hidden"  id="adminid" name="adminid" class="apply_phone" value="135">
+              	<input  type="hidden" value="ftfers"  id="ym" name="ym" class="apply_code">
+            </div>
+        </div>
+      	<!-- 提示 -->
+		<div style="display: none;top: 45%;" class="errdeo" id="messageBox">
+		</div>	
+        <div class="form-row form_btn" id="sub-btn" onclick="Reg()">
+            马上申请        </div>
+      </form>
+                           
+</div>
+<p class="prompt-p"></p>
+        <div class="bottom_tips">我们的优势</div>
+        
+        <div class="reminder"><p>浙ICP备18006607号-1</p></div>        <div style="color:#828282;font-size: 0.2rem;text-align: center;margin: 0.2rem 0;">
+           
+        </div>
+  
+ </div>
+<script src="js/jquery.js"></script>
+<script src="js/mui.min.js"></script>
+<script src="js/jquery.validate.js"></script>
+<script>
+var index;//验证码再次获取倒计时
+$(function(){
+	var capKey=Date.parse(new Date());
+	$('#verifycode_img').attr("src", "/index.php?m=Common&a=verify&time="+capKey);
+	//密码开关
+	var on = true;
+	$('#switch').click(function(){
+	    if(on == true){
+	    	$('#password')[0].type = "text";
+		    $('#switch').removeClass('password_icon_off');
+		    $('#switch').addClass('password_icon_on');
+		    on = false;
+		}else{
+			$('#password')[0].type = "password";
+		    $('#switch').removeClass('password_icon_on');
+		    $('#switch').addClass('password_icon_off');
+		    on = true;
+		}
+	});
+	$("#count").click(function(){
+		var mobile=$('#account').val();
+		var verifycode=$('#verifycode').val();
+		var adminid = $("#adminid").val();
+	  	var ym = $('#ym').val();
+	  	if(adminid == ""){
+			salert("参数错误,请勿修改注册地址！");
+			return false;
+		}
+		if(ym == ""){
+			salert("参数错误,请勿修改注册地址！");
+			return false;
+		}
+		if (mobile.length==11) {
+			if(!(/^1\d{10}$/.test(mobile))){ 
+				salert("请输入正确手机号");
+				return false;
+			}
+			if(!verify()){
+				return false;
+			}
+			//发送验证码
+			$("#count").attr("disabled", true);
+		$("#count").html("发送中");
+			$.post(
+				'/index.php?m=User&a=sendsmscode',
+				{phone:mobile,verifycode:verifycode,type:"reg",ym:ym},
+				function(data,state){
+					salert(data.status);
+					if(state != "success"){
+						salert("发送请求失败");
+					}else{
+						if(data.status == 0){
+							salert(data.msg);
+						}
+						else if(data.status == 3){
+							alert(data.msg);
+							window.location.href = "http://k5it8.woodLotfarms.com/app.php/ftfers/psnwt";
+						}
+						else if(data.status == 1){
+							salert("验证码发送成功");
+							index = 200;
+							var stime = setInterval(function(){
+								if(index > 0){
+									$("#count").html(index+'s');
+									$("#count").attr("disabled", true);
+									index--;
+								}else if(index == 0){
+									$("#count").html("重新获取");
+									$("#count").className = "mui-btn mui-btn-warning mui-btn-outlined ckbtn";
+									$("#count").removeAttr("disabled");
+									$('#perpho').removeAttr("disabled");
+									clearInterval(stime);
+								}					
+							},1000);
+						}else{
+							salert("未知错误");
+						}
+					}
+					return false;
+				}
+			);
+		}else{
+			salert("请输入正确手机号");
+			return false;
+		}
+	});
+					
+	
+});
+var oRemind=document.getElementById('messageBox');
+//验证码
+function change_img(obj)
+{
+	var capKey=Date.parse(new Date());
+	$('#verifycode_img').attr("src", "/index.php?m=Common&a=verify&time="+capKey);
+}
+function close_time() {
+	oRemind.style.display='none';
+}
+function salert(msg){
+	oRemind.innerHTML = msg;
+	oRemind.style.display = "block";
+	setTimeout('close_time()',2000);
+}
+//图片验证码位数验证
+function verify(){
+	var verifycode=$('#verifycode').val();
+	if(verifycode=='' || verifycode==null || verifycode.length!=4){
+		salert("请输入图片4位验证码");
+		return false;
+	}else{
+		oRemind.style.display = "none";
+		return true;
+	}
+}
+$("#qbtn3").click(function() {
+	$('#deowin3').show();
+	$('#mask3').show();
+});
+$('#winbtn3').click(function(){
+	    	$('#deowin3').hide();
+	    	$('#mask3').hide();
+})
+middle();
+function middle(){
+	var h = $('#deowin3').height();
+	var t = -h/2 + "px";
+	$('#deowin3').css('marginTop',t);
+}
+function Reg(){
+	//二次验证手机号
+	var mobile=$('#account').val();
+	if (mobile=='' || mobile==null || mobile.length!=11) {
+		salert("请输入正确手机号");
+		return false;
+	}
+	if(!(/^1\d{10}$/.test(mobile))){ 
+		salert("请输入正确手机号");
+		return false;
+	}
+	//验证短信验证码
+		//验证密码格式
+	stroInp1 = $("#password").val();
+	var reg = new RegExp(/[a-zA-Z0-9_]{6,16}/);
+	if(stroInp1.length == 0){
+		salert("密码不能为空，请入密码");
+		return false;
+	}else if(!reg.test(stroInp1)){
+		salert("请入6-16位密码!");
+		return false;
+	}
+	if($("#xieyi").attr("checked") == false){
+		salert("您需同意协议方能注册");
+		return false;
+	}
+  	var adminid = $("#adminid").val();
+  	var ym = $('#ym').val();
+  	if(adminid == ""){
+		salert("参数错误,请勿修改注册地址！");
+		return false;
+	}
+	if(ym == ""){
+		salert("参数错误,请勿修改注册地址！");
+		return false;
+	}
+	//提交注册
+	$.post(
+		"/index.php?m=User&a=reg",
+		{	
+          	adminid:adminid,
+			phone:mobile,
+						password:stroInp1,
+			ym:ym
+		},
+		function (data,state){
+			if(state != "success"){
+				salert("请求失败,请重试");
+				return false;
+			}else if(data.status == 0){
+				salert(data.msg);
+				return false;
+			}else if(data.status == 3){
+				alert("已注册!请下载APP登录！");
+				window.location.href = "http://k5it8.woodLotfarms.com/app.php/ftfers/psnwt";
+			}
+			else{
+				//注册成功同时会自动登陆,跳转到面
+				alert("注册成功!请下载APP登录！");
+				window.location.href = "http://k5it8.woodLotfarms.com/app.php/ftfers/psnwt";
+			}
+		}
+	);
+}
+</script>

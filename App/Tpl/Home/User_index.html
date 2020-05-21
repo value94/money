@@ -1,0 +1,320 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> <Somnus:sitecfg name="sitetitle"/> </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="description" content="记录你读过的、想读和正在读的书，顺便打分，添加标签及个人附注，写评论。根据你的口味，推荐适合的书给你。">
+    <meta name="Keywords" content="豆瓣读书,新书速递,畅销书,书评,书单">
+   <link rel="stylesheet" type="text/css" href="/Public/cj/mui.min_2.css">
+    <link rel="stylesheet" type="text/css" href="/Public/cj/feiqi-ee5401a8e6_1.css">
+    <link rel="stylesheet" type="text/css" href="/Public/cj/newpay-bb7fcb5546_2.css">
+    <link rel="stylesheet" type="text/css" href="/Public/cj/newindex-09d04b32f3.css">
+   <link rel="stylesheet" type="text/css" href="/Public/cj/pay-2b02ca7987.css">
+
+    <style>
+        .kuren {
+            padding: 2px 0;
+            padding-right: 10px;
+        }
+
+        .cominfo {
+            padding: 0 0 0 15px;
+        }
+
+        .kuai {
+            padding-top: 0px;
+            margin-top: 4px;
+        }
+
+        .container .inpifo {
+            padding: 10px 10px;
+        }
+
+        .hsma {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        .mb80 {
+            padding-bottom: 80px;
+        }
+    </style>
+  <script>
+        if(('standalone' in window.navigator)&&window.navigator.standalone){
+var noddy,remotes=false;
+document.addEventListener('click',function(event){
+noddy=event.target;
+while(noddy.nodeName!=='A'&& noddy.nodeName!=='HTML') 
+  noddy=noddy.parentNode;
+if('href' in noddy && noddy.href.indexOf('http')!==-1&&(noddy.href.indexOf(document.location.host)!==-1||remotes)){
+event.preventDefault();
+document.location.href=noddy.href;
+}
+},false);
+        }
+</script>
+</head>
+<script>
+    if (('standalone' in window.navigator) && window.navigator.standalone) {
+        var noddy, remotes = false;
+        document.addEventListener('click', function (event) {
+            noddy = event.target;
+            while (noddy.nodeName !== 'A' && noddy.nodeName !== 'HTML') noddy = noddy.parentNode;
+            if ('href' in noddy && noddy.href.indexOf('http') !== -1 && (noddy.href.indexOf(document.location.host) !== -1 || remotes)) {
+                event.preventDefault();
+                document.location.href = noddy.href;
+            }
+        }, false);
+    }
+</script>
+<script>
+    document.addEventListener('plusready', function () {
+        var webview = plus.webview.currentWebview();
+        plus.key.addEventListener('backbutton', function () {
+            webview.canBack(function (e) {
+                if (e.canBack) {
+                    webview.back();
+                } else {
+                    webview.close();//hide,quit
+                }
+            })
+        });
+
+    });
+</script>
+<body>
+    <!-- header -->
+    <!-- header end-->
+    <div class="mui-content" style="margin-top: -1px;">
+
+        <div class="maotop">
+            <div class="hedpic" >
+                <a href="{:U('Info/index')}">
+                    
+                    <img src="/Public/images/m_04.png" alt="">
+                </a>
+                <span class="indtel" style="bottom:42px;">{$user}</span><br />
+                    <span class="indtel" style="bottom:unset">普通会员</span><br />
+            </div>
+        </div>
+        <!-- group1 -->
+        <section class="allgrp mt10">
+            <!-- 上 -->
+            <article class="cominfo">
+                <div class="container">
+                    <!-- 右箭头 -->
+                    <div class="inpifo">
+                        <a href="{:U('Info/index')}">
+                            <div class="input-group">
+                                <div class="cf kuren">
+                                    <div class="fl kuai hsma">
+                                        <img src="/Public/images/m_07.png" alt="">
+                                    </div>
+                                    <div class="fl mname">
+                                        <p>我的资料</p>
+                                    </div>
+                                    <div class="fr rarr">
+                                        <span class="seltarr1"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- 右箭头 -->
+                    <!-- 右箭头 -->
+                    <div class="inpifo">
+                        <a href="{:U('Order/lists')}">
+                            <div class="input-group">
+                                <div class="cf kuren">
+                                    <div class="fl hsma kuai">
+                                        <img src="/Public/images/m_10.png" alt="">
+                                    </div>
+                                    <div class="fl mname">
+                                        <p>我的借款</p>
+                                    </div>
+                                    <div class="fr rarr">
+                                        <span class="seltarr1"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- 右箭头 -->
+                    <!-- 右箭头 -->
+                    <div class="inpifo">
+                        <a href="{:U('Order/hk')}">
+                            <div class="input-group">
+                                <div class="cf kuren">
+                                    <div class="fl hsma kuai">
+                                        <img src="/Public/images/m_12.png" alt="">
+                                    </div>
+                                    <div class="fl mname">
+                                        <p>我的还款</p>
+                                    </div>
+                                    <div class="fr rarr">
+                                        <span class="seltarr1"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="inpifo">
+                        <a href="{:U('Order/hetong',array('oid' => $data['id']))}">
+                            <div class="input-group">
+                                <div class="cf kuren">
+                                    <div class="fl hsma kuai">
+                                        <img src="/Public/images/plus.png" alt="">
+                                    </div>
+                                    <div class="fl mname">
+                                        <p>法律责任</p>
+                                    </div>
+                                    <div class="fr rarr">
+                                        <span class="seltarr1"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- 右箭头 -->
+                </div>
+            </article>
+        </section>
+        <!-- group1 end -->
+        <!-- group2  -->
+        <section class="allgrp mt10" style="height:200px;">
+            <article class="cominfo">
+                <div class="container">
+                    <!-- 右箭头 -->
+                    <div class="inpifo">
+                        <a href="{:U('User/backpwd')}">
+                            <div class="input-group">
+                                <div class="cf kuren">
+                                    <div class="fl hsma kuai">
+                                        <img src="/Public/images/hm_13.png" alt="">
+                                    </div>
+                                    <div class="fl mname">
+                                        <p>修改密码&nbsp;</p>
+                                    </div>
+                                    <div class="fr rarr">
+                                        <span class="seltarr1"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- 右箭头 -->
+                </div>
+            </article>
+            <article class="cominfo">
+                <div class="container">
+                    <!-- 右箭头 -->
+                    <div class="inpifo">
+                        <a href="javascript:logout();">
+                            <div class="input-group">
+                                <div class="cf kuren">
+                                    <div class="fl hsma kuai">
+                                        <img src="/Public/images/m_13.png" alt="">
+                                    </div>
+                                    <div class="fl mname">
+                                        <p>退出登录</p>
+                                    </div>
+                                    <div class="fr rarr">
+                                        <span class="seltarr1"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- 右箭头 -->
+                </div>
+            </article>
+        </section>
+    </div>
+    <!-- bottom bar -->
+ <nav class="mui-bar mui-bar-tab bottom-bar">
+    <a class="mui-tab-item " href="{:U('Index/index')}">
+        <span class="mui-icon mui-icon-home home">
+        </span>
+        <span class="mui-tab-label">首页</span>
+    </a>
+    <!--a class="mui-tab-item" href="/index.php?m=Index&a=member">
+            <span class="mui-icon mui-icon-home home">
+    </span>
+        <span class="mui-tab-label">会员选项</span>
+    </a-->
+    <a class="mui-tab-item " href="{:U('Index/money')}">
+        <span class="mui-icon "><img src="/Public/home/picture/ico_foot2.png" width="100%" alt="">
+        </span>
+        <span class="mui-tab-label">钱包</span>
+    </a>
+    <a class="mui-tab-item " href="{:U('Help/index')}">
+        <span class="mui-icon mui-icon-contact muihelp "></span>
+        <span class="mui-tab-label">帮助</span>
+    </a>
+    <a class="mui-tab-item cur" href="{:U('User/index')}">
+        <span class="mui-icon mui-icon-email myself cur"></span>
+        <span class="mui-tab-label">我</span>
+    </a>
+</nav>
+
+    <div class="deowin" style="display: none;" id="deowin">
+        <div class="deocon">
+            <div class="divpad" style="text-align:center;line-height:80px">
+                确定要退出当前账号？
+            </div>
+            <div class="wobtn">
+                <div class="twobtn">
+                    <!-- 两个按钮用这个结构 -->
+                    <a id="winbtn" href="javascript:;" style="color:#666">取消</a>
+                    <!-- href="/account/passport/logout" -->
+                    <a class="obtn" id='lgbtn' style="color: #0894ec;">确定</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="emask" style="display: none;" id="mask"></div>
+
+    <script src="/Public/home/js/jquery.js"></script>
+    <script src="/Public/home/js/fontsizeset.js"></script>
+    <script src="/Public/home/js/fukuang.js"></script>
+    <!--script src="/Public/home/js/jquery.cookie.js"></script-->
+    <script>
+        var IsOpenWeb = '0';
+        if (IsOpenWeb == "1") {
+            location.href = "/Loan/CloseWebTips";
+        }
+
+        var h = $('#deowin').height();
+        var t = -h / 2 + "px";
+        $('#deowin').css('marginTop', t);
+        function logout() {
+            $("#deowin").show();
+            $('#mask').show();
+        }
+        $('.bottom-bar a').click(function () {
+            $('.bottom-bar a').removeClass('cur');
+            $('.bottom-bar a span').removeClass('cur');
+            $(this).addClass('cur');
+            $(this).find('span').eq(0).addClass('cur');
+        });
+        $("#lgbtn").click(function () {
+            window.location.href = "{:U('User/logout')}";
+        });
+        $('#winbtn').click(function () {
+            $('#deowin').hide();
+            $('#mask').hide();
+        });
+    </script>
+    <div style="display: none;">
+    </div>
+</body>
+</html>

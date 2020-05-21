@@ -1,0 +1,39 @@
+<div id="dcHead" style="background-color: #0072c6;color:white;">
+    <div id="head">
+        <div class="logo">
+            <a href="{:U(GROUP_NAME.'/Main/index')}">
+                <span style="line-height: 38px;margin-left: 20px;font-size: 20px;color: #f6f6f6;font-weight: 800;">{:C('cfg_sitename')}</span>
+                <!--   <div style="width: 178px;height: 40px;background-image: url('__PUBLIC__/main/images/coin.png');background-size:cover;"> </div> -->
+            </a>
+        </div>
+        <div class="nav">
+            <ul>
+                <li class="M">
+                    <a href="JavaScript:void(0);" class="topAdd">新建</a>
+                    <div class="drop mTopad">
+                        <!--            <a href="{:U(GROUP_NAME.'/Article/add')}">文章</a>
+                                   <a href="{:U(GROUP_NAME.'/Article/addcat')}">文章分类</a> -->
+                        <!--<a href="{:U(GROUP_NAME.'/link/add')}">友情链接</a>-->
+                        <a href="{:U(GROUP_NAME.'/Admin/add')}">管理员</a>
+                    </div>
+                </li>
+                <li><a href="<somnus:sitecfg name='siteurl' />" target="_blank">前往首页</a></li>
+                <li><a href="{:U(GROUP_NAME.'/Main/clearcache')}">清除缓存</a></li>
+                <li><a href="{:U(GROUP_NAME.'/Admin/invitation')}">我的推广码</a></li>
+
+            </ul>
+
+            <ul class="navRight">
+                <li class="M noLeft">
+                    <a href="JavaScript:void(0);">您好，{:json_decode(session('admin_user'), true) ['username']} </a>
+                    <div class="drop mUser">
+                        <a href="{:U(GROUP_NAME.'/Admin/chagemypass')}">修改密码</a>
+                    </div>
+                </li>
+                <li class="noRight">
+                    <a href="{:U(GROUP_NAME.'/Index/logout')}">退出</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

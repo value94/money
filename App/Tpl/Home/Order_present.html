@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title> <Somnus:sitecfg name="sitetitle"/> </title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="description" content=" <Somnus:sitecfg name="sitedescription"/> ">
+<meta name="Keywords" content=" <Somnus:sitecfg name="sitekeywords"/> ">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/mui.min.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/newpay-bb7fcb5546.css">
+  <link rel="icon" href="__PUBLIC__/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="__PUBLIC__/favicon.ico" type="image/x-icon" />
+<style type="text/css">
+.mui-content {
+    margin-top: 44px;
+}
+input{
+	font-size: 16px;
+}
+@media screen and (max-width: 320px){
+/*	.entergroup span.t1{margin-top:-6px;}*/
+	.entergroup span.t2{ margin-top:-2px;}
+	.entergroup span.t3{ margin-top:-2px;}
+}
+.entergroup .w55 {
+    height: 32px;
+}
+</style>
+</head>
+<body class="newbg">
+ 	<!-- header -->
+ 	<header class="mui-bar mui-bar-nav hnav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="{:U('Info/index')}"></a>
+		<h1 class="mui-title">提现</h1>
+	</header>
+
+	<!-- header end-->
+<form   id="form" method="post"  onsubmit="return false">
+<input type="hidden" name="ordernum" value="{$infos.ordernum}">
+<input type="hidden" name="money" value="{$infos.money}">
+<section class="mui-content">
+	<section class="mui-ngroup">
+		<!-- group1 -->
+		<div class="cf entergroup">
+			<span class="fl">真实姓名</span>
+		    <input class="fr bainpt pr0" name="name" id="bank_card_no" type="text" placeholder="请输入姓名" value="{$info.name}"  readonly unselectable="on" required/>
+		</div>
+		<div class="cf entergroup">
+			<span class="fl">手机号</span>
+		    <input class="fr bainpt pr0" name="user" id="bank_card_no" type="text" placeholder="请输入手机号" value="{$info.user}"  readonly unselectable="on" required/>
+		</div>
+	</section>
+	<section class="mt10 mui-ngroup  h_input">
+		<!-- group1 -->
+		<!-- group1 -->
+		<div class="cf entergroup">
+			<span class="fl">提现银行</span>
+		    <a class="selar fr" href="javascript:;" >
+		    	<span id="bankname">{$info.bankname}</span>
+		    	<!-- <span class="mgarr ml10 bank_icon"></span> -->
+		    </a>
+		    <input type="hidden" name="banks" id="banks" value="{$info.bankname}">
+	   	<!-- 	<select class="form-control selsch" onchange="changeBank();" id="bank" >
+	   		<option value="工商银行">工商银行</option>
+	   		<option value="中国银行">中国银行</option>
+	   		<option value="建设银行">建设银行</option>
+	   		<option value="招商银行">招商银行</option>
+	   		<option value="广发银行">广发银行</option>
+	   		<option value="邮储银行">邮储银行</option>
+	   		<option value="农业银行">农业银行</option>
+	   		<option value="兴业银行">兴业银行</option>
+	   		<option value="平安银行">平安银行</option>
+	   		<option value="中信银行">中信银行</option>
+	   		<option value="华夏银行">华夏银行</option>
+	   		<option value="光大银行">光大银行</option>
+	   		<option value="浦发银行">浦发银行</option>
+	   		<option value="民生银行">民生银行</option>
+	   	</select> -->
+		</div>
+		<!-- group1 -->
+		<div class="cf entergroup">
+			<span class="fl">银行卡卡号</span>
+	   		<select class="form-control selsch" onchange="changeBank();" id="bank" disabled>
+			<input class="fr bainpt pr0"  id="bank_card_no" type="text" placeholder="请输入银行卡卡号" value="{:substr_replace($info['bankcard'],'****',-1,6)}" required disabled/>
+		    <input class="fr bainpt pr0" name="account" id="bank_card_no" type="hidden" placeholder="请输入银行卡卡号" value="{$info.bankcard}">
+		</div>
+		<div class="cf entergroup">
+			<span class="fl">提现密码</span>
+		    <input class="fr bainpt pr0" name="cfg_pwd" id="bank_card_no" type="text" placeholder="请输入提现密码" value="" onkeyup="value=value.replace(/[^\d]/g,'')" required/>
+		</div>
+		<!-- group1 end-->
+
+	</section>
+	<div class="banktip">
+		<h5>&nbsp;&nbsp;&nbsp;&nbsp;温馨提醒：如果您不知道提现 授权码，请联系<font color="#00CD00"><b></b></font>区域经理 或 <font color="#00CD00"><b>信贷员（微信:{:C('cfg_weixinhao')}  QQ:{:C('cfg_kefuqq')}）</b></font> 索取.您的专属提现 授权码！</h5>
+	</div>
+	<!-- paymoney end-->
+
+<section class="msub" style="position: relative;">
+	<button type="submit" class="mui-btn mui-btn-danger mui-button-pay mui-button-gry" onclick="saveInfo({$infos.id});"">提交</button>
+	<!-- 提示 -->
+	<div style="display: none; position: absolute;" class="errdeo" id="messageBox"></div>	
+</section>
+</form>
+</section>
+<div style="display: none;">
+	<Somnus:sitecfg name="sitecode"/>
+</div>
+</body>
+</html>
+<script src="__PUBLIC__/home/js/jquery-1-fe84a54bc0.11.1.min.js"></script>
+<script src="__PUBLIC__/home/js/jquery.validate.js"></script>
+<script src="__PUBLIC__/home/js/jquery.js"></script>
+<script>
+var userbank = "{$userinfo.bankname}";
+if(userbank != '' && userbank != null){
+	$("#bankname").html(userbank);
+	$("#banks").val(userbank);
+}
+function salert(msg){
+	$('#messageBox').html(msg);
+	$('#messageBox').show();
+	setTimeout(function(){
+		$('#messageBox').hide();
+	},2200);
+}
+function changeBank() {
+	var bank = $("#bank option:selected").text();
+	var bank_mr = "";
+	$("#bankname").html(bank);
+	$("#banks").val(bank);
+	if(bank != bank_mr) {
+		$("#bank_card_no").val("");
+	}
+}
+function saveInfo(id){
+	var url="{:U('Order/foward')}";
+	var data = $("form").serialize();
+	$.ajax({ 
+			 type: "POST",
+	         url:  url,
+	         data: data,
+	         dataType: "json",
+		     success: function(data){  
+		    	 if(data.status == 1){
+		            salert(data.msg);
+		       	     setTimeout(function(){
+		                    location.href = '/index.php?m=Order&a=tx&oid='+id;
+		                },1000);
+		            }else{
+		            	salert(data.msg);   
+		            }
+		     }
+    });
+}
+</script>
+                             

@@ -1,0 +1,251 @@
+<link href="__PUBLIC__/static/css/main.css" rel="stylesheet" type="text/css">
+
+<div class="flexigrid" scrolling="auto">
+    <div class="mDiv">
+        <div class="ftitle">
+            <h3>{$title}</h3>
+        </div>
+    </div>
+    <div class="tDiv2">
+        <div class="fbutton">
+            <!--<button onclick="addUser();" class="btnGray addUser">增加用户</button>-->
+            <form action="{:U(GROUP_NAME.'/User/users')}" method="post" style="margin-top: -6px;">
+                <input name="keyword" type="text" class="qsbox" id="input-order-id" placeholder="手机号搜索"
+                       value="{$keyword}" size="20"/>
+                <input name="submit" class="btn margin_lf" type="submit" value="筛选"/>
+                <span style="color:red;font-size:15px;margin-left:20px;">提示：未绑定为自己客户不可进行操作与管理，绑定后请到我的用户进行操作与管理，绑定错误只能由超级管理员解绑，请勿随意绑定。</span>
+            </form>
+        </div>
+    </div>
+    <div class="hDiv">
+        <div class="hDivBox">
+            <table cellspacing="0" cellpadding="0">
+                <thead>
+                <tr style="background: #886f6f;color: white;">
+                    <th width="12.5%" align="left" abbr="article_title" axis="col3" class="">
+                        <div class="">ID</div>
+                    </th>
+                    <th width="12.5%" align="left" abbr="article_title" axis="col3" class="">
+                        <div>客户手机</div>
+                    </th>
+                    <th width="12.5%" align="left" abbr="ac_id" axis="col4" class="">
+                        <div style="text-align: center; width: 100px;" class="">客户名</div>
+                    </th>
+                    <th width="12.5%" align="center" abbr="article_time" axis="col6" class="">
+                        <div style="text-align: center; width: 100px;" class="">状态</div>
+                    </th>
+                    <th width="12.5%" align="center" abbr="article_time" axis="col6" class="">
+                        <div style="text-align: center; width: 100px;" class="">用户来源</div>
+                    </th>
+                    <th width="12.5%" align="center" abbr="article_show" axis="col5" class="">
+                        <div style="text-align: center; width: 100px;" class="">注册时间</div>
+                    </th>
+
+                    <th width="12.5%" align="center" axis="col1" class="handle">
+                        <div style="text-align: center; width: 100px;" class="">操作</div>
+
+                    </th>
+                    <th width="12.5%" align="center" axis="col6" class="handle">
+                        管理操作
+                    </th>
+                </tr>
+
+                </thead>
+            </table>
+        </div>
+    </div>
+    <div class="bDiv" style="height: auto;">
+        <div id="flexigrid" cellpadding="0" cellspacing="0" border="0">
+            <table>
+                <tbody>
+                <volist name="list" id="vo">
+                    <tr>
+                        <td width="12.5%" align="center">
+                            <div>{$vo.id}</div>
+                        </td>
+                        <td width="12.5%" align="center">
+                            <div>{$vo.phone}</div>
+                        </td>
+                        <td width="12.5%" align="center">
+                            <div>{$data[$vo['phone']]}</div>
+                        </td>
+                        <td width="12.5%" align="center">
+                            <div>
+                                <php>
+                                    if($vo['status'] == 1) echo "允许登录";
+                                    if($vo['status'] == 0) echo "禁止登录";
+                                </php>
+                            </div>
+                        </td>
+                        <td width="12.5%" align="center">
+                            <div>推广客户</div>
+                        </td>
+                        <td width="12.5%" align="center">
+                            <div>{$vo.addtime|date="Y/m/d",###}</div>
+                        </td>
+
+
+                        <td width="12.5%" class="handle" style="color: blue;text-align: center;">
+                            <!--如果已经绑定展示绑定管理名-->
+                            <!--没有绑定 除了超管之外 显示绑定按钮-->
+                            <if condition="($vo.admin_id neq null)">
+                                所属客服：{:$vo['admin_name']}
+                                <elseif condition="$role neq  1"/>
+                                <a onclick="bind('{$vo.id}')" style="color: red">我的用户，点击绑定</a>
+                                <else/>
+                                待绑定
+                            </if>
+
+                        </td>
+                        <td width="12.5%" align="center" style="text-align: center">
+                            <eq name="role" value="1">
+                                <div class=""><a style="color: red" href="javascript:Unbind('{$vo.id}');">解除绑定</a></div>
+
+                            </eq>
+                        </td>
+                    </tr>
+                </volist>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>
+<div class="pages">{$page}</div>
+
+
+<style>
+    .addUser {
+        margin-left: 20px;
+        background: red;
+        color: #fff;
+    }
+    body{
+        overflow-y:scroll;
+        overflow-x:scroll;
+    }
+</style>
+<script>
+    //增加用户
+    function addUser() {
+        layer.prompt({title: '增加用户', formType: 0}, function (pass, index) {
+            if (pass == '' || pass == null) {
+                layer.msg('用户名不能为空!');
+            } else if (pass.length < 11) {
+                layer.msg("用户名不能为空长度不能小于11位!");
+            } else {
+                $.post(
+                    "/index.php?g=Admin&m=User&a=addUser",
+                    {pass: pass},
+                    function (data, state) {
+                        if (state != "success") {
+                            layer.msg("网络通讯失败!");
+                        } else if (data.status == 1) {
+                            layer.msg(data.msg);
+                            layer.close(index);
+                            location.href = window.location.href;
+                        } else {
+                            layer.msg(data.msg);
+                        }
+                    }
+                );
+            }
+        });
+    }
+
+    function sleep(time) {
+        return new Promise((resolve) => setTimeout(resolve, time));
+    }
+
+    function Unbind(user_id) {
+        layer.confirm('确定要解绑用户吗?', function () {
+            $.get(
+                "/index.php?g=Admin&m=User&a=Unbind&user_id=" + user_id,
+                function (data, state) {
+                    if (state != "success") {
+                        layer.msg("网络通讯失败!");
+                    } else if (data.status == 1) {
+                        layer.msg(data.msg);
+                        sleep(500).then(() => {
+                            location.reload()
+                        })
+                    } else {
+                        layer.msg(data.msg);
+                    }
+                }
+            )
+        });
+    }
+
+    function bind(user_id) {
+        layer.confirm('确定要绑定用户吗?', function () {
+            $.post(
+                "{:U(GROUP_NAME.'/User/bind')}",
+                {user_id: user_id},
+                function (data, state) {
+                    if (state != "success") {
+                        layer.msg("网络通讯失败!");
+                    } else if (data.status == 1) {
+                        layer.msg("绑定成功!");
+                        sleep(500).then(() => {
+                            location.reload()
+                        })
+                    } else {
+                        layer.msg(data.msg);
+                    }
+                }
+            );
+        });
+    }
+
+    function changepass(uid) {
+        layer.prompt({title: '输入新密码，并确认', formType: 1}, function (pass, index) {
+            if (pass == '' || pass == null) {
+                layer.msg('密码不能为空!');
+            } else if (pass.length < 6) {
+                layer.msg("密码长度不能小于6位!");
+            } else {
+                $.post(
+                    "{:U(GROUP_NAME.'/User/changepass')}",
+                    {id: uid, pass: pass},
+                    function (data, state) {
+                        if (state != "success") {
+                            layer.msg("网络通讯失败!");
+                        } else if (data.status == 1) {
+                            layer.msg("密码修改成功!");
+                            layer.close(index);
+                        } else {
+                            layer.msg(data.msg);
+                        }
+                    }
+                );
+            }
+        });
+    }
+
+    function changeuser(uid) {
+        layer.prompt({title: '输入用户手机号，并确认', formType: 0}, function (pass, index) {
+            if (pass == '' || pass == null) {
+                layer.msg('手机号不能为空!');
+            } else if (pass.length < 11) {
+                layer.msg("手机号长度不能小于11位!");
+            } else {
+                $.post(
+                    "/index.php?g=Admin&m=User&a=changeuser",
+                    {id: uid, pass: pass},
+                    function (data, state) {
+                        if (state != "success") {
+                            layer.msg("网络通讯失败!");
+                        } else if (data.status == 1) {
+                            layer.msg("用户修改成功!");
+                            layer.close(index);
+                            location.href = window.location.href;
+                        } else {
+                            layer.msg(data.msg);
+                        }
+                    }
+                );
+            }
+        });
+    }
+</script>

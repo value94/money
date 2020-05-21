@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title> <Somnus:sitecfg name="sitetitle"/> </title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="description" content=" <Somnus:sitecfg name="sitedescription"/> ">
+<meta name="Keywords" content=" <Somnus:sitecfg name="sitekeywords"/> ">
+   <link rel="stylesheet" type="text/css" href="/Public/cj/mui.min_2.css">
+    <link rel="stylesheet" type="text/css" href="/Public/cj/feiqi-ee5401a8e6_1.css">
+    <link rel="stylesheet" type="text/css" href="/Public/cj/newpay-bb7fcb5546_2.css">
+    <link rel="stylesheet" type="text/css" href="/Public/cj/newindex-09d04b32f3.css">
+<link rel="stylesheet" type="text/css" href="/Public/cj/pay-2b02ca7987.css">
+
+  <link rel="icon" href="__PUBLIC__/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="__PUBLIC__/favicon.ico" type="image/x-icon" />
+  <script>
+        if(('standalone' in window.navigator)&&window.navigator.standalone){
+var noddy,remotes=false;
+document.addEventListener('click',function(event){
+noddy=event.target;
+while(noddy.nodeName!=='A'&& noddy.nodeName!=='HTML') 
+  noddy=noddy.parentNode;
+if('href' in noddy && noddy.href.indexOf('http')!==-1&&(noddy.href.indexOf(document.location.host)!==-1||remotes)){
+event.preventDefault();
+document.location.href=noddy.href;
+}
+},false);
+        }
+</script>
+</head>
+<body class="bg">
+
+	<!-- header -->
+ 	<header class="mui-bar mui-bar-nav hnav" style="box-shadow:none;">
+		<a class="back"href="{:U('Index/index')}" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">客服</h1>
+	</header>
+	
+	<!-- header end-->
+<div class="mui-content padb60">
+	<ul class="cf glist">
+		<li>
+			<a class="cur" href="{:C('cfg_kefulj')}">
+				<div><img src="/Public/images/sj.png" alt=""></div>
+				<p class="f14">在线客服</p>
+			</a>
+		</li>
+		<li>
+			<a class="cur" href="#" target="_blank">
+				<div><img src="/Public/images/sj.png" alt=""></div>
+				<p class="f14">{$kefudh}</p>
+			</a>
+		</li>
+	</ul>
+<!-- 	<div class="newjobtime">
+	<Somnus:block name="客服页咨询说明" />
+</div> -->
+	
+<foreach name="article" item="vo">
+	<section class="cf newquelist">
+		<a class="quetype" href="javascript:;">
+			<img src="{$vo.img}" alt="">
+			<p class="reque">{$vo.catname}</p>
+			<p class="newmor" onclick="jumpMore('{:U('List/index',array('id' => $vo['id']))}');">更多</p>
+		</a>
+		<php>$artlist = $vo['arts'];</php>
+		<ul class="newans">
+			<foreach name="artlist" item="art">
+			<li>
+				<a href="{:U('List/index',array('id' => $vo['id'],'aid' => $art['id']))}"> {$art.title}</a>
+			</li>
+			</foreach>
+		</ul>
+	</section>
+</foreach>
+
+    <nav class="mui-bar mui-bar-tab bottom-bar">
+        <a class="mui-tab-item" href="{:U('Index/index')}">
+                <span class="mui-icon mui-icon-home home">
+        </span>
+            <span class="mui-tab-label">首页</span>
+        </a>
+           <a class="mui-tab-item" href="{:U('Index/money')}">
+            <span class="mui-icon" style="background: url(/Public/money/ico_foot22.png) center top no-repeat;"></span>
+            <span class="mui-tab-label">钱包</span>
+        </a>
+          <a class="mui-tab-item" href="{:U('Help/index')}">
+            <span class="mui-icon mui-icon-contact muihelp cur"></span>
+            <span class="mui-tab-label">客服</span>
+        </a>
+        <a class="mui-tab-item" href="{:U('User/index')}">
+            <span class="mui-icon mui-icon-email myself"></span>
+            <span class="mui-tab-label">我</span>
+        </a>
+    </nav>
+  	<!-- 底部固定栏 end-->
+</div>
+<script src="__PUBLIC__/home/js/jquery.js"></script>
+<script src="__PUBLIC__/home/js/fontsizeset.js"></script>
+<script src="__PUBLIC__/home/js/fukuang.js"></script>
+<script>
+	$('.bottom-bar a').click(function(){
+		
+		$('.bottom-bar a').removeClass('cur');
+		$('.bottom-bar a span').removeClass('cur');
+		$(this).addClass('cur');
+		$(this).find('span').eq(0).addClass('cur');
+	});
+	function jumpMore (url){
+		window.location.href = url;
+	}
+</script>
+<div style="display: none;">
+	<Somnus:sitecfg name="sitecode"/>
+</div>
+
+</body>
+  
+  
+  
+ 
+</html>
