@@ -42,9 +42,11 @@ class ChatlogAction extends Action
 
             if (empty($result)) {
                 echo json_encode(['code' => -1, 'data' => '', 'msg' => '没有记录']);
-            }
+                exit();
 
+            }
             echo json_encode(['code' => 1, 'data' => $result, 'msg' => 'success']);
+            exit();
         } else if ('group' == $type) {
 
             $result = M('richat_chatlog')->where(['_string' => "toid={$id} and type='group'"])
@@ -53,9 +55,12 @@ class ChatlogAction extends Action
 
             if (empty($result)) {
                 echo json_encode(['code' => -1, 'data' => '', 'msg' => '没有记录']);
+                exit();
             }
 
             echo json_encode(['code' => 1, 'data' => $result, 'msg' => 'success']);
+            exit();
+
         }
 
 

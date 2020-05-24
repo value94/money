@@ -31,9 +31,11 @@ class FindgroupAction extends Action
 
         if (empty($find)) {
             echo json_encode(['code' => -1, 'data' => '', 'msg' => '您搜的群不存在']);
+            exit();
         }
 
         echo json_encode(['code' => 1, 'data' => $find, 'msg' => 'success']);
+        exit();
     }
 
     //加入群组
@@ -44,6 +46,7 @@ class FindgroupAction extends Action
 
         if (empty($has)) {
             echo json_encode(['code' => -1, 'data' => '', 'msg' => '该群组不存在']);
+            exit();
         }
 
         $uid = cookie('uid');
@@ -54,6 +57,7 @@ class FindgroupAction extends Action
 
         if (!empty($allready)) {
             echo json_encode(['code' => -2, 'data' => '', 'msg' => '你已经加入该群了']);
+            exit();
         }
 
         $param = [
@@ -64,35 +68,38 @@ class FindgroupAction extends Action
             'groupid' => $groupid
         ];
 
-        M('richat_groupdetail')->insert($param);
+        M('richat_groupdetail')->add($param);
 
         //socket data
         $join_data = '{"type":"joinGroup", "data" : {"avatar":"' . $has['avatar'] . '","groupname":"' . $has['groupname'] . '",';
         $join_data .= '"id":"' . $groupid . '", "uid":"' . $uid . '"}}';
 
         echo json_encode(['code' => 1, 'data' => $join_data, 'msg' => '成功加入']);
+        exit();
     }
 
     //添加群组
     public function addGroup()
     {
         if (empty(cookie('uid'))) {
-            $this->redirect('index/index');
+            $this->redirect('Index/index');
         }
 
         if ($this->isPost()) {
 
-            $param = I('post.');
+            $param = $this->_param();
             $ids = $param['ids'];
 
             unset($param['ids']);
 
             if (empty($param['groupname'])) {
                 echo json_encode(['code' => -1, 'data' => '', 'msg' => '群组名不能为空']);
+                exit();
             }
 
             if (empty($ids)) {
                 echo json_encode(['code' => -2, 'data' => '', 'msg' => '请添加成员']);
+                exit();
             }
 
             $this->_getUpFile($param);
@@ -102,9 +109,11 @@ class FindgroupAction extends Action
             $param['owner_avatar'] = cookie('avatar');
             $param['owner_sign'] = cookie('sign');
 
-            $flag = M('richat_chatgroup')->insert($param);
+            $flag = M('richat_chatgroup')->add($param);
             if (empty($flag)) {
                 echo json_encode(['code' => -3, 'data' => '', 'msg' => '添加群组失败']);
+                exit();
+
             }
 
             //unset( $param );
@@ -124,19 +133,21 @@ class FindgroupAction extends Action
                         'groupid' => $groupid
                     ];
 
-                    M('richat_groupdetail')->insert($params);
+                    M('richat_groupdetail')->create($params);
                     unset($params);
                 }
             }
 
             //socket data
             $add_data = '{"type":"addGroup", "data" : {"avatar":"' . $param['avatar'] . '","groupname":"' . $param['groupname'] . '",';
-            $add_data .= '"id":"' . $groupid . '", "uids":"' . $ids . '"}}';
+            $add_data .= '"id":"' . $groupid. '", "uids":"' . $ids . '"}}';
 
             echo json_encode(['code' => 1, 'data' => $add_data, 'msg' => '创建群组 成功']);
+            exit();
+        } else {
+            return $this->display();
         }
 
-        return $this->display();
     }
 
     //管理我的群组
@@ -148,6 +159,7 @@ class FindgroupAction extends Action
             $users = M('richat_groupdetail')->field('username,userid,useravatar,groupid')->where(['groupid' => $groupid])->select();
 
             echo json_encode(['code' => 1, 'data' => $users, 'msg' => 'success']);
+            exit();
         }
 
         $group = [];
@@ -180,7 +192,7 @@ class FindgroupAction extends Action
                     'groupid' => $groupid
                 ];
 
-                M('richat_groupdetail')->insert($param);
+                M('richat_groupdetail')->add($param);
                 unset($param);
             }
         }
@@ -191,6 +203,7 @@ class FindgroupAction extends Action
         $add_data .= '"id":"' . $groupid . '", "uid":"' . $ids . '"}}';
 
         echo json_encode(['code' => 1, 'data' => $add_data, 'msg' => '加入群组 成功']);
+        exit();
     }
 
     //移出成员出组
@@ -202,6 +215,7 @@ class FindgroupAction extends Action
         $cannot = M('richat_chatgroup')->field('id')->where(['owner_id' => $uid, 'id' => $groupid])->find();
         if (!empty($cannot)) {
             echo json_encode(['code' => -1, 'data' => '', 'msg' => '不可移除群主']);
+            exit();
         }
 
         M('richat_groupdetail')->where(['userid' => $uid, 'groupid' => $groupid])->delete();
@@ -220,6 +234,7 @@ class FindgroupAction extends Action
         M('richat_groupdetail')->where(['groupid' => $groupid])->delete();
 
         echo json_encode(['code' => 1, 'data' => '', 'msg' => '成功解散该群']);
+        exit();
     }
 
     //获取所有的用户
@@ -231,6 +246,8 @@ class FindgroupAction extends Action
 
         if (empty($result)) {
             echo json_encode(['code' => -1, 'data' => '', 'msg' => '暂无其他成员']);
+            exit();
+
         }
 
         $str = "";
@@ -257,6 +274,8 @@ class FindgroupAction extends Action
 
         if (empty($result)) {
             echo json_encode(['code' => -2, 'data' => '', 'msg' => '该群组已经包含了全部成员']);
+            exit();
+
         }
 
         $group = C('user_group');
@@ -272,6 +291,8 @@ class FindgroupAction extends Action
         $str = "[" . substr($str, 0, -1) . "]";
 
         echo json_encode(['code' => 1, 'data' => $str, 'msg' => 'success']);
+        exit();
+
     }
 
     /**
@@ -286,13 +307,13 @@ class FindgroupAction extends Action
 
         $upload->maxSize = 3145728;// 设置附件上传大小
         $upload->allowExts = array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
-        $upload->savePath = '/Upload/image/';// 设置附件上传目录
+        $upload->savePath = './Upload/LayChat/image/' . date('Ymd') . '/';// 设置附件上传目录
 
         if (!$upload->upload()) {// 上传错误提示错误信息
             echo $upload->getErrorMsg();
         } else {// 上传成功 获取上传文件信息
             $info = $upload->getUploadFileInfo();
-            $param['avatar'] = '/Upload' . '/image/' . date('Ymd') . '/' . $info[0]['savename'];
+            $param['avatar'] = '/Upload/LayChat/image/' . date('Ymd') . '/' . $info[0]['savename'];
         }
 
         /*// 保存表单数据 包括附件数据

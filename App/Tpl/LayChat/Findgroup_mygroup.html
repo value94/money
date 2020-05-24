@@ -22,14 +22,14 @@
                                 
                         <div class="clients-list">
                             <ul class="nav nav-tabs">
-                            {if !empty($group)}  
-                            {foreach name="group" item="vo" key="key"}                 
-                                <li {if condition="$key eq 0"}class="active"{/if} data="{$vo.id}">
+                            <if condition="!empty($group)">
+                            <foreach name="group" item="vo" key="key">
+                                <li {$key == 0?'class="active"':''} data="{$vo.id}">
                                 	<a data-toggle="tab" href="#tab-1" onclick="javascript:show({$vo.id});">
                                 	<i class="fa fa-user"></i> {$vo.groupname}</a>
                                 </li>
-                            {/foreach}
-                            {/if}   
+                            </foreach>
+                            </if>
                             </ul>
                             <div class="tab-content">
                                 <div id="tab-1" class="tab-pane active">
@@ -37,16 +37,16 @@
                                         <div class="table-responsive">
                                             <table class="table table-striped table-hover">
                                                 <tbody id="showusers">
-                                                {if !empty($users)}
-                                                	{foreach name="users" item="vo"}
+                                                <if condition="!empty($users)">
+                                                	<foreach name="users" item="vo">
                                                     <tr>
                                                         <td class="client-avatar"><img alt="image" src="{$vo.useravatar}"> </td>
                                                         <td>{$vo.username}</td>
                                                         <td> <a href="javascript:addmember();">添加成员</a></td>
                                                         <td> <a href="javascript:remove({$vo.userid},{$vo.groupid});">移除出组</a></td>                                                       
                                                     </tr>
-                                                    {/foreach}
-                                                 {/if}  
+                                                    </foreach>
+                                                 </if>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -81,11 +81,11 @@
          <div class="col-sm-5">
              <select name="groupid" class="form-control" required="" aria-required="true" id="groupid">
                  <option value="">请选择</option>
-                 {if !empty($group)}
-                 {foreach name="group" item="vo" key="key"}
+                 <if condition="!empty($group)">
+                 <foreach name="group" item="vo" key="key">
                  <option value="{$vo.id}">{$vo.groupname}</option>
-                 {/foreach}
-                 {/if}
+                 </foreach>
+                 </if>
              </select>
          </div>
      </div>
