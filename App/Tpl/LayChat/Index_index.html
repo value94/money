@@ -53,14 +53,14 @@
             var param = '"id":"{$uinfo["id"]}","username":"{$uinfo["username"]}","avatar":"{$uinfo["avatar"]}","sign":"{$uinfo["sign"]}"';
             var login_data = '{"type":"init",' + param + '}';
             socket.send(login_data);
-            console.log(login_data);
+            // console.log(login_data);
             console.log("websocket握手成功!");
         };
         //监听收到的消息
         socket.onmessage = function (res) {
-            //console.log(res.data);
-            // var data = eval("("+res.data+")");
-            var data = res.data;
+            console.log(res.data);
+            var data = eval("("+res.data+")");
+            // var data = res.data;
             switch (data['message_type']) {
                 // 服务端ping客户端
                 case 'ping':
@@ -68,7 +68,7 @@
                     break;
                 // 登录 更新用户列表
                 case 'init':
-                    console.log(data['id']+"登录成功");
+                    // console.log(data['id']+"登录成功");
                     layim.getMessage(res.data); //res.data即你发送消息传递的数据（阅读：监听发送的消息）
                     break;
                 //添加 用户
@@ -96,7 +96,7 @@
                     break;
                 // 检测聊天数据
                 case 'chatMessage':
-                    //console.log(data.data);
+                    console.log(data.data);
                     layim.getMessage(data.data);
                     break;
                 // 离线消息推送

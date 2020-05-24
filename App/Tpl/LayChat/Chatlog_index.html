@@ -36,23 +36,24 @@
 <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css" media="all">
 <script src="__PUBLIC__/layui/layui.js"></script>
 <script type="text/javascript">
-    $(function(){
+    $(function () {
 
-        $.getJSON("{:U('LayChat/chatlog/detail')}", {'id' : {$id}, 'type' : "{$type}"}, function(res){
+        $.getJSON("{:U('LayChat/Chatlog/detail',['id'=>$id,'type'=>$type])}", '', function (res) {
             var _html = '';
-            if( 1 == res.code ){
-                $.each(res.data, function(k, v){
-                    _html += '<div class="chat-message"><div class="message"><a class="message-author" href="#"> '+ v.fromname +' </a>';
-                    _html += '<span class="message-date"> '+ getLocalTime(v.timeline) +' </span>';
-                    _html += '<span class="message-content">'+ parent.layui.layim.content(v.content) +'</span></div></div>';
+            if (1 == res.code) {
+                $.each(res.data, function (k, v) {
+                    _html += '<div class="chat-message"><div class="message"><a class="message-author" href="#"> ' + v.fromname + ' </a>';
+                    _html += '<span class="message-date"> ' + getLocalTime(v.timeline) + ' </span>';
+                    _html += '<span class="message-content">' + parent.layui.layim.content(v.content) + '</span></div></div>';
                 });
                 $("#chatlog").html(_html);
 
-            }else{
+            } else {
 
             }
         })
     });
+
     function getLocalTime(nS) {
         return new Date(parseInt(nS) * 1000).toLocaleString().replace(/年|月/g, "-").replace(/日/g, "");
     }

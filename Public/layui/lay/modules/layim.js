@@ -1418,7 +1418,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
         ,skin: 'layui-box'
         ,anim: 2
         ,id: 'layui-layim-chatlog'
-        ,content: cache.base.chatLog + '?id=' + thatChat.data.id + '&type=' + thatChat.data.type
+        ,content: cache.base.chatLog + '&id=' + thatChat.data.id + '&type=' + thatChat.data.type
       });
     }
     
