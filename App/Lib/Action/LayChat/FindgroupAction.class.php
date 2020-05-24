@@ -80,7 +80,7 @@ class FindgroupAction extends Action
             $this->redirect('index/index');
         }
 
-        if (request()->isPost()) {
+        if ($this->isPost()) {
 
             $param = I('post.');
             $ids = $param['ids'];
@@ -143,7 +143,7 @@ class FindgroupAction extends Action
     public function myGroup()
     {
 
-        if (request()->isAjax()) {
+        if ($this->isAjax()) {
             $groupid = I('id');
             $users = M('richat_groupdetail')->field('username,userid,useravatar,groupid')->where(['groupid' => $groupid])->select();
 
@@ -259,7 +259,7 @@ class FindgroupAction extends Action
             echo json_encode(['code' => -2, 'data' => '', 'msg' => '该群组已经包含了全部成员']);
         }
 
-        $group = config('user_group');
+        $group = C('user_group');
         //先将默认分组拼装好
         foreach ($group as $key => $vo) {
             $str .= '{ "id": "-' . $key . '", "pId":0, "name":"' . $vo . '"},';
@@ -280,7 +280,29 @@ class FindgroupAction extends Action
      */
     private function _getUpFile(&$param)
     {
-        // 获取表单上传文件
+
+        import('ORG.Net.UploadFile');
+        $upload = new UploadFile();// 实例化上传类
+
+        $upload->maxSize = 3145728;// 设置附件上传大小
+        $upload->allowExts = array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
+        $upload->savePath = '/Upload/image/';// 设置附件上传目录
+
+        if (!$upload->upload()) {// 上传错误提示错误信息
+            echo $upload->getErrorMsg();
+        } else {// 上传成功 获取上传文件信息
+            $info = $upload->getUploadFileInfo();
+            $param['avatar'] = '/Upload' . '/image/' . date('Ymd') . '/' . $info[0]['savename'];
+        }
+
+        /*// 保存表单数据 包括附件数据
+        $User = M("User"); // 实例化User对象
+        $User->create(); // 创建数据对象
+        $User->photo = $info[0]['savename']; // 保存上传的照片根据需要自行组装
+        $User->add(); // 写入用户数据到数据库
+        $this->success('数据保存成功！');*/
+
+        /*// 获取表单上传文件
         $file = request()->file('avatar');
 
         // 移动到框架应用根目录/public/uploads/ 目录下
@@ -289,14 +311,14 @@ class FindgroupAction extends Action
             $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
             if ($info) {
                 // 成功上传后 获取上传信息
-                $param['avatar'] = '/uploads' . '/' . date('Ymd') . '/' . $info->getFilename();
+                $param['avatar'] = '/Upload' . '/image/' . date('Ymd') . '/' . $info->getFilename();
             } else {
                 // 上传失败获取错误信息
                 echo $file->getError();
             }
         } else {
             unset($param['avatar']);
-        }
+        }*/
 
     }
 }

@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的群组</title>
     <link rel="shortcut icon" href="favicon.ico"> 
-    <link href="/static/admin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
-    <link href="/static/admin/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
-    <link href="/static/admin/css/animate.min.css" rel="stylesheet">
-    <link href="/static/admin/css/style.min.css?v=4.1.0" rel="stylesheet">
+    <link href="__PUBLIC__/LayChat/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__PUBLIC__/LayChat/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="__PUBLIC__/LayChat/css/animate.min.css" rel="stylesheet">
+    <link href="__PUBLIC__/LayChat/css/style.min.css?v=4.1.0" rel="stylesheet">
 </head>
 <body class="gray-bg">
     <div class="wrapper wrapper-content  animated fadeInRight">
@@ -104,7 +104,7 @@
 <script src="__PUBLIC__/Laychat/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 <script src="__PUBLIC__/Laychat/js/content.min.js?v=1.0.0"></script>
 <script src="__PUBLIC__/Laychat/js/plugins/layer/layer.min.js"></script>
-<link rel="stylesheet" type="text/css" href="/static/admin/js/plugins/zTree/zTreeStyle.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/LayChat/js/plugins/zTree/zTreeStyle.css" />
 <script type="text/javascript" src="__PUBLIC__/Laychat/js/plugins/zTree/jquery.ztree.core-3.5.js"></script>
 <script type="text/javascript" src="__PUBLIC__/Laychat/js/plugins/zTree/jquery.ztree.excheck-3.5.js"></script>
 <script type="text/javascript" src="__PUBLIC__/Laychat/js/plugins/zTree/jquery.ztree.exedit-3.5.js"></script>
@@ -116,7 +116,7 @@
     var index = '';
     function show(id){
     	index = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
-    	$.getJSON("{:U('LayChat/findgroup/myGroup')}", {'id' : id}, function(res){
+    	$.getJSON("{:U('LayChat/Findgroup/myGroup')}", {'id' : id}, function(res){
     		layer.close(index);
     		var _html = '';
     		if( 1 == res.code ){
@@ -139,7 +139,7 @@
     		if( $(this).hasClass('active') ){
     			$("#nowgroup").val( $(this).attr('data') );  //记录当前分组
     			index4 = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
-    			$.getJSON("{:U('LayChat/findgroup/getUsers')}", {'flag' : 1, 'gid' : $(this).attr('data')}, function(res){
+    			$.getJSON("{:U('LayChat/Findgroup/getUsers')}", {'flag' : 1, 'gid' : $(this).attr('data')}, function(res){
     				layer.close(index4);
     	        	if(res.code == 1){
     	                zNodes = JSON.parse(res.data);  //将字符串转换成obj
@@ -198,7 +198,7 @@
         	return;
         }
         var ids = NodeString.substring(0, NodeString.length-1);
-        $.getJSON("{:U('LayChat/findgroup/addMembers')}", {'ids' : ids, 'gid' : $('#nowgroup').val()}, function(res){
+        $.getJSON("{:U('LayChat/Findgroup/addMembers')}", {'ids' : ids, 'gid' : $('#nowgroup').val()}, function(res){
         	if( 1 == res.code ){
 
                 var add_data = res.data;
@@ -213,7 +213,7 @@
     });
     //移除成员
     function remove(uid, gid){
-    	$.getJSON("{:U('LayChat/findgroup/removeMembers')}", {'uid' : uid, 'gid' : gid}, function(res){
+    	$.getJSON("{:U('LayChat/Findgroup/removeMembers')}", {'uid' : uid, 'gid' : gid}, function(res){
     		if( 1 == res.code ){
     			var index6 = layer.alert( res.msg, {'icon' : 1}, function(){
 
@@ -246,7 +246,7 @@
     		layer.alert( '请选择群组', {'icon' : 2} );
     		return;
     	}
-    	$.getJSON("{:U('LayChat/findgroup/removegroup')}", {'gid' : gid}, function(res){
+    	$.getJSON("{:U('LayChat/Findgroup/removegroup')}", {'gid' : gid}, function(res){
     		if( 1 == res.code ){
     			
     			var add_data = '{"type":"delGroup", "data" : {"id" : ' + gid + '}}';
