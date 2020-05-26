@@ -64,9 +64,10 @@ class AdminAction extends CommonAction
             $_POST['id_code'] = randomKeys(8);
 
             $status = $Admin->add($_POST);
+            $admin_id = $Admin->getLastInsID();
             // 添加到客服表中
             $richat_data = [
-                'admin_id' => $Admin->getLastInsID(),
+                'admin_id' => $admin_id,
                 'username' => $_POST['username'],
                 'pwd' => $_POST['password'],
                 'groupid' => 1,
@@ -74,7 +75,8 @@ class AdminAction extends CommonAction
                 'avatar' => '/Public/images/sj.png'
             ];
             M('richat_chatuser')->add($richat_data);
-
+            $chat_id = M('richat_chatuser')->getLastInsID();
+            $Admin->where(['id' => $admin_id])->save(['chat_id' => $chat_id]);
             if (!$status) {
                 $this->error('添加失败!');
             }
@@ -159,7 +161,7 @@ class AdminAction extends CommonAction
         // 删除客服
         $chatUserModel = new ChatUserModel();
         $chatUserModel->deleteByAdminId($id);
-        M('richat_chatuser')->where(['admin'])->delete();
+
         $this->success('删除成功!');
     }
 

@@ -307,3 +307,25 @@ Stack trace:
 #12 D:\phpstudy_pro\WWW\money.im\Base\Extend\Vendor\Workerman\Workerman\Worker.php(346): Workerman\Worker::runAllWorkers()
 #13 D:\phpstudy_pro\WWW\money.im\Base\Extend\Vendor\Workerman\Applications\start_businessworker.php(34): Workerman\Worker::runAll()
 #14 {main}
+2020-05-26 14:47:51 PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'and timeline > 1589870871 and type = 'friend' and needsend = 1' at line 1 in D:\phpstudy_pro\WWW\money.im\Base\Extend\Vendor\Workerman\GatewayWorker\Lib\DbConnection.php:1736
+Stack trace:
+#0 D:\phpstudy_pro\WWW\money.im\Base\Extend\Vendor\Workerman\GatewayWorker\Lib\DbConnection.php(1736): PDO->prepare('SELECT id,fromi...')
+#1 D:\phpstudy_pro\WWW\money.im\Base\Extend\Vendor\Workerman\GatewayWorker\Lib\DbConnection.php(1808): GatewayWorker\Lib\DbConnection->execute('SELECT id,fromi...', Array)
+#2 D:\phpstudy_pro\WWW\money.im\Base\Extend\Vendor\Workerman\Applications\Events.php(45): GatewayWorker\Lib\DbConnection->query()
+#3 [internal function]: Events::onMessage('7f00000108fc000...', '{"type":"init",...')
+#4 D:\phpstudy_pro\WWW\money.im\Base\Extend\Vendor\Workerman\GatewayWorker\BusinessWorker.php(360): call_user_func('Events::onMessa...', '7f00000108fc000...', '{"type":"init",...')
+#5 [internal function]: GatewayWorker\BusinessWorker->onGatewayMessage(Object(Workerman\Connection\AsyncTcpConnection), Array)
+#6 D:\phpstudy_pro\WWW\money.im\Base\Extend\Vendor\Workerman\Workerman\Connection\TcpConnection.php(430): call_user_func(Array, Object(Workerman\Connection\AsyncTcpConnection), Array)
+#7 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #24)
+#8 D:\phpstudy_pro\WWW\money.im\Base\Extend\Vendor\Workerman\Workerman\Events\Select.php(257): call_user_func_array(Array, Array)
+#9 D:\phpstudy_pro\WWW\money.im\Base\Extend\Vendor\Workerman\Workerman\Worker.php(745): Workerman\Events\Select->loop()
+#10 D:\phpstudy_pro\WWW\money.im\Base\Extend\Vendor\Workerman\GatewayWorker\BusinessWorker.php(174): Workerman\Worker->run()
+#11 D:\phpstudy_pro\WWW\money.im\Base\Extend\Vendor\Workerman\Workerman\Worker.php(433): GatewayWorker\BusinessWorker->run()
+#12 D:\phpstudy_pro\WWW\money.im\Base\Extend\Vendor\Workerman\Workerman\Worker.php(346): Workerman\Worker::runAllWorkers()
+#13 D:\phpstudy_pro\WWW\money.im\Base\Extend\Vendor\Workerman\Applications\start_businessworker.php(34): Workerman\Worker::runAll()
+#14 {main}
+2020-05-26 14:48:17 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready
+2020-05-26 14:48:20 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready
+2020-05-26 14:48:20 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready
+2020-05-26 14:50:03 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready
+2020-05-26 14:50:03 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready

@@ -34,7 +34,8 @@ class UserAction extends CommonAction
         $this->data = $da;
         $this->list = $list;
         $this->page = $show;
-        $this->role = getAdminData()['role'];$this->display();
+        $this->role = getAdminData()['role'];
+        $this->display();
     }
 
     //用户列表
@@ -59,7 +60,8 @@ class UserAction extends CommonAction
         $this->role = json_decode(session('admin_user'), true)['role'];
         $this->list = $list;
         $this->page = $show;
-        $this->role = getAdminData()['role'];$this->display();
+        $this->role = getAdminData()['role'];
+        $this->display();
     }
 
     // 解绑用户
@@ -106,6 +108,9 @@ class UserAction extends CommonAction
             ];
             $logModel = new LogModel();
             $logModel->createByArray($log_data);
+            // 解绑客服表
+            M('richat_chatuser')->where(['username' => $check_user['phone']])->delete();
+
         }
         return $this->ajaxReturn($data);
     }
@@ -141,8 +146,15 @@ class UserAction extends CommonAction
             ];
             // 添加用户到客服好友中
             $chat_user = [
-                
+                'customer_id' => $admin_data['chat_id'],
+                'user_type' => 2,
+                'username' => $check_user['phone'],
+                'groupid' => 2,
+                'sign' => '客户 ' . $check_user['phone'],
+                'avatar' => '/Public/images/customer.jpg',
             ];
+            M('richat_chatuser')->add($chat_user);
+
             // 绑定订单表
             M('order')->where(['user' => $check_user['phone']])->save(['admin_id' => $admin_data['id']]);
             // 添加日志
@@ -153,6 +165,7 @@ class UserAction extends CommonAction
                 'log_data' => $check_user['phone'] . '|' . $check_user['phone'] . '|1',
                 'add_time' => date('Y-m-d H:i:s')
             ];
+
             $logModel = new LogModel();
             $logModel->createByArray($log_data);
         }
@@ -201,7 +214,8 @@ class UserAction extends CommonAction
         $f = $f[0];
         $this->f = $f;
         $this->title = "查看合同";
-        $this->role = getAdminData()['role'];$this->display();
+        $this->role = getAdminData()['role'];
+        $this->display();
     }
 
     //邀请码结算
@@ -252,7 +266,8 @@ class UserAction extends CommonAction
         $this->data = $das;
         $this->list = $list;
         $this->page = $show;
-        $this->role = getAdminData()['role'];$this->display();
+        $this->role = getAdminData()['role'];
+        $this->display();
 
     }
 
@@ -387,7 +402,8 @@ class UserAction extends CommonAction
         $info = $Otherinfo->where(array('user' => $user))->find();
         $info = json_decode($info['infojson']);
         $this->otherinfo = $info;
-        $this->role = getAdminData()['role'];$this->display();
+        $this->role = getAdminData()['role'];
+        $this->display();
     }
 
     //addUser
