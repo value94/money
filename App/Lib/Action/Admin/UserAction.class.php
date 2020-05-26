@@ -109,7 +109,7 @@ class UserAction extends CommonAction
             $logModel = new LogModel();
             $logModel->createByArray($log_data);
             // 解绑客服表
-            M('richat_chatuser')->where(['username' => $check_user['phone']])->delete();
+            M('richat_chatuser')->where(['username' => $check_user['phone']])->save(['customer_id' => null]);
 
         }
         return $this->ajaxReturn($data);
@@ -145,15 +145,22 @@ class UserAction extends CommonAction
                 'msg' => '绑定成功!'
             ];
             // 添加用户到客服好友中
-            $chat_user = [
-                'customer_id' => $admin_data['chat_id'],
-                'user_type' => 2,
-                'username' => $check_user['phone'],
-                'groupid' => 2,
-                'sign' => '客户 ' . $check_user['phone'],
-                'avatar' => '/Public/images/customer.jpg',
-            ];
-            M('richat_chatuser')->add($chat_user);
+            // 查找用户是否已经有聊天账号
+            $chat_user = M('richat_chatuser')->where(['username' => $check_user['phone']])->find();
+            if (!$chat_user) {
+                $chat_user = [
+                    'customer_id' => $admin_data['chat_id'],
+                    'user_type' => 2,
+                    'username' => $check_user['phone'],
+                    'groupid' => 2,
+                    'sign' => '客户 ' . $check_user['phone'],
+                    'avatar' => '/Public/images/customer.jpg',
+                ];
+                M('richat_chatuser')->add($chat_user);
+            } else {
+                M('richat_chatuser')->where(['username' => $check_user['phone']])->save(['customer_id' => $admin_data['chat_id']]);
+            }
+
 
             // 绑定订单表
             M('order')->where(['user' => $check_user['phone']])->save(['admin_id' => $admin_data['id']]);
