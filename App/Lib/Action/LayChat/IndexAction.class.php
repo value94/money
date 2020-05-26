@@ -35,6 +35,14 @@ class IndexAction extends Action
         return $this->display();
     }
 
+    public function mobile()
+    {
+        $mine = M('richat_chatuser')->where(['id' => cookie('uid')])->find();
+        $this->uinfo = $mine;
+
+        return $this->display();
+    }
+
     //获取列表
     public function getList()
     {
