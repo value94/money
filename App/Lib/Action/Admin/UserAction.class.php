@@ -139,6 +139,10 @@ class UserAction extends CommonAction
                 'status' => 1,
                 'msg' => '绑定成功!'
             ];
+            // 添加用户到客服好友中
+            $chat_user = [
+                
+            ];
             // 绑定订单表
             M('order')->where(['user' => $check_user['phone']])->save(['admin_id' => $admin_data['id']]);
             // 添加日志

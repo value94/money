@@ -154,6 +154,12 @@ class AdminAction extends CommonAction
         if (!$status) {
             $this->error('删除失败!');
         }
+        // 解绑用户
+
+        // 删除客服
+        $chatUserModel = new ChatUserModel();
+        $chatUserModel->deleteByAdminId($id);
+        M('richat_chatuser')->where(['admin'])->delete();
         $this->success('删除成功!');
     }
 
