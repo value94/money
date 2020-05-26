@@ -1,4 +1,4 @@
-/*
+it /*
 Navicat MySQL Data Transfer
 
 Source Server         : 127.0.0.1
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50726
 File Encoding         : 65001
 
-Date: 2020-05-20 16:30:50
+Date: 2020-05-26 18:24:22
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,6 +21,7 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `admin`;
 CREATE TABLE `admin` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `chat_id` int(11) DEFAULT NULL COMMENT '客服id',
   `username` varchar(12) NOT NULL,
   `password` varchar(35) NOT NULL,
   `gid` int(11) NOT NULL DEFAULT '1',
@@ -30,14 +31,14 @@ CREATE TABLE `admin` (
   `lastlogin` int(11) NOT NULL,
   `status` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of admin
 -- ----------------------------
-INSERT INTO `admin` VALUES ('32', 'admin', 'f11ec7022bbe2bf69670d1a181646f0e', '1', null, '1', '0', '1589867865', '1');
-INSERT INTO `admin` VALUES ('33', 'kefu', '57cea37edd561f91185ee4044f528e75', '1', 'Aiprzvep', '2', '1589598391', '1589949898', '1');
-INSERT INTO `admin` VALUES ('34', 'kefu2', '57cea37edd561f91185ee4044f528e75', '1', 'Aiprz1ep', '2', '1589612669', '0', '1');
+INSERT INTO `admin` VALUES ('44', '29', 'kefu2', '22e1bc525432de9878534afd9c0a0dcb', '1', 'weezvjzm', '2', '1590477235', '1590481344', '1');
+INSERT INTO `admin` VALUES ('43', '28', 'admin', 'f11ec7022bbe2bf69670d1a181646f0e', '1', 'mtciily6', '1', '1590476422', '1590477221', '1');
+INSERT INTO `admin` VALUES ('42', '22', 'kefu', '57cea37edd561f91185ee4044f528e75', '1', 'gehn5xk2', '2', '1590475576', '1590476953', '1');
 
 -- ----------------------------
 -- Table structure for admin_login
@@ -49,7 +50,7 @@ CREATE TABLE `admin_login` (
   `logintime` int(11) NOT NULL DEFAULT '0',
   `loginip` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=91 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=105 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of admin_login
@@ -144,6 +145,20 @@ INSERT INTO `admin_login` VALUES ('87', 'kefu', '1589689078', '127.0.0.1');
 INSERT INTO `admin_login` VALUES ('88', 'kefu', '1589689281', '127.0.0.1');
 INSERT INTO `admin_login` VALUES ('89', 'admin', '1589867865', '127.0.0.1');
 INSERT INTO `admin_login` VALUES ('90', 'kefu', '1589949898', '127.0.0.1');
+INSERT INTO `admin_login` VALUES ('91', 'admin', '1589974676', '127.0.0.1');
+INSERT INTO `admin_login` VALUES ('92', 'admin', '1590294071', '127.0.0.1');
+INSERT INTO `admin_login` VALUES ('93', 'admin', '1590472465', '127.0.0.1');
+INSERT INTO `admin_login` VALUES ('94', 'admin', '1590474716', '127.0.0.1');
+INSERT INTO `admin_login` VALUES ('95', 'admin', '1590475538', '127.0.0.1');
+INSERT INTO `admin_login` VALUES ('96', 'kefu', '1590475603', '127.0.0.1');
+INSERT INTO `admin_login` VALUES ('97', 'admin', '1590475729', '127.0.0.1');
+INSERT INTO `admin_login` VALUES ('98', 'kefu', '1590475772', '127.0.0.1');
+INSERT INTO `admin_login` VALUES ('99', 'admin', '1590476406', '127.0.0.1');
+INSERT INTO `admin_login` VALUES ('100', 'admin', '1590476462', '127.0.0.1');
+INSERT INTO `admin_login` VALUES ('101', 'kefu', '1590476953', '127.0.0.1');
+INSERT INTO `admin_login` VALUES ('102', 'admin', '1590477221', '127.0.0.1');
+INSERT INTO `admin_login` VALUES ('103', 'kefu2', '1590477247', '127.0.0.1');
+INSERT INTO `admin_login` VALUES ('104', 'kefu2', '1590481344', '127.0.0.1');
 
 -- ----------------------------
 -- Table structure for article
@@ -282,7 +297,7 @@ CREATE TABLE `logs` (
   `log_type` tinyint(2) DEFAULT NULL COMMENT '操作类型: 1/用户绑定 2/解绑 3/用户删除 4/订单删除',
   `add_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of logs
@@ -304,6 +319,22 @@ INSERT INTO `logs` VALUES ('14', '33', 'kefu', '17791797821|17791797821|1', '1',
 INSERT INTO `logs` VALUES ('15', '33', 'kefu', '15918476606|15918476606|1', '1', '2020-05-20 12:58:30');
 INSERT INTO `logs` VALUES ('16', '33', 'kefu', '15126782331|15126782331|1', '1', '2020-05-20 12:58:32');
 INSERT INTO `logs` VALUES ('17', '33', 'kefu', '13841354168|13841354168|1', '1', '2020-05-20 12:58:33');
+INSERT INTO `logs` VALUES ('18', '42', 'kefu', '18359202476|18359202476|1', '1', '2020-05-26 14:46:50');
+INSERT INTO `logs` VALUES ('19', '42', 'kefu', '18930872298|18930872298|1', '1', '2020-05-26 14:47:28');
+INSERT INTO `logs` VALUES ('20', '32', 'admin', '18359202476|18359202476|2', '2', '2020-05-26 14:48:54');
+INSERT INTO `logs` VALUES ('21', '32', 'admin', '13257744517|13257744517|2', '2', '2020-05-26 14:48:56');
+INSERT INTO `logs` VALUES ('22', '32', 'admin', '18930872298|18930872298|2', '2', '2020-05-26 14:48:58');
+INSERT INTO `logs` VALUES ('23', '32', 'admin', '13681794059|13681794059|2', '2', '2020-05-26 14:49:00');
+INSERT INTO `logs` VALUES ('24', '32', 'admin', '15918476606|15918476606|2', '2', '2020-05-26 14:49:02');
+INSERT INTO `logs` VALUES ('25', '32', 'admin', '17791797821|17791797821|2', '2', '2020-05-26 14:49:03');
+INSERT INTO `logs` VALUES ('26', '32', 'admin', '15126782331|15126782331|2', '2', '2020-05-26 14:49:05');
+INSERT INTO `logs` VALUES ('27', '32', 'admin', '13841354168|13841354168|2', '2', '2020-05-26 14:49:07');
+INSERT INTO `logs` VALUES ('28', '42', 'kefu', '18359202476|18359202476|1', '1', '2020-05-26 14:49:51');
+INSERT INTO `logs` VALUES ('29', '42', 'kefu', '13257744517|13257744517|1', '1', '2020-05-26 14:49:53');
+INSERT INTO `logs` VALUES ('30', '42', 'kefu', '13681794059|13681794059|1', '1', '2020-05-26 14:49:56');
+INSERT INTO `logs` VALUES ('31', '42', 'kefu', '15918476606|15918476606|1', '1', '2020-05-26 14:49:57');
+INSERT INTO `logs` VALUES ('32', '44', 'kefu2', '18930872298|18930872298|1', '1', '2020-05-26 15:14:11');
+INSERT INTO `logs` VALUES ('33', '44', 'kefu2', '13479628995|13479628995|1', '1', '2020-05-26 15:14:13');
 
 -- ----------------------------
 -- Table structure for order
@@ -351,10 +382,10 @@ INSERT INTO `order` VALUES ('27', '18569296287', null, '30000', '36', '1014', '0
 INSERT INTO `order` VALUES ('29', '13613183210', null, '52000', '36', '1757', '0', '1577771369', '-1', '1', 'IC31713697199709', '建设银行', '0', '', '6217000160002835482', '', '0', '0');
 INSERT INTO `order` VALUES ('30', '15830485640', null, '30000', '12', '2680', '0', '1577772387', '-1', '1', 'IC31723873405535', '工商银行', '0', '', '6212260407003672604', '', '0', '0');
 INSERT INTO `order` VALUES ('32', '15195523807', null, '63000', '36', '2128', '0', '1577852057', '-2', '1', 'J101520570370348', '中国银行', '0', '', '6215678100040883008', '', '0', '0');
-INSERT INTO `order` VALUES ('42', '13681794059', '33', '128000', '36', '4324', '0', '1578276647', '2', '1', 'J106766471376337', '建设银行', '0', '', '6217001180037804575', '', '0', '0');
+INSERT INTO `order` VALUES ('42', '13681794059', '42', '128000', '36', '4324', '0', '1578276647', '2', '1', 'J106766471376337', '建设银行', '0', '', '6217001180037804575', '', '0', '0');
 INSERT INTO `order` VALUES ('35', '18359838207', null, '50000', '36', '1689', '0', '1577949175', '-2', '1', 'J102491756662151', '建设银行', '0', '', '6217001830028411893', '', '0', '0');
 INSERT INTO `order` VALUES ('37', '18865186593', null, '30000', '36', '1014', '0', '1578018809', '-2', '1', 'J103188098565966', '工商银行', '0', '', '6212261712006157233', '', '0', '0');
-INSERT INTO `order` VALUES ('49', '13257744517', '33', '21000', '12', '1876', '0', '1586247395', '2', '1', 'J407473951465638', '工商银行', '0', '', '887885', '', '10000', '1');
+INSERT INTO `order` VALUES ('49', '13257744517', '42', '21000', '12', '1876', '0', '1586247395', '2', '1', 'J407473951465638', '工商银行', '0', '', '887885', '', '10000', '1');
 INSERT INTO `order` VALUES ('45', '17791797821', '33', '300000', '12', '26800', '0', '1578287981', '2', '1', 'J106879818853154', '工商银行', '0', '', '6216693600003336836', '', '0', '0');
 INSERT INTO `order` VALUES ('47', '15706790550', null, '20000', '12', '1787', '0', '1578358828', '12', '1', 'J107588285769093', '中信银行', '0', '', '6217731302511544', '', '0', '0');
 INSERT INTO `order` VALUES ('50', '18956501550', null, '20000', '12', '1787', '0', '1589610282', '2', '1', 'J516102829007614', '工商银行', '0', '', '12312312312312312312', '', '10', '0');
@@ -425,6 +456,270 @@ INSERT INTO `payorder` VALUES ('10', 'J102327210428071', '18637179846', '王超'
 INSERT INTO `payorder` VALUES ('11', 'J407473951465638', '13257744517', '孙嘉彬', '工商银行相对湿度', '0', '21000', '1586250808', '887885');
 
 -- ----------------------------
+-- Table structure for richat_archives
+-- ----------------------------
+DROP TABLE IF EXISTS `richat_archives`;
+CREATE TABLE `richat_archives` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(155) NOT NULL,
+  `url` varchar(155) NOT NULL,
+  `keywords` varchar(155) DEFAULT '' COMMENT '文章关键词',
+  `description` varchar(155) DEFAULT '' COMMENT '文章的描述',
+  `typeid` int(5) NOT NULL DEFAULT '1' COMMENT '文章栏目id',
+  `sort` int(3) NOT NULL DEFAULT '1' COMMENT '文章权重',
+  `cnum` int(10) NOT NULL DEFAULT '2' COMMENT '文章点击次数',
+  `writer` varchar(155) NOT NULL DEFAULT 'admin' COMMENT '文章作者',
+  `addtime` int(10) NOT NULL COMMENT '添加时间',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of richat_archives
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for richat_articleinfo
+-- ----------------------------
+DROP TABLE IF EXISTS `richat_articleinfo`;
+CREATE TABLE `richat_articleinfo` (
+  `aid` int(11) NOT NULL COMMENT '文章对应的id',
+  `body` text NOT NULL,
+  `typeid` int(5) NOT NULL DEFAULT '1' COMMENT '文章栏目id'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of richat_articleinfo
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for richat_category
+-- ----------------------------
+DROP TABLE IF EXISTS `richat_category`;
+CREATE TABLE `richat_category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `tname` varchar(255) NOT NULL COMMENT '类别名称',
+  `type` varchar(155) NOT NULL COMMENT '归属分类',
+  `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 启用 2 禁用',
+  `typeid` int(11) NOT NULL COMMENT '父类id',
+  PRIMARY KEY (`id`),
+  KEY `type` (`type`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of richat_category
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for richat_chatgroup
+-- ----------------------------
+DROP TABLE IF EXISTS `richat_chatgroup`;
+CREATE TABLE `richat_chatgroup` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '群组id',
+  `groupname` varchar(155) NOT NULL COMMENT '群组名称',
+  `avatar` varchar(155) DEFAULT NULL COMMENT '群组头像',
+  `owner_name` varchar(155) DEFAULT NULL COMMENT '群主名称',
+  `owner_id` int(11) DEFAULT NULL COMMENT '群主id',
+  `owner_avatar` varchar(155) DEFAULT NULL COMMENT '群主头像',
+  `owner_sign` varchar(155) DEFAULT NULL COMMENT '群主签名',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of richat_chatgroup
+-- ----------------------------
+INSERT INTO `richat_chatgroup` VALUES ('39', '外部群', '/Upload/LayChat/image/20200524/5eca0bc67b6c7.png', '马云', '2', 'http://tp4.sinaimg.cn/2145291155/180/5601307179/1', '让天下没有难写的代码');
+
+-- ----------------------------
+-- Table structure for richat_chatlog
+-- ----------------------------
+DROP TABLE IF EXISTS `richat_chatlog`;
+CREATE TABLE `richat_chatlog` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fromid` int(11) NOT NULL COMMENT '会话来源id',
+  `fromname` varchar(155) NOT NULL DEFAULT '' COMMENT '消息来源用户名',
+  `fromavatar` varchar(155) NOT NULL DEFAULT '' COMMENT '来源的用户头像',
+  `toid` int(11) NOT NULL COMMENT '会话发送的id',
+  `content` text NOT NULL COMMENT '发送的内容',
+  `timeline` int(10) NOT NULL COMMENT '记录时间',
+  `type` varchar(55) NOT NULL COMMENT '聊天类型',
+  `needsend` tinyint(1) DEFAULT '0' COMMENT '0 不需要推送 1 需要推送',
+  PRIMARY KEY (`id`),
+  KEY `fromid` (`fromid`) USING BTREE,
+  KEY `toid` (`toid`) USING BTREE
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of richat_chatlog
+-- ----------------------------
+INSERT INTO `richat_chatlog` VALUES ('24', '32', '18359202475', '/Public/images/customer.jpg', '22', '1111', '1590479989', 'friend', '0');
+
+-- ----------------------------
+-- Table structure for richat_chatuser
+-- ----------------------------
+DROP TABLE IF EXISTS `richat_chatuser`;
+CREATE TABLE `richat_chatuser` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `admin_id` int(11) DEFAULT NULL COMMENT '后台管理员id',
+  `customer_id` int(11) DEFAULT NULL COMMENT '客服id',
+  `user_type` tinyint(2) DEFAULT '1' COMMENT '1/客服 2/客户',
+  `username` varchar(155) DEFAULT NULL,
+  `pwd` varchar(155) DEFAULT NULL COMMENT '密码',
+  `groupid` int(5) DEFAULT NULL COMMENT '所属的分组id',
+  `status` varchar(55) DEFAULT NULL,
+  `sign` varchar(255) DEFAULT NULL,
+  `avatar` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of richat_chatuser
+-- ----------------------------
+INSERT INTO `richat_chatuser` VALUES ('25', null, '22', '2', '13257744517', null, '2', null, '客户 13257744517', '/Public/images/customer.jpg');
+INSERT INTO `richat_chatuser` VALUES ('26', null, '22', '2', '13681794059', null, '2', null, '客户 13681794059', '/Public/images/customer.jpg');
+INSERT INTO `richat_chatuser` VALUES ('27', null, '22', '2', '15918476606', null, '2', null, '客户 15918476606', '/Public/images/customer.jpg');
+INSERT INTO `richat_chatuser` VALUES ('28', '43', null, '1', 'admin', 'f11ec7022bbe2bf69670d1a181646f0e', '1', 'online', '客服 admin', '/Public/images/sj.png');
+INSERT INTO `richat_chatuser` VALUES ('24', null, '22', '2', '18359202476', null, '2', null, '客户 18359202476', '/Public/images/customer.jpg');
+INSERT INTO `richat_chatuser` VALUES ('22', '42', null, '1', 'kefu', '57cea37edd561f91185ee4044f528e75', '1', 'online', '客服 kefu', '/Public/images/sj.png');
+INSERT INTO `richat_chatuser` VALUES ('29', '44', null, '1', 'kefu2', '22e1bc525432de9878534afd9c0a0dcb', '1', 'online', '客服 kefu2', '/Public/images/sj.png');
+INSERT INTO `richat_chatuser` VALUES ('30', null, '29', '2', '18930872298', null, '2', null, '客户 18930872298', '/Public/images/customer.jpg');
+INSERT INTO `richat_chatuser` VALUES ('31', null, '29', '2', '13479628995', null, '2', null, '客户 13479628995', '/Public/images/customer.jpg');
+INSERT INTO `richat_chatuser` VALUES ('32', null, '29', '2', '18359202475', null, '2', null, '客户 18359202475', '/Public/images/customer.jpg');
+
+-- ----------------------------
+-- Table structure for richat_groupdetail
+-- ----------------------------
+DROP TABLE IF EXISTS `richat_groupdetail`;
+CREATE TABLE `richat_groupdetail` (
+  `userid` int(11) NOT NULL,
+  `username` varchar(155) NOT NULL,
+  `useravatar` varchar(155) NOT NULL,
+  `usersign` varchar(155) NOT NULL,
+  `groupid` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of richat_groupdetail
+-- ----------------------------
+INSERT INTO `richat_groupdetail` VALUES ('22', 'kefu', '/Public/images/sj.png', '客服 kefu', '39');
+INSERT INTO `richat_groupdetail` VALUES ('2', '马云', 'http://tp4.sinaimg.cn/2145291155/180/5601307179/1', '让天下没有难写的代码', '39');
+
+-- ----------------------------
+-- Table structure for richat_node
+-- ----------------------------
+DROP TABLE IF EXISTS `richat_node`;
+CREATE TABLE `richat_node` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `node_name` varchar(155) NOT NULL DEFAULT '' COMMENT '节点名称',
+  `module_name` varchar(155) NOT NULL DEFAULT '' COMMENT '模块名',
+  `control_name` varchar(155) NOT NULL DEFAULT '' COMMENT '控制器名',
+  `action_name` varchar(155) NOT NULL COMMENT '方法名',
+  `is_menu` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否是菜单项 1不是 2是',
+  `typeid` int(11) NOT NULL COMMENT '父级节点id',
+  `style` varchar(155) DEFAULT '' COMMENT '菜单样式',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of richat_node
+-- ----------------------------
+INSERT INTO `richat_node` VALUES ('1', '用户管理', '#', '#', '#', '2', '0', 'fa fa-users');
+INSERT INTO `richat_node` VALUES ('2', '用户列表', 'admin', 'user', 'index', '2', '1', '');
+INSERT INTO `richat_node` VALUES ('3', '添加用户', 'admin', 'user', 'useradd', '1', '2', '');
+INSERT INTO `richat_node` VALUES ('4', '编辑用户', 'admin', 'user', 'useredit', '1', '2', '');
+INSERT INTO `richat_node` VALUES ('5', '删除用户', 'admin', 'user', 'userdel', '1', '2', '');
+INSERT INTO `richat_node` VALUES ('6', '角色列表', 'admin', 'role', 'index', '2', '1', '');
+INSERT INTO `richat_node` VALUES ('7', '添加角色', 'admin', 'role', 'roleadd', '1', '6', '');
+INSERT INTO `richat_node` VALUES ('8', '编辑角色', 'admin', 'role', 'roleedit', '1', '6', '');
+INSERT INTO `richat_node` VALUES ('9', '删除角色', 'admin', 'role', 'roledel', '1', '6', '');
+INSERT INTO `richat_node` VALUES ('10', '分配权限', 'admin', 'role', 'giveaccess', '1', '6', '');
+INSERT INTO `richat_node` VALUES ('11', '系统管理', '#', '#', '#', '2', '0', 'fa fa-desktop');
+INSERT INTO `richat_node` VALUES ('12', '数据备份/还原', 'admin', 'data', 'index', '2', '11', '');
+INSERT INTO `richat_node` VALUES ('13', '备份数据', 'admin', 'data', 'importdata', '1', '12', '');
+INSERT INTO `richat_node` VALUES ('14', '还原数据', 'admin', 'data', 'backdata', '1', '12', '');
+INSERT INTO `richat_node` VALUES ('15', '采集管理', 'admin', '#', '#', '2', '0', 'fa fa-hdd-o');
+INSERT INTO `richat_node` VALUES ('16', '采集测试', 'admin', 'tcollect', 'index', '2', '15', '');
+INSERT INTO `richat_node` VALUES ('17', '测试列表', 'admin', 'tcollect', 'testlist', '1', '17', '');
+INSERT INTO `richat_node` VALUES ('18', '测试文章', 'admin', 'tcollect', 'testarc', '1', '17', '');
+INSERT INTO `richat_node` VALUES ('19', '采集规则列表', 'admin', 'rulelist', 'index', '2', '15', '');
+INSERT INTO `richat_node` VALUES ('20', '添加采集规则', 'admin', 'rulelist', 'ruleadd', '1', '20', '');
+INSERT INTO `richat_node` VALUES ('21', '编辑采集规则', 'admin', 'rulelist', 'ruleedit', '1', '20', '');
+INSERT INTO `richat_node` VALUES ('22', '删除采集规则', 'admin', 'rulelist', 'ruledel', '1', '20', '');
+INSERT INTO `richat_node` VALUES ('23', 'LayChat管理', '#', '#', '#', '2', '0', 'fa fa-paw');
+INSERT INTO `richat_node` VALUES ('24', 'laychat用户管理', 'admin', 'layuser', 'index', '2', '23', '');
+INSERT INTO `richat_node` VALUES ('25', 'laychat消息记录', 'admin', 'laymsg', 'index', '2', '23', '');
+INSERT INTO `richat_node` VALUES ('26', 'laychat用户添加', 'admin', 'layuser', 'useradd', '1', '24', '');
+INSERT INTO `richat_node` VALUES ('27', 'laychat用户删除', 'admin', 'layuser', 'userdel', '1', '24', '');
+INSERT INTO `richat_node` VALUES ('28', 'laychat用户编辑', 'admin', 'layuser', 'useredit', '1', '24', '');
+
+-- ----------------------------
+-- Table structure for richat_role
+-- ----------------------------
+DROP TABLE IF EXISTS `richat_role`;
+CREATE TABLE `richat_role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `rolename` varchar(155) NOT NULL COMMENT '角色名称',
+  `rule` varchar(255) DEFAULT '' COMMENT '权限节点数据',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of richat_role
+-- ----------------------------
+INSERT INTO `richat_role` VALUES ('1', '超级管理员', '');
+INSERT INTO `richat_role` VALUES ('2', '系统维护员', '1,2,3,4,5,6,7,8,9,10');
+INSERT INTO `richat_role` VALUES ('3', '新闻发布员', '1,2,3,4,5');
+
+-- ----------------------------
+-- Table structure for richat_rule
+-- ----------------------------
+DROP TABLE IF EXISTS `richat_rule`;
+CREATE TABLE `richat_rule` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `rulename` varchar(155) NOT NULL COMMENT '规则标题',
+  `baseurl` varchar(155) NOT NULL COMMENT '采集站点的地址',
+  `listurl` varchar(155) NOT NULL COMMENT '列表页地址',
+  `ismore` tinyint(1) NOT NULL COMMENT '是否批量采集 1 否 2是',
+  `start` int(11) DEFAULT '0' COMMENT '列表页开始地址',
+  `end` int(11) DEFAULT '0' COMMENT '列表页结束地址',
+  `titlediv` varchar(155) NOT NULL COMMENT '标题父层地址',
+  `title` varchar(155) NOT NULL COMMENT '文章标题内容规则',
+  `titleurl` varchar(155) NOT NULL COMMENT '标题地址规则',
+  `body` varchar(155) NOT NULL COMMENT '文章内容规则',
+  `addtime` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of richat_rule
+-- ----------------------------
+INSERT INTO `richat_rule` VALUES ('1', '脚本之家php文章采集', 'http://www.jb51.net', 'http://www.jb51.net/list/list_15_1.htm', '1', '0', '0', '.artlist dl dt a', 'text', 'href', '#content', '1471244221');
+INSERT INTO `richat_rule` VALUES ('2', 'thinkphp官网文章规则', 'http://www.thinkphp.cn', 'http://www.thinkphp.cn/code/system/p/1.html', '1', '0', '0', '.extend ul li .hd a', 'text', 'href', '.wrapper .detail-bd', '1471244221');
+INSERT INTO `richat_rule` VALUES ('3', '果壳网科学人采集规则', 'http://www.guokr.com', 'http://www.guokr.com/scientific/', '1', '0', '0', '#waterfall .article h3 a', 'text', 'href', '.document div:eq(0)', '1471247277');
+
+-- ----------------------------
+-- Table structure for richat_user
+-- ----------------------------
+DROP TABLE IF EXISTS `richat_user`;
+CREATE TABLE `richat_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) COLLATE utf8_bin DEFAULT '' COMMENT '用户名',
+  `password` varchar(255) COLLATE utf8_bin DEFAULT '' COMMENT '密码',
+  `loginnum` int(11) DEFAULT '0' COMMENT '登陆次数',
+  `last_login_ip` varchar(255) COLLATE utf8_bin DEFAULT '' COMMENT '最后登录IP',
+  `last_login_time` int(11) DEFAULT '0' COMMENT '最后登录时间',
+  `real_name` varchar(255) COLLATE utf8_bin DEFAULT '' COMMENT '真实姓名',
+  `status` int(1) DEFAULT '0' COMMENT '状态',
+  `typeid` int(11) DEFAULT '1' COMMENT '用户角色id',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of richat_user
+-- ----------------------------
+INSERT INTO `richat_user` VALUES ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3', '65', '127.0.0.1', '1590046557', 'admin', '1', '1');
+INSERT INTO `richat_user` VALUES ('2', 'xiaobai', '4297f44b13955235245b2497399d7a93', '6', '127.0.0.1', '1470368260', '小白', '1', '2');
+
+-- ----------------------------
 -- Table structure for smscode
 -- ----------------------------
 DROP TABLE IF EXISTS `smscode`;
@@ -434,7 +729,7 @@ CREATE TABLE `smscode` (
   `code` varchar(12) NOT NULL,
   `sendtime` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=310 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=311 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of smscode
@@ -748,6 +1043,7 @@ INSERT INTO `smscode` VALUES ('306', '13257744517', '416872', '1584951218');
 INSERT INTO `smscode` VALUES ('307', '18359202476', '803775', '1585510809');
 INSERT INTO `smscode` VALUES ('308', '17710573616', '575618', '1588063746');
 INSERT INTO `smscode` VALUES ('309', '17710573616', '911527', '1588063840');
+INSERT INTO `smscode` VALUES ('310', '18359202475', '012621', '1590477596');
 
 -- ----------------------------
 -- Table structure for spread
@@ -789,7 +1085,7 @@ CREATE TABLE `user` (
   `status` int(1) NOT NULL DEFAULT '1',
   `codes` varchar(255) DEFAULT NULL COMMENT '邀请码',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=53 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
@@ -810,11 +1106,11 @@ INSERT INTO `user` VALUES ('19', null, null, '15021770972', '762a14f9ccd8b0b8519
 INSERT INTO `user` VALUES ('20', null, null, '13733608333', 'ae13208a7ed95b514b0629bce6577f4d36afe91b', null, '0', '0', null, '0', '1577606244', '1', '0');
 INSERT INTO `user` VALUES ('21', null, null, '18518115260', '305ac4cd15aeb2a094026248e829163d9993b88a', null, '0', '0', null, '0', '1577671257', '1', '0');
 INSERT INTO `user` VALUES ('22', null, null, '18569296287', 'e0c720c83d692665999b9fd8230377b33bd0c72d', null, '0', '0', null, '0', '1577687229', '1', '0');
-INSERT INTO `user` VALUES ('43', 'kefu', '33', '15918476606', '769bb589287f8bc6d7c45c2e205a5798a738047e', null, '0', '0', null, '0', '1578305065', '0', '0');
+INSERT INTO `user` VALUES ('43', 'kefu', '42', '15918476606', '769bb589287f8bc6d7c45c2e205a5798a738047e', null, '0', '0', null, '0', '1578305065', '0', '0');
 INSERT INTO `user` VALUES ('24', null, null, '13613183210', 'e479ddaa22e2058a0489f9d9f025fba8efe57faf', null, '0', '0', null, '0', '1577770833', '1', '0');
 INSERT INTO `user` VALUES ('25', null, null, '15830485640', '64b8aa1a6153799b0391b38ff6aac66148d37394', null, '0', '0', null, '0', '1577771738', '1', '0');
-INSERT INTO `user` VALUES ('40', 'kefu', '33', '15126782331', '048e7aafe2e5e4a2a1a372082954d2eebf6d3a64', null, '0', '0', null, '0', '1578204780', '1', '0');
-INSERT INTO `user` VALUES ('41', 'kefu', '33', '17791797821', 'a511f545295b66e672b357999749551fac8cbdc7', null, '0', '0', null, '0', '1578276023', '1', '0');
+INSERT INTO `user` VALUES ('40', null, null, '15126782331', '048e7aafe2e5e4a2a1a372082954d2eebf6d3a64', null, '0', '0', null, '0', '1578204780', '1', '0');
+INSERT INTO `user` VALUES ('41', null, null, '17791797821', 'a511f545295b66e672b357999749551fac8cbdc7', null, '0', '0', null, '0', '1578276023', '1', '0');
 INSERT INTO `user` VALUES ('28', null, null, '15195523807', 'a1d61fd349d3d8d257dae90339e69d0f319729d0', null, '0', '0', null, '0', '1577851430', '1', '0');
 INSERT INTO `user` VALUES ('30', null, null, '18834478477', 'fe9b86978ec92e01af838b3bc9d6ed636fb38c12', null, '0', '0', null, '0', '1577862812', '1', '0');
 INSERT INTO `user` VALUES ('31', null, null, '15706790550', '0286d2c0563aa4b8c62440ad6ccc0e8c15621923', null, '0', '0', null, '0', '1577863865', '1', '0');
@@ -822,12 +1118,12 @@ INSERT INTO `user` VALUES ('32', null, null, '13668514505', 'de110c2030db320a675
 INSERT INTO `user` VALUES ('45', null, null, '13780000892', '10470c3b4b1fed12c3baac014be15fac67c6e815', '123456', '0', '0', null, '1', '1579161218', '1', '0');
 INSERT INTO `user` VALUES ('34', null, null, '18359838207', 'd52109df8e960ea9dd44fd1341279fd823e2edf7', null, '0', '0', null, '0', '1577947789', '1', '0');
 INSERT INTO `user` VALUES ('35', null, null, '18865186593', '9ef158f1dfccaad030ec1b243f71ef8fae8cb7c8', null, '0', '0', null, '0', '1577948407', '0', '0');
-INSERT INTO `user` VALUES ('36', 'kefu', '33', '13841354168', 'a5d570de86ab4dae7b7be98d83e5a4e865dc713e', null, '0', '0', null, '0', '1577953082', '1', '0');
-INSERT INTO `user` VALUES ('44', 'kefu', '33', '13681794059', '8d0133904a18dbee7cc65a2133c0496f5ee784e7', null, '0', '0', null, '0', '1578455811', '1', '0');
-INSERT INTO `user` VALUES ('46', null, null, '13479628995', '10470c3b4b1fed12c3baac014be15fac67c6e815', null, '0', '0', null, '0', '1582041136', '1', '0');
-INSERT INTO `user` VALUES ('47', null, null, '18930872298', '0d33f4798bf05770e15e0543720c7d00ddf1af5e', '123456', '0', '0', null, '0', '1582448394', '1', '0');
-INSERT INTO `user` VALUES ('51', 'kefu', '33', '13257744517', '10470c3b4b1fed12c3baac014be15fac67c6e815', '111111', '0', '0', null, '0', '1584951254', '0', '0');
-INSERT INTO `user` VALUES ('52', null, null, '18359202476', 'ff1febecf0d4bb524e65a7d1b9582c0faaa6b78d', null, '0', '0', null, '0', '1585510839', '1', '0');
+INSERT INTO `user` VALUES ('36', null, null, '13841354168', 'a5d570de86ab4dae7b7be98d83e5a4e865dc713e', null, '0', '0', null, '0', '1577953082', '1', '0');
+INSERT INTO `user` VALUES ('44', 'kefu', '42', '13681794059', '8d0133904a18dbee7cc65a2133c0496f5ee784e7', null, '0', '0', null, '0', '1578455811', '1', '0');
+INSERT INTO `user` VALUES ('46', 'kefu2', '44', '13479628995', '10470c3b4b1fed12c3baac014be15fac67c6e815', null, '0', '0', null, '0', '1582041136', '1', '0');
+INSERT INTO `user` VALUES ('47', 'kefu2', '44', '18930872298', '0d33f4798bf05770e15e0543720c7d00ddf1af5e', '123456', '0', '0', null, '0', '1582448394', '1', '0');
+INSERT INTO `user` VALUES ('51', 'kefu', '42', '13257744517', '10470c3b4b1fed12c3baac014be15fac67c6e815', '111111', '0', '0', null, '0', '1584951254', '0', '0');
+INSERT INTO `user` VALUES ('52', 'kefu', '42', '18359202475', '900207797ad161af8a5e8645f0efddfffa6bff1a', null, '0', '0', null, '0', '1585510839', '1', '0');
 
 -- ----------------------------
 -- Table structure for userinfo
@@ -867,12 +1163,12 @@ CREATE TABLE `userinfo` (
   `zhimaxinyou` int(11) NOT NULL DEFAULT '0',
   `is_check` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of userinfo
 -- ----------------------------
-INSERT INTO `userinfo` VALUES ('1', '16556896331', '刘锦', '420922199511015711', 'http://hld.qingman.wang/Upload/image/20191222/20191222214225_81034.jpg', 'http://hld.qingman.wang/Upload/image/20191222/20191222214247_22599.jpg', 'http://hld.qingman.wang/Upload/image/20191222/20191222214321_72989.jpg', '广东省 深圳市 罗湖区', '广州深圳', '广州恒大', '广东省 深圳市 罗湖区', '广州深圳罗湖', '经理', '6', '6217025238466612553', '工商银行', '0', '0', '', '8000', '刘锦', '16556896331', '16556896331', '刘锦', '16556896331', '兄妹', '610', '16556896331', '高中', '0', '0', '0');
+INSERT INTO `userinfo` VALUES ('1', '16556896331', '刘锦', '420922199511015711', '/Upload/image/20191222/20191222214225_81034.jpg', '/Upload/image/20191222/20191222214247_22599.jpg', '/Upload/image/20191222/20191222214321_72989.jpg', '广东省 深圳市 罗湖区', '广州深圳', '广州恒大', '广东省 深圳市 罗湖区', '广州深圳罗湖', '经理', '6', '6217025238466612553', '工商银行', '0', '0', '', '8000', '刘锦', '16556896331', '16556896331', '刘锦', '16556896331', '兄妹', '610', '16556896331', '高中', '0', '0', '0');
 INSERT INTO `userinfo` VALUES ('2', '15579161111', '刘田', '423303199604123656', 'http://hld.qingman.wang/Upload/image/20191225/20191225094844_95794.jpg', 'http://hld.qingman.wang/Upload/image/20191225/20191225094859_44084.jpg', 'http://hld.qingman.wang/Upload/image/20191225/20191225094915_36455.jpg', '辽宁省 沈阳市 沈河区', '群明明掐指一算', '明年', '辽宁省 沈阳市 和平区', '寂寞千与千寻 网球王子', '还以为', '5', '49843200366487155', '浦发银行', '0', '0', '6799799797', '50000', '54597', '1369799797979', '同事', '55767', '15569799797', '同事', '556', '64699797', '大专', '0', '0', '0');
 INSERT INTO `userinfo` VALUES ('3', '13227547578', '张贵良', '420621196412022231', 'http://hld.qingman.wang/Upload/image/20191225/20191225184926_93072.jpg', 'http://hld.qingman.wang/Upload/image/20191225/20191225184950_36577.jpg', 'http://hld.qingman.wang/Upload/image/20191225/20191225185045_54467.jpg', '湖北省 襄阳市 襄州区', '张家集镇梅铺村二', '贵良生猪养殖专业合作社', '湖北省 襄阳市 襄州区', '张家集镇梅铺村二组', '法人代表', '10', '6228480759796251677', '农业银行', '0', '0', '13476371680', '30000', '王志英', '13871736023', '同事', '张艳涛', '15597275334', '朋友', '550', '988988', '高中', '0', '0', '0');
 INSERT INTO `userinfo` VALUES ('4', '18031927965', '王晓雪', '130185198911211832', 'http://hld.qingman.wang/Upload/image/20191226/20191226150021_60011.jpg', 'http://hld.qingman.wang/Upload/image/20191226/20191226150055_85605.jpg', 'http://hld.qingman.wang/Upload/image/20191226/20191226150122_16791.jpg', '河北省 石家庄市 鹿泉市', '李村镇西小壁村富康街十八巷7号', '韩书军', '河北省 石家庄市 鹿泉市', '李村镇王村垃圾站旁边', '司机', '2', '6228480639120567073', '农业银行', '0', '0', '', '7000', '王林山', '15830672665', '父母', '周顶', '14785136572', '同事', '587', '18031927965', '初中', '0', '0', '0');
@@ -918,7 +1214,8 @@ INSERT INTO `userinfo` VALUES ('43', '18930872298', null, null, null, null, null
 INSERT INTO `userinfo` VALUES ('44', '15757851836', null, null, null, null, null, null, null, null, null, null, null, null, null, null, '0', '0', null, null, null, null, null, null, null, null, null, null, '', '0', '0', '0');
 INSERT INTO `userinfo` VALUES ('45', '15258234501', null, null, null, null, null, null, null, null, null, null, null, null, null, null, '0', '0', null, null, null, null, null, null, null, null, null, null, '', '0', '0', '0');
 INSERT INTO `userinfo` VALUES ('46', '15559763298', null, null, null, null, null, null, null, null, null, null, null, null, null, null, '0', '0', null, null, null, null, null, null, null, null, null, null, '', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('47', '13257744517', '孙嘉彬', '610104198202176137', 'http://hld.qingman.wang/Upload/image/20200323/20200323161734_95432.png', 'http://hld.qingman.wang/Upload/image/20200323/20200323161749_72758.png', 'http://hld.qingman.wang/Upload/image/20200323/20200323161759_24788.png', '北京市 北京市 东城区', '脚手架', '我们', '北京市 北京市 东城区', '我们就没有办法', '我们', '10', '887885', '工商银行', '0', '0', '', '10000', '一直都', '13100000000', '父母', '我们的', '13666666666', '父母', '1212', '12345', '我们', '0', '0', '0');
+INSERT INTO `userinfo` VALUES ('47', '13257744517', '孙嘉彬', '610104198202176137', '/Upload/image/20200323/20200323161734_95432.png', '/Upload/image/20200323/20200323161749_72758.png', 'http://hld.qingman.wang/Upload/image/20200323/20200323161759_24788.png', '北京市 北京市 东城区', '脚手架', '我们', '北京市 北京市 东城区', '我们就没有办法', '我们', '10', '887885', '工商银行', '0', '0', '', '10000', '一直都', '13100000000', '父母', '我们的', '13666666666', '父母', '1212', '12345', '我们', '0', '0', '0');
+INSERT INTO `userinfo` VALUES ('50', '18359202475', null, null, null, null, null, null, null, null, null, null, null, null, null, null, '0', '0', null, null, null, null, null, null, null, null, null, null, '', '0', '0', '0');
 INSERT INTO `userinfo` VALUES ('48', '18359202476', null, null, null, null, null, null, null, null, null, null, null, null, '62366837600651876528', '工商银行', '0', '0', null, null, null, null, null, null, null, null, null, null, '', '0', '0', '0');
 INSERT INTO `userinfo` VALUES ('49', '18956501550', '唐大帅', '43110299405112756', 'http://get-money.im/Upload/image/20200516/20200516142235_49358.jpg', 'http://get-money.im/Upload/image/20200516/20200516142238_33966.jpg', 'http://get-money.im/Upload/image/20200516/20200516142243_84704.jpeg', '湖南省 长沙市 芙蓉区', '斯达舒大撒多', '腾讯', '湖南省 长沙市 芙蓉区', '大发大打发', '程序猿', '5', '12312312312312312312', '工商银行', '0', '0', '', '10000', '爱的发的是', '1231231231231', '父母', '打发', '123123123121', '同事', '760', '121231123131', '本科', '0', '0', '0');
 
