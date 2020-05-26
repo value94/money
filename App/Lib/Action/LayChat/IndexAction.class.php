@@ -32,7 +32,10 @@ class IndexAction extends Action
     {
         //查询自己的信息
         $mine = M('richat_chatuser')->where(['id' => cookie('uid')])->find();
-        $other = M('richat_chatuser')->select();
+        // 客服只能看到自己绑定的用户
+        if ($mine['username'] != 'admin') {
+            $other = M('richat_chatuser')->where("customer_id={$mine['id']} or user_type=1")->select();
+        }
 
         //查询当前用户的所处的群组
         $groupArr = [];

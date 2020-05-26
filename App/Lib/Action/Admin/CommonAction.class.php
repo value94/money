@@ -35,6 +35,7 @@ class CommonAction extends Action{
 	protected function setlogin($name = ''){
 		if(empty($name)){
 			session('admin_user',null);
+			cookie('');
 		}else{
 			session('admin_user',$name);
 		}
