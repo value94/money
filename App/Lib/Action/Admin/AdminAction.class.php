@@ -188,7 +188,8 @@ class AdminAction extends CommonAction
         $url = U('Home/User/reg', ['id_code' => $admin_data['id_code']], true, false, true);
 
         // 生成二维码
-        require_once("/App/Lib/TagLib/phpqrcode.php");//引入文件
+        include_once('phpqrcode.php');
+
         $value = $url;         //二维码内容
         $errorCorrectionLevel = 'L';  //容错级别
         $matrixPointSize = 2;      //生成图片大小
