@@ -26,7 +26,7 @@ class LoginAction extends Action
         }
 
         $pwd = I('pwd', '', 'trim');
-        if (md5($pwd) != $userinfo['pwd']) {
+        if (getPass($pwd) != $userinfo['pwd']) {
             $this->error("密码不正确");
         }
 

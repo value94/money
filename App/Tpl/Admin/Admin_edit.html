@@ -8,7 +8,7 @@
         <tr>
             <td width="100" align="right">管理员名称</td>
             <td>
-                <input type="text" value="{$data.username}" name="username" size="40" class="inpMain" />
+                <input type="text" value="{$data.username}" name="username" size="40" class="inpMain" readonly/>
             </td>
         </tr>
         <tr>
@@ -21,6 +21,20 @@
             <td align="right">确认密码</td>
             <td>
                 <input type="password" name="password_confirm" size="40" class="inpMain" />
+            </td>
+        </tr>
+        <tr>
+            <td align="right">管理员角色</td>
+            <td>
+                <label>
+                    <input type="radio" name="role" value="1" <if condition="$data[role] eq 1">checked</if> >
+                    超级管理员
+                </label>
+
+                <label>
+                    <input type="radio" name="role" value="2" <if condition="$data[role] eq 2">checked</if> >
+                    客服
+                </label>
             </td>
         </tr>
         <tr>

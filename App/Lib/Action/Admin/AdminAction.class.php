@@ -34,7 +34,8 @@ class AdminAction extends CommonAction
             ->select();
         $this->data = $list;
         $this->page = $show;
-        $this->role = getAdminData()['role'];$this->display();
+        $this->role = getAdminData()['role'];
+        $this->display();
     }
 
 
@@ -55,19 +56,33 @@ class AdminAction extends CommonAction
             if (!$Admin->create()) {
                 $this->error($Admin->getError());
             }
+
             $_POST['addtime'] = time();
             $_POST['lastlogin'] = 0;
             $_POST['gid'] = 1;//管理组预留
             $_POST['password'] = $this->getpass($_POST['password']);
             $_POST['id_code'] = randomKeys(8);
+
             $status = $Admin->add($_POST);
+            // 添加到客服表中
+            $richat_data = [
+                'admin_id' => $Admin->getLastInsID(),
+                'username' => $_POST['username'],
+                'pwd' => $_POST['password'],
+                'groupid' => 1,
+                'sign' => '客服 ' . $_POST['username'],
+                'avatar' => '/Public/images/sj.png'
+            ];
+            M('richat_chatuser')->add($richat_data);
+
             if (!$status) {
                 $this->error('添加失败!');
             }
             $this->success('添加成功!');
             exit;
         }
-        $this->role = getAdminData()['role'];$this->display();
+        $this->role = getAdminData()['role'];
+        $this->display();
     }
 
 
@@ -104,6 +119,9 @@ class AdminAction extends CommonAction
                     $this->error('两次密码输入不一致!');
                 } else {
                     $Admin->where(array('id' => $editId))->save(array('password' => $this->getpass($password)));
+                    // 修改客服管理员
+                    M('richat_chatuser')->where(['admin_id' => $editId])->save(['pwd' => $this->getpass($password)]);
+
                 }
                 $this->success('修改成功!');
             } else {
@@ -116,7 +134,8 @@ class AdminAction extends CommonAction
             $this->error('管理员ID不存在!');
         }
         $this->data = $data;
-        $this->role = getAdminData()['role'];$this->display();
+        $this->role = getAdminData()['role'];
+        $this->display();
     }
 
 
@@ -198,7 +217,8 @@ class AdminAction extends CommonAction
         }*/
         $this->reg_url = $url;
         $this->img_url = $admin_data['id'] . '_qrcode.png';
-        $this->role = getAdminData()['role'];$this->display();
+        $this->role = getAdminData()['role'];
+        $this->display();
 
     }
 }
