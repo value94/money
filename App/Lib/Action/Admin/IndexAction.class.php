@@ -28,16 +28,26 @@ class IndexAction extends CommonAction
             $_var_4 = I('username', '', 'trim');
             $_var_5 = I('password', '', 'trim');
             $_var_5 = $this->getpass($_var_5);
-            $_var_6 = $_var_1->where(array('username' => $_var_4, 'password' => $_var_5))->find();
-            if ($_var_6) {
-                if ($_var_6['status']) {
+            $admin_user = $_var_1->where(array('username' => $_var_4, 'password' => $_var_5))->find();
+            if ($admin_user) {
+                if ($admin_user['status']) {
                     //写入登录记录
                     $_var_7 = D('admin_login');
                     $_var_7->add(array('username' => $_var_4, 'logintime' => time(), 'loginip' => get_client_ip()));
                     //更新最近登录时间
-                    $login_session = json_encode($_var_6);
+                    $login_session = json_encode($admin_user);
                     $this->setlogin($login_session);
                     $_var_1->where(array('username' => $_var_4))->save(array('lastlogin' => time()));
+
+                    // 同时登陆客服系统
+                    //设置为登录状态
+                    M('richat_chatuser')->where(['id' => $admin_user['chat_id']])->setField('status', 'online');
+                    $chat_user_data = M('richat_chatuser')->where(['id' => $admin_user['chat_id']])->find();
+                    cookie('uid', $chat_user_data['id']);
+                    cookie('username', $chat_user_data['username']);
+                    cookie('avatar', $chat_user_data['avatar']);
+                    cookie('sign', $chat_user_data['sign']);
+
                     $this->success('登录成功!', U(GROUP_NAME . '/Main/index'));
                 } else {
                     $this->error('该账户已被禁用!');
@@ -47,7 +57,8 @@ class IndexAction extends CommonAction
             }
             exit;
         }
-        $this->role = getAdminData()['role'];$this->display();
+        $this->role = getAdminData()['role'];
+        $this->display();
     }
 
     public function logout()
