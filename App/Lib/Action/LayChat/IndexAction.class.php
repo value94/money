@@ -27,16 +27,28 @@ class IndexAction extends Action
         return $this->display();
     }
 
+    public function customer()
+    {
+        $mine = M('richat_chatuser')->where(['id' => cookie('uid')])->find();
+        $this->uinfo = $mine;
+
+        return $this->display();
+    }
+
     //获取列表
     public function getList()
     {
         //查询自己的信息
         $mine = M('richat_chatuser')->where(['id' => cookie('uid')])->find();
+
         // 客服只能看到自己绑定的用户
         if ($mine['username'] != 'admin') {
             $other = M('richat_chatuser')->where("customer_id={$mine['id']} or user_type=1")->select();
         }
-
+        // 被绑定客户只能看到自己的客服
+        if ($mine['customer_id'] != null) {
+            $other = M('richat_chatuser')->where("id={$mine['customer_id']}")->select();
+        }
         //查询当前用户的所处的群组
         $groupArr = [];
         $groups = M('richat_groupdetail')->field('groupid')->where(['userid' => cookie('uid')])->group('groupid')->select();

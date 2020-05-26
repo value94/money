@@ -34,6 +34,30 @@ class UserAction extends CommonAction
                     } else if ($info['status'] != 1) {
                         $data['msg'] = "该账户已被禁止登录!";
                     } else {
+                        // 检测客服账号是否存在,如果不存在,创建客服账号
+                        $chat_user = M('richat_chatuser')->where(['username' => $phone])->find();
+                        if (!$chat_user) {
+                            // 添加用户到客服好友中
+                            $chat_user = [
+                                'user_type' => 2,
+                                'username' => $phone,
+                                'groupid' => 2,
+                                'sign' => '客户 ' . $phone,
+                                'avatar' => '/Public/images/customer.jpg',
+                            ];
+                            M('richat_chatuser')->add($chat_user);
+                            cookie('uid', M('richat_chatuser')->getLastInsID());
+                            cookie('username', $phone);
+                            cookie('user_type', 2);
+                            cookie('avatar', $chat_user['avatar']);
+                            cookie('sign', $chat_user['sign']);
+                        } else {
+                            cookie('uid', $chat_user['id']);
+                            cookie('username', $chat_user['username']);
+                            cookie('user_type', $chat_user['user_type']);
+                            cookie('avatar', $chat_user['avatar']);
+                            cookie('sign', $chat_user['sign']);
+                        }
                         $this->setLoginUser($phone);
                         $data['status'] = 1;
                     }
