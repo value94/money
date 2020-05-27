@@ -26,7 +26,7 @@ if(!extension_loaded('posix'))
 // 标记是全局启动
 define('GLOBAL_START', 1);
 
-require_once 'vendor/autoload.php';
+include_once('vendor/autoload.php');
 
 // 加载所有Applications/*/start.php，以便启动所有服务
 foreach(glob('Applications/*/start*.php') as $start_file)
