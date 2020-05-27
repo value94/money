@@ -13,7 +13,7 @@ return array (
   'cfg_yhkcw' => 'ddddddddddddd',
   'cfg_sitename' => '全融借贷',
   'cfg_sitetitle' => '全融借贷',
-  'cfg_siteurl' => 'http://jaswa.cn/',
+  'cfg_siteurl' => 'jaswa.cn',
   'cfg_sitekeywords' => '全融借贷',
   'cfg_sitedescription' => '全融借贷',
   'cfg_siteclosed' => '0',
