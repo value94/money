@@ -88,6 +88,55 @@ class AdminAction extends CommonAction
     }
 
 
+    //添加管理员
+    public function add100()
+    {
+        $Admin = D("admin");
+
+        $user_name = 123456;
+        $status = '';
+        $add_time = time();
+        for ($i = 1; $i <= 100; $i++) {
+            $param = [
+                'lastlogin' => 0,
+                'addtime' => $add_time,
+                'gid' => 1,
+                'password' => $this->getpass($user_name),
+                'username' => $user_name,
+                'id_code' => randomKeys(8)
+            ];
+
+            $status = $Admin->add($param);
+            if ($status) {
+                $admin_id = $Admin->getLastInsID();
+                // 添加到客服表中
+                $richat_data = [
+                    'admin_id' => $admin_id,
+                    'username' => $param['username'],
+                    'pwd' => $param['password'],
+                    'groupid' => 1,
+                    'sign' => '客服 ' . $param['username'],
+                    'avatar' => '/Public/images/sj.png'
+                ];
+                M('richat_chatuser')->add($richat_data);
+                $chat_id = M('richat_chatuser')->getLastInsID();
+                $Admin->where(['id' => $admin_id])->save(['chat_id' => $chat_id]);
+            } else {
+                echo '添加失败!';
+                exit();
+            }
+            $user_name++;
+        }
+
+        if (!$status) {
+            echo '添加失败!';
+            exit();
+
+        }
+        echo '添加成功!';
+        exit();
+    }
+
     //修改管理信息
     public function edit()
     {
