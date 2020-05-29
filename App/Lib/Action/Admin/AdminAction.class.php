@@ -25,7 +25,7 @@ class AdminAction extends CommonAction
             }
         }
         $count = $Admin->where($where)->count();
-        $Page = new Page($count, 10);
+        $Page = new Page($count, 100);
         $Page->setConfig('theme', '共%totalRow%条记录 | 第 %nowPage% / %totalPage% 页 %upPage%  %linkPage%  %downPage%');
         $show = $Page->show();
         $list = $Admin->order('addtime')
@@ -87,6 +87,26 @@ class AdminAction extends CommonAction
         $this->display();
     }
 
+    // 换班
+    public function shift_change()
+    {
+        $id = I('get.id', 0, 'trim');
+        $work_status = I('get.work_status', 0, 'trim');
+        $Admin = D("admin");
+        // 换班
+        if ($work_status) {
+            $result = $Admin->where(['id' => $id])->save(['work_status' => 0]);
+        } else {
+            $result = $Admin->where(['id' => $id])->save(['work_status' => 1]);
+        }
+
+        if ($result) {
+            $this->success('更改成功!');
+        } else {
+            $this->success('更改失败!');
+        }
+
+    }
 
     //添加管理员
     public function add100()
@@ -189,6 +209,45 @@ class AdminAction extends CommonAction
         $this->display();
     }
 
+    //修改用户密码
+    public function changePass()
+    {
+        $data = array('status' => 0, 'msg' => '未知错误');
+        $id = I('post.id', 0, 'trim');
+        $pass = I("post.pass", '', 'trim');
+        if (!$id || !$pass) {
+            $data['msg'] = "参数有误!";
+        } else {
+            $Admin = D("admin");
+            $pass = sha1(md5($pass));
+            $status = $Admin->where(array('id' => $id))->save(array('password' => $pass));
+            if (!$status) {
+                $data['msg'] = "操作失败!";
+            } else {
+                $data['status'] = 1;
+            }
+        }
+        $this->ajaxReturn($data);
+    }
+
+    public function changeRemarks()
+    {
+        $data = array('status' => 0, 'msg' => '未知错误');
+        $id = I('post.id', 0, 'trim');
+        $pass = I("post.pass", '', 'trim');
+        if (!$id || !$pass) {
+            $data['msg'] = "参数有误!";
+        } else {
+            $Admin = D("admin");
+            $status = $Admin->where(array('id' => $id))->save(array('marks' => $pass));
+            if (!$status) {
+                $data['msg'] = "操作失败!";
+            } else {
+                $data['status'] = 1;
+            }
+        }
+        $this->ajaxReturn($data);
+    }
 
     //删除管理员
     public function del()
@@ -205,7 +264,6 @@ class AdminAction extends CommonAction
         if (!$status) {
             $this->error('删除失败!');
         }
-        // 解绑用户
 
         // 删除客服
         $chatUserModel = new ChatUserModel();

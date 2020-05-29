@@ -95,7 +95,7 @@
                                 </php>
                                 <a href="{:U(GROUP_NAME.'/User/userinfo',array('user' => $vo['phone']))}"
                                    class="btn blue"><i class="fa fa-list-alt"></i>查看资料</a>
-                                <a href="javascript:changepass('{$vo.id}');" class="btn blue"><i
+                                <a href="javascript:changePass('{$vo.id}');" class="btn blue"><i
                                         class="fa fa-pencil-square-o"></i>修改密码</a>
                                 <a href="javascript:changeuser('{$vo.id}');" class="btn blue"><i
                                         class="fa fa-pencil-square-o"></i>修改用户</a>
@@ -164,7 +164,7 @@
         );
     }
 
-    function changepass(uid) {
+    function changePass(uid) {
         layer.prompt({title: '输入新密码，并确认', formType: 1}, function (pass, index) {
             if (pass == '' || pass == null) {
                 layer.msg('密码不能为空!');
@@ -172,7 +172,7 @@
                 layer.msg("密码长度不能小于6位!");
             } else {
                 $.post(
-                    "{:U(GROUP_NAME.'/User/changepass')}",
+                    "{:U(GROUP_NAME.'/Admin/changePass')}",
                     {id: uid, pass: pass},
                     function (data, state) {
                         if (state != "success") {
