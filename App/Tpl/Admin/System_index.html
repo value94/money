@@ -1,18 +1,112 @@
 <h3>{$title}</h3>
 <script type="text/javascript">
-    $(function(){ $(".idTabs").idTabs(); });
+    $(function () {
+        $(".idTabs").idTabs();
+    });
 </script>
 <style>
-    .prel{position:relative}.pab{position:absolute}
-   .sfzwrap{border:1px solid #ccc;border-radius:8px;height:200px}
-   .sfzwrap{height:172px}.sfzp img{height:158px}}
-   .sfzwrap input{position:absolute;width:100%;height:120px;opacity:0}.phoes{height:auto}.sfzp,.shahead{text-align:center}
-   .sfzp{margin:6px}.sfzp img{height:158px}}
-   .sfzwrap{height:172px}.sfzp img{height:158px}}
-   .sfztip{border-radius:4px}.sfztip{color:#fff;font-size:14px;line-height:28px;width:162px;top:74%;left:50%;margin-left:-81px;background:#9cf;opacity:.5;padding:0 9px}
-   .hcamera { width: 60px;height: 60px;top: 50%;left: 50%; margin-left: -30px;margin-top: -30px; }
-   .pab { position: absolute;}
-   .errdeo{white-space:nowrap;position:fixed;top:-85%;left:50%;padding:6px 16px;color:#fff;font-size:14px;background:#000;opacity:.8;border-radius:2px;-webkit-transform:translateX(-50%) translateY(0);transform:translateX(-50%) translateY(0);z-index:9;height:30px}
+    .prel {
+        position: relative
+    }
+
+    .pab {
+        position: absolute
+    }
+
+    .sfzwrap {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        height: 200px
+    }
+
+    .sfzwrap {
+        height: 172px
+    }
+
+    .sfzp img {
+        height: 158px
+    }
+
+    }
+    .sfzwrap input {
+        position: absolute;
+        width: 100%;
+        height: 120px;
+        opacity: 0
+    }
+
+    .phoes {
+        height: auto
+    }
+
+    .sfzp, .shahead {
+        text-align: center
+    }
+
+    .sfzp {
+        margin: 6px
+    }
+
+    .sfzp img {
+        height: 158px
+    }
+
+    }
+    .sfzwrap {
+        height: 172px
+    }
+
+    .sfzp img {
+        height: 158px
+    }
+
+    }
+    .sfztip {
+        border-radius: 4px
+    }
+
+    .sfztip {
+        color: #fff;
+        font-size: 14px;
+        line-height: 28px;
+        width: 162px;
+        top: 74%;
+        left: 50%;
+        margin-left: -81px;
+        background: #9cf;
+        opacity: .5;
+        padding: 0 9px
+    }
+
+    .hcamera {
+        width: 60px;
+        height: 60px;
+        top: 50%;
+        left: 50%;
+        margin-left: -30px;
+        margin-top: -30px;
+    }
+
+    .pab {
+        position: absolute;
+    }
+
+    .errdeo {
+        white-space: nowrap;
+        position: fixed;
+        top: -85%;
+        left: 50%;
+        padding: 6px 16px;
+        color: #fff;
+        font-size: 14px;
+        background: #000;
+        opacity: .8;
+        border-radius: 2px;
+        -webkit-transform: translateX(-50%) translateY(0);
+        transform: translateX(-50%) translateY(0);
+        z-index: 9;
+        height: 30px
+    }
 
 </style>
 <div class="idTabs">
@@ -20,23 +114,116 @@
         <li><a href="#main">常规设置</a></li>
         <li><a href="#daikuan">贷款设置</a></li>
         <li><a href="#api">接口设置</a></li>
-      <!--  <li><a href="#weixin">微信二维码</a></li>
-        <li><a href="#bank">银行卡账号</a></li>-->
+        <!--  <li><a href="#weixin">微信二维码</a></li>
+          <li><a href="#bank">银行卡账号</a></li>-->
     </ul>
     <div class="items">
         <form action="{:U(GROUP_NAME.'/System/index')}" method="post">
             <div id="main">
-                <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic" style="border: 2px solid #ea9f9f;">
+                <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
                     <tr>
                         <th width="131">名称</th>
                         <th>内容</th>
                     </tr>
-                   
-                
-                       <tr>
+                    <tr>
+                        <td align="right">是否启用印花税</td>
+                        <td>
+                            <label for="siteclosed_0">
+                                <input type="radio" name="yinhua" id="yinhua_0" value="0" checked="">
+                                否
+                            </label>
+                            <label for="siteclosed_1">
+                                <input type="radio" name="yinhua" id="yinhua_1" value="1">
+                                是
+                            </label> 　　<a style="color:red;">注启用印花税后，到账钱包状态，将不再需要提现密码，而是根据是否支付印花税判断能否提现。</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">是否启用客户自动分配</td>
+                        <td>
+                            <label for="siteclosed_0">
+                                <input type="radio" name="fenpei" id="fenpei_0" value="0" checked="">
+                                否
+                            </label>
+                            <label for="siteclosed_1">
+                                <input type="radio" name="fenpei" id="fenpei_1" value="1">
+                                是
+                            </label> 　　<a style="color:red;">注：启用自动分配后，将自动分配给管理员绑定，下班管理员不会进行自动分配绑定。管理员上下班在网站管理员进行设置！</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">是否启用先注册后下载APP</td>
+                        <td>
+                            <label for="siteclosed_0">
+                                <input type="radio" name="downapp" id="downapp_0" value="0">
+                                否
+                            </label>
+                            <label for="siteclosed_1">
+                                <input type="radio" name="downapp" id="downapp_1" value="1" checked="">
+                                是
+                            </label> 　　<a style="color:red;">注：启用后用户扫码将先进行账号注册，然后再跳转到APP下载页面！用户注册后自动与管理员绑定。</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">是否启用资料页激活码</td>
+                        <td>
+                            <label for="siteclosed_0">
+                                <input type="radio" name="jihuo" id="jihuo_0" value="0" checked="">
+                                否
+                            </label>
+                            <label for="siteclosed_1">
+                                <input type="radio" name="jihuo" id="jihuo_1" value="1">
+                                是
+                            </label> 　　<a style="color:red;">注：启用后用户在进入资料填写页面时，会需要填写激活码，激活码统一为888999，用户需要向客服索取激活码激活才能填写上传资料。</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">保单金额比例设置</td>
+                        <td>
+                            <input type="text" name="baoxian" value="50" size="80" class="inpMain"> 设置值为50，即保单截图金额为贷款金额的50%
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">APP跳转链接</td>
+                        <td>
+                            <input type="text" name="appdown" value="ftfers" size="80" class="inpMain"> 禁止修改，修改后导致一切问题自负
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">域名池</td>
+                        <td>
+                            <textarea name="yumingchi" cols="83" rows="8" class="textArea">5g2.net|</textarea> 域名之间请用 ‘|’ 隔开，不懂请勿修改！
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">IOS代码(禁止修改)</td>
+                        <td>
+                            <input type="text" name="ioscode" value="mjddd.ftfers.com" size="80" class="inpMain"> 禁止修改
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">充值通道1：银行</td>
+                        <td>
+                            银行名：<input type="text" name="bank" value="中合新融" size="15" class="inpMain"> 户名：<input type="text" name="bankmm" value="请联系代办客服" size="20" class="inpMain"> 卡号：<input type="text" name="bankka" value="请联系代办客服" size="20" class="inpMain">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">充值通道2：微信</td>
+                        <td>
+                            <input type="text" name="weixin" value="http://bx.mxui.cn/Upload/image/20190917/20190917143227_654317.png" size="27" class="inpMain" id="sfz_zm_div"> <input type="file" id="sfz_zm_input" onchange="uploadImg('sfz_zm_div',this);">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">充值通道3：支付宝</td>
+                        <td>
+                            <input type="text" name="alipay" value="http://bx.mxui.cn/Upload/image/20190917/20190917143241_227171.jpg" size="27" class="inpMain" id="sfz_fm_div"> <input type="file" id="sfz_fm_input" onchange="uploadImg('sfz_fm_div',this);">
+                        </td>
+                    </tr>
+
+                    <tr>
                         <td align="right" style="color: green;">客服链接</td>
                         <td>
-                            <input type="text" name="kefulj" value="{:C('cfg_kefulj')}"  size="80" class="inpMain">
+                            <input type="text" name="kefulj" value="{:C('cfg_kefulj')}" size="80" class="inpMain">
                         </td>
                     </tr>
                     <tr>
@@ -63,105 +250,108 @@
                             <input type="text" name="shbtg" value="{:C('cfg_shbtg')}" size="80" class="inpMain">
                         </td>
                     </tr>
-              <!--       <tr>
-                  <td align="right" style="color: green;">首期</td>
-                  <td>
-                      <input type="text" name="ytddwwc" value="{:C('cfg_ytddwwc')}" size="80" class="inpMain">
-                  </td>
-              </tr> -->
-              
+                    <!--       <tr>
+                        <td align="right" style="color: green;">首期</td>
+                        <td>
+                            <input type="text" name="ytddwwc" value="{:C('cfg_ytddwwc')}" size="80" class="inpMain">
+                        </td>
+                    </tr> -->
+
                     <tr>
                         <td align="right" style="color: green;">冻结</td>
                         <td>
                             <input type="text" name="ddckdj" value="{:C('cfg_ddckdj')}" size="80" class="inpMain">
                         </td>
                     </tr>
-                  <tr>
-                 <td align="right" style="color: green;">退款中 </td>
-                 <td>
-                     <input type="text" name="sqbxf" value="{:C('cfg_sqbxf')}" size="80" class="inpMain">
-                 </td>
-                </tr>
-                  
+                    <tr>
+                        <td align="right" style="color: green;">退款中</td>
+                        <td>
+                            <input type="text" name="sqbxf" value="{:C('cfg_sqbxf')}" size="80" class="inpMain">
+                        </td>
+                    </tr>
+
                     <tr>
                         <td align="right" style="color: green;">提现中</td>
                         <td>
-                            <input type="text" name="txz" value="{:C('cfg_txz')}"  size="80" class="inpMain">
+                            <input type="text" name="txz" value="{:C('cfg_txz')}" size="80" class="inpMain">
                         </td>
                     </tr>
-                <tr>
-                    <td align="right" style="color: green;">提现失败</td>
-                    <td>
-                        <input type="text" name="lsbz" value="{:C('cfg_lsbz')}" size="80" class="inpMain">
-                    </td>
-                </tr>  
-                
-                  <!--   <tr>
-                      <td align="right" style="color: green;">打款处理</td>
-                      <td>
-                          <input type="text" name="dkz" value="{:C('cfg_dkz')}" size="80" class="inpMain">
-                      </td>
-                  </tr> -->
-             <!--        <tr>
-                 <td align="right" style="color: green;">已缴-待确认</td>
-                 <td>
-                     <input type="text" name="yqdqr" value="{:C('cfg_yqdqr')}" size="80" class="inpMain">
-                 </td>
-             </tr>
-              <tr>
-                 <td align="right" style="color: green;">验证费核实失败</td>
-                 <td>
-                     <input type="text" name="yzfsb" value="{:C('cfg_yzfsb')}" size="80" class="inpMain">
-                 </td>
-             </tr>
-                <tr>
-                 <td align="right" style="color: green;">验证费已缴纳</td>
-                 <td>
-                     <input type="text" name="yzfyjn" value="{:C('cfg_yzfyjn')}" size="80" class="inpMain">
-                 </td>
-             </tr> -->
-                 
+                    <tr>
+                        <td align="right" style="color: green;">提现失败</td>
+                        <td>
+                            <input type="text" name="lsbz" value="{:C('cfg_lsbz')}" size="80" class="inpMain">
+                        </td>
+                    </tr>
+
+                    <!--   <tr>
+                        <td align="right" style="color: green;">打款处理</td>
+                        <td>
+                            <input type="text" name="dkz" value="{:C('cfg_dkz')}" size="80" class="inpMain">
+                        </td>
+                    </tr> -->
+                    <!--        <tr>
+                        <td align="right" style="color: green;">已缴-待确认</td>
+                        <td>
+                            <input type="text" name="yqdqr" value="{:C('cfg_yqdqr')}" size="80" class="inpMain">
+                        </td>
+                    </tr>
+                     <tr>
+                        <td align="right" style="color: green;">验证费核实失败</td>
+                        <td>
+                            <input type="text" name="yzfsb" value="{:C('cfg_yzfsb')}" size="80" class="inpMain">
+                        </td>
+                    </tr>
+                       <tr>
+                        <td align="right" style="color: green;">验证费已缴纳</td>
+                        <td>
+                            <input type="text" name="yzfyjn" value="{:C('cfg_yzfyjn')}" size="80" class="inpMain">
+                        </td>
+                    </tr> -->
+
                     <tr>
                         <td align="right" style="color: green;">到帐成功</td>
                         <td>
-                            <input type="text" name="txcg" value="{:C('cfg_txcg')}"  size="80" class="inpMain">
+                            <input type="text" name="txcg" value="{:C('cfg_txcg')}" size="80" class="inpMain">
                         </td>
                     </tr>
-                 <tr>
+                    <tr>
                         <td align="right" style="color: green;">绑卡失败</td>
                         <td>
-                            <input type="text" name="yhkcw" value="{:C('cfg_yhkcw')}"  size="80" class="inpMain">
+                            <input type="text" name="yhkcw" value="{:C('cfg_yhkcw')}" size="80" class="inpMain">
                         </td>
                     </tr>
-                    
+
                     <tr>
                         <td align="right">站点名称</td>
                         <td>
-                            <input type="text" name="sitename" value="{:C('cfg_sitename')}" size="80" class="inpMain" />
+                            <input type="text" name="sitename" value="{:C('cfg_sitename')}" size="80" class="inpMain"/>
                         </td>
                     </tr>
                     <tr>
                         <td align="right">站点标题</td>
                         <td>
-                            <input type="text" name="sitetitle" value="{:C('cfg_sitetitle')}" size="80" class="inpMain" />
+                            <input type="text" name="sitetitle" value="{:C('cfg_sitetitle')}" size="80"
+                                   class="inpMain"/>
                         </td>
                     </tr>
                     <tr>
                         <td align="right">站点地址</td>
                         <td>
-                            <input type="text" name="siteurl" value="{:C('cfg_siteurl')}" size="80" class="inpMain" />
+                            <input type="text" name="siteurl" value="{:C('cfg_siteurl')}" size="80" class="inpMain"/>
                         </td>
                     </tr>
                     <tr>
                         <td align="right">站点关键字</td>
                         <td>
-                            <input type="text" name="sitekeywords" value="{:C('cfg_sitekeywords')}" size="80" class="inpMain" />
+                            <input type="text" name="sitekeywords" value="{:C('cfg_sitekeywords')}" size="80"
+                                   class="inpMain"/>
                         </td>
                     </tr>
                     <tr>
                         <td align="right">站点描述</td>
                         <td>
-                            <input type="text" name="sitedescription" value="{:C('cfg_sitedescription')}" size="80" class="inpMain" />
+                            <input type="text" name="sitedescription" value="{:C('cfg_sitedescription')}" size="80"
+                                   class="inpMain"/>
                         </td>
                     </tr>
 
@@ -169,11 +359,15 @@
                         <td align="right">是否关闭网站</td>
                         <td>
                             <label for="siteclosed_0">
-                                <input type="radio" name="siteclosed" id="siteclosed_0" value="0" <if condition="C('cfg_siteclosed') eq 0">checked</if> >
+                                <input type="radio" name="siteclosed" id="siteclosed_0" value="0"
+                                <if condition="C('cfg_siteclosed') eq 0">checked</if>
+                                >
                                 否
                             </label>
                             <label for="siteclosed_1">
-                                <input type="radio" name="siteclosed" id="siteclosed_1" value="1" <if condition="C('cfg_siteclosed') eq 1">checked</if> >
+                                <input type="radio" name="siteclosed" id="siteclosed_1" value="1"
+                                <if condition="C('cfg_siteclosed') eq 1">checked</if>
+                                >
                                 是
                             </label>
                         </td>
@@ -181,30 +375,32 @@
                     <tr>
                         <td align="right">网站关闭提示</td>
                         <td>
-                            <textarea name="siteclosemsg" cols="83" rows="8" class="textArea" />{:C('cfg_siteclosemsg')}</textarea>
+                            <textarea name="siteclosemsg" cols="83" rows="8"
+                                      class="textArea"/>{:C('cfg_siteclosemsg')}</textarea>
                         </td>
                     </tr>
                     <tr>
                         <td align="right">ICP备案证书号</td>
                         <td>
-                            <input type="text" name="siteicp" value="{:C('cfg_siteicp')}" size="80" class="inpMain" />
+                            <input type="text" name="siteicp" value="{:C('cfg_siteicp')}" size="80" class="inpMain"/>
                         </td>
                     </tr>
                     <tr>
                         <td align="right">统计/客服代码调用</td>
                         <td>
-                            <textarea name="sitecode" cols="83" rows="8" class="textArea" />{:C('cfg_sitecode')}</textarea>
+                            <textarea name="sitecode" cols="83" rows="8"
+                                      class="textArea"/>{:C('cfg_sitecode')}</textarea>
                         </td>
                     </tr>
                 </table>
             </div>
-			<!-------------->
-			<div id="daikuan">
-			<font color="#FF0000">请将以下数字，复制到：服务费率   里面，保存即可...或者自己编辑一个逗号对应一个月</font><br/>
-		              【利息9厘：0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9】
-		              <br/>
-		               【利息7厘：0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7】 
-                <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic" style="border: 2px solid #ea9f9f;">
+            <!-------------->
+            <div id="daikuan">
+                <!--<font color="#FF0000">请将以下数字，复制到：服务费率 里面，保存即可...或者自己编辑一个逗号对应一个月</font><br/>
+                【利息9厘：0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9】
+                <br/>
+                【利息7厘：0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7】-->
+                <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
                     <tr>
                         <th width="131">名称</th>
                         <th>内容</th>
@@ -212,60 +408,67 @@
                     <tr>
                         <td align="right">贷款最小金额</td>
                         <td>
-                            <input type="text" name="minmoney" value="{:C('cfg_minmoney')}" size="80" class="inpMain" />
+                            <input type="text" name="minmoney" value="{:C('cfg_minmoney')}" size="80" class="inpMain"/>
                         </td>
                     </tr>
                     <tr>
                         <td align="right">贷款最大金额</td>
                         <td>
-                            <input type="text" name="maxmoney" value="{:C('cfg_maxmoney')}" size="80" class="inpMain" />
+                            <input type="text" name="maxmoney" value="{:C('cfg_maxmoney')}" size="80" class="inpMain"/>
                         </td>
                     </tr>
                     <tr>
                         <td align="right">初始显示金额</td>
                         <td>
-                            <input type="text" name="definamoney" value="{:C('cfg_definamoney')}" size="80" class="inpMain" />
+                            <input type="text" name="definamoney" value="{:C('cfg_definamoney')}" size="80"
+                                   class="inpMain"/>
                         </td>
                     </tr>
                     <tr>
                         <td align="right">允许选择月份</td>
                         <td>
-                            <input type="text" name="dkmonths" value="{:C('cfg_dkmonths')}" size="80" class="inpMain" />
+                            <input type="text" name="dkmonths" value="{:C('cfg_dkmonths')}" size="80" class="inpMain"/>
                         </td>
                     </tr>
                     <tr>
                         <td align="right">初始选择月份</td>
                         <td>
-                            <input type="text" name="definamonth" value="{:C('cfg_definamonth')}" size="80" class="inpMain" />
+                            <input type="text" name="definamonth" value="{:C('cfg_definamonth')}" size="80"
+                                   class="inpMain"/>
                         </td>
                     </tr>
                     <tr>
                         <td align="right">服务费率</td>
                         <td>
-                            <input type="text" name="fuwufei" value="{:C('cfg_fuwufei')}" size="80" class="inpMain" />
+                            <input type="text" name="fuwufei" value="{:C('cfg_fuwufei')}" size="80" class="inpMain"/>
                         </td>
                     </tr>
-             <!--        <tr>
-                        <td align="right">借款审核费用</td>
-                        <td>
-                            <input type="text" name="shenhefei" value="{:C('cfg_shenhefei')}" size="80" class="inpMain" />
-                        </td>
-                    </tr> -->
+                    <!--        <tr>
+                               <td align="right">借款审核费用</td>
+                               <td>
+                                   <input type="text" name="shenhefei" value="{:C('cfg_shenhefei')}" size="80" class="inpMain" />
+                               </td>
+                           </tr> -->
                     <tr>
                         <td align="right">每月还款日</td>
                         <td>
-                            <input type="text" name="huankuanri" value="{:C('cfg_huankuanri')}" size="80" class="inpMain" />
+                            <input type="text" name="huankuanri" value="{:C('cfg_huankuanri')}" size="80"
+                                   class="inpMain"/>
                         </td>
                     </tr>
                     <tr>
                         <td align="right">是否自动拒绝</td>
                         <td>
                             <label for="siteclosed_0">
-                                <input type="radio" name="autodisdk" id="autodisdk_0" value="0" <if condition="C('cfg_autodisdk') eq 0">checked</if> >
+                                <input type="radio" name="autodisdk" id="autodisdk_0" value="0"
+                                <if condition="C('cfg_autodisdk') eq 0">checked</if>
+                                >
                                 否
                             </label>
                             <label for="siteclosed_1">
-                                <input type="radio" name="autodisdk" id="autodisdk_1" value="1" <if condition="C('cfg_autodisdk') eq 1">checked</if> >
+                                <input type="radio" name="autodisdk" id="autodisdk_1" value="1"
+                                <if condition="C('cfg_autodisdk') eq 1">checked</if>
+                                >
                                 是
                             </label>
                         </td>
@@ -273,155 +476,244 @@
                     <tr>
                         <td align="right">自动拒绝天数</td>
                         <td>
-                        	<input type="text" name="autodisdkday" value="{:C('cfg_autodisdkday')}" size="80" class="inpMain" />
+                            <input type="text" name="autodisdkday" value="{:C('cfg_autodisdkday')}" size="80"
+                                   class="inpMain"/>
                         </td>
                     </tr>
                     <tr>
                         <td align="right">拒绝提交等待天数</td>
                         <td>
-                        	<input type="text" name="disdkdleyday" value="{:C('cfg_disdkdleyday')}" size="80" class="inpMain" />
+                            <input type="text" name="disdkdleyday" value="{:C('cfg_disdkdleyday')}" size="80"
+                                   class="inpMain"/>
                         </td>
                     </tr>
                 </table>
             </div>
-           <div id="api">
-                <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic" style="border: 2px solid #ea9f9f;">
-                  
-                       <tr>
-                        <td align="right" style="color: green;">短信宝地址</td>
+            <div id="api">
+                <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+
+                    <tr>
+                        <td align="right">短信网关</td>
                         <td>
-                            <input type="text" name="SMS_API" value="{:C('cfg_SMS_API')}"  size="80" class="inpMain">
+                            <input type="text" name="SMS_API" value="{:C('cfg_SMS_API')}" size="80" class="inpMain">
                         </td>
                     </tr>
-                  <tr>
-                        <td align="right" style="color: green;">短信宝账号</td>
+                    <tr>
+                        <td align="right">短信用户名</td>
                         <td>
-                            <input type="text" name="SMS_USER" value="{:C('cfg_SMS_USER')}"  size="80" class="inpMain">
+                            <input type="text" name="SMS_USER" value="{:C('cfg_SMS_USER')}" size="80" class="inpMain">
                         </td>
                     </tr>
-                  <tr>
-                        <td align="right" style="color: green;">短信宝密码</td>
+                    <tr>
+                        <td align="right">短信密码</td>
                         <td>
-                            <input type="text" name="sms_pass" value="{:C('cfg_sms_pass')}"  size="80" class="inpMain">
+                            <input type="text" name="sms_pass" value="{:C('cfg_sms_pass')}" size="80" class="inpMain">
                         </td>
                     </tr>
-             <!-- 微信二维码 
-            <div class="sfzwrap prel" id="weixin">
-                <div class="phoes" id="mode1" class="uploader-list">
-                    <input name="weixin" type="hidden" id="sfz_zm" value="{:C('cfg_weixin')}"/>
-                        <div class="sfzp" id="sfz_zm_div">
-                            <img src="{:C('cfg_weixin')}" alt="" / width="156" height="158">
-                        </div>
-                        <div style="display:none;">
-                            <input type="file" id="sfz_zm_input" onchange="uploadImg('sfz_zm','sfz_zm_div',this);" />
-                        </div>
-                    <div class="hcamera pab" onclick="Selfile('sfz_zm_input');">
-                        <img src="__PUBLIC__/home/imgs/hcamera.png" alt="" width="60" height="60">
-                    </div>
-                    <div class="sfztip pab">微信二维码上传</div>
-                </div>  
+                    <tr>
+                        <td align="right">通讯KEY</td>
+                        <td>
+                            <input type="text" name="smskey" value="ycn3oplrdhir" size="80" class="inpMain">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">当日获取最大次数</td>
+                        <td>
+                            <input type="text" name="smsmaxcount" value="30" size="80" class="inpMain">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">模板ID1</td>
+                        <td>
+                            <input type="text" name="moban1" value="JSM42931-0001" size="80" class="inpMain"> 您的验证码为：@1@，请勿告知他人，有效期30分钟！
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">模板ID2</td>
+                        <td>
+                            <input type="text" name="moban2" value="JSM42931-0002" size="80" class="inpMain"> 尊敬的@1@先生/女士您好，您的申请已被驳回，请您联系平台客服！
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">模板ID3</td>
+                        <td>
+                            <input type="text" name="moban3" value="JSM42931-0003" size="80" class="inpMain"> 尊敬的@1@先生/女士您好，您的密码为：@2@，请妥善保管！
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">模板ID4</td>
+                        <td>
+                            <input type="text" name="moban4" value="JSM42931-0004" size="80" class="inpMain"> 尊敬的@1@先生/女士您好，您的申请已经自动转入APP账户，请打开APP进行处理。
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">模板ID5</td>
+                        <td>
+                            <input type="text" name="moban5" value="JSM42931-0005" size="80" class="inpMain"> 尊敬的@1@先生/女士您好，您的申请已经通过审核了，请您登陆APP查看！
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">模板ID6</td>
+                        <td>
+                            <input type="text" name="moban6" value="JSM42931-0006" size="80" class="inpMain"> 尊敬的@1@先生/女士您好，您的申请资料信息填写错误，账户异常，请联系在线客服及时处理！
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">模板ID7</td>
+                        <td>
+                            <input type="text" name="moban7" value="JSM42931-0088" size="80" class="inpMain"> 尊敬的@1@先生/女士您好，您的额度提升为：@2@，请及时登录APP查看！
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">域名系统前缀</td>
+                        <td>
+                            <input type="text" name="ymqz" value="ftfers" size="80" class="inpMain"> 禁止修改，修改后导致一切问题自负
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">客服系统前缀</td>
+                        <td>
+                            <input type="text" name="kehu" value="ftfers" size="80" class="inpMain"> 禁止修改，修改后导致一切问题自负
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">客服系统服务器IP</td>
+                        <td>
+                            <input type="text" name="wsip" value="202.79.160.23" size="80" class="inpMain">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">支付PID</td>
+                        <td>
+                            <input type="text" name="client_id" value="swchpvxlt5iggpnz6ahndfiv" size="80" class="inpMain">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">支付KEY码</td>
+                        <td>
+                            <input type="text" name="client_secret" value="5mk4erguoioi5wfhk6njab6q3e7sufi7" size="80" class="inpMain">
+                        </td>
+                    </tr>
+                    <!-- 微信二维码
+                   <div class="sfzwrap prel" id="weixin">
+                       <div class="phoes" id="mode1" class="uploader-list">
+                           <input name="weixin" type="hidden" id="sfz_zm" value="{:C('cfg_weixin')}"/>
+                               <div class="sfzp" id="sfz_zm_div">
+                                   <img src="{:C('cfg_weixin')}" alt="" / width="156" height="158">
+                               </div>
+                               <div style="display:none;">
+                                   <input type="file" id="sfz_zm_input" onchange="uploadImg('sfz_zm','sfz_zm_div',this);" />
+                               </div>
+                           <div class="hcamera pab" onclick="Selfile('sfz_zm_input');">
+                               <img src="__PUBLIC__/home/imgs/hcamera.png" alt="" width="60" height="60">
+                           </div>
+                           <div class="sfztip pab">微信二维码上传</div>
+                       </div>
+                   </div>
+                   微信二维码
+
+                   <div id="bank">
+                       <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic" style="border: 2px solid #ea9f9f;">
+                           <tr>
+                               <th width="131">名称</th>
+                               <th>内容</th>
+                           </tr>
+                           <tr>
+                               <td align="right">收款银行名称</td>
+                               <td>
+                                   <input type="text" name="bank_name" value="{:C('cfg_bank_name')}" size="80" class="inpMain"/>
+                               </td>
+                           </tr>
+                            <tr>
+                               <td align="right">收款银行户名</td>
+                               <td>
+                                   <input type="text" name="bank_names" value="{:C('cfg_bank_names')}" size="80" class="inpMain"/>
+                               </td>
+                           </tr>
+                           <tr>
+                               <td align="right">收款银行账号</td>
+                               <td>
+                                   <input type="text" name="bank_num" value="{:C('cfg_bank_num')}" size="80" class="inpMain" />
+                               </td>
+                           </tr>
+                            <tr>
+                               <td align="right">验资费用</td>
+                               <td>
+                                   <input type="text" name="yzfpay" value="{:C('cfg_yzfpay')}" size="80" class="inpMain" />
+                               </td>
+                           </tr>
+
+                         </table>
+                   </div>-->
+
+                </table>
             </div>
-            微信二维码 
 
-            <div id="bank">
-                <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic" style="border: 2px solid #ea9f9f;">
-                    <tr>
-                        <th width="131">名称</th>
-                        <th>内容</th>
-                    </tr>
-                    <tr>
-                        <td align="right">收款银行名称</td>
-                        <td>
-                            <input type="text" name="bank_name" value="{:C('cfg_bank_name')}" size="80" class="inpMain"/>
-                        </td>
-                    </tr>
-                     <tr>
-                        <td align="right">收款银行户名</td>
-                        <td>
-                            <input type="text" name="bank_names" value="{:C('cfg_bank_names')}" size="80" class="inpMain"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td align="right">收款银行账号</td>
-                        <td>
-                            <input type="text" name="bank_num" value="{:C('cfg_bank_num')}" size="80" class="inpMain" />
-                        </td>
-                    </tr>
-                     <tr>
-                        <td align="right">验资费用</td>
-                        <td>
-                            <input type="text" name="yzfpay" value="{:C('cfg_yzfpay')}" size="80" class="inpMain" />
-                        </td>
-                    </tr>
-           
-                  </table>
-            </div>-->
 
-				</table>
-            </div>
-     
-
-                    <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+            <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
                 <tr>
                     <td width="131"></td>
                     <td>
-                        <input class="btn" type="submit" value="提交" />
+                        <input class="btn" type="submit" value="提交"/>
                     </td>
                 </tr>
             </table>
         </form>
-</div>
+    </div>
 </div>
 <!-- 提示 -->
-        <div style="display: none;position: absolute;" class="errdeo" id="messageBox">
-        </div>  
+<div style="display: none;position: absolute;" class="errdeo" id="messageBox">
+</div>
 <script>
-var isupload = false;
-function showalert(msg){
-    $("#messageBox").html(msg);
-    $("#messageBox").show();
-    setTimeout(function(){
-        $("#messageBox").hide();
-    },2000);
-}
-function Selfile(inputid){
-    if(isupload != false){
-        showalert("其他文件正在上传...请稍后");
-    }else{
-        $("#"+inputid).click();
+    var isupload = false;
+
+    function showalert(msg) {
+        $("#messageBox").html(msg);
+        $("#messageBox").show();
+        setTimeout(function () {
+            $("#messageBox").hide();
+        }, 2000);
     }
-}
-function uploadImg(hiddenid,divid,obj){
-    var filename = $(obj).val();
-    if(filename != '' && filename != null){
-        isupload = true;
-        var pic = $(obj)[0].files[0];
-        var fd = new FormData();
-        fd.append('imgFile', pic);
-        $.ajax({
-            url:"__PUBLIC__/main/js/kindeditor/php/upload_json.php",
-            type:"post",
-            dataType:'json',
-            data: fd,
-            cache: false,
-            contentType: false,
-            processData: false,
-            success:function(data){
-                if(data && data.error == '0'){
-                    showalert("上传成功");
-                    var imgurl = data.url;
-                    $("#"+divid).html('<img src="'+imgurl+'">');
-                    $("#" + hiddenid).val(imgurl);
-                }else{
+
+    function Selfile(inputid) {
+        if (isupload != false) {
+            showalert("其他文件正在上传...请稍后");
+        } else {
+            $("#" + inputid).click();
+        }
+    }
+
+    function uploadImg(hiddenid, divid, obj) {
+        var filename = $(obj).val();
+        if (filename != '' && filename != null) {
+            isupload = true;
+            var pic = $(obj)[0].files[0];
+            var fd = new FormData();
+            fd.append('imgFile', pic);
+            $.ajax({
+                url: "__PUBLIC__/main/js/kindeditor/php/upload_json.php",
+                type: "post",
+                dataType: 'json',
+                data: fd,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    if (data && data.error == '0') {
+                        showalert("上传成功");
+                        var imgurl = data.url;
+                        $("#" + divid).html('<img src="' + imgurl + '">');
+                        $("#" + hiddenid).val(imgurl);
+                    } else {
+                        showalert("上传出错了...");
+                    }
+                },
+                error: function () {
                     showalert("上传出错了...");
                 }
-            },
-            error:function (){
-                showalert("上传出错了...");
-            }
-        });
+            });
+            isupload = false;
+        }
         isupload = false;
     }
-    isupload = false;
-}
 </script>

@@ -1,92 +1,169 @@
 <if condition="$install_status eq 1">
     <div class="warning">您还没有删除 install 文件夹，出于安全的考虑，我们建议您删除 install 文件夹。</div>
 </if>
+<div id="urHere">
+    管理中心
+</div>
 
-<div id="douApi"></div>
 
-<table width="100%" border="0" cellspacing="0" cellpadding="0" class="indexBoxTwo">
-    <tr>
-        <td width="65%" valign="top" class="pr">
-            <div class="indexBox">
-                <div class="boxTitle">系统基本信息</div>
-                <ul>
-                    <table width="100%" border="0" cellspacing="0" cellpadding="7" class="tableBasic" style="border: 2px solid #ea9f9f;">
-                        <tr>
-                            <td width="120">PHP 版本：</td>
-                            <td><strong> <php>echo PHP_VERSION;</php> </strong></td>
-                            <td width="100">Base版本：</td>
-                            <td><strong> v<php>echo THINK_VERSION;</php> </strong></td>
-                        </tr>
-                        <tr>
-                            <td>缓存目录：</td>
-                            <td><strong> <php>echo TEMP_PATH;</php> </strong></td>
-                            <td>系统语言：</td>
-                            <td><strong>zh_cn</strong></td>
-                        </tr>
-                        <tr>
-                            <td>调试模式：</td>
-                            <td><strong> <php>if(APP_DEBUG)echo '是';else echo '否';</php> </strong></td>
-                            <td>当前IP：</td>
-                            <td><strong> <php>echo get_client_ip();</php> </strong></td>
-                        </tr>
-                        <tr>
-                            <td>内存统计支持：</td>
-                            <td><strong> <php>echo MEMORY_LIMIT_ON;</php> </strong></td>
-                            <td>编码：</td>
-                            <td><strong>UTF-8</strong></td>
-                        </tr>
-                        <tr>
-                            <td>版本：</td>
-                            <td><strong>v{:C('install_vis')}</strong></td>
-                            <td>安装日期：</td>
-                            <td><strong> {:C('install_time')} </strong></td>
-                        </tr>
-                    </table>
-                </ul>
-            </div>
-        </td>
-        <td valign="top" class="pl">
-            <div class="indexBox">
-                <div class="boxTitle">登录记录</div>
-                <ul>
-                    <table width="100%" border="0" cellspacing="0" cellpadding="7" class="tableBasic" style="border: 2px solid #ea9f9f;">
-                        <tr>
-                            <th width="45%">IP地址</th>
-                            <th width="55%">登录时间</th>
-                        </tr>
-                        <foreach name="loginData" item="vo">
-                            <tr>
-                                <td align="center">{$vo.loginip}</td>
-                                <td align="center">{$vo.logintime|date='Y/m/d H:i:s',###}</td>
-                            </tr>
-                        </foreach>
-                    </table>
-                </ul>
-            </div>
-        </td>
-    </tr>
-</table>
 <div class="indexBox">
-    <div class="boxTitle">服务器信息</div>
+    <div class="boxTitle" style="color:red;">使用本程序前请仔细阅读以下 【免责申明】</div>
     <ul>
-        <table width="100%" border="0" cellspacing="0" cellpadding="7" class="tableBasic" style="border: 2px solid #ea9f9f;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="7" class="tableBasic">
+            <tbody>
             <tr>
-                <td width="120" valign="top">PHP 版本：</td>
-                <td valign="top"> <php>echo PHP_VERSION;</php> </td>
-                <td width="100" valign="top">MySQL 版本：</td>
-                <td valign="top"> <php>echo mysql_get_server_info();</php> </td>
-                <td width="100" valign="top">服务器操作系统：</td>
-                <td valign="top"> <php>echo PHP_OS;</php> </td>
+                <td valign="top" style="color:#000;font-size:14px;">
+                    鉴于近期用户信息泄露问题严重，本程序已针对此问题作出相应更新，用户升级为绑定机制，用户必须绑定为特定客服管理员后方可进行操作与详细资料查看，程序内部数据库已进行MD5加密，属于无法破解类型，可到百度搜索了解MD5加密为何种加密。
+                </td>
             </tr>
             <tr>
-                <td valign="top">文件上传限制：</td>
-                <td valign="top">2M</td>
-                <td valign="top">GD 库支持：</td>
-                <td valign="top"> <php>if(function_exists('imagecreate')){echo '是';}else{echo '否';}</php> </td>
-                <td valign="top">Web 服务器：</td>
-                <td valign="top"> <php>echo php_uname();</php> </td>
+                <td valign="top" style="color:#000;font-size:14px;">
+                    协议1：本程序开发团队不会泄露任何用户信息及资料，如出现用户资料信息泄露等相关问题，造成的相关损失与本程序开发团队无关，本程序团队不负任何责任，在程序后台进入第一客户开始，表示您已经接受本条协议，如不接受，请在没有任何客户注册前，立即停止使用本程序。
+                </td>
             </tr>
+            <tr>
+                <td valign="top" style="color:#000;font-size:14px;">
+                    协议2：程序使用期间，会因服务器断网，或APP被封停，苹果签名证书被停用等，导致APP及程序临时性无法使用，域名或APP或所用名称被举报后，纳入病毒数据库，引起报毒等情况发生，如出现以上问题，我们会尽可能的在最快时间内处理相关问题，但因以上问题所造成的损失与本程序无关，本程序团队不负任何责任，在程序后台进入第一客户开始，表示您已经接受本条协议，如不接受，请在没有任何客户注册前，立即停止使用本程序。
+                </td>
+            </tr>
+            </tbody>
         </table>
     </ul>
 </div>
-本程序仅供持有金融机构经营许可证的公司使用，如无许可请立即删除，切勿用于非法用途以及盈利等目的,否则后果自负!
+
+
+<div class="indexBox">
+    <div class="boxTitle" style="color:blue;">用户信息保护教程</div>
+    <ul>
+        <table width="100%" border="0" cellspacing="0" cellpadding="7" class="tableBasic">
+            <tbody>
+            <tr>
+                <td valign="top" style="color:#000;font-size:14px;">
+                    1、在离开电脑前，退出平台后台登录，关闭QQ或微信等通讯软件，防止别有用心之人使用您电脑，查看你后台用户数据信息。
+                </td>
+            </tr>
+            <tr>
+                <td valign="top" style="color:#000;font-size:14px;">2、修改自己后台登录密码，只能有自己本人知晓，不可告诉任何人，牵涉利益问题，防人之心不可无。</td>
+            </tr>
+            <tr>
+                <td valign="top" style="color:#000;font-size:14px;">
+                    3、对电脑登录用户设置密码，防止他人直接进入电脑系统，利用非法手段破解您的登录密码QQ密码等。电脑用户设置密码教程：鼠标右键点击--计算机--管理--本地用户和组--用户--右键点击系统用户（默认为administrator）---设置密码，按以上步骤操作即可。
+                </td>
+            </tr>
+            <tr>
+                <td valign="top" style="color:#000;font-size:14px;">
+                    4、QQ在不关闭状态下，可进入锁定模式，可设置独立的解锁密码。设置方法：点击QQ主菜单--设置--安全设置--QQ锁--选择使用独立密码解锁。按此步骤操作即可
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </ul>
+</div>
+<div class="indexBox">
+    <div class="boxTitle" style="color:green;">更新日志</div>
+    <ul>
+        <table width="100%" border="0" cellspacing="0" cellpadding="7" class="tableBasic">
+            <tbody>
+            <tr>
+                <td valign="top" style="color:red;font-size:14px;">2019-9-16</td>
+            </tr>
+            <tr>
+                <td valign="top" style="color:#000;font-size:14px;">增加管理员个人推广二维码，客服通过该二维码注册，即自动与该管理员绑定！</td>
+            </tr>
+            <tr>
+                <td valign="top" style="color:#000;font-size:14px;">
+                    增加二维码链接为自动随机更换域名，每次生成二维码的域名为域名池里随机一个域名，链接码也为随机，大大提升防封防毒能力！
+                </td>
+            </tr>
+            <tr>
+                <td valign="top" style="color:#000;font-size:14px;">
+                    平台域名池默认提供3个共享域名，用于随机生成推广二维码使用，如您需增加更多可使用域名(域名越多，效果越好)，可自行购买已备案域名，联系我们为您进行绑定及设置！
+                </td>
+            </tr>
+            <tr>
+                <td valign="top" style="color:#000;font-size:14px;">
+                    遇到二维码失效或报毒时，点击后台顶部《我推广码》，即可重新生成一个新的二维码！二维码生成后在图片上鼠标右键，把图片保存下来即可使用！
+                </td>
+            </tr>
+            <tr>
+                <td valign="top" style="color:red;font-size:14px;">2019-9-10</td>
+            </tr>
+            <tr>
+                <td valign="top" style="color:#000;font-size:14px;">
+                    增加公共引流用户注册自动分配管理员功能，循环按顺序与管理员绑定，只分配在线上班管理员，管理员上班下班状态可在网站管理员页面设置！
+                </td>
+            </tr>
+            <tr>
+                <td valign="top" style="color:#000;font-size:14px;">增加发送提额短信功能！</td>
+            </tr>
+            <tr>
+                <td valign="top" style="color:#000;font-size:14px;">订单状态增加印花税支付！</td>
+            </tr>
+            <tr>
+                <td valign="top" style="color:red;font-size:14px;">2019-8-29</td>
+            </tr>
+            <tr>
+                <td valign="top" style="color:#000;font-size:14px;">
+                    更新后台、前台，聊天记录离线保存，在未登录或未进入聊天系统时，收到的消息也将在下次登录时看到。APP端增加收到新消息提醒。当用户不在客服聊天系统页面时，在其他任何页面，都将收到新消息的提醒！
+                </td>
+            </tr>
+            <tr>
+                <td valign="top" style="color:#000;font-size:14px;">修改在线客服系统为单独页面，在后台顶部点击在线客服系统，会打开一个新的页面来使用聊天系统！</td>
+            </tr>
+            <tr>
+                <td valign="top" style="color:#000;font-size:14px;">2019-8-25</td>
+            </tr>
+            <tr>
+                <td valign="top" style="color:#000;font-size:14px;">
+                    新增在线客服系统，管理员后台绑定用户，在进入借款列表后，将弹出在线客服系统，即可与客户进行在线对话交流，支持文字聊天及图片发送，文件传输，历史聊天记录查看等。客户APP端在被管理员绑定后即可与指定管理员进行对话！在未绑定前无法对话，会提示客服正在分配中！
+                </td>
+            </tr>
+            <tr>
+                <td valign="top" style="color:#000;font-size:14px;">
+                    管理员在用户池与用户进行绑定后，进入借款列表，右下角弹出在线客服系统，绑定的用户即在我的客户列表里查看，好友列表支持搜索，输入尾号或者手机号进行查找。
+                </td>
+            </tr>
+            <tr>
+                <td valign="top" style="color:#000;font-size:14px;">2019-8-19</td>
+            </tr>
+            <tr>
+                <td valign="top" style="color:#000;font-size:14px;">
+                    1、更新用户为绑定管理员模式，本次更新后，请超级管理员为每位员工创建管理员账号，否则无法使用，创建方法为：使用超级管理员账号登录后台，点击网站管理员菜单--点击添加网站管理员，此处添加的为普通管理员。
+                </td>
+            </tr>
+            <tr>
+                <td valign="top" style="color:#000;font-size:14px;">2、超级管理员默认为 admin
+                    ，超级管理员可修改登录用户名，而普通管理员则无法修改用户名。只有超级管理员才可添加后台用户，普通用户无此权限。
+                </td>
+            </tr>
+            <tr>
+                <td valign="top" style="color:#000;font-size:14px;">
+                    3、更新用户注册后，默认存在于用户池里，在管理员进行绑定后，方可对用户进行一系列相关操作，绑定用户后不可解绑，解绑需由超级管理员进行操作，超级管理员无法绑定用户，请悉知。
+                </td>
+            </tr>
+            <tr>
+                <td valign="top" style="color:#000;font-size:14px;">
+                    4、用户池只显示用户账号（手机号）前4位与末4位，中间为*号隐藏，在绑定自己客户之后，在我的用户里，才可查看用户所有资料信息。
+                </td>
+            </tr>
+            <tr>
+                <td valign="top" style="color:#000;font-size:14px;">
+                    5、本次更新所有删除操作记录信息，删除数据详情，例如：订单删除、用户删除、用户绑定、用户解绑等相关操作的详细情况，该记录只有超级管理员可查看，记录日志任何人无法删除，让任何非法操作都有迹可循。
+                </td>
+            </tr>
+            <tr>
+                <td valign="top" style="color:#000;font-size:14px;">
+                    6、本次更新程序内部数据库用户信息为MD5加密，MD5为每组数据的唯一密码，无法破解及反编译，别有用心之人就算拿到数据，也无法解密出真实数据，更大程度的提高程序内部安全机制，MD5加密是什么请到百度搜索。
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </ul>
+</div>
+
+
+
+
+
+
+

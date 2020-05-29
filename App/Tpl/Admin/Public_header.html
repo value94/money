@@ -2,7 +2,7 @@
     <div id="head">
         <div class="logo">
             <a href="{:U(GROUP_NAME.'/Main/index')}">
-                <span style="line-height: 38px;margin-left: 20px;font-size: 20px;color: #f6f6f6;font-weight: 800;">{:C('cfg_sitename')}</span>
+                <span style="line-height: 38px;margin-left: 20px;font-size: 20px;color: #f6f6f6;font-weight: 800;"></span>
                 <!--   <div style="width: 178px;height: 40px;background-image: url('__PUBLIC__/main/images/coin.png');background-size:cover;"> </div> -->
             </a>
         </div>
@@ -11,14 +11,15 @@
                 <li class="M">
                     <a href="JavaScript:void(0);" class="topAdd">新建</a>
                     <div class="drop mTopad">
-                        <!--            <a href="{:U(GROUP_NAME.'/Article/add')}">文章</a>
-                                   <a href="{:U(GROUP_NAME.'/Article/addcat')}">文章分类</a> -->
+                        <a href="{:U(GROUP_NAME.'/Article/add')}">文章</a>
+                        <a href="{:U(GROUP_NAME.'/Article/addcat')}">文章分类</a>
                         <!--<a href="{:U(GROUP_NAME.'/link/add')}">友情链接</a>-->
                         <a href="{:U(GROUP_NAME.'/Admin/add')}">管理员</a>
                     </div>
                 </li>
-                <li><a href="<somnus:sitecfg name='siteurl' />" target="_blank">前往首页</a></li>
+                <!--<li><a href="<somnus:sitecfg name='siteurl' />" target="_blank">前往首页</a></li>-->
                 <li><a href="{:U(GROUP_NAME.'/Main/clearcache')}">清除缓存</a></li>
+                <li><a href="http://help.somnus.in/">帮助</a></li>
                 <li><a target="_blank" href="{:U('LayChat/Index/index')}">客服在线系统</a></li>
                 <li><a href="{:U(GROUP_NAME.'/Admin/invitation')}">我的推广码</a></li>
 
