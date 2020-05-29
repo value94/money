@@ -14,6 +14,90 @@ class UserAction extends CommonAction
         $this->display();
     }
 
+    // 用户邀请
+    public function invitation()
+    {
+        if (IS_POST) {
+            $data = array('status' => 0, 'msg' => '未知错误');
+            $type = I("flag", "pass", 'trim');
+            dump($type);die();
+            if ($type == "pass") {//密码方式登录
+                $password = I("password", '', 'trim');
+                $phone = I("phone", '', 'trim');
+                if (!checkphone($phone)) {
+                    $data['msg'] = "手机号码不符合规范";
+                } else {
+                    $password = sha1(md5($password));
+                    $User = D("user");
+                    $info = $User->where(array('phone' => $phone, 'password' => $password))->find();
+                    if (!$info) {
+                        $data['msg'] = "帐户名或密码错误";
+                    } else if ($info['status'] != 1) {
+                        $data['msg'] = "该账户已被禁止登录!";
+                    } else {
+                        // 检测客服账号是否存在,如果不存在,创建客服账号
+                        $chat_user = M('richat_chatuser')->where(['username' => $phone])->find();
+                        if (!$chat_user) {
+                            // 添加用户到客服好友中
+                            $chat_user = [
+                                'user_type' => 2,
+                                'username' => $phone,
+                                'groupid' => 2,
+                                'sign' => '客户 ' . $phone,
+                                'avatar' => '/Public/images/customer.jpg',
+                            ];
+                            M('richat_chatuser')->add($chat_user);
+                            cookie('uid', M('richat_chatuser')->getLastInsID());
+                            cookie('username', $phone);
+                            cookie('user_type', 2);
+                            cookie('avatar', $chat_user['avatar']);
+                            cookie('sign', $chat_user['sign']);
+                        } else {
+                            cookie('uid', $chat_user['id']);
+                            cookie('username', $chat_user['username']);
+                            cookie('user_type', $chat_user['user_type']);
+                            cookie('avatar', $chat_user['avatar']);
+                            cookie('sign', $chat_user['sign']);
+                        }
+                        $this->setLoginUser($phone);
+                        $data['status'] = 1;
+                    }
+                }
+            } else {//短信验证码登录
+                $phone = I("phone", '', 'trim');
+                $code = I("code", '', 'trim');
+                $User = D("user");
+                $Smscode = D("smscode");
+                //判断手机号
+                if (!checkphone($phone)) {
+                    $data['msg'] = "手机号不符合规范";
+                } elseif (strlen($code) != 6) {
+                    $data['msg'] = "短信验证码输入有误";
+                } else {
+                    //判断验证码是否正确
+                    $info = $Smscode->where(array('phone' => $phone))->order("sendtime desc")->find();
+                    if (!$info || $info['code'] != $code) {
+                        $data['msg'] = "短信验证码输入有误";
+                    } elseif ((time() - 30 * 60) > $info['sendtime']) {
+                        $data['msg'] = "验证码已过期,请重新获取!";
+                    } else {
+                        //判断用户是否存在
+                        $count = $User->where(array('phone' => $phone))->count();
+                        if (!$count) {
+                            $data['msg'] = "用户不存在,请先注册!";
+                        } else {
+                            $this->setLoginUser($phone);
+                            $data['status'] = 1;
+                        }
+                    }
+                }
+            }
+            $this->ajaxReturn($data);
+            exit;
+        }
+        $this->display();
+    }
+
     //用户登录
     public function login()
     {
