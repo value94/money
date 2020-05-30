@@ -230,6 +230,7 @@ class AdminAction extends CommonAction
         $this->ajaxReturn($data);
     }
 
+    // 修改备注
     public function changeRemarks()
     {
         $data = array('status' => 0, 'msg' => '未知错误');
@@ -272,7 +273,6 @@ class AdminAction extends CommonAction
         $this->success('删除成功!');
     }
 
-
     //修改自己信息
     public function chagemypass()
     {
@@ -291,6 +291,7 @@ class AdminAction extends CommonAction
     {
         // 获取id参数
         $admin_data = getAdminData();
+        C('LAYOUT_ON',false);
         // 生成链接地址
         $url = U('Home/User/reg', ['id_code' => $admin_data['id_code']], true, false, true);
 
@@ -309,7 +310,6 @@ class AdminAction extends CommonAction
         //输出图片
         imagepng($QR, 'qrcode.png');
         imagedestroy($QR);
-
         /*if (file_exists($filename)) {//判断一下是否生成了二维码
             $poster_url = 'Public/images/' . $admin_data['id'] . '_haibao.png';//保存生成海报的目录
             $path_1 = 'Public/images/qr_code.png';//背景图目录
@@ -335,6 +335,5 @@ class AdminAction extends CommonAction
         $this->img_url = $admin_data['id'] . '_qrcode.png';
         $this->role = getAdminData()['role'];
         $this->display();
-
     }
 }

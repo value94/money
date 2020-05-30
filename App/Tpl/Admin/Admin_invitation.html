@@ -1,29 +1,42 @@
-<div style="background-color: rgb(0, 101, 176)">
-    <div style='width:800px;margin:0 auto;color:#fff;font-size:25px;margin-top:50px;text-align:center;'>
-        推广链接用于图片无法发送时使用，尽量避免使用链接发送给客户，很大程度提升域名被封的风险！
-    </div>
-
-
-    <table border="1" style='margin:0 auto;width:810px;margin-top:25px;'>
-        <tr>
-            <th>
-                <div style='width:800px;margin:0 auto;color:#fff;font-size:25px;margin-top:50px;text-align:center;'>
-                    我的推广链接(注册并绑定管理员)：<br>
-                    <span style='font-size:18px;'>http://jufo5.larshaug.com/index.php?m=User&a=reg&adid=OTgwNDEzNQ==&ym=ftfers</span>
-                </div>
-            </th>
-
-        </tr>
-        <tr>
-            <td>
-                <div style='width:800px;margin:0 auto;color:#fff;font-size:25px;margin-top:50px;text-align:center;'>
-                    二维码(注册并绑定管理员)：<br><img src='Public/images/{:$img_url}' width="200">
-                </div>
-            </td>
-
-        </tr>
-    </table>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>我的二维码</title>
+    <link href="/Public/main/css/public.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="refresh" content="180">
+    <script type="text/javascript" src="/Public/main/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/Public/main/js/global.js"></script>
+    <script type="text/javascript" src="/Public/main/js/jquery.tab.js"></script>
+    <script src="/Public/layer/layer.js"></script>
+</head>
+<body style="background-color: rgb(0, 101, 176);">
+<div style="width:800px;margin:0 auto;color:#fff;font-size:25px;margin-top:50px;text-align:center;">
+    推广链接用于图片无法发送时使用，尽量避免使用链接发送给客户，很大程度提升域名被封的风险！
 </div>
+
+<table border="1" style="margin:0 auto;width:810px;margin-top:25px;">
+
+    <tbody>
+    <tr>
+        <td>
+            <div style="width:700px;margin:0 auto;color:#fff;font-size:25px;margin-top:50px;text-align:center;">
+                二维码(注册并绑定管理员)：<br>
+                <span style="position: absolute;color: black;font-weight: 500;margin-top: 189px;margin-left: 130px;">{:C('cfg_bank')}</span>
+                <img style="position: absolute;margin-top: 240px;margin-left: 150px;width: 155px;" src="/Public/images/{:$img_url}">
+                <img src="/Public/images/invite_pictures.png">
+            </div>
+        </td>
+        <td>
+            <div style="width:700px;margin:0 auto;color:#fff;font-size:25px;margin-top:50px;text-align:center;">
+                纯APP下载二维码：<br>
+                <span style="position: absolute;color: black;font-weight: 500;margin-top: 189px;margin-left: 130px;">{:C('cfg_bank')}</span>
+                <img src="/Public/images/download_pictures.png">
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
 <!--<table border="1" style='margin:0 auto;width:810px;margin-top:25px;'>
   <tr>
     <th><div style='width:800px;margin:0 auto;color:#fff;font-size:25px;margin-top:50px;text-align:center;'>
@@ -33,3 +46,7 @@
   </tr>
 
 </table>-->
+
+
+</body>
+</html>
