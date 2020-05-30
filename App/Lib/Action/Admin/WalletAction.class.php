@@ -363,7 +363,7 @@ class WalletAction extends CommonAction
         $this->ajaxReturn($data);
     }
 
-    //修改用户额度
+    // 修改用户额度
     public function updateCredit()
     {
         $data = array('status' => 0, 'msg' => '未知错误');
@@ -389,7 +389,7 @@ class WalletAction extends CommonAction
         $this->ajaxReturn($data);
     }
 
-    //修改用户额度
+    // 发送信息
     public function sendSMS()
     {
         $data = array('status' => 0, 'msg' => '未知错误');

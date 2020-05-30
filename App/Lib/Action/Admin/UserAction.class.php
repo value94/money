@@ -373,6 +373,26 @@ class UserAction extends CommonAction
         $this->success("删除用户成功!");
     }
 
+    // 修改用户额度
+    public function updateCredit()
+    {
+        $data = array('status' => 0, 'msg' => '未知错误');
+        $id = I('post.id', 0, 'trim');
+        $num = I("post.num", '', 'trim');
+        if (!$id || !$num) {
+            $data['msg'] = "参数有误!";
+        } else {
+            $User = D("user");
+            $status = $User->where(array('id' => $id))->save(['available_credit' => $num]);
+
+            if (!$status) {
+                $data['msg'] = "操作失败!";
+            } else {
+                $data['status'] = 1;
+            }
+        }
+        $this->ajaxReturn($data);
+    }
 
     //修改用户密码
     public function changepass()
