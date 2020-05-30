@@ -36,7 +36,7 @@ class LogAction extends CommonAction
 
         $count = $LogsModel->where($where)->count();
 
-        $Page = new Page($count, 9);
+        $Page = new Page($count, 25);
         $Page->setConfig('theme', '共%totalRow%条记录 | 第 %nowPage% / %totalPage% 页 %upPage%  %linkPage%  %downPage%');
         $show = $Page->show();
 
@@ -90,7 +90,7 @@ class LogAction extends CommonAction
 
         $count = $LogsModel->where($where)->count();
 
-        $Page = new Page($count, 9);
+        $Page = new Page($count, 25);
         $Page->setConfig('theme', '共%totalRow%条记录 | 第 %nowPage% / %totalPage% 页 %upPage%  %linkPage%  %downPage%');
         $show = $Page->show();
 
@@ -144,7 +144,7 @@ class LogAction extends CommonAction
 
         $count = $LogsModel->where($where)->count();
 
-        $Page = new Page($count, 9);
+        $Page = new Page($count, 25);
         $Page->setConfig('theme', '共%totalRow%条记录 | 第 %nowPage% / %totalPage% 页 %upPage%  %linkPage%  %downPage%');
         $show = $Page->show();
 
@@ -198,7 +198,7 @@ class LogAction extends CommonAction
 
         $count = $LogsModel->where($where)->count();
 
-        $Page = new Page($count, 9);
+        $Page = new Page($count, 25);
         $Page->setConfig('theme', '共%totalRow%条记录 | 第 %nowPage% / %totalPage% 页 %upPage%  %linkPage%  %downPage%');
         $show = $Page->show();
 
