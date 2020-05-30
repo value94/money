@@ -8,7 +8,7 @@ class PayorderAction extends CommonAction
 	//订单列表
 	public function index()
 	{
-		$this->title = '提现列表';
+		/*$this->title = '提现列表';
 		$_var_0 = I('keyword', '', 'trim');
 		$this->keyword = $_var_0;
 		$_var_1 = array();
@@ -23,8 +23,9 @@ class PayorderAction extends CommonAction
 		$_var_5 = $_var_4->show();
 		$_var_6 = $_var_2->where($_var_1)->order('addtime Desc')->limit($_var_4->firstRow . ',' . $_var_4->listRows)->select();
 		$this->list = $_var_6;
-		$this->page = $_var_5;
-		$this->role = getAdminData()['role'];$this->display();
+		$this->page = $_var_5;*/
+		$this->role = getAdminData()['role'];
+		$this->display();
 	}
 	//删除订单
 	public function del()

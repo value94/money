@@ -430,7 +430,7 @@ class DaikuanAction extends CommonAction
     //还款列表
     public function voucher()
     {
-        $Order = M('order');
+        /*$Order = M('order');
         import('ORG.Util.Page');
         $status = I('get.type');
         $keyword = I("keyword", '', 'trim');
@@ -441,7 +441,7 @@ class DaikuanAction extends CommonAction
         }
 
         $where['status'] = 12;
-        $title = '已还款';
+        $title = '还款列表';
 
         if ($status) {
             $where['status'] = 16;
@@ -466,8 +466,9 @@ class DaikuanAction extends CommonAction
 //        $this->type = $type;
         $this->list = $list;
         $this->page = $show;
-        $this->vouche = $vouche;
-        $this->role = getAdminData()['role'];$this->display();
+        $this->vouche = $vouche;*/
+        $this->role = getAdminData()['role'];
+        $this->display();
     }
 
     //还款详情列表
