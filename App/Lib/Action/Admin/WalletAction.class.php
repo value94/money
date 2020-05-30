@@ -24,7 +24,7 @@ class WalletAction extends CommonAction
         }
 
         $count = $User->where($where)->count();
-        $Page = new Page($count, 10);
+        $Page = new Page($count, 25);
         $Page->setConfig('theme', '共%totalRow%条记录 | 第 %nowPage% / %totalPage% 页 %upPage%  %linkPage%  %downPage%');
 
         $show = $Page->show();

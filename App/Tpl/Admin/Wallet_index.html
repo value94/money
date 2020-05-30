@@ -1,9 +1,13 @@
 <h3>
-    <!--<a href="{:U(GROUP_NAME.'/Block/add')}" class="actionBtn add">
-        添加自由块
-    </a>-->
     {$title}
 </h3>
+<div class="filter">
+    <form action="{:U(GROUP_NAME.'/Wallet/index')}" method="post">
+        <input name="keyword" type="text" class="inpMain" value="" size="20">
+        <input name="submit" class="btnGray" type="submit" value="筛选"><span style="color:red;font-size:15px;margin-left:20px;">提示：未绑定为自己的用户不在此显示，请先到用户池绑定属于自己的用户。</span>
+    </form>
+
+</div>
 <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
     <tr>
         <th width="30">ID</th>
@@ -54,7 +58,7 @@
     </foreach>
 </table>
 <div class="clear"></div>
-<div class="pages right">{$page}</div>
+<div class="pages" style="float: right">{$page}</div>
 <script>
     function changeWithdrawalPass(uid) {
         layer.prompt({title: '输入新密码，并确认', formType: 1}, function (pass, index) {

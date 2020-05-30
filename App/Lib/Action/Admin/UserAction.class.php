@@ -24,7 +24,7 @@ class UserAction extends CommonAction
         }
 
         $count = $User->where($where)->count();
-        $Page = new Page($count, 10);
+        $Page = new Page($count, 25);
         $Page->setConfig('theme', '共%totalRow%条记录 | 第 %nowPage% / %totalPage% 页 %upPage%  %linkPage%  %downPage%');
 
         $show = $Page->show();
@@ -98,7 +98,7 @@ class UserAction extends CommonAction
             ];
             // 解绑订单表
             $admin_data = getAdminData();
-            M('order')->where(['id' => $id])->save(['admin_id' => null]);
+            M('order')->where(['id' => $id])->save(['admin_id' => null, 'admin_name' => null]);
             // 添加日志
             $log_data = [
                 'admin_id' => $admin_data['id'],
@@ -164,7 +164,10 @@ class UserAction extends CommonAction
 
 
             // 绑定订单表
-            M('order')->where(['user' => $check_user['phone']])->save(['admin_id' => $admin_data['id']]);
+            M('order')->where(['user' => $check_user['phone']])->save([
+                'admin_id' => $admin_data['id'],
+                'admin_name' => $admin_data['username'],
+            ]);
             // 添加日志
             $log_data = [
                 'admin_id' => $admin_data['id'],

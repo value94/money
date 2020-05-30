@@ -1,234 +1,148 @@
-<link href="__PUBLIC__/static/css/main.css" rel="stylesheet" type="text/css">
-<div class="flexigrid">
-    <div class="mDiv">
-        <div class="ftitle">
-            <h3>{$title}</h3>
-        </div>
-    </div>
-    <div class="tDiv">
-        <div class="tDiv2">
-            <div class="fbutton">
-                <form action="{:U(GROUP_NAME.'/Daikuan/index')}" method="post">
-                    <select name="status">
-                        <option value="99">订单状态搜索</option>
-                        <option value="-1"
-                        <if condition="$status eq -1">selected</if>
-                        >审核不通过</option>
-                        <option value="-2"
-                        <if condition="$status eq -2">selected</if>
-                        >冻结</option>
-                        <option value="2"
-                        <if condition="$status eq 2">selected</if>
-                        >审核通过</option>
-                        <option value="3"
-                        <if condition="$status eq 3">selected</if>
-                        >提交成功</option>
-                        <option value="4"
-                        <if condition="$status eq 4">selected</if>
-                        >首期</option>
-                        <option value="5"
-                        <if condition="$status eq 5">selected</if>
-                        >退款中</option>
-                        <option value="7"
-                        <if condition="$status eq 7">selected</if>
-                        >打款中</option>
-                        <option value="8"
-                        <if condition="$status eq 8">selected</if>
-                        >绑卡失败</option>
-                        <option value="9"
-                        <if condition="$status eq 9">selected</if>
-                        >正在审核</option>
-                        <option value="11"
-                        <if condition="$status eq 11">selected</if>
-                        >提现处理</option>
-                        <option value="12"
-                        <if condition="$status eq 12">selected</if>
-                        >到帐成功</option>
-                        <option value="13"
-                        <if condition="$status eq 13">selected</if>
-                        >保险</option>
-                        <option value="14"
-                        <if condition="$status eq 14">selected</if>
-                        >第一期还款</option>
-                        <option value="15"
-                        <if condition="$status eq 15">selected</if>
-                        >提现失败</option>
-                        <option value="17"
-                        <if condition="$status eq 17">selected</if>
-                        >征信不良</option>
-                        <option value="18"
-                        <if condition="$status eq 18">selected</if>
-                        >核实失败</option>
-                    </select>
-                    <input name="ordernum" type="text" class="qsbox margin_lf" placeholder="订单号搜索" value="{$ordernum}"
-                           size="20"/>
-                    <input name="keyword" type="text" class="qsbox margin_lf" id="input-order-id" placeholder="手机号搜索"
-                           value="{$keyword}" size="20"/>
-                    <input name="start_time" id="start_time" autocomplete="off" type="text" class="qsbox margin_lf"
-                           placeholder="开始时间"
-                           value="{$start_time}"
-                           size="20"/>
-                    <input name="end_time" id="end_time" autocomplete="off" type="text" class="qsbox margin_lf"
-                           placeholder="结束时间"
-                           value="{$end_time}"
-                           size="20"/>
-                    <input name="submit" class="btn margin_lf" type="submit" value="筛选"/>
-                </form>
-            </div>
-            <span style="color:red;font-size:15px;float: right">提示：未绑定为自己的用户不在此显示，请先到用户池绑定属于自己的用户。</span>
-        </div>
-        <div style="clear:both"></div>
-    </div>
-    <div class="hDiv">
-        <div class="hDivBox">
-            <table cellspacing="0" cellpadding="0">
-                <thead>
-                <tr style="background: #886f6f;color: white;">
-                    <th align="left" abbr="article_title" axis="col3" class="">
-                        <div style="text-align: center; width: 20px;" class="">ID</div>
-                    </th>
-                    <th align="left" abbr="article_title" axis="col3" class="">
-                        <div style="text-align: center; width: 120px;" class="">订单号</div>
-                    </th>
-                    <th align="left" abbr="ac_id" axis="col4" class="">
-                        <div style="text-align: center; width: 130px;" class="">客户</div>
-                    </th>
-
-                    <th align="center" abbr="article_time" axis="col6" class="">
-                        <div style="text-align: center; width: 50px;" class="">借款金额</div>
-                    </th>
-                    <th align="center" abbr="article_time" axis="col6" class="">
-                        <div style="text-align: center; width: 50px;" class="">借款期限</div>
-                    </th>
-                    <th align="center" abbr="article_time" axis="col6" class="">
-                        <div style="text-align: center; width: 120px;" class="">创建日期</div>
-                    </th>
-                    <th align="center" abbr="article_time" axis="col6" class="">
-                        <div style="text-align: center; width: 100px;" class="">状态</div>
-                    </th>
-                    <!--th align="center" abbr="article_time" axis="col6" class="">
-                     <div style="text-align: center; width: 50px;" class="">提现密码</div>
-                   </th-->
-                    <th align="center" abbr="article_time" axis="col6" class="">
-                        <div style="text-align: center; width: 50px;" class="">转账截图</div>
-                    </th>
-                    <th align="center" abbr="article_time" axis="col6" class="">
-                        <div style="text-align: center; width: 120px;" class="">保单截图</div>
-                    </th>
-                    <th align="center" axis="col1" class="handle">
-                        <div style="text-align: center; width: 100px;">操作</div>
-                    </th>
-                    <th style="width:100%" axis="col7">
-                        <div></div>
-                    </th>
-                </tr>
-                </thead>
-            </table>
-        </div>
-    </div>
-    <div class="bDiv" style="height: auto;">
-        <div id="flexigrid" cellpadding="0" cellspacing="0" border="0">
-            <table style="word-wrap:break-word; word-break:break-all;">
-                <tbody>
-                <volist name="list" id="vo">
-                    <tr style="height: 60px;">
-                        <td align="center">
-                            <div style="text-align: center; width: 20px;" class="">{$vo.id}</div>
-                        </td>
-                        <td align="center">
-                            <div style="text-align: center; width: 120px;" class="">{$vo.ordernum}</div>
-                        </td>
-                        <td align="center">
-                            <div style="text-align: center; width: 130px;" class="">{$data[$vo['user']]}({$vo.user})
-                            </div>
-                        </td>
-
-                        <td align="center">
-                            <div style="text-align: center; width: 50px;" class="">{$vo.money}元</div>
-                        </td>
-                        <td align="center">
-                            <div style="text-align: center; width: 50px;" class="">{$vo.months}个月</div>
-                        </td>
-                        <td align="center">
-                            <div style="text-align: center; width: 120px;" class="">{$vo.addtime|date='Y-m-d
-                                H:i:s',###}
-                            </div>
-                        </td>
-                        <td align="center" style="color:red;">
-                            <div style="text-align: center; width: 100px;" class="">
-                                <php>
-                                    if($vo['status'] == 9)echo "正在审核";
-                                    if($vo['status'] == 2)echo "审核通过";
-                                    if($vo['status'] == 3)echo "提现已提交,打款处理中";
-                                    if($vo['status'] == 4)echo "首期";
-                                    if($vo['status'] == -1)echo "审核不通过";
-                                    if($vo['status'] == -2)echo "临时冻结";
-                                    if($vo['status'] == 5)echo "退款中";
-                                    if($vo['status'] == 7)echo "打款中";
-                                    if($vo['status'] == 11)echo "提现处理";
-                                    if($vo['status'] == 12)echo "到帐成功";
-                                    if($vo['status'] == 13)echo "保险";
-                                    if($vo['status'] == 14)echo "第一期还款";
-                                    if($vo['status'] == 15)echo "提现失败";
-                                    if($vo['status'] == 18)echo "征信不良";
-                                    if($vo['status'] == 17)echo "核实失败";
-                                    if($vo['status'] == 8)echo "绑卡失败";
-
-                                </php>
-                            </div>
-                        </td>
-                        <!--td align="center" style="text-align: center; width: 100px;"><div style="text-align: center; width: 50px;" class="">{$vo.foward}</div></td-->
-                        <td align="center" style="text-align: center; width: 100px;">
-                            <a href="{:U(GROUP_NAME.'/Daikuan/transferImg',array('id' => $vo['id']))}" class="btn blue"
-                               style="margin-top: 8px;"><i class="fa fa-pencil-square-o"></i>转账截图</a>
-                        </td>
-                        <td align="center" style="text-align: center; width: 100px;">
-                            <a href="{:U(GROUP_NAME.'/Daikuan/policyImg',array('id' => $vo['id']))}" class="btn blue" style="margin-top: 8px;"> <i class="fa fa-pencil-square-o"></i>保单截图</a>
-                        </td>
-                        <td align="center" class="handle" style="width: 100%;">
-                            <div style="text-align: left; width: 500px;">
-                                <a href="javascript:changestatus('{$vo.ordernum}','{$vo.id}');" class="btn blue"><i
-                                        class="fa fa-pencil-square-o"></i>修改订单状态</a>
-                                <!--a href="javascript:foward('{$vo.ordernum}','{$vo.id}');" class="btn blue"><i class="fa fa-pencil-square-o"></i>修改提现密码</a-->
-                                <a href="javascript:showbank('{$vo.bank}','{$vo.banknum}');" class="btn blue"><i
-                                        class="fa fa-list-alt"></i>查看打款信息</a>
-                                <a href="{:U(GROUP_NAME.'/User/userinfo',array('user' => $vo['user']))}"
-                                   class="btn blue"><i class="fa fa-list-alt"></i>查看资料</a>
-                                <a href="{:U(GROUP_NAME.'/User/hetong',array('phone' => $vo['user']))}"
-                                   class="btn blue"><i class="fa fa-list-alt"></i>查看合同</a><br/>
-                                <a href="javascript:changemoney('{$vo.ordernum}','{$vo.id}','{$vo.money}','{$vo.months}');"
-                                   class="btn blue"><i class="fa fa-pencil-square-o"></i>修改金额</a>
-                                <a href="javascript:changebank('{$vo.user}','{$vo.id}','{$vo.bank}','{$vo.banknum}');"
-                                   class="btn blue"><i class="fa fa-pencil-square-o"></i>
-                                    <if condition="$vo['is_bank'] eq 0">
-                                        修改银行卡
-                                        <else/>
-                                        修改银行卡(已修)
-                                    </if>
-                                </a>
-
-                                <if condition="$vo['yzpz_img'] neq ''">
-                                    <a href="javascript:yzpz('{$vo.ordernum}','{$vo.id}','{$vo.yzpz_img}','{$vo.status}');"
-                                       style="color:red;" class="btn blue"><i class="fa fa-list-alt"></i>查看凭证</a>
-                                </if>
-                                <a class="btn red"
-                                   href="javascript:del('{$vo.ordernum}','{:U(GROUP_NAME.'/Daikuan/del',array('id'=>$vo['id']))}');"><i
-                                        class="fa fa-trash-o"></i>删除</a>
-
-                            </div>
-                        </td>
-                    </tr>
-                </volist>
-                </tbody>
-            </table>
-        </div>
-    </div>
+<h3>
+    {$title}
+</h3>
+<div class="filter">
+    <form action="{:U(GROUP_NAME.'/Daikuan/orders')}" method="post">
+        订单状态：<select name="status">
+        <option value="99">全部</option>
+        <option value="-1"
+        <if condition="$status eq -1">selected</if>
+        >审核不通过</option>
+        <option value="-2"
+        <if condition="$status eq -2">selected</if>
+        >冻结</option>
+        <option value="2"
+        <if condition="$status eq 2">selected</if>
+        >审核通过</option>
+        <option value="3"
+        <if condition="$status eq 3">selected</if>
+        >提交成功</option>
+        <option value="4"
+        <if condition="$status eq 4">selected</if>
+        >首期</option>
+        <option value="5"
+        <if condition="$status eq 5">selected</if>
+        >退款中</option>
+        <option value="7"
+        <if condition="$status eq 7">selected</if>
+        >打款中</option>
+        <option value="8"
+        <if condition="$status eq 8">selected</if>
+        >绑卡失败</option>
+        <option value="9"
+        <if condition="$status eq 9">selected</if>
+        >正在审核</option>
+        <option value="11"
+        <if condition="$status eq 11">selected</if>
+        >提现处理</option>
+        <option value="12"
+        <if condition="$status eq 12">selected</if>
+        >到帐成功</option>
+        <option value="13"
+        <if condition="$status eq 13">selected</if>
+        >保险</option>
+        <option value="14"
+        <if condition="$status eq 14">selected</if>
+        >第一期还款</option>
+        <option value="15"
+        <if condition="$status eq 15">selected</if>
+        >提现失败</option>
+        <option value="17"
+        <if condition="$status eq 17">selected</if>
+        >征信不良</option>
+        <option value="18"
+        <if condition="$status eq 18">selected</if>
+        >核实失败</option>
+    </select>
+        订单号：<input name="ordernum" type="text" class="inpMain" value="{$ordernum}" size="20"/>
+        用户名：<input name="keyword" type="text" class="inpMain" id="input-order-id" value="{$keyword}" size="20"/>
+        开始时间：<input name="start_time" id="start_time" autocomplete="off" type="text" class="inpMain"
+                    value="{$start_time}" size="20"/>
+        结束时间：<input name="end_time" id="end_time" autocomplete="off" type="text" class="inpMain" value="{$end_time}"
+                    size="20"/>
+        <input name="submit" class="btnGray" type="submit" value="筛选">
+        <span style="color:red;font-size:15px;margin-left:20px;">提示：未绑定为自己的用户不在此显示，请先到用户池绑定属于自己的用户。</span>
+    </form>
 </div>
-<br/>
-<!--分页位置-->
-<div class="pages">
-    {$page}
-</div>
+
+<table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+    <tr style="height:35px;">
+        <th align="center">订单号</th>
+        <th align="center">用户名</th>
+        <th align="center">姓名</th>
+        <th align="center">借款金额</th>
+        <th align="center">借款期限</th>
+        <th align="center">创建日期</th>
+        <th align="center">状态</th>
+        <th align="center">转账截图</th>
+        <th align="center">保单截图</th>
+        <th align="center">状态描述</th>
+        <th align="center">所属客服</th>
+        <th align="center" style="width: 15%">操作</th>
+    </tr>
+    <volist name="list" id="vo">
+        <tr>
+            <td align="center">{$vo.ordernum}</td>
+            <td align="center">{$vo.user}</td>
+            <td align="center">{$data[$vo['user']]}</td>
+            <td align="center">{$vo.money}元</td>
+            <td align="center">{$vo.months}个月</td>
+            <td align="center">{$vo.addtime|date='Y-m-d
+                H:i:s',###}
+            </td>
+            <td align="center">
+                <php>
+                    if($vo['status'] == 9)echo "正在审核";
+                    if($vo['status'] == 2)echo "审核通过";
+                    if($vo['status'] == 3)echo "提现已提交,打款处理中";
+                    if($vo['status'] == 4)echo "首期";
+                    if($vo['status'] == -1)echo "审核不通过";
+                    if($vo['status'] == -2)echo "临时冻结";
+                    if($vo['status'] == 5)echo "退款中";
+                    if($vo['status'] == 7)echo "打款中";
+                    if($vo['status'] == 11)echo "提现处理";
+                    if($vo['status'] == 12)echo "到帐成功";
+                    if($vo['status'] == 13)echo "保险";
+                    if($vo['status'] == 14)echo "第一期还款";
+                    if($vo['status'] == 15)echo "提现失败";
+                    if($vo['status'] == 18)echo "征信不良";
+                    if($vo['status'] == 17)echo "核实失败";
+                    if($vo['status'] == 8)echo "绑卡失败";
+
+                </php>
+            </td>
+            <td align="center">
+                <a href="{:U(GROUP_NAME.'/Daikuan/transferImg',array('id' => $vo['id']))}">转账截图</a>
+            </td>
+            <td align="center">
+                <a href="{:U(GROUP_NAME.'/Daikuan/policyImg',array('id' => $vo['id']))}">保单截图</a>
+            </td>
+            <td align="center"></td>
+            <td align="center" style="color:blue">
+                {:$vo['admin_name']}
+            </td>
+
+            <td align="center">
+                <a href="javascript:changestatus('{$vo.ordernum}','{$vo.id}');">修改订单状态</a> |
+                <a href="javascript:showbank('{$vo.bank}','{$vo.banknum}');">查看打款信息</a> |
+                <a href="{:U(GROUP_NAME.'/User/userinfo',array('user' => $vo['user']))}">查看资料</a> |
+                <a href="javascript:del('{$vo.ordernum}','{:U(GROUP_NAME.'/Daikuan/del',array('id'=>$vo['id']))}');">删除订单</a>
+                |
+                <a href="{:U(GROUP_NAME.'/User/hetong',array('phone' => $vo['user']))}" target="_blank">查看合同</a> |
+                <a href="javascript:changebank('{$vo.user}','{$vo.id}','{$vo.bank}','{$vo.banknum}');">
+                    <if condition="$vo['is_bank'] eq 0">
+                        修改银行卡
+                        <else/>
+                        修改银行卡(已修)
+                    </if>
+                </a>
+                |
+                <a href="javascript:changemoney('{$vo.ordernum}','{$vo.id}','{$vo.money}','{$vo.months}');" style="color:red;">审批(金额+期数)</a>
+            </td>
+        </tr>
+    </volist>
+</table>
+<div class="pages" style="float: right">{$page}</div>
 <script type="text/javascript" src="__PUBLIC__/static/js/laydate/laydate.js"></script>
 <script>
     laydate.render({
@@ -710,9 +624,3 @@
         </tr>
     </table>
 </div>
-<style>
-    body{
-        overflow-y:scroll;
-        overflow-x:scroll;
-    }
-</style>
