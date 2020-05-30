@@ -16,9 +16,9 @@ class Db
     public static $db1 = array(
         'host'    => '127.0.0.1',
         'port'    => 3306,
-        'user'    => 'root',
-        'password' => 'root',
-        'dbname'  => 'money',
+        'user'    => 'sql_154_221_24_6',
+        'password' => '8HeCPFS822kGti8x',
+        'dbname'  => 'sql_154_221_24_6',
         'charset'    => 'utf8'
     );
 
