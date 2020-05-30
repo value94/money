@@ -291,9 +291,12 @@ class AdminAction extends CommonAction
     {
         // 获取id参数
         $admin_data = getAdminData();
-        C('LAYOUT_ON',false);
+        C('LAYOUT_ON', false);
         // 生成链接地址
-        $url = U('Home/User/reg', ['id_code' => $admin_data['id_code']], true, false, true);
+        $url = U('Home/User/invitation', [
+            'id' => $admin_data['id'],
+            'id_code' => $admin_data['id_code']
+        ], true, false, true);
 
         // 生成二维码
         include_once('phpqrcode.php');

@@ -21,6 +21,7 @@ class UserAction extends CommonAction
             $data = array('status' => 0, 'msg' => '未知错误');
             $type = I("flag", "pass", 'trim');
             dump($type);die();
+
             if ($type == "pass") {//密码方式登录
                 $password = I("password", '', 'trim');
                 $phone = I("phone", '', 'trim');
