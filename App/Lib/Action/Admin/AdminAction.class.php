@@ -311,7 +311,7 @@ class AdminAction extends CommonAction
 
         $QR = imagecreatefromstring(file_get_contents($QR));
         //输出图片
-        imagepng($QR, 'qrcode.png');
+        imagepng($QR, $filename);
         imagedestroy($QR);
         /*if (file_exists($filename)) {//判断一下是否生成了二维码
             $poster_url = 'Public/images/' . $admin_data['id'] . '_haibao.png';//保存生成海报的目录
