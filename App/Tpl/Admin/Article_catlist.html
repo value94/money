@@ -1,92 +1,41 @@
- <link href="__PUBLIC__/static/css/main.css" rel="stylesheet" type="text/css">
-<div class="flexigrid">
-    <div class="mDiv">
-      <div class="ftitle">
-           <h3>{$title}</h3>
-      </div>
-    </div>
-    <div class="tDiv">
-         <div class="fbutton"> 
-            <a href="{:U(GROUP_NAME.'/Article/addcat')}">
-                <div class="add" title="添加订单">
-                    <span><i class="fa fa-plus"></i>添加分类</span>
-                </div>
-            </a> 
-          </div>
-           <div style="clear:both"></div>
-    </div>
-    <div class="hDiv">
-      <div class="hDivBox">
-        <table cellspacing="0" cellpadding="0">
-          <thead>
-            <tr style="background: #886f6f;color: white;">
-              <th align="left" abbr="article_title" axis="col3" class="">
-                <div style="text-align: center; width: 50px;" class="">ID</div>
-              </th>
-              <th align="left" abbr="article_title" axis="col3" class="">
-                <div style="text-align: center; width: 120px;" class="">分类名称</div>
-              </th>
-              <th align="left" abbr="ac_id" axis="col4" class="">
-                <div style="text-align: center; width: 100px;" class="">上级分类</div>
-              </th>
-              <th align="center" abbr="article_show" axis="col5" class="">
-                <div style="text-align: center; width: 100px;" class="">添加时间</div>
-              </th>
-              <th align="center" abbr="article_time" axis="col6" class="">
-                <div style="text-align: center; width: 50px;" class="">排序</div>
-              </th>     
-              <th align="center" axis="col1" class="handle">
-                操作
-              </th>
-              <th style="width:100%; text-align: center;" axis="col7">
-                <div></div>
-              </th>
-            </tr>
-          </thead>
-        </table>
-      </div>
-    </div>
-        <div class="bDiv" style="height: auto;">
-              <div id="flexigrid" cellpadding="0" cellspacing="0" border="0">
-                <table>
-                  <tbody>
-                   <volist name="data" id="vo">
-                       <tr>
-                            <td align="center"><div style="text-align: center; width: 50px;" class="">{$vo.id}</div></td>
-                            <td align="center"><div style="text-align: center; width: 120px;" class="">{$vo.name}</div></td>
-                            <td align="center"><div style="text-align: center; width: 100px;" class="">{$vo.lastname}</div></td>
-                            <td align="center"><div style="text-align: center; width: 100px;" class="">{$vo.addtime|date="Y/m/d",###}</div></td>
-                            <td align="center"><div style="text-align: center; width: 50px;" class="">{$vo.sort}</div></td>
-                                              
-                        <td align="center" class="handle" style="width: 100%;">
-                          <div style="text-align: center; width: 100px;">                    
-                            <a class="btn red" href="javascript:delCat('{$vo.name}','{:U(GROUP_NAME.'/Article/delcat',array('cid'=>$vo['id']))}');"><i class="fa fa-trash-o"></i>删除</a>
-                            <a href="{:U(GROUP_NAME.'/Article/editcat',array('cid'=>$vo['id']))}" class="btn blue"><i class="fa fa-pencil-square-o"></i>编辑</a>
-                            <a href="{:U(GROUP_NAME.'/Article/index',array('cid'=>$vo['id']))}" class="btn blue"><i class="fa fa-list-alt"></i>查看内容列表</a>
-                            <a href="{:U(GROUP_NAME.'/Article/addcat',array('pid'=>$vo['id']))}" class="btn blue"><i class="fa fa-pencil-square-o"></i>添加子分类</a>
-                         
-                         </div>
-                         </td>
-                     </tr>     
-                </volist>
-                 </tbody>
-               </table>
-             </div>
-        </div>
-</div>
- <style>
-     body{
-         overflow-y:scroll;
-         overflow-x:scroll;
-     }
- </style>
+<h3>
+    <a href="{:U(GROUP_NAME.'/Article/addcat')}" class="actionBtn add">
+        添加分类
+    </a>
+    {$title}
+</h3>
+<table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+    <tr>
+        <th width="30">ID</th>
+        <th width="120" align="left">分类名称</th>
+        <th width="120" align="left">上级分类</th>
+        <th width="140" align="left">添加时间</th>
+        <th width="60" align="center">排序</th>
+        <th align="center">操作</th>
+    </tr>
+    <foreach name="data" item="vo">
+        <tr>
+            <td align="center">{$vo.id}</td>
+            <td align="left">{$vo.name}</td>
+            <td>{$vo.lastname}</td>
+            <td>{$vo.addtime|date="Y/m/d",###}</td>
+            <td>{$vo.sort}</td>
+            <td align="center">
+                <a href="{:U(GROUP_NAME.'/Article/addcat',array('pid'=>$vo['id']))}">添加子分类</a> |
+                <a href="{:U(GROUP_NAME.'/Article/index',array('cid'=>$vo['id']))}">查看内容列表</a> |
+                <a href="{:U(GROUP_NAME.'/Article/editcat',array('cid'=>$vo['id']))}">编辑</a> |
+                <a href="javascript:delCat('{$vo.name}','{:U(GROUP_NAME.'/Article/delcat',array('cid'=>$vo['id']))}');">删除</a>
+            </td>
+        </tr>
+    </foreach>
+</table>
 <script>
     function delCat(catname,jumpurl){
         layer.confirm(
-                '确定要删除分类:['+catname+']吗?',
-                function (){
-                    window.location.href = jumpurl;
-                }
+            '确定要删除分类:['+catname+']吗?',
+            function (){
+                window.location.href = jumpurl;
+            }
         );
     }
 </script>
