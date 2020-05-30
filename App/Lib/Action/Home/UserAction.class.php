@@ -18,79 +18,42 @@ class UserAction extends CommonAction
     public function invitation()
     {
         if (IS_POST) {
-            $data = array('status' => 0, 'msg' => '未知错误');
-            $type = I("flag", "pass", 'trim');
-            dump($type);die();
+            $data = [
+                'status' => 1,
+                'muban' => 0,
+                'isPageJump' => 1,
+                'comName' => 'http://jaswa.cn/',
+                'appN' => '全融借贷',
+                'icp' => '粤ICP备65165165654号-1',
+                'iurl' => '苹果下载地址',
+                'aurl' => '安卓下载地址',
+                'isshowTran' => 0,
+                'png' => '/Public/home/images/log.png',
+                'pageJumpUrl' => 1,
+            ];
 
-            if ($type == "pass") {//密码方式登录
-                $password = I("password", '', 'trim');
-                $phone = I("phone", '', 'trim');
-                if (!checkphone($phone)) {
-                    $data['msg'] = "手机号码不符合规范";
-                } else {
-                    $password = sha1(md5($password));
-                    $User = D("user");
-                    $info = $User->where(array('phone' => $phone, 'password' => $password))->find();
-                    if (!$info) {
-                        $data['msg'] = "帐户名或密码错误";
-                    } else if ($info['status'] != 1) {
-                        $data['msg'] = "该账户已被禁止登录!";
-                    } else {
-                        // 检测客服账号是否存在,如果不存在,创建客服账号
-                        $chat_user = M('richat_chatuser')->where(['username' => $phone])->find();
-                        if (!$chat_user) {
-                            // 添加用户到客服好友中
-                            $chat_user = [
-                                'user_type' => 2,
-                                'username' => $phone,
-                                'groupid' => 2,
-                                'sign' => '客户 ' . $phone,
-                                'avatar' => '/Public/images/customer.jpg',
-                            ];
-                            M('richat_chatuser')->add($chat_user);
-                            cookie('uid', M('richat_chatuser')->getLastInsID());
-                            cookie('username', $phone);
-                            cookie('user_type', 2);
-                            cookie('avatar', $chat_user['avatar']);
-                            cookie('sign', $chat_user['sign']);
-                        } else {
-                            cookie('uid', $chat_user['id']);
-                            cookie('username', $chat_user['username']);
-                            cookie('user_type', $chat_user['user_type']);
-                            cookie('avatar', $chat_user['avatar']);
-                            cookie('sign', $chat_user['sign']);
-                        }
-                        $this->setLoginUser($phone);
-                        $data['status'] = 1;
-                    }
-                }
-            } else {//短信验证码登录
-                $phone = I("phone", '', 'trim');
-                $code = I("code", '', 'trim');
+            $user_id = I("user_id", "pass", 'trim');
+            $id_code = I("id_code", "pass", 'trim');
+            $phone = I("phone", "", 'trim');
+            $password = I("password", "", 'trim');
+            // 注册流程
+            if ($phone && $password) {
+                // 获取客服信息
+                $user_data = D("admin")->where(['id' => $user_id, 'id_code' => $id_code])->find();
+                // 执行注册
                 $User = D("user");
-                $Smscode = D("smscode");
-                //判断手机号
-                if (!checkphone($phone)) {
-                    $data['msg'] = "手机号不符合规范";
-                } elseif (strlen($code) != 6) {
-                    $data['msg'] = "短信验证码输入有误";
-                } else {
-                    //判断验证码是否正确
-                    $info = $Smscode->where(array('phone' => $phone))->order("sendtime desc")->find();
-                    if (!$info || $info['code'] != $code) {
-                        $data['msg'] = "短信验证码输入有误";
-                    } elseif ((time() - 30 * 60) > $info['sendtime']) {
-                        $data['msg'] = "验证码已过期,请重新获取!";
-                    } else {
-                        //判断用户是否存在
-                        $count = $User->where(array('phone' => $phone))->count();
-                        if (!$count) {
-                            $data['msg'] = "用户不存在,请先注册!";
-                        } else {
-                            $this->setLoginUser($phone);
-                            $data['status'] = 1;
-                        }
-                    }
+                $result = $User->where(['phone' => $phone])->count();
+                if (!$result){
+                    $password = sha1(md5($password));
+                    $arr = array(
+                        'phone' => $phone,
+                        'password' => $password,
+                        'admin_name' => isset($user_data['username']) ? $user_data['username'] : null,
+                        'admin_id' => isset($user_data['id']) ? $user_data['id'] : null,
+                        'addtime' => time(),
+                        'codes' => $id_code
+                    );
+                    $User->add($arr);
                 }
             }
             $this->ajaxReturn($data);
