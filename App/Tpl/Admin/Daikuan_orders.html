@@ -54,10 +54,10 @@
         <if condition="$status eq 18">selected</if>
         >核实失败</option>
     </select>
-        订单号：<input name="ordernum" type="text" class="qsbox margin_lf" value="{$ordernum}" size="20"/>
-        用户名：<input name="keyword" type="text" class="qsbox margin_lf" id="input-order-id" value="{$keyword}" size="20"/>
-        开始时间：<input name="start_time" id="start_time" autocomplete="off" type="text" class="qsbox margin_lf" placeholder="开始时间" value="{$start_time}" size="20"/>
-        结束时间：<input name="end_time" id="end_time" autocomplete="off" type="text" class="qsbox margin_lf" placeholder="结束时间" value="{$end_time}" size="20"/>
+        订单号：<input name="ordernum" type="text" class="inpMain" value="{$ordernum}" size="20"/>
+        用户名：<input name="keyword" type="text" class="inpMain" id="input-order-id" value="{$keyword}" size="20"/>
+        开始时间：<input name="start_time" id="start_time" autocomplete="off" type="text" class="inpMain" placeholder="开始时间" value="{$start_time}" size="20"/>
+        结束时间：<input name="end_time" id="end_time" autocomplete="off" type="text" class="inpMain" placeholder="结束时间" value="{$end_time}" size="20"/>
         <input name="submit" class="btnGray" type="submit" value="筛选">
         <span style="color:red;font-size:15px;margin-left:20px;">提示：未绑定为自己的用户不在此显示，请先到用户池绑定属于自己的用户。</span>
     </form>
@@ -86,26 +86,29 @@
             <td align="center">{$vo.money}元</td>
             <td align="center">{$vo.months}个月</td>
             <td align="center">{$vo.addtime|date='Y-m-d
-                H:i:s',###}</td>
-            <td align="center"><php>
-                if($vo['status'] == 9)echo "正在审核";
-                if($vo['status'] == 2)echo "审核通过";
-                if($vo['status'] == 3)echo "提现已提交,打款处理中";
-                if($vo['status'] == 4)echo "首期";
-                if($vo['status'] == -1)echo "审核不通过";
-                if($vo['status'] == -2)echo "临时冻结";
-                if($vo['status'] == 5)echo "退款中";
-                if($vo['status'] == 7)echo "打款中";
-                if($vo['status'] == 11)echo "提现处理";
-                if($vo['status'] == 12)echo "到帐成功";
-                if($vo['status'] == 13)echo "保险";
-                if($vo['status'] == 14)echo "第一期还款";
-                if($vo['status'] == 15)echo "提现失败";
-                if($vo['status'] == 18)echo "征信不良";
-                if($vo['status'] == 17)echo "核实失败";
-                if($vo['status'] == 8)echo "绑卡失败";
+                H:i:s',###}
+            </td>
+            <td align="center">
+                <php>
+                    if($vo['status'] == 9)echo "正在审核";
+                    if($vo['status'] == 2)echo "审核通过";
+                    if($vo['status'] == 3)echo "提现已提交,打款处理中";
+                    if($vo['status'] == 4)echo "首期";
+                    if($vo['status'] == -1)echo "审核不通过";
+                    if($vo['status'] == -2)echo "临时冻结";
+                    if($vo['status'] == 5)echo "退款中";
+                    if($vo['status'] == 7)echo "打款中";
+                    if($vo['status'] == 11)echo "提现处理";
+                    if($vo['status'] == 12)echo "到帐成功";
+                    if($vo['status'] == 13)echo "保险";
+                    if($vo['status'] == 14)echo "第一期还款";
+                    if($vo['status'] == 15)echo "提现失败";
+                    if($vo['status'] == 18)echo "征信不良";
+                    if($vo['status'] == 17)echo "核实失败";
+                    if($vo['status'] == 8)echo "绑卡失败";
 
-            </php></td>
+                </php>
+            </td>
             <td align="center">未结清</td>
             <td align="center"></td>
         </tr>

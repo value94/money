@@ -51,12 +51,13 @@ class UserAction extends CommonAction
         $User = D("user");
         import('ORG.Util.Page');
         $count = $User->where($where)->count();
-        $Page = new Page($count, 10);
+        $Page = new Page($count, 25);
         $Page->setConfig('theme', '共%totalRow%条记录 | 第 %nowPage% / %totalPage% 页 %upPage%  %linkPage%  %downPage%');
         $show = $Page->show();
         $list = $User->where($where)->order('id Desc')->limit($Page->firstRow . ',' . $Page->listRows)->select();
         $da = M('userinfo')->getField('user,name');
         $this->data = $da;
+        $this->count = $count;
         $this->role = json_decode(session('admin_user'), true)['role'];
         $this->list = $list;
         $this->page = $show;

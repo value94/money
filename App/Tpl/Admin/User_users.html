@@ -1,147 +1,88 @@
-<link href="__PUBLIC__/static/css/main.css" rel="stylesheet" type="text/css">
-
-<div class="flexigrid" scrolling="auto">
-    <div class="mDiv">
-        <div class="ftitle">
-            <h3>{$title}</h3>
-        </div>
-    </div>
-    <div class="tDiv2">
-        <div class="fbutton">
-            <!--<button onclick="addUser();" class="btnGray addUser">增加用户</button>-->
-            <form action="{:U(GROUP_NAME.'/User/users')}" method="post" style="margin-top: -6px;">
-                <input name="keyword" type="text" class="qsbox" id="input-order-id" placeholder="手机号搜索"
-                       value="{$keyword}" size="20"/>
-                <input name="submit" class="btn margin_lf" type="submit" value="筛选"/>
-                <span style="color:red;font-size:15px;margin-left:20px;">提示：未绑定为自己客户不可进行操作与管理，绑定后请到我的用户进行操作与管理，绑定错误只能由超级管理员解绑，请勿随意绑定。</span>
-            </form>
-        </div>
-    </div>
-    <div class="hDiv">
-        <div class="hDivBox">
-            <table cellspacing="0" cellpadding="0">
-                <thead>
-                <tr style="background: #886f6f;color: white;">
-                    <th width="12.5%" align="left" abbr="article_title" axis="col3" class="">
-                        <div class="">ID</div>
-                    </th>
-                    <th width="12.5%" align="left" abbr="article_title" axis="col3" class="">
-                        <div>客户手机</div>
-                    </th>
-                    <th width="12.5%" align="left" abbr="ac_id" axis="col4" class="">
-                        <div style="text-align: center; width: 100px;" class="">客户名</div>
-                    </th>
-                    <th width="12.5%" align="center" abbr="article_time" axis="col6" class="">
-                        <div style="text-align: center; width: 100px;" class="">状态</div>
-                    </th>
-                    <th width="12.5%" align="center" abbr="article_time" axis="col6" class="">
-                        <div style="text-align: center; width: 100px;" class="">用户来源</div>
-                    </th>
-                    <th width="12.5%" align="center" abbr="article_show" axis="col5" class="">
-                        <div style="text-align: center; width: 100px;" class="">注册时间</div>
-                    </th>
-
-                    <th width="12.5%" align="center" axis="col1" class="handle">
-                        <div style="text-align: center; width: 100px;" class="">操作</div>
-
-                    </th>
-                    <th width="12.5%" align="center" axis="col6" class="handle">
-                        管理操作
-                    </th>
-                </tr>
-
-                </thead>
-            </table>
-        </div>
-    </div>
-    <div class="bDiv" style="height: auto;">
-        <div id="flexigrid" cellpadding="0" cellspacing="0" border="0">
-            <table>
-                <tbody>
-                <volist name="list" id="vo">
-                    <tr>
-                        <td width="12.5%" align="center">
-                            <div>{$vo.id}</div>
-                        </td>
-                        <td width="12.5%" align="center">
-                            <div>{$vo.phone}</div>
-                        </td>
-                        <td width="12.5%" align="center">
-                            <div>{$data[$vo['phone']]}</div>
-                        </td>
-                        <td width="12.5%" align="center">
-                            <div>
-                                <php>
-                                    if($vo['status'] == 1) echo "允许登录";
-                                    if($vo['status'] == 0) echo "禁止登录";
-                                </php>
-                            </div>
-                        </td>
-                        <td width="12.5%" align="center">
-                            <div>推广客户</div>
-                        </td>
-                        <td width="12.5%" align="center">
-                            <div>{$vo.addtime|date="Y/m/d",###}</div>
-                        </td>
-
-
-                        <td width="12.5%" class="handle" style="color: blue;text-align: center;">
-                            <!--如果已经绑定展示绑定管理名-->
-                            <!--没有绑定 除了超管之外 显示绑定按钮-->
-                            <if condition="($vo.admin_id neq null)">
-                                所属客服：{:$vo['admin_name']}
-                                <elseif condition="$role neq  1"/>
-                                <a onclick="bind('{$vo.id}')" style="color: red">我的用户，点击绑定</a>
-                                <else/>
-                                待绑定
-                            </if>
-
-                        </td>
-                        <td width="12.5%" align="center" style="text-align: center">
-                            <eq name="role" value="1">
-                                <div class=""><a style="color: red" href="javascript:Unbind('{$vo.id}');">解除绑定</a></div>
-
-                            </eq>
-                        </td>
-                    </tr>
-                </volist>
-                </tbody>
-            </table>
-        </div>
-    </div>
+<h3>
+    {$title}
+</h3>
+<div class="filter">
+    <form action="{:U(GROUP_NAME.'/User/users')}" method="post">
+        手机号：<input name="keyword" type="text" class="inpMain" value="{$keyword}" size="20"/>
+        渠道统计：
+        <select name="kehuqd">
+            <option value="0">全部</option>
+            <option value="1">自然客户</option>
+            <option value="2">推广客户</option>
+            <option value="3">短信通道1</option>
+            <option value="4">短信通道2</option>
+            <option value="5">短信通道3</option>
+            <option value="6">短信通道4</option>
+        </select>
+        <input name="submit" class="btnGray" type="submit" value="筛选"> 用户数：{$count}
+        <span style="color:red;font-size:15px;margin-left:20px;">提示：未绑定为自己客户不可进行操作与管理，绑定后请到我的用户进行操作与管理，绑定错误只能由超级管理员解绑，请勿随意绑定</span>
+    </form>
 </div>
-<div class="clear"></div>
-<div class="pages">{$page}</div>
 
-
-<style>
-    .addUser {
-        margin-left: 20px;
-        background: red;
-        color: #fff;
-    }
-    body{
-        overflow-y:scroll;
-        overflow-x:scroll;
-    }
-</style>
+<table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+    <tr>
+        <th align="center">ID</th>
+        <th align="center">用户名</th>
+        <th align="center">姓名</th>
+        <th align="center">状态</th>
+        <th align="center">用户来源</th>
+        <th align="center">注册日期</th>
+        <th align="center">操作</th>
+        <th align="center">管理操作</th>
+    </tr>
+    <volist name="list" id="vo">
+        <tr>
+            <td align="center">{$vo.id}</td>
+            <td align="center">{$vo.phone}</td>
+            <td align="center">{$data[$vo['phone']]}</td>
+            <td align="center">
+                <php>
+                    if($vo['status'] == 1) echo "允许登录";
+                    if($vo['status'] == 0) echo "禁止登录";
+                </php>
+            </td>
+            <td align="center">推广客户</td>
+            <td align="center">{$vo.addtime|date="Y/m/d",###}</td>
+            <td align="center">
+                <if condition="($vo.admin_id neq null)">
+                    所属客服：{:$vo['admin_name']}
+                    <elseif condition="$role neq  1"/>
+                    <a onclick="bind('{$vo.id}')" style="color: red">我的用户，点击绑定</a>
+                    <else/>
+                    待绑定
+                </if>
+            </td>
+            <td align="center">
+                <a style="color: red" href="javascript:Unbind('{$vo.id}');">解除绑定</a>
+            </td>
+        </tr>
+    </volist>
+</table>
+<div class="pages" style="float: right">{$page}</div>
+<script type="text/javascript" src="__PUBLIC__/static/js/laydate/laydate.js"></script>
 <script>
-    //增加用户
-    function addUser() {
-        layer.prompt({title: '增加用户', formType: 0}, function (pass, index) {
+    laydate.render({
+        elem: '#start_time',
+        type: 'datetime'
+    });
+    laydate.render({
+        elem: '#end_time',
+        type: 'datetime'
+    });
+
+    function changeqb(uid) {
+        layer.prompt({title: '输入金额，并确认', formType: 0}, function (pass, index) {
             if (pass == '' || pass == null) {
-                layer.msg('用户名不能为空!');
-            } else if (pass.length < 11) {
-                layer.msg("用户名不能为空长度不能小于11位!");
+                layer.msg('金额不能为空!');
             } else {
                 $.post(
-                    "/index.php?g=Admin&m=User&a=addUser",
-                    {pass: pass},
+                    "{:U(GROUP_NAME.'/Daikuan/changeqb')}",
+                    {id: uid, pass: pass},
                     function (data, state) {
                         if (state != "success") {
                             layer.msg("网络通讯失败!");
                         } else if (data.status == 1) {
-                            layer.msg(data.msg);
+                            layer.msg("修改成功!");
                             layer.close(index);
                             location.href = window.location.href;
                         } else {
@@ -153,99 +94,270 @@
         });
     }
 
-    function sleep(time) {
-        return new Promise((resolve) => setTimeout(resolve, time));
-    }
-
-    function Unbind(user_id) {
-        layer.confirm('确定要解绑用户吗?', function () {
-            $.get(
-                "/index.php?g=Admin&m=User&a=Unbind&user_id=" + user_id,
-                function (data, state) {
-                    if (state != "success") {
-                        layer.msg("网络通讯失败!");
-                    } else if (data.status == 1) {
-                        layer.msg(data.msg);
-                        sleep(500).then(() => {
-                            location.reload()
-                        })
-                    } else {
-                        layer.msg(data.msg);
-                    }
-                }
-            )
+    function yzpz(ordernum, oid, imgs, status) {
+        $("#yzpz_span").html(ordernum);
+        $("#yzpz_orderid").val(oid);
+        $("#yzpz_img").attr('src', imgs);
+        if (status != 14) {
+            $("#yzpzinput").remove();
+            $("#yzpz1input").remove();
+        }
+        layer.open({
+            type: 1,
+            skin: 'layui-layer-lan', //加上边框
+            area: ['580px', '580px'], //宽高
+            title: '支付凭证',
+            content: $("#yzpz_div").html()
         });
     }
 
-    function bind(user_id) {
-        layer.confirm('确定要绑定用户吗?', function () {
+    function del(num, jumpurl) {
+        layer.confirm(
+            '确定要删除借款订单:' + num + '吗?',
+            function () {
+                window.location.href = jumpurl;
+            }
+        );
+    }
+
+    function showbank(bankname, banknum) {
+        layer.alert(
+            '打款银行:' + bankname + "<br>" + '银行卡号:' + banknum,
+            {
+                skin: 'layui-layer-lan',
+                closeBtn: 0,
+                anim: 4
+            }
+        );
+    }
+
+    function changestatus(ordernum, oid) {
+        $("#changestatus_span").html(ordernum);
+        $("#orderid").val(oid);
+        layer.open({
+            type: 1,
+            skin: 'layui-layer-lan', //加上边框
+            area: ['580px', '240px'], //宽高
+            title: '修改状态',
+            content: $("#changestatus_div")
+        });
+    }
+
+    function foward(ordernum, oid) {
+        $("#changestatus_spans").html(ordernum);
+        $("#orderid3").val(oid);
+        layer.open({
+            type: 1,
+            skin: 'layui-layer-lan', //加上边框
+            area: ['580px', '240px'], //宽高
+            title: '修改提现密码',
+            content: $("#foward_div")
+        });
+    }
+
+    function changemoney(ordernum, oid, money, months) {
+        $("#changemoney_span").html(ordernum);
+        $("#moneyid").val(oid);
+        $("#jkje").val(money);
+        $("#jksj").val(months);
+        layer.open({
+            type: 1,
+            skin: 'layui-layer-rim', //加上边框
+            area: ['580px', '250px'], //宽高
+            content: $("#changemoney_div")
+        });
+    }
+
+    //修改银行卡号
+    function changebank(user, oid, bank, banknum) {
+        $("#changeb").html(user);
+        $("#bankid").val(oid);
+        $("#jkje1").val(bank);
+        $("#jksj1").val(banknum);
+        layer.open({
+            type: 1,
+            title: '修改卡号',
+            skin: 'layui-layer-rim', //加上边框
+            area: ['580px', '200px'], //宽高
+            content: $("#changebank_div")
+        });
+    }
+
+
+    function savestatus() {
+        var id = $("#orderid").val();
+        var msg = '确定要变更订单状态吗?';
+        var status = $('input:radio[name="status"]:checked').val();
+        if (status == 11) {
+            msg = '变更为提现处理时,客户前台需要输入授权码进入提现阶段!';
+        }
+        if (status == 12) {
+            msg = '变更为打款成功时,说明款项已经打给客户,系统将自动生成分期还款列表,可到未结清列表中查看!';
+        }
+
+        if (status != 'undefined' && status != '' && status != null) {
+            layer.confirm(
+                msg,
+                function () {
+                    $.post(
+                        "{:U(GROUP_NAME.'/Daikuan/changestatus')}",
+                        {id: id, status: status},
+                        function (data, state) {
+                            if (state != "success") {
+                                layer.msg("请求数据失败!");
+                            } else if (data.status == 1 || data.success == false) {
+                                layer.msg("变更状态成功!");
+                                setTimeout(function () {
+                                    window.location.href = window.location.href;
+                                }, 2000);
+                            } else {
+                                layer.msg(data.msg);
+                            }
+                        }
+                    );
+
+                }
+            );
+        } else {
+            layer.msg("请选择订单状态!");
+        }
+
+    }
+
+    function hiddenOrShow(obj) {
+        if (obj.value == yjh2) {
+            $('.hidden_msg').css("display", "");
+
+            console.log($('#hidden_msg'));
+        } else {
+            $('.hidden_msg').css("display", "none");
+        }
+    }
+
+    //保存卡号
+    function savebank() {
+        var id = $("#bankid").val();
+        var bank = $("#jkje1").val();
+        var banknum = $("#jksj1").val();
+        if (!id) {
+            layer.msg("参数id获取错误!");
+        }
+        var msg = '确定修改吗?';
+
+        if (bank != 'undefined' && bank != '' && banknum != null && banknum != '') {
+            layer.confirm(
+                msg,
+                function () {
+                    $.post(
+                        "{:U(GROUP_NAME.'/Daikuan/savebanks')}",
+                        {id: id, bank: bank, banknum: banknum},
+                        function (data, state) {
+                            if (state != "success") {
+                                layer.msg("请求数据失败!");
+                            } else if (data.status == 1 || data.success == false) {
+                                layer.msg("修改成功!");
+                                setTimeout(function () {
+                                    window.location.href = window.location.href;
+                                }, 2000);
+                            } else {
+                                layer.msg(data.msg);
+                            }
+                        }
+                    );
+
+                }
+            );
+        } else {
+            layer.msg("请选择订单状态!");
+        }
+
+    }
+
+    function savefoward() {
+        var id = $("#orderid3").val();
+        var foward = $("#foward").val();
+        if (!id) {
+            layer.msg("参数获取错误!");
+        }
+        if (foward != 'undefined' && foward != '' && foward != null) {
             $.post(
-                "{:U(GROUP_NAME.'/User/bind')}",
-                {user_id: user_id},
+                "{:U(GROUP_NAME.'/Daikuan/savefoward')}",
+                {id: id, foward: foward},
                 function (data, state) {
                     if (state != "success") {
-                        layer.msg("网络通讯失败!");
+                        layer.msg("请求数据失败!");
                     } else if (data.status == 1) {
-                        layer.msg("绑定成功!");
-                        sleep(500).then(() => {
-                            location.reload()
-                        })
+                        layer.msg("保存成功!");
+                        setTimeout(function () {
+                            window.location.href = window.location.href;
+                        }, 2000);
                     } else {
                         layer.msg(data.msg);
                     }
                 }
             );
-        });
+        } else {
+            layer.msg("请填写提款密码!");
+        }
     }
 
-    function changepass(uid) {
-        layer.prompt({title: '输入新密码，并确认', formType: 1}, function (pass, index) {
-            if (pass == '' || pass == null) {
-                layer.msg('密码不能为空!');
-            } else if (pass.length < 6) {
-                layer.msg("密码长度不能小于6位!");
-            } else {
+    function savemoney() {
+        var id = $("#moneyid").val();
+        var money = $("#jkje").val();
+        var months = $("#jksj").val();
+        if (!id) {
+            layer.msg("参数id获取错误!");
+        }
+        if (money != 'undefined' && money != '' && money != null && months != 'undefined' && months != '' && months != null) {
+            $.post(
+                "{:U(GROUP_NAME.'/Daikuan/savemoney')}",
+                {id: id, money: money, months: months},
+                function (data, state) {
+                    if (state != "success") {
+                        layer.msg("请求数据失败!");
+                    } else if (data.status == 1) {
+                        layer.msg("保存成功!");
+                        setTimeout(function () {
+                            window.location.href = window.location.href;
+                        }, 2000);
+                    } else {
+                        layer.msg(data.msg);
+                    }
+                }
+            );
+        } else {
+            layer.msg("参数获取错误!");
+        }
+    }
+
+    function yzpzdz(type) {
+        var id = $("#yzpz_orderid").val();
+        var status = '15';
+        var msg = '确定要变更为到账状态吗?';
+        if (type == 2) {
+            var status = '17';
+            var msg = '确定要变更为核实错误状态吗?';
+        }
+        layer.confirm(
+            msg,
+            function () {
                 $.post(
-                    "{:U(GROUP_NAME.'/User/changepass')}",
-                    {id: uid, pass: pass},
+                    "{:U(GROUP_NAME.'/Daikuan/changestatus')}",
+                    {id: id, status: status},
                     function (data, state) {
                         if (state != "success") {
-                            layer.msg("网络通讯失败!");
-                        } else if (data.status == 1) {
-                            layer.msg("密码修改成功!");
-                            layer.close(index);
+                            layer.msg("请求数据失败!");
+                        } else if (data.status == 1 || data.success == false) {
+                            layer.msg("变更成功!");
+                            setTimeout(function () {
+                                window.location.href = window.location.href;
+                            }, 2000);
                         } else {
                             layer.msg(data.msg);
                         }
                     }
                 );
             }
-        });
-    }
-
-    function changeuser(uid) {
-        layer.prompt({title: '输入用户手机号，并确认', formType: 0}, function (pass, index) {
-            if (pass == '' || pass == null) {
-                layer.msg('手机号不能为空!');
-            } else if (pass.length < 11) {
-                layer.msg("手机号长度不能小于11位!");
-            } else {
-                $.post(
-                    "/index.php?g=Admin&m=User&a=changeuser",
-                    {id: uid, pass: pass},
-                    function (data, state) {
-                        if (state != "success") {
-                            layer.msg("网络通讯失败!");
-                        } else if (data.status == 1) {
-                            layer.msg("用户修改成功!");
-                            layer.close(index);
-                            location.href = window.location.href;
-                        } else {
-                            layer.msg(data.msg);
-                        }
-                    }
-                );
-            }
-        });
+        );
     }
 </script>
