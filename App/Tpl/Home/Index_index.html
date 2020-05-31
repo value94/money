@@ -16,6 +16,7 @@
             location.replace("{:U('Index/index_order')}")
         }
     }
+
     browserRedirect();
 </script>
 <head>
@@ -74,11 +75,12 @@
                 font-size: 843.75%;
             }
         }
+
         .header-new {
             font-size: 25px;
             position: absolute;
-            padding-left: 0.15rem;
-            padding-top: 0.5rem;
+            top: 0.45rem;
+            left: 0.12rem;
             color: white;
         }
 
@@ -98,7 +100,7 @@
             background-color: #3ca4f1;
             border: none;
             color: white;
-            padding: .15rem .32rem;
+            padding: .1rem .3rem;
             text-align: center;
             text-decoration: none;
             display: inline-block;
@@ -107,7 +109,7 @@
             width: 2rem;
             border-radius: .25rem;
             margin-left: .5rem;
-            margin-top: 1.15rem;
+            margin-top: 1rem;
         }
 
         .list {
@@ -138,7 +140,9 @@
 </head>
 <body class="whitebg newindex">
 <!--头部-->
-<div class="page">
+<img src="/Public/home/images/index.png" width="100%">
+
+<div>
     <div class="header-new">
         <span style="margin-left: .3rem;"><Somnus:sitecfg name="sitetitle"/></span>
         <br>
@@ -158,7 +162,7 @@
             </marquee>
         </div>
         <a href="javascript:;" class="button"
-           style="position: absolute;margin-top: 1.1rem;margin-left: .3rem;font-size: 14px;color: white;width: .7rem;padding: 2px;">点我签到</a>
+           style="position: absolute;margin-top: 1rem;margin-left: .3rem;font-size: 14px;color: white;width: .7rem;padding: 2px;">点我签到</a>
     </div>
     <nav class="mui-bar mui-bar-tab bottom-bar">
         <a class="mui-tab-item cur" href="{:U('Index/index')}">
@@ -187,7 +191,7 @@
     </nav>
 </div>
 <div class="footer">
-    <div style=" margin-bottom: 10px; position: absolute;bottom: -1rem;left: 1.1rem;text-align: center;color: #c8c7cc;font-size: 18px;">
+    <div style="margin-bottom: 10px;position: absolute;bottom: -.7rem;color: #c8c7cc;font-size: 18px;text-align: center;width: 100%;">
         <span style="">产品不向学生提供</span>
         <br>
         <span style="font-size: 15px;"><Somnus:sitecfg name="sitetitle"/></span>
