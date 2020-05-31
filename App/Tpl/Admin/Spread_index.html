@@ -13,7 +13,9 @@
     <volist name="list" id="vo">
         <tr>
             <td align="center">{$vo.name}</td>
-            <td align="center">{$vo.url}</td>
+            <td align="center">
+                <a href="{$vo.url}" target="_blank">{$vo.url}</a>
+            </td>
             <td align="center">{$vo.reg_num}</td>
             <td align="center">总申请量</td>
             <td align="center">{$vo.reg_num_today}</td>
