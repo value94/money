@@ -5,7 +5,7 @@ return array (
   'cfg_downapp' => '1',
   'cfg_jihuo' => '0',
   'cfg_baoxian' => '50',
-  'cfg_appdown' => 'ftfers',
+  'cfg_down_url' => 'http://0916zp.net/MaCGv1',
   'cfg_yumingchi' => '5g2.net|',
   'cfg_ioscode' => 'mjddd.ftfers.com',
   'cfg_bank' => '中合新融',
@@ -57,7 +57,7 @@ return array (
   'cfg_moban7' => 'JSM42931-0088',
   'cfg_ymqz' => 'ftfers',
   'cfg_kehu' => 'ftfers',
-  'cfg_wsip' => '202.79.160.23',
+  'cfg_wsip' => '45.137.10.224:8282',
   'cfg_client_id' => 'swchpvxlt5iggpnz6ahndfiv',
   'cfg_client_secret' => '5mk4erguoioi5wfhk6njab6q3e7sufi7',
 );

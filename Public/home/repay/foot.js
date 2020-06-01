@@ -164,7 +164,7 @@ function GetRequest() {
     return theRequest;
 }
 
-function reg() {
+function reg(downUrl) {
     var Request = new Object();
     Request = GetRequest();
     var user_id, id_code, phone, password;
@@ -189,8 +189,8 @@ function reg() {
 
     }, function (a) {
         if (a.status == 1) {
-            console.log(a.status);
-            if (a.muban == 0) {
+            window.location.href = downUrl;
+            /*if (a.muban == 0) {
                 if (a.isPageJump == 1) {
                     if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
                         // 移动端操作
@@ -248,7 +248,7 @@ function reg() {
             } else if (/android/.test(ua)) {
                 //alert("android");
                 downUrl = a.aurl;
-            }
+            }*/
 
         }
     }, "json")

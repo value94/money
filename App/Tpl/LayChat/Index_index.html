@@ -47,7 +47,7 @@
         });
 
         //建立WebSocket通讯
-        var socket = new WebSocket('ws://154.221.24.69:8282');
+        let socket = new WebSocket("ws://{:C('cfg_wsip')}");
 
         //连接成功时触发
         socket.onopen = function () {
@@ -61,7 +61,7 @@
         //监听收到的消息
         socket.onmessage = function (res) {
             // console.log(res.data);
-            var data = eval("("+res.data+")");
+            var data = eval("(" + res.data + ")");
             switch (data['message_type']) {
                 // 服务端ping客户端
                 case 'ping':
@@ -69,7 +69,7 @@
                     break;
                 // 登录 更新用户列表
                 case 'init':
-                    console.log(data['id']+" 登录成功");
+                    console.log(data['id'] + " 登录成功");
                     // layim.getMessage(data.data); //res.data即你发送消息传递的数据（阅读：监听发送的消息）
                     break;
                 //添加 用户
@@ -112,7 +112,7 @@
                 //聊天还有不在线
                 case 'ctUserOutline':
                     console.log('11111');
-                    layer.msg('好友不在线', {'time' : 1000});
+                    layer.msg('好友不在线', {'time': 1000});
                     break;
 
             }

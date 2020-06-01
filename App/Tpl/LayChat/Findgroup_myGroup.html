@@ -110,7 +110,7 @@
 <script type="text/javascript" src="__PUBLIC__/Laychat/js/plugins/zTree/jquery.ztree.exedit-3.5.js"></script>
 <script type="text/javascript">
 	//建立WebSocket通讯
-	var socket = new WebSocket('ws://154.221.24.69:8282');
+	var socket = new WebSocket('ws://{:C(\'cfg_wsip\')}');
 	
     $(function(){$(".full-height-scroll").slimScroll({height:"100%"})});
     var index = '';
