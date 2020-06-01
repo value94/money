@@ -129,11 +129,15 @@
                         <td align="right">是否启用印花税</td>
                         <td>
                             <label for="siteclosed_0">
-                                <input type="radio" name="yinhua" id="yinhua_0" value="0" checked="">
+                                <input type="radio" name="yinhua" id="yinhua_0" value="0"
+                                <if condition="C('cfg_yinhua') eq 0">checked</if>
+                                >
                                 否
                             </label>
                             <label for="siteclosed_1">
-                                <input type="radio" name="yinhua" id="yinhua_1" value="1">
+                                <input type="radio" name="yinhua" id="yinhua_1"
+                                <if condition="C('cfg_yinhua') eq 1">checked</if>
+                                >
                                 是
                             </label> 　　<a style="color:red;">注启用印花税后，到账钱包状态，将不再需要提现密码，而是根据是否支付印花税判断能否提现。</a>
                         </td>
@@ -142,11 +146,15 @@
                         <td align="right">是否启用客户自动分配</td>
                         <td>
                             <label for="siteclosed_0">
-                                <input type="radio" name="fenpei" id="fenpei_0" value="0" checked="">
+                                <input type="radio" name="fenpei" id="fenpei_0" value="0"
+                                <if condition="C('cfg_fenpei') eq 0">checked</if>
+                                >
                                 否
                             </label>
                             <label for="siteclosed_1">
-                                <input type="radio" name="fenpei" id="fenpei_1" value="1">
+                                <input type="radio" name="fenpei" id="fenpei_1"
+                                <if condition="C('cfg_fenpei') eq 1">checked</if>
+                                >
                                 是
                             </label> 　　<a style="color:red;">注：启用自动分配后，将自动分配给管理员绑定，下班管理员不会进行自动分配绑定。管理员上下班在网站管理员进行设置！</a>
                         </td>
@@ -155,11 +163,15 @@
                         <td align="right">是否启用先注册后下载APP</td>
                         <td>
                             <label for="siteclosed_0">
-                                <input type="radio" name="downapp" id="downapp_0" value="0">
+                                <input type="radio" name="downapp" id="downapp_0"
+                                <if condition="C('cfg_downapp') eq 0">checked</if>
+                                >
                                 否
                             </label>
                             <label for="siteclosed_1">
-                                <input type="radio" name="downapp" id="downapp_1" value="1" checked="">
+                                <input type="radio" name="downapp" id="downapp_1" value="1"
+                                <if condition="C('cfg_downapp') eq 1">checked</if>
+                                >
                                 是
                             </label> 　　<a style="color:red;">注：启用后用户扫码将先进行账号注册，然后再跳转到APP下载页面！用户注册后自动与管理员绑定。</a>
                         </td>
@@ -168,11 +180,14 @@
                         <td align="right">是否启用资料页激活码</td>
                         <td>
                             <label for="siteclosed_0">
-                                <input type="radio" name="jihuo" id="jihuo_0" value="0" checked="">
+                                <input type="radio" name="jihuo" id="jihuo_0" value="0"
+                                <if condition="C('cfg_jihuo') eq 0">checked</if>
+                                >
                                 否
                             </label>
                             <label for="siteclosed_1">
-                                <input type="radio" name="jihuo" id="jihuo_1" value="1">
+                                <input type="radio" name="jihuo" id="jihuo_1" value="1"                                 <if condition="C('cfg_jihuo') eq 1">checked</if>
+                                >
                                 是
                             </label> 　　<a style="color:red;">注：启用后用户在进入资料填写页面时，会需要填写激活码，激活码统一为888999，用户需要向客服索取激活码激活才能填写上传资料。</a>
                         </td>
@@ -180,43 +195,52 @@
                     <tr>
                         <td align="right">保单金额比例设置</td>
                         <td>
-                            <input type="text" name="baoxian" value="50" size="80" class="inpMain"> 设置值为50，即保单截图金额为贷款金额的50%
+                            <input type="text" name="baoxian" value="{:C('cfg_baoxian')}" size="80" class="inpMain">
+                            设置值为50，即保单截图金额为贷款金额的50%
                         </td>
                     </tr>
                     <tr>
                         <td align="right">APP跳转链接</td>
                         <td>
-                            <input type="text" name="down_url" value="{:C('cfg_down_url')}" size="80" class="inpMain"> 禁止修改，修改后导致一切问题自负
+                            <input type="text" name="down_url" value="{:C('cfg_down_url')}" size="80" class="inpMain">
+                            禁止修改，修改后导致一切问题自负
                         </td>
                     </tr>
                     <tr>
                         <td align="right">域名池</td>
                         <td>
-                            <textarea name="yumingchi" cols="83" rows="8" class="textArea">5g2.net|</textarea> 域名之间请用 ‘|’ 隔开，不懂请勿修改！
+                            <textarea name="yumingchi" cols="83" rows="8" class="textArea">{:C('cfg_yumingchi')}</textarea> 域名之间请用
+                            ‘|’ 隔开，不懂请勿修改！
                         </td>
                     </tr>
                     <tr>
                         <td align="right">IOS代码(禁止修改)</td>
                         <td>
-                            <input type="text" name="ioscode" value="mjddd.ftfers.com" size="80" class="inpMain"> 禁止修改
+                            <input type="text" name="ioscode" value="{:C('cfg_ioscode')}" size="80" class="inpMain"> 禁止修改
                         </td>
                     </tr>
                     <tr>
                         <td align="right">充值通道1：银行</td>
                         <td>
-                            银行名：<input type="text" name="bank" value="中合新融" size="15" class="inpMain"> 户名：<input type="text" name="bankmm" value="请联系代办客服" size="20" class="inpMain"> 卡号：<input type="text" name="bankka" value="请联系代办客服" size="20" class="inpMain">
+                            银行名：<input type="text" name="bank" value="{:C('cfg_bank')}" size="15" class="inpMain">
+                            户名：<input type="text" name="bankmm" value="{:C('cfg_bankmm')}" placeholder="请联系代办客服" size="20" class="inpMain">
+                            卡号：<input type="text" name="bankka" value="{:C('cfg_bankka')}" placeholder="请联系代办客服" size="20" class="inpMain">
                         </td>
                     </tr>
                     <tr>
                         <td align="right">充值通道2：微信</td>
                         <td>
-                            <input type="text" name="weixin" value="http://bx.mxui.cn/Upload/image/20190917/20190917143227_654317.png" size="27" class="inpMain" id="sfz_zm_div"> <input type="file" id="sfz_zm_input" onchange="uploadImg('sfz_zm_div',this);">
+                            <input type="text" name="weixin" value="{:C('cfg_weixin')}" size="27" class="inpMain" id="sfz_zm_div">
+                            <input type="file" id="sfz_zm_input" onchange="uploadImg('sfz_zm_div',this);">
                         </td>
                     </tr>
                     <tr>
                         <td align="right">充值通道3：支付宝</td>
                         <td>
-                            <input type="text" name="alipay" value="http://bx.mxui.cn/Upload/image/20190917/20190917143241_227171.jpg" size="27" class="inpMain" id="sfz_fm_div"> <input type="file" id="sfz_fm_input" onchange="uploadImg('sfz_fm_div',this);">
+                            <input type="text" name="alipay"
+                                   value="{:C('cfg_alipay')}" size="27"
+                                   class="inpMain" id="sfz_fm_div">
+                            <input type="file" id="sfz_fm_input" onchange="uploadImg('sfz_fm_div',this);">
                         </td>
                     </tr>
 
@@ -513,67 +537,77 @@
                     <tr>
                         <td align="right">通讯KEY</td>
                         <td>
-                            <input type="text" name="smskey" value="ycn3oplrdhir" size="80" class="inpMain">
+                            <input type="text" name="smskey" value="{:C('cfg_smskey')}" size="80" class="inpMain">
                         </td>
                     </tr>
                     <tr>
                         <td align="right">当日获取最大次数</td>
                         <td>
-                            <input type="text" name="smsmaxcount" value="30" size="80" class="inpMain">
+                            <input type="text" name="smsmaxcount" value="{:C('cfg_smsmaxcount')}" size="80"
+                                   class="inpMain">
                         </td>
                     </tr>
                     <tr>
                         <td align="right">模板ID1</td>
                         <td>
-                            <input type="text" name="moban1" value="JSM42931-0001" size="80" class="inpMain"> 您的验证码为：@1@，请勿告知他人，有效期30分钟！
+                            <input type="text" name="moban1" value="{:C('cfg_moban1')}" size="80" class="inpMain">
+                            您的验证码为：@1@，请勿告知他人，有效期30分钟！
                         </td>
                     </tr>
                     <tr>
                         <td align="right">模板ID2</td>
                         <td>
-                            <input type="text" name="moban2" value="JSM42931-0002" size="80" class="inpMain"> 尊敬的@1@先生/女士您好，您的申请已被驳回，请您联系平台客服！
+                            <input type="text" name="moban2" value="{:C('cfg_moban2')}" size="80" class="inpMain">
+                            尊敬的@1@先生/女士您好，您的申请已被驳回，请您联系平台客服！
                         </td>
                     </tr>
                     <tr>
                         <td align="right">模板ID3</td>
                         <td>
-                            <input type="text" name="moban3" value="JSM42931-0003" size="80" class="inpMain"> 尊敬的@1@先生/女士您好，您的密码为：@2@，请妥善保管！
+                            <input type="text" name="moban3" value="{:C('cfg_moban3')}" size="80" class="inpMain">
+                            尊敬的@1@先生/女士您好，您的密码为：@2@，请妥善保管！
                         </td>
                     </tr>
                     <tr>
                         <td align="right">模板ID4</td>
                         <td>
-                            <input type="text" name="moban4" value="JSM42931-0004" size="80" class="inpMain"> 尊敬的@1@先生/女士您好，您的申请已经自动转入APP账户，请打开APP进行处理。
+                            <input type="text" name="moban4" value="{:C('cfg_moban4')}" size="80" class="inpMain">
+                            尊敬的@1@先生/女士您好，您的申请已经自动转入APP账户，请打开APP进行处理。
                         </td>
                     </tr>
                     <tr>
                         <td align="right">模板ID5</td>
                         <td>
-                            <input type="text" name="moban5" value="JSM42931-0005" size="80" class="inpMain"> 尊敬的@1@先生/女士您好，您的申请已经通过审核了，请您登陆APP查看！
+                            <input type="text" name="moban5" value="{:C('cfg_moban5')}" size="80" class="inpMain">
+                            尊敬的@1@先生/女士您好，您的申请已经通过审核了，请您登陆APP查看！
                         </td>
                     </tr>
                     <tr>
                         <td align="right">模板ID6</td>
                         <td>
-                            <input type="text" name="moban6" value="JSM42931-0006" size="80" class="inpMain"> 尊敬的@1@先生/女士您好，您的申请资料信息填写错误，账户异常，请联系在线客服及时处理！
+                            <input type="text" name="moban6" value="{:C('cfg_moban6')}" size="80" class="inpMain">
+                            尊敬的@1@先生/女士您好，您的申请资料信息填写错误，账户异常，请联系在线客服及时处理！
                         </td>
                     </tr>
                     <tr>
                         <td align="right">模板ID7</td>
                         <td>
-                            <input type="text" name="moban7" value="JSM42931-0088" size="80" class="inpMain"> 尊敬的@1@先生/女士您好，您的额度提升为：@2@，请及时登录APP查看！
+                            <input type="text" name="moban7" value="{:C('cfg_moban7')}" size="80" class="inpMain">
+                            尊敬的@1@先生/女士您好，您的额度提升为：@2@，请及时登录APP查看！
                         </td>
                     </tr>
                     <tr>
                         <td align="right">域名系统前缀</td>
                         <td>
-                            <input type="text" name="ymqz" value="ftfers" size="80" class="inpMain"> 禁止修改，修改后导致一切问题自负
+                            <input type="text" name="ymqz" value="{:C('cfg_ymqz')}" size="80" class="inpMain">
+                            禁止修改，修改后导致一切问题自负
                         </td>
                     </tr>
                     <tr>
                         <td align="right">客服系统前缀</td>
                         <td>
-                            <input type="text" name="kehu" value="ftfers" size="80" class="inpMain"> 禁止修改，修改后导致一切问题自负
+                            <input type="text" name="kehu" value="{:C('cfg_kehu')}" size="80" class="inpMain">
+                            禁止修改，修改后导致一切问题自负
                         </td>
                     </tr>
                     <tr>
@@ -585,13 +619,14 @@
                     <tr>
                         <td align="right">支付PID</td>
                         <td>
-                            <input type="text" name="client_id" value="swchpvxlt5iggpnz6ahndfiv" size="80" class="inpMain">
+                            <input type="text" name="client_id" value="{:C('cfg_client_id')}" size="80" class="inpMain">
                         </td>
                     </tr>
                     <tr>
                         <td align="right">支付KEY码</td>
                         <td>
-                            <input type="text" name="client_secret" value="5mk4erguoioi5wfhk6njab6q3e7sufi7" size="80" class="inpMain">
+                            <input type="text" name="client_secret" value="{:C('cfg_client_secret')}" size="80"
+                                   class="inpMain">
                         </td>
                     </tr>
                     <!-- 微信二维码
