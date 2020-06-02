@@ -152,9 +152,9 @@ function sendSms($phone, $content)
 {
     // 拼接参数
     $sms_data = [
-        'userid' => 395,
-        'account' => 'csvas1',
-        'password' => 'Qaz12345',
+        'userid' => 1434,
+        'account' => 'chengtai',
+        'password' => 'qaz12345',
         'mobile' => $phone,
         'content' => '【美信花】' . $content,
         'sendTime' => '',
@@ -162,7 +162,7 @@ function sendSms($phone, $content)
         'extno' => ''
     ];
     // 发送post请求
-    $result = cUrlGetData('http://175.6.2.121:8080/sms.aspx?action=send', $sms_data);
+    $result = cUrlGetData('http://114.215.184.88:8888/sms.aspx?action=send', $sms_data);
 
     if ($result) {
         return $result;
