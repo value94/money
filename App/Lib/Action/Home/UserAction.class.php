@@ -43,7 +43,7 @@ class UserAction extends CommonAction
                 // 执行注册
                 $User = D("user");
                 $result = $User->where(['phone' => $phone])->count();
-                if (!$result){
+                if (!$result) {
                     $password = sha1(md5($password));
                     $arr = array(
                         'phone' => $phone,
@@ -270,16 +270,11 @@ class UserAction extends CommonAction
                             'code' => $smscode,
                             'sendtime' => time()
                         ));
-                        $contstr = "您的验证码为{$smscode}，请于5分钟内正确输入，如非本人操作，请忽略此短信";
-                        //$status = $Smsapi->send($phone,$contstr);
+                        $contstr = "您的验证码为{$smscode}，请于5分钟内正确输入，请勿告知他人，有效期30分钟！";
 
-                        if ($type == 'zhima') {
-                            $status = zmsendTsms($phone, $contstr);
-                        } else {
-                            $status = sendTsms($phone, $contstr);
-                        }
-                        $status = 0;
-                        if ($status == '0') {
+                        $status = sendSms($phone, $contstr);
+
+                        if ($status) {
                             $data['status'] = 1;
                         } else {
                             $data['msg'] = "验证码发送失败,错误码:" . $status;

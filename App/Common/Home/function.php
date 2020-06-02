@@ -164,9 +164,9 @@ function createLinkstringShan($para)
 }
 
 
-function sendTsms($phone, $content)
+// 短信发送接口
+function sendSms($phone, $content)
 {
-    $address = C('cfg_SMS_ADDRESS');//1为短信宝；
     $address = 1;
     if ($address == 1) {
         $smsapi = C('cfg_SMS_API'); //短信网关

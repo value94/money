@@ -34,7 +34,8 @@ class WalletAction extends CommonAction
         $this->data = $da;
         $this->list = $list;
         $this->page = $show;
-        $this->role = getAdminData()['role'];$this->display();
+        $this->role = getAdminData()['role'];
+        $this->display();
     }
 
     //用户列表
@@ -59,7 +60,8 @@ class WalletAction extends CommonAction
         $this->role = json_decode(session('admin_user'), true)['role'];
         $this->list = $list;
         $this->page = $show;
-        $this->role = getAdminData()['role'];$this->display();
+        $this->role = getAdminData()['role'];
+        $this->display();
     }
 
     // 解绑用户
@@ -193,7 +195,8 @@ class WalletAction extends CommonAction
         $f = $f[0];
         $this->f = $f;
         $this->title = "查看合同";
-        $this->role = getAdminData()['role'];$this->display();
+        $this->role = getAdminData()['role'];
+        $this->display();
     }
 
     //邀请码结算
@@ -244,7 +247,8 @@ class WalletAction extends CommonAction
         $this->data = $das;
         $this->list = $list;
         $this->page = $show;
-        $this->role = getAdminData()['role'];$this->display();
+        $this->role = getAdminData()['role'];
+        $this->display();
 
     }
 
@@ -399,15 +403,19 @@ class WalletAction extends CommonAction
             $this->error('参数有误!');
         } else {
             $User = D("user");
-            $check_user = $User->where('phone', $phone)->find();
+            $check_user = $User->where(['phone' => $phone])->find();
             // 发送短信
             $sms_data = [
-                1 => '通知：非常抱歉，您的账号已被禁用,请联系在线客服',
-                2 => '通知：非常抱歉，您的订单没有通过,请联系在线客服',
-                3 => '通知：恭喜您的额度提升为' . $check_user['available_credit'] . ' 元,请打开 APP,进行提现',
+                1 => '尊敬的先生/女士您好，您的申请资料信息填写错误，账户异常，请联系在线客服及时处理！',
+                2 => '尊敬的先生/女士您好，您的申请已被驳回，请您联系平台客服！',
+                3 => '尊敬的先生/女士您好，您的额度提升为：' . $check_user['available_credit'] . '，请及时登录APP查看！',
             ];
-            sendTsms($phone, $sms_data[$type]);
-            $this->success('发送成功!');
+            $result = sendSms($phone, $sms_data[$type]);
+            if ($result) {
+                $this->success('发送成功!');
+            } else {
+                $this->error('发送失败,请重试!');
+            }
         }
     }
 
@@ -426,7 +434,8 @@ class WalletAction extends CommonAction
         $info = $Otherinfo->where(array('user' => $user))->find();
         $info = json_decode($info['infojson']);
         $this->otherinfo = $info;
-        $this->role = getAdminData()['role'];$this->display();
+        $this->role = getAdminData()['role'];
+        $this->display();
     }
 
     //addUser
