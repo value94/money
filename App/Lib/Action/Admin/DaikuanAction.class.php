@@ -565,15 +565,18 @@ class DaikuanAction extends CommonAction
         $id = I("id", 0, 'trim');
         $money = I("money", '', 'trim');
         $months = I("months", '', 'trim');
+
         $money = (float)$money;
         $months = (int)$months;
         $fuwufei = C('cfg_fuwufei');
         $fuwufei = explode(",", $fuwufei);
+
         $rixi = round($fuwufei[$months - 1] / 30, 2);
         $fuwufei = $fuwufei[$months - 1] * $money / 100;
         $huankuan = ceil((float)($money / $months));
         $monthmoney = ceil($huankuan + $fuwufei);
         $data = array('status' => 0, 'msg' => '未知错误');
+
         if (!$id || !$months || !$money) {
             $data['msg'] = "参数错误!";
         } elseif ($money > C('cfg_maxmoney') || $money < C('cfg_minmoney')) {
@@ -584,6 +587,7 @@ class DaikuanAction extends CommonAction
             if (!$count) {
                 $data['msg'] = "订单不存在!";
             } else {
+                dump($id);die();
                 $status = $Order->where(array('id' => $id))->save(array('money' => $money, 'months' => $months, 'monthmoney' => $monthmoney));
                 if (!$status) {
                     $data['msg'] = "操作失败!";
