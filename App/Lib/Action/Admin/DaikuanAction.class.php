@@ -398,7 +398,8 @@ class DaikuanAction extends CommonAction
                         $sms = 1;
                     }
                     //发送短信
-                    if ($sms == 1 && C('auto_send_sms')) {
+
+                    if ($sms == 1 && C('cfg_auto_send_sms')) {
                         $phone = $count['user'];
                         switch ($status) {
                             case 2:

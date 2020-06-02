@@ -2,4 +2,5 @@
 /Temp/
 /.idea/
 /App/Conf/config.db.php
+/App/Conf/config.site.php
 .user.ini
