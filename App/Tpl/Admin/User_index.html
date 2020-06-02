@@ -160,7 +160,7 @@
                 layer.msg("密码长度不能小于6位!");
             } else {
                 $.post(
-                    "{:U(GROUP_NAME.'/Admin/changePass')}",
+                    "{:U(GROUP_NAME.'/User/changePass')}",
                     {id: uid, pass: pass},
                     function (data, state) {
                         if (state != "success") {
@@ -186,7 +186,7 @@
                 layer.msg("手机号长度不能小于11位!");
             } else {
                 $.post(
-                    "/index.php?g=Admin&m=User&a=changeuser",
+                    "{:U(GROUP_NAME.'/User/changeuser')}",
                     {id: uid, pass: pass},
                     function (data, state) {
                         if (state != "success") {

@@ -535,6 +535,23 @@
                         </td>
                     </tr>
                     <tr>
+                        <td align="right">自动发送短信</td>
+                        <td>
+                            <label for="siteclosed_0">
+                                <input type="radio" name="auto_send_sms"
+                                <if condition="C('auto_send_sms') eq 0">checked</if>
+                                >
+                                否
+                            </label>
+                            <label for="siteclosed_1">
+                                <input type="radio" name="auto_send_sms" value="1"
+                                <if condition="C('auto_send_sms') eq 1">checked</if>
+                                >
+                                是
+                            </label> 　　<a style="color:red;">注：启用后,后台审核订单,修改用户密码都会自动发送通知短信。</a>
+                        </td>
+                    </tr>
+                    <tr>
                         <td align="right">通讯KEY</td>
                         <td>
                             <input type="text" name="smskey" value="{:C('cfg_smskey')}" size="80" class="inpMain">

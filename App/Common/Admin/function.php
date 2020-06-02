@@ -161,7 +161,6 @@ function sendSms($phone, $content)
         'action' => ':send',
         'extno' => ''
     ];
-    dump($sms_data);die();
     // 发送post请求
     $result = cUrlGetData('http://175.6.2.121:8080/sms.aspx?action=send', $sms_data);
 

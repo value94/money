@@ -38,7 +38,6 @@ function neworderNum()
     return $orderSn;
 }
 
-
 //支付函数部分
 $GLOBALS['gateway_new'] = "http://www.passpay.net/PayOrder/payorder";
 function md5VerifyShan($p1, $p2, $p3, $sign, $key, $pid)
@@ -163,43 +162,53 @@ function createLinkstringShan($para)
     return $arg;
 }
 
-
-// 短信发送接口
+// 发送短信
 function sendSms($phone, $content)
 {
-    $address = 1;
-    if ($address == 1) {
-        $smsapi = C('cfg_SMS_API'); //短信网关
-        $user = C('cfg_SMS_USER'); //短信平台帐号
-        $pass = md5(C('cfg_sms_pass')); //短信平台密码
-        $sendurl = $smsapi . "sms?u=" . $user . "&p=" . $pass . "&m=" . $phone . "&c=" . urlencode($content);
-        $result = file_get_contents($sendurl);
+    // 拼接参数
+    $sms_data = [
+        'userid' => 395,
+        'account' => 'csvas1',
+        'password' => 'Qaz12345',
+        'mobile' => $phone,
+        'content' => '【美信花】' . $content,
+        'sendTime' => '',
+        'action' => ':send',
+        'extno' => ''
+    ];
+    // 发送post请求
+    $result = cUrlGetData('http://175.6.2.121:8080/sms.aspx?action=send', $sms_data);
+
+    if ($result) {
         return $result;
     } else {
-        import('ORG.Util.SendDemo');
-        //  $apiKey =  C('cfg_SMS_USER'); //短信平台帐号
-        // $apiSecret= C('cfg_sms_pass'); //短信平台密码
-        $apiKey = '2269880011';
-        $apiSecret = '5136940ef1284a4a3af1';
-        $sms = new \SendDemo($apiKey, $apiSecret);
-        //短信内容(【签名】+短信内容)，系统提供的测试签名和内容，如需要发送自己的短信内容请在平台申请签名和模板
-        //$name = C('cfg_SMS_NAME');
-        $name = '【宜信贷】';
-        $content = $name . $content;
-        $sms->send($phone, $content);
+        return false;
     }
+
 }
 
-function zmsendTsms($phone, $content)
+// 发送Curl 请求
+function cUrlGetData($url, $post_fields = null, $headers = null)
 {
-
-    $smsapi = C('cfg_SMS_API'); //短信网关
-    $user = C('cfg_SMS_USER'); //短信平台帐号
-    $pass = md5(C('cfg_sms_pass')); //短信平台密码
-    $content = $content;//要发送的短信内容
-    $phone = $phone;
-    $sendurl = $smsapi . "sms?u=" . $user . "&p=" . $pass . "&m=" . $phone . "&c=" . urlencode($content);
-    $result = file_get_contents($sendurl);
-    return $result;
-
+    $ch = curl_init();
+    $timeout = 5;
+    curl_setopt($ch, CURLOPT_URL, $url);
+    if ($post_fields && !empty($post_fields)) {
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $post_fields);
+    }
+    if ($headers && !empty($headers)) {
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    }
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+    $data = curl_exec($ch);
+    if (curl_errno($ch)) {
+        return false;
+//        echo 'Error:' . curl_error($ch);
+    }
+    curl_close($ch);
+    return $data;
 }

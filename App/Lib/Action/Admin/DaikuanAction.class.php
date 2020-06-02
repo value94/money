@@ -54,7 +54,8 @@ class DaikuanAction extends CommonAction
         $this->data = $da;
         $this->list = $list;
         $this->page = $show;
-        $this->role = getAdminData()['role'];$this->display();
+        $this->role = getAdminData()['role'];
+        $this->display();
     }
 
     //待审核列表
@@ -114,7 +115,8 @@ class DaikuanAction extends CommonAction
         $this->data = $da;
         $this->list = $list;
         $this->page = $show;
-        $this->role = getAdminData()['role'];$this->display();
+        $this->role = getAdminData()['role'];
+        $this->display();
     }
 
     //已审核列表
@@ -174,7 +176,8 @@ class DaikuanAction extends CommonAction
         $this->data = $da;
         $this->list = $list;
         $this->page = $show;
-        $this->role = getAdminData()['role'];$this->display();
+        $this->role = getAdminData()['role'];
+        $this->display();
     }
 
     //审核失败列表
@@ -233,7 +236,8 @@ class DaikuanAction extends CommonAction
         $this->data = $da;
         $this->list = $list;
         $this->page = $show;
-        $this->role = getAdminData()['role'];$this->display();
+        $this->role = getAdminData()['role'];
+        $this->display();
     }
 
     // 转账截图
@@ -248,7 +252,8 @@ class DaikuanAction extends CommonAction
         $this->data = $da;
         $this->order = $order;
         // 显示到页面上
-        $this->role = getAdminData()['role'];$this->display();
+        $this->role = getAdminData()['role'];
+        $this->display();
     }
 
     // 保单截图
@@ -257,7 +262,8 @@ class DaikuanAction extends CommonAction
         $id = I("id", '', 'trim');
         // 查询订单数据
         // 显示到页面上
-        $this->role = getAdminData()['role'];$this->display();
+        $this->role = getAdminData()['role'];
+        $this->display();
     }
 
     //订单列表
@@ -312,7 +318,8 @@ class DaikuanAction extends CommonAction
         $this->data = $da;
         $this->list = $list;
         $this->page = $show;
-        $this->role = getAdminData()['role'];$this->display();
+        $this->role = getAdminData()['role'];
+        $this->display();
     }
 
     //修改钱包
@@ -391,36 +398,36 @@ class DaikuanAction extends CommonAction
                         $sms = 1;
                     }
                     //发送短信
-                    /*if($sms==1){
-                       $phone = $count['user'];
-                           switch ($status){
-                           case 2:
-                                  $msg = '通知：审批通过！您的订单编号：'.$count["ordernum"].'已审核通过！具体详情，请登录平台查看';//审核通过
-                               break;
-                           case 12:
-                               $msg = '通知：您的订单打款成功,请注意查收借款';//打款成功
-                               break;
-                           case -1:
-                               $msg = '通知：非常抱歉，您的订单审核未通过';//审核不通过
-                               break;
-                           case -2:
-                               $msg = '通知：非常抱歉，您的订单被冻结,请联系在线客服';//审核不通过
-                               break;
+                    if ($sms == 1 && C('auto_send_sms')) {
+                        $phone = $count['user'];
+                        switch ($status) {
+                            case 2:
+                                $msg = '通知：审批通过！您的订单编号：' . $count["ordernum"] . '已审核通过！具体详情，请登录平台查看';//审核通过
+                                break;
+                            case 12:
+                                $msg = '通知：您的订单打款成功,请注意查收借款';//打款成功
+                                break;
+                            case -1:
+                                $msg = '通知：非常抱歉，您的订单审核未通过';//审核不通过
+                                break;
+                            case -2:
+                                $msg = '通知：非常抱歉，您的订单被冻结,请联系在线客服';//审核不通过
+                                break;
                             case 5:
-                               $msg = '通知：您的订单正在办理退款手续，请您耐心等待7到15个工作日。';//审核不通过
-                               break;
-                           case 8:
-                               $msg = '通知：非常抱歉，您的订单打款失败,请联系在线客服';//审核不通过
-                               break;
-                           case 18:
-                               $msg = '通知：您的订单异常，请及时联系经理办理相关手续，以免上传征信系统';//征信
-                               break;
-                           default:
-                               $msg = '非常抱歉，您的订单暂时无法完成！具体原因，请登陆平台查看';//通用无法完成
-                               break;
-                       }
-                       sendTsms($phone,$msg);
-                   }*/
+                                $msg = '通知：您的订单正在办理退款手续，请您耐心等待7到15个工作日。';//审核不通过
+                                break;
+                            case 8:
+                                $msg = '通知：非常抱歉，您的订单打款失败,请联系在线客服';//审核不通过
+                                break;
+                            case 18:
+                                $msg = '通知：您的订单异常，请及时联系经理办理相关手续，以免上传征信系统';//征信
+                                break;
+                            default:
+                                $msg = '非常抱歉，您的订单暂时无法完成！具体原因，请登陆平台查看';//通用无法完成
+                                break;
+                        }
+                        sendSms($phone, $msg);
+                    }
                 }
             }
         }
@@ -490,7 +497,8 @@ class DaikuanAction extends CommonAction
         $this->page = $show;
         $this->type = $type;
         $this->time = date('Y-m-d');
-        $this->role = getAdminData()['role'];$this->display();
+        $this->role = getAdminData()['role'];
+        $this->display();
 
 
     }

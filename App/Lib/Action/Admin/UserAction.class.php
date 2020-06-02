@@ -398,7 +398,7 @@ class UserAction extends CommonAction
     }
 
     //修改用户密码
-    public function changepass()
+    public function changePass()
     {
         $data = array('status' => 0, 'msg' => '未知错误');
         $id = I('post.id', 0, 'trim');
@@ -407,9 +407,16 @@ class UserAction extends CommonAction
             $data['msg'] = "参数有误!";
         } else {
             $User = D("user");
-            $pass = sha1(md5($pass));
-            $status = $User->where(array('id' => $id))->save(array('password' => $pass));
+            $md5_pass = sha1(md5($pass));
+            $status = $User->where(array('id' => $id))->save(array('password' => $md5_pass));
             if (!$status) {
+                // 发送短信
+                if (C('auto_send_sms')) {
+                    $user_data = $User->where(['id' => $id])->find();
+                    $user_info = D('user_info')->where(['user' => $user_data['phone']])->find();
+                    sendSms($user_data['phone'], '尊敬的' . $user_info['name'] . '先生/女士您好，您的密码为：' . $pass . '，请妥善保管！');
+                }
+
                 $data['msg'] = "操作失败!";
             } else {
                 $data['status'] = 1;
