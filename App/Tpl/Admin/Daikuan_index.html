@@ -92,14 +92,15 @@
             </td>
             <td align="center">
                 <php>
-                    if($vo['status'] == 9)echo "正在审核";
+                    if($vo['status'] == -2)echo "临时冻结";
+                    if($vo['status'] == -1)echo "审核不通过";
                     if($vo['status'] == 2)echo "审核通过";
                     if($vo['status'] == 3)echo "提现已提交,打款处理中";
                     if($vo['status'] == 4)echo "首期";
-                    if($vo['status'] == -1)echo "审核不通过";
-                    if($vo['status'] == -2)echo "临时冻结";
                     if($vo['status'] == 5)echo "退款中";
                     if($vo['status'] == 7)echo "打款中";
+                    if($vo['status'] == 8)echo "绑卡失败";
+                    if($vo['status'] == 9)echo "正在审核";
                     if($vo['status'] == 11)echo "提现处理";
                     if($vo['status'] == 12)echo "到帐成功";
                     if($vo['status'] == 13)echo "保险";
@@ -107,7 +108,6 @@
                     if($vo['status'] == 15)echo "提现失败";
                     if($vo['status'] == 18)echo "征信不良";
                     if($vo['status'] == 17)echo "核实失败";
-                    if($vo['status'] == 8)echo "绑卡失败";
 
                 </php>
             </td>
