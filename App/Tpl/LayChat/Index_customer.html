@@ -8,8 +8,25 @@
     <script src="__PUBLIC__/Laychat/js/jquery.min.js"></script>
     <script src="__PUBLIC__/Laychat/layui.js"></script>
 </head>
+<style type="text/css">
+    .button {
+        background-color: #3ca4f1;
+        border: none;
+        color: white;
+        padding: 10px 30px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+        width: 50px;
+        border-radius: 7px;
+        margin-left: 10px;
+        margin-top: 10px;
+    }
+</style>
 <body style="background: url(/public/images/irongrip.png) repeat">
-
+<a href="{:U('Home/Index/index')}" class="button">返回</a>
 <script type="text/javascript">
     //localStorage.clear();
     layui.use('layim', function (layim) {
@@ -47,19 +64,47 @@
         //建立WebSocket通讯
         var socket = new WebSocket('ws://{:C(\'cfg_wsip\')}');
 
+        //自定义客服窗口
+        if ({$customer_data? 'true' : 'false'}) {
+            layim.config({
+                brief: true //是否简约模式（默认false，如果只用到在线客服，且不想显示主面板，可以设置 true）
+            }).chat({
+                name: '{$customer_data["username"]}' //名称
+                , type: 'friend' //聊天类型
+                , avatar: '{$customer_data["avatar"]}' //头像
+                , username: '{$customer_data["username"]}'
+                , sign: '{$customer_data["sign"]}'
+                , id: '{$customer_data["id"]}' //定义唯一的id方便你处理信息
+            });
+            layim.getMessage({
+                id: '{$customer_data["id"]}'
+                , type: "friend"
+                , sign: '{$customer_data["sign"]}'
+                , username: '{$customer_data["username"]}'
+                , avatar: '{$customer_data["avatar"]}' //头像
+                , content: '您好,我是客服，很高兴为您服务'
+            });
+
+        }
+
+        var param = '"id":"{$uinfo["id"]}","username":"{$uinfo["username"]}","avatar":"{$uinfo["avatar"]}","sign":"{$uinfo["sign"]}"';
+        var login_data = '{"type":"init",' + param + '}';
+
         //连接成功时触发
         socket.onopen = function () {
             // 登录
-            var param = '"id":"{$uinfo["id"]}","username":"{$uinfo["username"]}","avatar":"{$uinfo["avatar"]}","sign":"{$uinfo["sign"]}"';
-            var login_data = '{"type":"init",' + param + '}';
             socket.send(login_data);
             // console.log(login_data);
             console.log("websocket握手成功!");
+
+
+            // layim.setChatMin(); //收缩聊天面板
         };
+
         //监听收到的消息
         socket.onmessage = function (res) {
             // console.log(res.data);
-            var data = eval("("+res.data+")");
+            var data = eval("(" + res.data + ")");
             switch (data['message_type']) {
                 // 服务端ping客户端
                 case 'ping':
@@ -67,7 +112,7 @@
                     break;
                 // 登录 更新用户列表
                 case 'init':
-                    console.log(data['id']+" 登录成功");
+                    console.log(data['id'] + " 登录成功");
                     // layim.getMessage(data.data); //res.data即你发送消息传递的数据（阅读：监听发送的消息）
                     break;
                 //添加 用户
@@ -84,7 +129,7 @@
                     break;
                 // 检测聊天数据
                 case 'chatMessage':
-                    console.log(data.data);
+                    console.log('chatMessage' + data.data);
                     layim.getMessage(data.data);
                     break;
                 // 离线消息推送
@@ -99,7 +144,7 @@
                 //聊天还有不在线
                 case 'ctUserOutline':
                     console.log('11111');
-                    layer.msg('好友不在线', {'time' : 1000});
+                    layer.msg('好友不在线', {'time': 1000});
                     break;
 
             }
@@ -108,17 +153,18 @@
         //layim建立就绪
         layim.on('ready', function (res) {
             layim.on('sendMessage', function (res) {
-                //console.log(res);
+                console.log('ready' + res);
                 // 发送消息
                 var mine = JSON.stringify(res.mine);
                 var to = JSON.stringify(res.to);
                 var login_data = '{"type":"chatMessage","data":{"mine":' + mine + ', "to":' + to + '}}';
+                console.log(login_data);
                 socket.send(login_data);
-
             });
         });
 
     });
 </script>
+
 </body>
 </html>

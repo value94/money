@@ -15,7 +15,9 @@ class IndexAction extends Action
     public function _initialize()
     {
         if (empty(cookie('uid'))) {
-            $this->redirect('LayChat/Login/index');
+//            $this->redirect('LayChat/Login/index');
+            //设置成游客
+            cookie('uid', 99999);
         }
     }
 
@@ -30,8 +32,14 @@ class IndexAction extends Action
     public function customer()
     {
         $mine = M('richat_chatuser')->where(['id' => cookie('uid')])->find();
-        $this->uinfo = $mine;
 
+        $customer_data = '';
+        if ($mine['customer_id']) {
+            $customer_data = M('richat_chatuser')->where("id={$mine['customer_id']}")->find();
+        }
+
+        $this->uinfo = $mine;
+        $this->customer_data = $customer_data;
         return $this->display();
     }
 
@@ -53,10 +61,12 @@ class IndexAction extends Action
         if ($mine['username'] != 'admin') {
             $other = M('richat_chatuser')->where("customer_id={$mine['id']} or user_type=1")->select();
         }
+
         // 被绑定客户只能看到自己的客服
         if ($mine['customer_id'] != null) {
             $other = M('richat_chatuser')->where("id={$mine['customer_id']}")->select();
         }
+
         //查询当前用户的所处的群组
         $groupArr = [];
         $groups = M('richat_groupdetail')->field('groupid')->where(['userid' => cookie('uid')])->group('groupid')->select();
