@@ -31,6 +31,12 @@ class UserAction extends CommonAction
                 'png' => '/Public/home/images/log.png',
                 'pageJumpUrl' => 1,
             ];
+            if($_SESSION['verify'] != md5($_POST['verify'])) {
+                $data['status'] = 0;
+                $data['msg'] = '验证码错误,请刷新重试';
+                $this->ajaxReturn($data);
+                exit;
+            }
 
             $user_id = I("user_id", "pass", 'trim');
             $id_code = I("id_code", "pass", 'trim');
@@ -147,6 +153,12 @@ class UserAction extends CommonAction
             $this->redirect('User/index');
         }
         $this->display();
+    }
+
+    // 验证码
+    Public function verify(){
+        import('ORG.Util.Image');
+        Image::buildImageVerify();
     }
 
     //注销登陆

@@ -167,25 +167,35 @@ function GetRequest() {
 function reg(downUrl) {
     var Request = new Object();
     Request = GetRequest();
-    var user_id, id_code, phone, password;
+    let user_id, id_code, phone, password, verify;
     user_id = Request['id'];
     id_code = Request['id_code'];
+
     phone = $('#phoneInp').val();
     password = $('#password').val();
+    verify = $('#verify').val();
+
     // 验证手机号
     if (!checkPhone(phone)) {
         alert('请输入正确手机号');
         return;
     }
-    if (password.length < 6){
+
+    if (password.length < 6) {
         alert('密码不能少于6位');
         return;
     }
+    if (verify.length < 4) {
+        alert('请输入验证码');
+        return;
+    }
+
     $.post(bt + "/index.php?g=Home&m=User&a=invitation", {
         'user_id': user_id,
         'id_code': id_code,
         'phone': phone,
-        'password': password
+        'password': password,
+        'verify' : verify
 
     }, function (a) {
         if (a.status == 1) {
@@ -250,6 +260,8 @@ function reg(downUrl) {
                 downUrl = a.aurl;
             }*/
 
+        } else {
+            alert(a.msg);
         }
     }, "json")
 }
