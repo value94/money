@@ -4,3 +4,8 @@
 /App/Conf/config.db.php
 /App/Conf/config.site.php
 .user.ini
+database=all-email
+username=root
+password=db811516
+hostport=3306
+auto_timestamp=datetime

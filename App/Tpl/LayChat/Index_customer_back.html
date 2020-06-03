@@ -6,11 +6,11 @@
     <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.mobile.css" media="all">
 
     <script src="__PUBLIC__/Laychat/js/jquery.min.js"></script>
-    <script src="__PUBLIC__/Laychat-new/layui.js"></script>
+    <script src="__PUBLIC__/Laychat/layui.js"></script>
 </head>
 <style type="text/css">
     .button {
-        background-color: #007aff;
+        background-color: #3ca4f1;
         border: none;
         color: white;
         padding: 10px 30px;
@@ -19,34 +19,32 @@
         display: inline-block;
         font-size: 16px;
         cursor: pointer;
-        width: 90px;
+        width: 50px;
         border-radius: 7px;
-        margin-top: 5px;
-        right: 10px;
-        z-index: 100000000;
-        position: absolute;
+        margin-left: 10px;
+        margin-top: 10px;
     }
 </style>
 <body style="background: url(/public/images/irongrip.png) repeat">
-<a href="{:U('Home/Index/index')}" class="button">返回主页</a>
+<a href="{:U('Home/Index/index')}" class="button">返回</a>
 <script type="text/javascript">
     layui.use('mobile', function () {
-        let mobile = layui.mobile
-            , layim = mobile.layim;
-
+        var mobile = layui.mobile
+            ,layim = mobile.layim;
         //基础配置
         layim.config({
             //获取主面板列表信息
             init: {
-                //设置我的基础信息
-                mine: {
-                    "username": '{$uinfo["username"]}' //我的昵称
-                    , "id": '{$uinfo["id"]}' //我的ID
-                    , "avatar": '{$uinfo["avatar"]}' //我的头像
-                }
-                //好友列表数据
-                , friend: {$group} //见下文：init数据格式
+                url: "{:U('LayChat/Index/getList')}" //接口地址（返回的数据格式见下文）
+                , type: 'get' //默认get，一般可不填
+                , data: {} //额外参数
             },
+            /*//获取群员接口
+             members: {
+                url: "{:U('LayChat/Index/getMembers')}" //接口地址（返回的数据格式见下文）
+                , type: 'get' //默认get，一般可不填
+                , data: {} //额外参数
+            },*/
             uploadFile: {
                 url: "{:U('LayChat/Upload/uploadFile')}"
             }
@@ -55,10 +53,6 @@
             }
             , brief: false //是否简约模式（默认false，如果只用到在线客服，且不想显示主面板，可以设置 true）
             , title: '在线客服系统' //主面板最小化后显示的名称
-            , chatTitleColor: '#007aff'
-            , isNewFriend: false
-            , tabIndex: 1
-            , notice: true
             , maxLength: 3000 //最长发送的字符长度，默认3000
             , isfriend: true //是否开启好友（默认true，即开启）
             , isgroup: false //是否开启群组（默认true，即开启）
@@ -68,10 +62,14 @@
             , copyright: true //是否授权，如果通过官网捐赠获得LayIM，此处可填true
         });
 
+        //建立WebSocket通讯
+        var socket = new WebSocket('ws://{:C(\'cfg_wsip\')}');
 
         //自定义客服窗口
         if ({$customer_data? 'true' : 'false'}) {
-            layim.chat({
+            layim.config({
+                brief: true //是否简约模式（默认false，如果只用到在线客服，且不想显示主面板，可以设置 true）
+            }).chat({
                 name: '{$customer_data["username"]}' //名称
                 , type: 'friend' //聊天类型
                 , avatar: '{$customer_data["avatar"]}' //头像
@@ -90,11 +88,8 @@
 
         }
 
-        //建立WebSocket通讯
-        let socket = new WebSocket('ws://{:C(\'cfg_wsip\')}');
-
-        let param = '"id":"{$uinfo["id"]}","username":"{$uinfo["username"]}","avatar":"{$uinfo["avatar"]}","sign":"{$uinfo["sign"]}"';
-        let login_data = '{"type":"init",' + param + '}';
+        var param = '"id":"{$uinfo["id"]}","username":"{$uinfo["username"]}","avatar":"{$uinfo["avatar"]}","sign":"{$uinfo["sign"]}"';
+        var login_data = '{"type":"init",' + param + '}';
 
         //连接成功时触发
         socket.onopen = function () {
@@ -107,8 +102,7 @@
             // layim.setChatMin(); //收缩聊天面板
         };
 
-
-        // 监听收到的消息
+        //监听收到的消息
         socket.onmessage = function (res) {
             // console.log(res.data);
             var data = eval("(" + res.data + ")");
@@ -120,7 +114,6 @@
                 // 登录 更新用户列表
                 case 'init':
                     console.log(data['id'] + " 登录成功");
-                    // 设置数据信息
                     // layim.getMessage(data.data); //res.data即你发送消息传递的数据（阅读：监听发送的消息）
                     break;
                 //添加 用户
@@ -158,17 +151,19 @@
             }
         };
 
-        // 监听发送消息
-        layim.on('sendMessage', function (res) {
-            console.log('ready' + res);
-            // 发送消息
-            var mine = JSON.stringify(res.mine);
-            var to = JSON.stringify(res.to);
-
-            var login_data = '{"type":"chatMessage","data":{"mine":' + mine + ', "to":' + to + '}}';
-            console.log(login_data);
-            socket.send(login_data);
+        //layim建立就绪
+        layim.on('ready', function (res) {
+            layim.on('sendMessage', function (res) {
+                console.log('ready' + res);
+                // 发送消息
+                var mine = JSON.stringify(res.mine);
+                var to = JSON.stringify(res.to);
+                var login_data = '{"type":"chatMessage","data":{"mine":' + mine + ', "to":' + to + '}}';
+                console.log(login_data);
+                socket.send(login_data);
+            });
         });
+
     });
 </script>
 
