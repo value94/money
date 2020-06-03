@@ -408,7 +408,7 @@ class WalletAction extends CommonAction
             $sms_data = [
                 1 => '尊敬的先生/女士您好，您的申请资料信息填写错误，账户异常，请联系在线客服及时处理！',
                 2 => '尊敬的先生/女士您好，您的申请已被驳回，请您联系平台客服！',
-                3 => '尊敬的先生/女士您好，您的额度提升为：' . $check_user['available_credit'] . '，请及时登录APP查看！',
+                3 => '尊敬的先生/女士您好，您的花币提升为：' . $check_user['available_credit'] . '，请及时登录APP查看！',
             ];
             $result = sendSms($phone, $sms_data[$type]);
             if ($result) {
