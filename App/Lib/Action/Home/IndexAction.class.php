@@ -80,6 +80,10 @@ class IndexAction extends CommonAction
                 $status = 0;
             }
         }
+        // 获取用户剩余还款数据
+        $success_order = $order_model->where(array('user' => $this->getLoginUser(), 'status' => 12))->order('id desc')->find();
+
+        $this->assign('left_money', $success_order['months'] * $success_order['monthmoney']);
         $this->assign('moneys', $user_money);
         $this->assign('status', $status);
         $this->display();

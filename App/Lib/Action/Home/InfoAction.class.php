@@ -88,7 +88,7 @@ class InfoAction extends CommonAction
         // 查询是否有审核/成功订单
         $status = D("order")->where([
             'user' => $this->getLoginUser(),
-            'status' => ['in', [-2, 2, 3, 4, 5, 7, 8, 9, 11, 12, 13, 14, 15, 18, 17]]
+            'status' => ['in', [-2, 2, 3, 4, 5, 7, 8, 11, 12, 13, 14, 15, 18, 17]]
         ])->find();
         if ($status) {
             return true;
