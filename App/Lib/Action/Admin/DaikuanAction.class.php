@@ -586,7 +586,7 @@ class DaikuanAction extends CommonAction
             if (!$count) {
                 $data['msg'] = "订单不存在!";
             } else {
-                dump($id);die();
+//                dump($id);die();
                 $status = $Order->where(array('id' => $id))->save(array('money' => $money, 'months' => $months, 'monthmoney' => $monthmoney));
                 if (!$status) {
                     $data['msg'] = "操作失败!";
