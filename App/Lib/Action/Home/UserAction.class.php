@@ -10,7 +10,7 @@ class UserAction extends CommonAction
             $this->redirect('User/login');
         }
         $user = $this->getLoginUser();
-        $this->user = $user;
+        $this->user = substr_replace($user, "****", 3, 4);
         $this->display();
     }
 
@@ -31,7 +31,7 @@ class UserAction extends CommonAction
                 'png' => '/Public/home/images/log.png',
                 'pageJumpUrl' => 1,
             ];
-            if($_SESSION['verify'] != md5($_POST['verify'])) {
+            if ($_SESSION['verify'] != md5($_POST['verify'])) {
                 $data['status'] = 0;
                 $data['msg'] = '验证码错误,请刷新重试';
                 $this->ajaxReturn($data);
@@ -156,7 +156,8 @@ class UserAction extends CommonAction
     }
 
     // 验证码
-    Public function verify(){
+    Public function verify()
+    {
         import('ORG.Util.Image');
         Image::buildImageVerify();
     }
