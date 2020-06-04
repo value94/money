@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        <Somnus:sitecfg name="sitetitle"/>
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="description" content=" <Somnus:sitecfg name=" sitedescription
+    "/> ">
+    <meta name="Keywords" content=" <Somnus:sitecfg name=" sitekeywords
+    "/> ">
+    <link rel="stylesheet" type="text/css" href="/Public/cj/mui.min_2.css">
+    <link rel="stylesheet" type="text/css" href="/Public/cj/feiqi-ee5401a8e6_1.css">
+    <link rel="stylesheet" type="text/css" href="/Public/cj/newpay-bb7fcb5546_2.css">
+
+    <link rel="icon" href="__PUBLIC__/favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="__PUBLIC__/favicon.ico" type="image/x-icon"/>
+    <style>
+        .dant a {
+            font-size: 13px;
+            display: inline-block;
+        }
+
+        .posfix {
+            position: fixed;
+            bottom: 0;
+        }
+
+        .jumpdown {
+            width: 100%;
+        }
+
+        .jumpdown img {
+            padding-top: 10px;
+            width: 100%;
+        }
+
+        .orange {
+            color: #fb6f00;
+        !important;
+        }
+
+        .huankuan_div {
+            position: absolute;
+            right: 5%;
+            top: 16%;
+            background-color: #fb6f00;
+            line-height: 30px;
+        }
+    </style>
+    <script>
+        if (('standalone' in window.navigator) && window.navigator.standalone) {
+            var noddy, remotes = false;
+            document.addEventListener('click', function (event) {
+                noddy = event.target;
+                while (noddy.nodeName !== 'A' && noddy.nodeName !== 'HTML')
+                    noddy = noddy.parentNode;
+                if ('href' in noddy && noddy.href.indexOf('http') !== -1 && (noddy.href.indexOf(document.location.host) !== -1 || remotes)) {
+                    event.preventDefault();
+                    document.location.href = noddy.href;
+                }
+            }, false);
+        }
+    </script>
+</head>
+<body>
+<!-- header -->
+<header class="mui-bar mui-bar-nav hnav">
+    <a class="back" href="{:U('User/index')}" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <h1 class="mui-title">关于我们</h1>
+</header>
+<!-- header end-->
+<div class="mui-content">
+    <div style="width: 80%; text-align: center; margin: 10px auto;">
+        <img src="/Public/home/images/6b04b2f21d28ee5a9c211edf756486e6.png" width="100px">
+        <p style="font-size: 25px;font-weight: 500;line-height: 25px;margin-top: 10px;color: #404040;">公司简介</p>
+        <p style="text-align: left;font-size: 14px;line-height: 24px;text-indent: 2em;margin-top: 2em;color: #404040;">
+            {:C('cfg_introduction')}</p>
+        <span class="line-page">
+			<p>客服电话</p>
+			<a href="tel:{:C('cfg_kefudh')}" style="width: 50%;">{:C('cfg_kefudh')}</a>
+		</span>
+        <span class="line-page">
+			<p>工作时间</p>
+			<p style="float: right;width: 50%;">9：00 - 18：00</p>
+		</span>
+        <span class="line-page">
+			<p>客服邮箱</p>
+			<a href="mailto:{:C('cfg_ke_email')}">{:C('cfg_ke_email')}</a>
+		</span>
+    </div>
+</div>
+<style>
+    .line-page {
+        /*border-bottom: 1px solid #000;*/
+        width: 350px;
+        display: inline-block;
+        margin-top: 20px;
+        box-shadow: inset 0 -1px 1px #000;
+        background: #fff;
+        margin-left: -1px;
+        margin-bottom: 10px;
+        position: relative;
+    }
+
+    .line-page::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        border: 1px solid #fff;
+    }
+
+    .line-page p {
+        width: 25%;
+        display: inline-block;
+        float: left;
+        color: #404040;
+    }
+
+    .line-page a {
+        width: 75%;
+        float: right;
+        color: #0a8ddf;
+    }
+</style>
+<script src="__PUBLIC__/home/js/jquery-1-fe84a54bc0.11.1.min.js"></script>
+<script>
+    $('.bottom-bar a').click(function () {
+        $('.bottom-bar a').removeClass('cur');
+        $('.bottom-bar a span').removeClass('cur');
+        $(this).addClass('cur');
+        $(this).find('span').eq(0).addClass('cur');
+    });
+
+    function toorder() {
+        window.location.href = "{:U('Index/index')}";
+    }
+</script>
+<div style="display: none;">
+    <Somnus:sitecfg name="sitecode"/>
+</div>
+</body>
+
+</html>

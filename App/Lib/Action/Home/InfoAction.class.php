@@ -57,6 +57,11 @@ class InfoAction extends CommonAction
         $this->display();
     }
 
+    public function aboutUs()
+    {
+        $this->display();
+    }
+
     //身份信息
     //姓名、身份证号码、住址
     public function baseinfo()
