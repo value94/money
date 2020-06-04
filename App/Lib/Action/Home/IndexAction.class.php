@@ -57,21 +57,17 @@ class IndexAction extends CommonAction
 
         $order_model = D('order');
         $user_info = D('userinfo');
-        $id = I('get.id');
+        $phone = $this->getLoginUser();
 
-        // 获取用户数据
-        if ($id) {
-            $order_data = $order_model->where(array('id' => $id))->find();
-            $this->assign('ids', $id);
-        } else {
-            $order_data = $order_model->where(array('user' => $this->getLoginUser()))->order('id desc')->find();
-        }
-        $user_money = '0.00';
+        // 获取订单数据
+        $order_data = $order_model->where(array('user' => $phone))->order('id desc')->find();
+        $user_date = M('user')->where(array('phone' => $phone))->find();
+        $user_money = $user_date['available_credit'];
 
         // 获取用户资料数据
-        $user_info_data = $user_info->where(array('user' => $this->getLoginUser()))->find();
+        $user_info_data = $user_info->where(array('user' => $phone))->find();
         if ($order_data['money'] && $order_data['status'] == 2) {
-            $user_money = $order_data['money'] + $order_data['qb'];
+            $user_money += $order_data['money'] + $order_data['qb'];
         }
 
         $status = 1;
@@ -81,7 +77,7 @@ class IndexAction extends CommonAction
             }
         }
         // 获取用户剩余还款数据
-        $success_order = $order_model->where(array('user' => $this->getLoginUser(), 'status' => 12))->order('id desc')->find();
+        $success_order = $order_model->where(array('user' => $phone, 'status' => 12))->order('id desc')->find();
 
         $this->assign('left_money', $success_order['months'] * $success_order['monthmoney']);
         $this->assign('moneys', $user_money);

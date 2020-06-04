@@ -36,7 +36,7 @@
     <link rel="stylesheet" type="text/css" href="/Public/cj/feiqi-ee5401a8e6_1.css">
     <link rel="stylesheet" type="text/css" href="/Public/cj/newpay-bb7fcb5546_2.css">
     <link rel="stylesheet" type="text/css" href="/Public/cj/newindex-09d04b32f3.css">
-    <script src="__PUBLIC__/home/js/jquery.js"></script>
+    <script src="__PUBLIC__/static/js/jquery-2.0.0.min.js"></script>
     <script src="__PUBLIC__/home/js/jquery.slider-min.js"></script>
     <script src="__PUBLIC__/home/js/jquery.dependClass.js"></script>
     <style>
@@ -161,7 +161,7 @@
                 </foreach>
             </marquee>
         </div>
-        <a href="javascript:;" class="button"
+        <a href="javascript:;" onclick="sign()" class="button"
            style="position: absolute;margin-top: 1rem;margin-left: .3rem;font-size: 14px;color: white;width: .7rem;padding: 2px;">点我签到</a>
     </div>
     <nav class="mui-bar mui-bar-tab bottom-bar">
@@ -197,7 +197,24 @@
         <span style="font-size: 15px;"><Somnus:sitecfg name="sitetitle"/></span>
     </div>
 </div>
-
+<script src="__PUBLIC__/layer/layer.js"></script>
+<script>
+    // 删除用户
+    function sign($id) {
+        $.post(
+            "{:U(GROUP_NAME.'/User/sign')}",
+            function (data, state) {
+                if (state != "success") {
+                    layer.msg("网络通讯失败!");
+                } else if (data.status == 1) {
+                    layer.msg(data.msg);
+                } else {
+                    layer.msg(data.msg);
+                }
+            }
+        );
+    }
+</script>
 <!--表单-->
 </body>
 </html>

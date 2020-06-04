@@ -155,6 +155,34 @@ class UserAction extends CommonAction
         $this->display();
     }
 
+    public function sign()
+    {
+        // 查询用户数据
+        if (IS_POST) {
+            $phone = $this->getLoginUser();
+            $data = array('status' => 0, 'msg' => '未知错误');
+
+            $user_model = D("user");
+            $user_data = $user_model->where(['phone' => $phone])->find();
+            if ($user_data['sign_time'] == null || $user_data['sign_time'] - time() > 3600 * 24) {
+                // 增加钱包余额
+                $money = rand(500, 1000);
+                $user_model->where(['phone' => $phone])->setInc('available_credit', $money);
+                $result = $user_model->where(['phone' => $phone])->save(['sign_time' => time()]);
+                if ($result) {
+                    $data = [
+                        'status' => 1,
+                        'msg' => '恭喜您获取奖励，额度提升 ￥' . $money . '元'
+                    ];
+                }
+            } else {
+                $data['msg'] = '24小时内只能签到一次';
+            }
+            $this->ajaxReturn($data);
+
+        }
+    }
+
     // 验证码
     Public function verify()
     {
