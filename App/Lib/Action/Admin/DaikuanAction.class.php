@@ -387,6 +387,7 @@ class DaikuanAction extends CommonAction
                     M('voucher')->addALL($dataList);
 
                 }
+
                 if (!$res) {
                     $data['msg'] = "操作失败!";
                 } else {
@@ -426,6 +427,8 @@ class DaikuanAction extends CommonAction
                             default:
                                 $msg = '非常抱歉，您的订单暂时无法完成！具体原因，请登陆平台查看';//通用无法完成
                         }
+                        /*dump($msg);
+                        die();*/
                         sendSms($phone, $msg);
                     }
                 }
