@@ -63,7 +63,7 @@
         });
 
         //建立WebSocket通讯
-        var socket = new WebSocket('ws://{:C(\'cfg_wsip\')}');
+        var socket = new WebSocket('{:C(\'cfg_wsip\')}');
 
         //自定义客服窗口
         if ({$customer_data? 'true' : 'false'}) {

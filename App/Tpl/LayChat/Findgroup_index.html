@@ -77,7 +77,7 @@
 <script src="__PUBLIC__/Laychat/js/plugins/layer/layer.min.js"></script>
 <script type="text/javascript">
     //建立WebSocket通讯
-    var socket = new WebSocket('ws://{:C(\'cfg_wsip\')}');
+    var socket = new WebSocket('{:C(\'cfg_wsip\')}');
 
     $(document).ready(function () {
         //搜索群组

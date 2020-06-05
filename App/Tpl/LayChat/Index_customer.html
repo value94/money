@@ -90,7 +90,7 @@
         }
 
         //建立WebSocket通讯
-        let socket = new WebSocket('ws://{:C(\'cfg_wsip\')}');
+        let socket = new WebSocket('{:C(\'cfg_wsip\')}');
 
         let param = '"id":"{$uinfo["id"]}","username":"{$uinfo["username"]}","avatar":"{$uinfo["avatar"]}","sign":"{$uinfo["sign"]}"';
         let login_data = '{"type":"init",' + param + '}';
