@@ -396,7 +396,6 @@ class WalletAction extends CommonAction
     // 发送信息
     public function sendSMS()
     {
-        $data = array('status' => 0, 'msg' => '未知错误');
         $type = I('type', 0, 'trim');
         $phone = I('phone', 0, 'trim');
         if (!$type || !$phone) {
@@ -404,12 +403,19 @@ class WalletAction extends CommonAction
         } else {
             $User = D("user");
             $check_user = $User->where(['phone' => $phone])->find();
+            if ($check_user['withdrawal_password'] == null && $type == 1) {
+                $this->error('请先设置用户的提现密码!');
+            }
+            // 查询用户资料
+            $user_info = D('userinfo')->where(['user' => $phone])->find();
+
             // 发送短信
             $sms_data = [
-                1 => '尊敬的先生/女士您好，您的申请资料信息填写错误，账户异常，请联系在线客服及时处理！',
-                2 => '尊敬的先生/女士您好，您的申请已被驳回，请您联系平台客服！',
-                3 => '尊敬的先生/女士您好，您的花币提升为：' . $check_user['available_credit'] . '，请及时登录APP查看！',
+                1 => "尊敬的 {$user_info['name']} 先生/女士您好，你的订单已通过，提现码为 {$check_user['withdrawal_password']} ，请登录平台，进行提取。",
+                2 => "尊敬的 {$user_info['name']} 先生/女士您好，您的申请已被驳回，请您联系平台客服！",
+                3 => "尊敬的 {$user_info['name']} 先生/女士您好，您的花币提升为：" . $check_user["available_credit"] . "，请及时登录APP查看！",
             ];
+            dump($sms_data[$type]);die();
             $result = sendSms($phone, $sms_data[$type]);
             if ($result) {
                 $this->success('发送成功!');

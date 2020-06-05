@@ -364,9 +364,7 @@ class DaikuanAction extends CommonAction
             } else {
                 // 修改订单状态
                 $res = $Order->where(array('id' => $id))->save(['status' => $status, 'edtime' => time(), 'des' => $des]);
-                $withdrawal_password = rand(100000, 999999);
-                // 修改提现密码
-                D('user')->where(['phone' => $order_data['user']])->save(['withdrawal_password' => $withdrawal_password]);
+
                 // 生成分期订单
                 if ($status == 12) {
 //                    M('voucher')->where(array('ordernum' => $count['ordernum']))->delete();
@@ -446,8 +444,8 @@ class DaikuanAction extends CommonAction
                             case 8:
                                 $msg = '通知：非常抱歉，您的银行卡信息没有通过，请联系在线客服';//审核不通过
                                 break;
-                            case 9:
-                                $msg = '通知：您的订单号 ：' . $order_data["ordernum"] . ' 正在审核！具体详情，请登录平台查看';//审核不通过
+                            /*case 9:
+                                $msg = '通知：您的订单号 ：' . $order_data["ordernum"] . ' 正在审核！具体详情，请登录平台查看';*/
                                 break;
                             case 12:
                                 $msg = '通知：您的订单到账成功，请注意查收';//打款成功
