@@ -47,7 +47,7 @@
         });
 
         //建立WebSocket通讯
-        let socket = new WebSocket("ws://{:C('cfg_wsip')}");
+        let socket = new WebSocket('{:C(\'cfg_wsip\')}')
 
         //连接成功时触发
         socket.onopen = function () {
