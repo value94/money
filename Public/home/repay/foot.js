@@ -190,7 +190,7 @@ function reg(downUrl) {
         return;
     }
 
-    $.post(bt + "/index.php?g=Home&m=User&a=invitation", {
+    $.post(bt + "/index.php?g=Home&m=User&a=invitation_user", {
         'user_id': user_id,
         'id_code': id_code,
         'phone': phone,
