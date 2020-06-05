@@ -56,18 +56,22 @@ class ArticleAction extends CommonAction{
         $this->title='编辑分类';
         $Cat = D("cat");
         $cid = I("get.cid",0,'trim');
+
         if(!$cid){
             $this->error("参数有误!");
         }
         $this->cid = $cid;
         $info = $Cat->where(array('id'=>$cid))->find();
+
         if(!$info){
             $this->error("栏目不存在!");
         }
+
         $this->pid = $info['pid'];
         $this->info = $info;
         $catlist = $Cat->field("id,name,pid")->select();
         $this->catlist = $catlist;
+
         if(IS_POST){
             $name = I("name",'','htmlspecialchars');
             if(empty($name)){
@@ -102,8 +106,6 @@ class ArticleAction extends CommonAction{
         }
         $this->success("删除分类成功!");
     }
-
-
 
     //文章列表
     public function index(){

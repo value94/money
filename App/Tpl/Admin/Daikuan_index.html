@@ -123,7 +123,8 @@
             </td>
 
             <td align="center">
-                <a href="javascript:changestatus('{$vo.ordernum}','{$vo.id}');">修改订单状态</a> |
+                <a href="javascript:changestatus('{$vo.ordernum}','{$vo.id}','{$vo.money}','{$vo.months}');">修改订单状态</a>
+                |
                 <a href="javascript:showbank('{$vo.bank}','{$vo.banknum}');">查看打款信息</a> |
                 <a href="{:U(GROUP_NAME.'/User/userinfo',array('user' => $vo['user']))}">查看资料</a> |
                 <a href="javascript:del('{$vo.ordernum}','{:U(GROUP_NAME.'/Daikuan/del',array('id'=>$vo['id']))}');">删除订单</a>
@@ -216,13 +217,15 @@
         );
     }
 
-    function changestatus(ordernum, oid) {
+    function changestatus(ordernum, oid, money, months) {
         $("#changestatus_span").html(ordernum);
         $("#orderid").val(oid);
+        $("#money").val(money);
+        $("#months").val(months);
         layer.open({
             type: 1,
             skin: 'layui-layer-lan', //加上边框
-            area: ['580px', '240px'], //宽高
+            area: ['580px', '300px'], //宽高
             title: '修改状态',
             content: $("#changestatus_div")
         });
@@ -273,6 +276,9 @@
         var id = $("#orderid").val();
         var msg = '确定要变更订单状态吗?';
         var status = $('input:radio[name="status"]:checked').val();
+        let money = $("#money").val();
+        let months = $("#months").val();
+        let des = $("#des").val();
         if (status == 11) {
             msg = '变更为提现处理时,客户前台需要输入授权码进入提现阶段!';
         }
@@ -286,7 +292,7 @@
                 function () {
                     $.post(
                         "{:U(GROUP_NAME.'/Daikuan/changestatus')}",
-                        {id: id, status: status},
+                        {id: id, status: status, months: months, money: money, des: des},
                         function (data, state) {
                             if (state != "success") {
                                 layer.msg("请求数据失败!");
@@ -446,6 +452,7 @@
         );
     }
 </script>
+<!--上传凭证截图-->
 <div style="display: none;" id="yzpz_div">
     <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
         <tr>
@@ -474,6 +481,7 @@
         </tr>
     </table>
 </div>
+<!--生成借款订单-->
 <div style="display: none;" id="changemoney_div">
     <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
         <tr>
@@ -541,8 +549,7 @@
         </tr>
     </table>
 </div>
-<!-- //银行卡号 -->
-
+<!--订单状态-->
 <div style="display: none;" id="changestatus_div">
     <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
         <tr>
@@ -550,6 +557,22 @@
             <td>
                 <span id="changestatus_span"></span>
                 <input type="hidden" id="orderid" value=""/>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">借款金额</td>
+            <td>
+                <label>
+                    <input type="text" id="money" name="money2" value="">元
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">借款期限</td>
+            <td>
+                <label>
+                    <input type="text" id="months" name="months" value="">个月
+                </label>
             </td>
         </tr>
         <tr>
@@ -563,9 +586,7 @@
                     <input type="radio" name="status" value="-1" onchange="hiddenOrShow(this)">
                     审核不通过
                 </label>
-
                 <br/>
-
                 <label style="color: red;">
                     <input type="radio" name="status" value="-2" onchange="hiddenOrShow(this)">
                     冻结
@@ -578,19 +599,21 @@
                     <input type="radio" name="status" value="15" onchange="hiddenOrShow(this)">
                     提现失败
                 </label>
-
-
                 <label style="color: red;">
                     <input type="radio" name="status" value="12" onchange="hiddenOrShow(this)">
                     到帐成功
                 </label>
-
-
                 <label style="color: red;">
                     <input type="radio" name="status" value="8" onchange="hiddenOrShow(this)">
                     绑卡失败
                 </label>
-
+            </td>
+        </tr>
+        <tr>
+            <td width="100" align="right">状态描述</td>
+            <td>
+                <span id="des_span"></span>
+                <input type="text" id="des" value=""/>
             </td>
         </tr>
         <tr>
@@ -601,6 +624,7 @@
         </tr>
     </table>
 </div>
+<!--提现密码-->
 <div style="display: none;" id="foward_div">
     <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
         <tr>

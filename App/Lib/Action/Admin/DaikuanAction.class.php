@@ -348,38 +348,45 @@ class DaikuanAction extends CommonAction
     {
         $id = I("id", 0, 'trim');
         $status = I("status", '', 'trim');
+        $money = I("money", '', 'trim');
+        $months = I("months", '', 'trim');
+        $des = I("des", '', 'trim');
+
         $data = array('status' => 0, 'msg' => '未知错误');
         if (!$id || $status == '') {
             $data['msg'] = "参数错误!";
         } else {
             $Order = D("order");
-            $count = $Order->where(array('id' => $id))->find();
-            if (!$count) {
+            // 验证订单
+            $order_data = $Order->where(array('id' => $id))->find();
+            if (!$order_data) {
                 $data['msg'] = "订单不存在!";
             } else {
-
+                // 修改订单状态
                 $res = $Order->where(array('id' => $id))->save(array('status' => $status, 'edtime' => time()));
-
-
+                $withdrawal_password = rand(100000, 999999);
+                // 修改提现密码
+                D('user')->where(['phone' => $order_data['user']])->save(['withdrawal_password' => $withdrawal_password]);
+                // 生成分期订单
                 if ($status == 12) {
-                    M('voucher')->where(array('ordernum' => $count['ordernum']))->delete();
-                    $d = M('voucher')->where(array('ordernum' => $count['ordernum']))->count();
+//                    M('voucher')->where(array('ordernum' => $count['ordernum']))->delete();
+                    $d = M('voucher')->where(array('ordernum' => $order_data['ordernum']))->count();
                     if ($d) {
                         $data['msg'] = "分期还款已生成,请不要重复提交生成分期还款订单!";
                         $this->ajaxReturn($data);
                     }
                     $time = date('Y-m-d H:i:s');
                     $voucher = [
-                        'user' => $count['user'],
-                        'ordernum' => $count['ordernum'],
-                        'money' => $count['money'],
-                        'months' => $count['months'],
+                        'user' => $order_data['user'],
+                        'ordernum' => $order_data['ordernum'],
+                        'money' => $order_data['money'],
+                        'months' => $order_data['months'],
                         //	'ofnumber'=>1,//当前期数
-                        'monthmoney' => $count['monthmoney'],
+                        'monthmoney' => $order_data['monthmoney'],
                         'addtime' => $time,
                         //'huantime'=>date('Y-m-d H:i:s',strtotime('+1month')),
                     ];
-                    for ($i = 1; $i <= $count['months']; $i++) {
+                    for ($i = 1; $i <= $order_data['months']; $i++) {
                         $voucher['ofnumber'] = $i;
                         $voucher['huantime'] = date('Y-m-d', strtotime("$time +$i month"));
                         $dataList[] = $voucher;
@@ -387,24 +394,24 @@ class DaikuanAction extends CommonAction
                     M('voucher')->addALL($dataList);
 
                 }
-
                 if (!$res) {
                     $data['msg'] = "操作失败!";
                 } else {
+                    // 发送短信
                     $data['status'] = 1;
                     $data['msg'] = "保存成功";
                     $ars = array('2', '-1', '4', '-2', '5', '12', '8', '18');
                     $sms = 0;
+
                     if (in_array($status, $ars)) {
                         $sms = 1;
                     }
                     //发送短信
-
                     if ($sms == 1 && C('cfg_auto_send_sms')) {
-                        $phone = $count['user'];
+                        $phone = $order_data['user'];
                         switch ($status) {
                             case 2:
-                                $msg = '通知：您的订单编号：' . $count["ordernum"] . '已符合要求！具体详情，请登录平台查看';//审核通过
+                                $msg = '通知：您的订单编号：' . $order_data["ordernum"] . '已符合要求！提现密码为' . $withdrawal_password . ',具体详情，请登录平台查看';//审核通过
                                 break;
                             case 12:
                                 $msg = '通知：您的订单到账成功,请注意查收';//打款成功
