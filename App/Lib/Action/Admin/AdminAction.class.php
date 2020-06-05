@@ -293,7 +293,7 @@ class AdminAction extends CommonAction
         $admin_data = getAdminData();
         C('LAYOUT_ON', false);
         // 生成链接地址
-        $url = U('Home/User/invitation', [
+        $url = U('Home/User/invitation_user', [
             'id' => $admin_data['id'],
             'id_code' => $admin_data['id_code']
         ], true, false, true);
