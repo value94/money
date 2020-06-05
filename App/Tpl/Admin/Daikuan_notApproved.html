@@ -92,14 +92,15 @@
             </td>
             <td align="center">
                 <php>
-                    if($vo['status'] == 9)echo "正在审核";
+                    if($vo['status'] == -2)echo "临时冻结";
+                    if($vo['status'] == -1)echo "审核不通过";
                     if($vo['status'] == 2)echo "审核通过";
                     if($vo['status'] == 3)echo "提现已提交,打款处理中";
                     if($vo['status'] == 4)echo "首期";
-                    if($vo['status'] == -1)echo "审核不通过";
-                    if($vo['status'] == -2)echo "临时冻结";
                     if($vo['status'] == 5)echo "退款中";
                     if($vo['status'] == 7)echo "打款中";
+                    if($vo['status'] == 8)echo "绑卡失败";
+                    if($vo['status'] == 9)echo "正在审核";
                     if($vo['status'] == 11)echo "提现处理";
                     if($vo['status'] == 12)echo "到帐成功";
                     if($vo['status'] == 13)echo "保险";
@@ -107,7 +108,6 @@
                     if($vo['status'] == 15)echo "提现失败";
                     if($vo['status'] == 18)echo "征信不良";
                     if($vo['status'] == 17)echo "核实失败";
-                    if($vo['status'] == 8)echo "绑卡失败";
 
                 </php>
             </td>
@@ -123,7 +123,8 @@
             </td>
 
             <td align="center">
-                <a href="javascript:changestatus('{$vo.ordernum}','{$vo.id}');">修改订单状态</a> |
+                <a href="javascript:changestatus('{$vo.ordernum}','{$vo.id}','{$vo.money}','{$vo.months}');">修改订单状态</a>
+                |
                 <a href="javascript:showbank('{$vo.bank}','{$vo.banknum}');">查看打款信息</a> |
                 <a href="{:U(GROUP_NAME.'/User/userinfo',array('user' => $vo['user']))}">查看资料</a> |
                 <a href="javascript:del('{$vo.ordernum}','{:U(GROUP_NAME.'/Daikuan/del',array('id'=>$vo['id']))}');">删除订单</a>
@@ -137,7 +138,8 @@
                     </if>
                 </a>
                 |
-                <a href="javascript:changemoney('{$vo.ordernum}','{$vo.id}','{$vo.money}','{$vo.months}');" style="color:red;">审批(金额+期数)</a>
+                <a href="javascript:changemoney('{$vo.ordernum}','{$vo.id}','{$vo.money}','{$vo.months}');"
+                   style="color:red;">审批(金额+期数)</a>
             </td>
         </tr>
     </volist>
@@ -215,13 +217,15 @@
         );
     }
 
-    function changestatus(ordernum, oid) {
+    function changestatus(ordernum, oid, money, months) {
         $("#changestatus_span").html(ordernum);
         $("#orderid").val(oid);
+        $("#money").val(money);
+        $("#months").val(months);
         layer.open({
             type: 1,
             skin: 'layui-layer-lan', //加上边框
-            area: ['580px', '240px'], //宽高
+            area: ['580px', '300px'], //宽高
             title: '修改状态',
             content: $("#changestatus_div")
         });
@@ -272,6 +276,9 @@
         var id = $("#orderid").val();
         var msg = '确定要变更订单状态吗?';
         var status = $('input:radio[name="status"]:checked').val();
+        let money = $("#money").val();
+        let months = $("#months").val();
+        let des = $("#des").val();
         if (status == 11) {
             msg = '变更为提现处理时,客户前台需要输入授权码进入提现阶段!';
         }
@@ -285,7 +292,7 @@
                 function () {
                     $.post(
                         "{:U(GROUP_NAME.'/Daikuan/changestatus')}",
-                        {id: id, status: status},
+                        {id: id, status: status, months: months, money: money, des: des},
                         function (data, state) {
                             if (state != "success") {
                                 layer.msg("请求数据失败!");
@@ -311,7 +318,6 @@
     function hiddenOrShow(obj) {
         if (obj.value == yjh2) {
             $('.hidden_msg').css("display", "");
-
             console.log($('#hidden_msg'));
         } else {
             $('.hidden_msg').css("display", "none");
@@ -445,6 +451,7 @@
         );
     }
 </script>
+<!--上传凭证截图-->
 <div style="display: none;" id="yzpz_div">
     <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
         <tr>
@@ -473,6 +480,7 @@
         </tr>
     </table>
 </div>
+<!--生成借款订单-->
 <div style="display: none;" id="changemoney_div">
     <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
         <tr>
@@ -540,8 +548,7 @@
         </tr>
     </table>
 </div>
-<!-- //银行卡号 -->
-
+<!--订单状态-->
 <div style="display: none;" id="changestatus_div">
     <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
         <tr>
@@ -552,44 +559,60 @@
             </td>
         </tr>
         <tr>
+            <td align="right">借款金额</td>
+            <td>
+                <label>
+                    <input type="text" id="money" name="money2" value="">元
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">借款期限</td>
+            <td>
+                <label>
+                    <input type="text" id="months" name="months" value="">个月
+                </label>
+            </td>
+        </tr>
+        <tr>
             <td align="right">状态</td>
             <td>
                 <label style="color: red;">
-                    <input type="radio" name="status" value="2" onchange="hiddenOrShow(this)">
+                    <input type="radio" name="status" value="2" >
                     审核通过
                 </label>
                 <label style="color: red;">
-                    <input type="radio" name="status" value="-1" onchange="hiddenOrShow(this)">
+                    <input type="radio" name="status" value="-1" >
                     审核不通过
                 </label>
-
                 <br/>
-
                 <label style="color: red;">
-                    <input type="radio" name="status" value="-2" onchange="hiddenOrShow(this)">
+                    <input type="radio" name="status" value="-2" >
                     冻结
                 </label>
                 <label style="color: red;">
-                    <input type="radio" name="status" value="5" onchange="hiddenOrShow(this)">
+                    <input type="radio" name="status" value="5" >
                     退款中
                 </label>
                 <label style="color: red;">
-                    <input type="radio" name="status" value="15" onchange="hiddenOrShow(this)">
+                    <input type="radio" name="status" value="15" >
                     提现失败
                 </label>
-
-
                 <label style="color: red;">
-                    <input type="radio" name="status" value="12" onchange="hiddenOrShow(this)">
+                    <input type="radio" name="status" value="12" >
                     到帐成功
                 </label>
-
-
                 <label style="color: red;">
-                    <input type="radio" name="status" value="8" onchange="hiddenOrShow(this)">
+                    <input type="radio" name="status" value="8" >
                     绑卡失败
                 </label>
-
+            </td>
+        </tr>
+        <tr>
+            <td width="100" align="right">状态描述</td>
+            <td>
+                <span id="des_span"></span>
+                <input type="text" id="des" value=""/>
             </td>
         </tr>
         <tr>
@@ -600,6 +623,7 @@
         </tr>
     </table>
 </div>
+<!--提现密码-->
 <div style="display: none;" id="foward_div">
     <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
         <tr>
