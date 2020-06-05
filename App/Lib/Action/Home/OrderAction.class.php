@@ -463,8 +463,6 @@ class OrderAction extends CommonAction
     public function foward()
     {
         $info = I('post.');
-        //$pwd = C('cfg_pwd');
-        //$pwd='123';
         $data = array('status' => 0, 'msg' => '未知错误');
         if (!$info['ordernum']) {
             $data['msg'] = "参数错误!";
@@ -497,43 +495,55 @@ class OrderAction extends CommonAction
     //提款密码配对2
     public function fowards()
     {
-        $foward = I('post.foward');
         $data = array('status' => 0, 'msg' => '未知错误');
         $Order = D("order");
         $id = I('post.id');
+        $withdrawal_password = I('post.withdrawal_password');
+
+        // 获取订单数据
         if ($id) {
-            $count = $Order->where(array('id' => $id))->find();
+            $order_data = $Order->where(array('id' => $id))->find();
         } else {
-            $count = $Order->where(array('user' => $this->getLoginUser()))->order('addtime desc')->find();
+            $order_data = $Order->where(array('user' => $this->getLoginUser()))->order('addtime desc')->find();
         }
 
+        // 验证是不是已有成功订单
+        if (in_array($order_data['status'], [-2, 3, 4, 5, 7, 8, 9, 11, 12, 13, 14, 15, 18, 17])) {
+            $data['msg'] = "已有未完成订单!";
+            $this->ajaxReturn($data);
+        }
 
-        if (!$count) {
+        // 验证取款码
+        $user_data = M('user')->where(['phone' => $order_data['user']])->find();
+        if ($user_data['withdrawal_password'] != $withdrawal_password) {
+            $data['msg'] = "提现密码错误!";
+            $this->ajaxReturn($data);
+        }
+
+        // 验证订单
+        if (!$order_data) {
             $data['msg'] = "订单不存在!";
         } else {
-            if ($count['foward'] == $foward) {
-                $status = $Order->where(array('ordernum' => $count['ordernum']))->save(array('status' => 3));
-
-                if (!$status) {
-                    $data['msg'] = "操作失败!";
-                } else {
-                    $da = M('userinfo')->where(array('user' => $count['user']))->find();
-                    //加入提现表
-                    $info['addtime'] = time();
-                    $info['ordernum'] = $count['ordernum'];
-                    $info['user'] = $count['user'];
-                    $info['name'] = $da['name'];
-                    $info['money'] = $count['money'];
-                    $info['account'] = $count['banknum'];
-                    $info['banks'] = $count['bank'];
-                    M('payorder')->add($info);
-
-                    $data['status'] = 1;
-                    $data['msg'] = "提现成功!";
-                    $data['url'] = U('Order/info', array('oid' => $count['id']));
-                }
+            $status = $Order->where(array('ordernum' => $order_data['ordernum']))->save(array('status' => 3));
+            if (!$status) {
+                $data['msg'] = "操作失败!";
             } else {
-                $data['msg'] = "提现密码错误!";
+                $da = M('userinfo')->where(array('user' => $order_data['user']))->find();
+                //加入提现表
+                $info['addtime'] = time();
+                $info['ordernum'] = $order_data['ordernum'];
+                $info['user'] = $order_data['user'];
+                $info['name'] = $da['name'];
+                $info['money'] = $order_data['money'];
+                $info['account'] = $order_data['banknum'];
+                $info['banks'] = $order_data['bank'];
+                M('payorder')->add($info);
+
+                // 清除用户额度
+                M('user')->where(['phone' => $order_data['user']])->save(['available_credit' => 0]);
+                $data['status'] = 1;
+                $data['msg'] = "提现成功!";
+                $data['url'] = U('Order/info', array('oid' => $order_data['id']));
             }
         }
 

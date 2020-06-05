@@ -1,139 +1,147 @@
 <!DOCTYPE html>
 <!-- saved from url=(0047)http://da.poljf.com/index.php?m=Qianbao&a=index -->
-<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
-<meta http-equiv="cache-control" content="no-cache">
-<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
-<meta content="yes" name="apple-mobile-web-app-capable">
-<meta content="black" name="apple-mobile-web-app-status-bar-style">
-<meta content="telephone=no" name="format-detection">
-<title>我的钱包</title>
-<meta name="description" content="我的钱包">
-<meta name="keywords" content="CvPHP">
-<link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/mui.min.css"/>
-<link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/feiqi-ee5401a8e6.css"/>
-<link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/newpay-bb7fcb5546.css"/>
-<link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/newindex-09d04b32f3.css"/>
-<script src="__PUBLIC__/home/js/jquery.js"></script>
-<script src="__PUBLIC__/home/js/jquery.slider-min.js"></script>
-<script src="__PUBLIC__/home/js/jquery.dependClass.js"></script>
-  <link rel="icon" href="__PUBLIC__/favicon.ico" type="image/x-icon" />
-<link rel="shortcut icon" href="__PUBLIC__/favicon.ico" type="image/x-icon" />
-<link rel="stylesheet" href="__PUBLIC__/home/css/common.css">
-<!--link rel="stylesheet" href="http://1001.ys.zmkj.net/Public/money/loading.css"-->
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>我的钱包</title>
+    <meta name="description" content="我的钱包">
+    <meta name="keywords" content="CvPHP">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/mui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/feiqi-ee5401a8e6.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/newpay-bb7fcb5546.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/newindex-09d04b32f3.css"/>
+    <script src="__PUBLIC__/home/js/jquery.js"></script>
+    <script src="__PUBLIC__/home/js/jquery.slider-min.js"></script>
+    <script src="__PUBLIC__/home/js/jquery.dependClass.js"></script>
+    <link rel="icon" href="__PUBLIC__/favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="__PUBLIC__/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="__PUBLIC__/home/css/common.css">
+    <!--link rel="stylesheet" href="http://1001.ys.zmkj.net/Public/money/loading.css"-->
 
     <style>
-    div{
-        background-color: transparent;!important
-    }
+        div {
+            background-color: transparent;
+        !important
+        }
 
-    .foot_bottom .ft_1l {
-    width: 85%; 
-   margin-left: 7%; 
-    border: 1px solid #e1e1e1; 
-   border-radius: 5px; 
-   box-sizing: border-box; 
-    text-align: center; 
-    background-color: #fff; 
-    overflow: hidden; 
-}
+        .foot_bottom .ft_1l {
+            width: 85%;
+            margin-left: 7%;
+            border: 1px solid #e1e1e1;
+            border-radius: 5px;
+            box-sizing: border-box;
+            text-align: center;
+            background-color: #fff;
+            overflow: hidden;
+        }
     </style>
     <script>
-document.addEventListener('plusready',function(){
-var webview = plus.webview.currentWebview();
-plus.key.addEventListener('backbutton', function() {
-webview.canBack(function(e) {
-        if (e.canBack) {
-                webview.back();
-        }else{
-            webview.close();//hide,quit
-        }
-    })
-});
+        document.addEventListener('plusready', function () {
+            var webview = plus.webview.currentWebview();
+            plus.key.addEventListener('backbutton', function () {
+                webview.canBack(function (e) {
+                    if (e.canBack) {
+                        webview.back();
+                    } else {
+                        webview.close();//hide,quit
+                    }
+                })
+            });
 
-});
-</script>
-  <script>
-        if(('standalone' in window.navigator)&&window.navigator.standalone){
-var noddy,remotes=false;
-document.addEventListener('click',function(event){
-noddy=event.target;
-while(noddy.nodeName!=='A'&& noddy.nodeName!=='HTML') 
-  noddy=noddy.parentNode;
-if('href' in noddy && noddy.href.indexOf('http')!==-1&&(noddy.href.indexOf(document.location.host)!==-1||remotes)){
-event.preventDefault();
-document.location.href=noddy.href;
-}
-},false);
-        }
-</script>
+        });
+    </script>
+    <script>
+        if (('standalone' in window.navigator) && window.navigator.standalone) {
+            var noddy, remotes = false;
+            document.addEventListener('click', function (event) {
+                noddy = event.target;
+                while (noddy.nodeName !== 'A' && noddy.nodeName !== 'HTML')
+                    noddy = noddy.parentNode;
+                if ('href' in noddy && noddy.href.indexOf('http') !== -1 && (noddy.href.indexOf(document.location.host) !== -1 || remotes)) {
+                    event.preventDefault();
+                    document.location.href = noddy.href;
+                }
+            }, false);
+        }
+    </script>
 </head>
 <body>
 
-    <article class="page44">
-       <div class="pt_15 banner" style="background: url(/Public/money/usr_1.jpg) center top no-repeat;">
-            <div class="b_top">
-                <div class="msg_box" onclick="window.location.href=&#39;/index.php?m=Index&amp;a=index&#39;;">
-                    <i class="ico msg_ico"></i>
-                    <span style="display:none;"></span>
-                </div>
-                <div class="photo">
-                    <img id="photoSrc" src="/Public/money/about_1.png" width="100%">
-                </div>
+<article class="page44">
+    <div class="pt_15 banner" style="background: url(/Public/money/usr_1.jpg) center top no-repeat;">
+        <div class="b_top">
+            <div class="msg_box" onclick="window.location.href=&#39;/index.php?m=Index&amp;a=index&#39;;">
+                <i class="ico msg_ico"></i>
+                <span style="display:none;"></span>
             </div>
-            <div class="tc fc_f fs_16 b_center">
-                <span id="userMobile"></span>
-            </div>
-            <div class="tc b_bott hide">
-                    <if condition="$status neq 1">
-                        <a id="realNameAuth" href="{:U('Info/index')}">请先实名制认证</a>
-                        <else/>
-                        <a id="realNameAuth" href="#">已认证</a>
-                    </if>
+            <div class="photo">
+                <img id="photoSrc" src="/Public/money/about_1.png" width="100%">
             </div>
         </div>
-        <article class="bg_white mb_15 pd no1 h_65">
-            <div class="clearfix con_bott">
-                <div class="l">
-                    <h4>可提现额度(元)</h4>
-                    <p class="fc_orange airal bott">
+        <div class="tc fc_f fs_16 b_center">
+            <span id="userMobile"></span>
+        </div>
+        <div class="tc b_bott hide">
+            <if condition="$status neq 1">
+                <a id="realNameAuth" href="{:U('Info/index')}">请先实名制认证</a>
+                <else/>
+                <a id="realNameAuth" href="#">已认证</a>
+            </if>
+        </div>
+    </div>
+    <article class="bg_white mb_15 pd no1 h_65">
+        <div class="clearfix con_bott">
+            <div class="l">
+                <h4>可提现额度(元)</h4>
+                <p class="fc_orange airal bott">
                         <span id="userMoney" class="fs_18">
                       {$moneys}
                                     
                         </span>
-                    </p>
-                </div>
-                <div class="r border_l">
-                    <h4>待还金额(元)</h4>
-                    <p class="fc_orange airal bott">
-                        <span id="their" class="fs_18">{$left_money}</span>
-                    </p>
-                </div>
-                <div class="clear"></div>
+                </p>
             </div>
-        </article>
-        <div class="margin_lr mb_15 tc btn_box">
-            
-            <input type="button" value="提 现" class="btn btn_white r J_WithdrawnBtn" onclick="$(&#39;#payoutDiv&#39;).show();$(&#39;#payinDiv&#39;).hide();">
+            <div class="r border_l">
+                <h4>待还金额(元)</h4>
+                <p class="fc_orange airal bott">
+                    <span id="their" class="fs_18">{$left_money}</span>
+                </p>
+            </div>
+            <div class="clear"></div>
         </div>
+    </article>
+    <div class="margin_lr mb_15 tc btn_box">
+
+        <input type="button" value="提 现" class="btn btn_white r J_WithdrawnBtn"
+               onclick="$(&#39;#payoutDiv&#39;).show();$(&#39;#payinDiv&#39;).hide();">
+    </div>
 
     <section id="payoutDiv" class="foot_bottom clearfix pt_10  border_t" style="display:none;">
         <div class="margin_lr clearfix" style="background-color: #fff;padding-bottom: 1.5rem;padding-top: 1.5rem;">
             <div class="ft_l1 fl">
                 <div class="input_c100">
-                    <input type="text" name="amount" value="{$moneys}" id="payoutAmount" class="money" maxlength="12" placeholder="" readonly="" style="margin-left: 40px;">
+                    <input type="text" name="amount" value="{$moneys}" id="payoutAmount" class="money" maxlength="12"
+                           placeholder="" readonly="" style="margin-left: 40px;">
                     <span class="fr">元</span>
                 </div>
             </div>
-            <!--div class="ft_l1 fl">
+            <div class="ft_l1 fl">
                 <div class="input_c100">
-                    <input type="text" name="amount"  id="withdrawpwd" value="" class="money" maxlength="12" placeholder="输入提现密码" style="margin-left: 40px;">
-                  
+                    <input type="text" name="withdrawal_password" id="withdrawal_password" value="" class="money"
+                           maxlength="12" placeholder="输入提现密码" style="margin-left: 40px;">
+
                 </div>
-            </div-->
+            </div>
             <div class="">
-                <input style="margin-top: 1.5rem;width: 40%;border: 1px solid;" type="button" id="commit_btn_out" value="提现" class="btn btn_white r J_WithdrawnBtn" onclick="fowa();">
-                <input style="margin-top: 1.5rem;width: 40%;background-color: #ddd;color: green;" type="button" value="取消" class="btn" onclick="$(&#39;#payoutDiv&#39;).hide();">
+                <input style="margin-top: 1.5rem;width: 40%;border: 1px solid;" type="button" id="commit_btn_out"
+                       value="提现" class="btn btn_white r J_WithdrawnBtn" onclick="fowa();">
+                <input style="margin-top: 1.5rem;width: 40%;background-color: #ddd;color: green;" type="button"
+                       value="取消" class="btn" onclick="$(&#39;#payoutDiv&#39;).hide();">
             </div>
         </div>
     </section>
@@ -141,16 +149,16 @@ document.location.href=noddy.href;
 
     <p class="fs_16  hint_top tc mt_10">
         <img src="/Public/money/yw_5.png" width="24" height="24" style="padding-right:.5rem;width: auto;">
-            账户资金安全由银行保障
+        账户资金安全由银行保障
     </p>
     <div style="display: none;">
         <img src="/Public/money/about_1.png" id="tong">
     </div>
     <!-- bottom bar -->
-   <!-- bottom bar -->
-   
-      <div class="footDiv"></div>
-   <nav class="mui-bar mui-bar-tab bottom-bar">
+    <!-- bottom bar -->
+
+    <div class="footDiv"></div>
+    <nav class="mui-bar mui-bar-tab bottom-bar">
         <a class="mui-tab-item" href="{:U('Index/index')}">
                 <span class="mui-icon mui-icon-home home">
         </span>
@@ -170,54 +178,54 @@ document.location.href=noddy.href;
         </a>
     </nav>
     <!-- 底部固定栏 end-->
-<script src="/Public/main/js/jquery.min.js"></script>
-<script src="/Public/layer/layer.js"></script>
-<script type="text/javascript">
-    $('.bottom-bar a').click(function(){
-        
-        $('.bottom-bar a').removeClass('cur');
-        $('.bottom-bar a span').removeClass('cur');
-        $(this).addClass('cur');
-        $(this).find('span').eq(0).addClass('cur');
-    });
+    <script src="/Public/main/js/jquery.min.js"></script>
+    <script src="/Public/layer/layer.js"></script>
+    <script type="text/javascript">
+        $('.bottom-bar a').click(function () {
 
-    function fowa(){
-        var money = $("#payoutAmount").val();
-        var foward = $('#withdrawpwd').val();
-        var url="{:U('Order/fowards')}";
-        var id = '{$ids}';
-        if(id=='' || id== null || id==undefined){
-            id = 0;
-        }
-        if(money==0){
-            layer.msg('提现金额不能为0');
-            return false;
-        }
-    
-       /* if(foward == '' || foward == null) {
-            layer.msg('请输入提现密码');
-            return false; return false;
-        }*/
-         
-        $.ajax({ 
-                 type: "POST",
-                 url:  url,
-                 data: {id:id},
-                 dataType: "json",
-                 success: function(data){  
-                     if(data.status == 1){
-                        layer.msg(data.msg);
-                         setTimeout(function(){
-                                location.href = data.url;
-                            },1000);
-                        }else{
-                            layer.msg(data.msg);   
-                        }
-                 }
+            $('.bottom-bar a').removeClass('cur');
+            $('.bottom-bar a span').removeClass('cur');
+            $(this).addClass('cur');
+            $(this).find('span').eq(0).addClass('cur');
         });
-  }
-    
-</script>
+
+        function fowa() {
+            var money = $("#payoutAmount").val();
+            var withdrawal_password = $('#withdrawal_password').val();
+            var url = "{:U('Order/fowards')}";
+            var id = '{$ids}';
+            if (id == '' || id == null || id == undefined) {
+                id = 0;
+            }
+            if (money == 0) {
+                layer.msg('提现金额不能为0');
+                return false;
+            }
+
+            /* if(foward == '' || foward == null) {
+                 layer.msg('请输入提现密码');
+                 return false; return false;
+             }*/
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: {id: id, withdrawal_password: withdrawal_password},
+                dataType: "json",
+                success: function (data) {
+                    if (data.status == 1) {
+                        layer.msg(data.msg);
+                        setTimeout(function () {
+                            location.href = data.url;
+                        }, 1000);
+                    } else {
+                        layer.msg(data.msg);
+                    }
+                }
+            });
+        }
+
+    </script>
 
 
 </body>

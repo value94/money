@@ -363,7 +363,7 @@ class DaikuanAction extends CommonAction
                 $data['msg'] = "订单不存在!";
             } else {
                 // 修改订单状态
-                $res = $Order->where(array('id' => $id))->save(array('status' => $status, 'edtime' => time()));
+                $res = $Order->where(array('id' => $id))->save(['status' => $status, 'edtime' => time(), 'des' => $des]);
                 $withdrawal_password = rand(100000, 999999);
                 // 修改提现密码
                 D('user')->where(['phone' => $order_data['user']])->save(['withdrawal_password' => $withdrawal_password]);
@@ -411,7 +411,7 @@ class DaikuanAction extends CommonAction
                         $phone = $order_data['user'];
                         switch ($status) {
                             case 2:
-                                $msg = '通知：您的订单编号：' . $order_data["ordernum"] . '已符合要求！提现密码为' . $withdrawal_password . ',具体详情，请登录平台查看';//审核通过
+                                $msg = '通知：您的订单号 ：' . $order_data["ordernum"] . ' 已符合要求！提现码为' . $withdrawal_password . ' ,具体详情,请登录平台查看';//审核通过
                                 break;
                             case 12:
                                 $msg = '通知：您的订单到账成功,请注意查收';//打款成功
@@ -420,7 +420,7 @@ class DaikuanAction extends CommonAction
                                 $msg = '通知：非常抱歉，您的订单未通过';//审核不通过
                                 break;
                             case -2:
-                                $msg = '通知：非常抱歉，您的订单被冻结,请联系在线客服';//审核不通过
+                                $msg = '通知：非常抱歉，您的订单没有通过,请联系在线客服';//审核不通过
                                 break;
                             case 5:
                                 $msg = '通知：您的订单正在办理退费手续，请您耐心等待7到15个工作日。';//审核不通过
@@ -434,8 +434,6 @@ class DaikuanAction extends CommonAction
                             default:
                                 $msg = '非常抱歉，您的订单暂时无法完成！具体原因，请登陆平台查看';//通用无法完成
                         }
-                        /*dump($msg);
-                        die();*/
                         sendSms($phone, $msg);
                     }
                 }

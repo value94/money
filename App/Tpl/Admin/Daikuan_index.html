@@ -318,7 +318,6 @@
     function hiddenOrShow(obj) {
         if (obj.value == yjh2) {
             $('.hidden_msg').css("display", "");
-
             console.log($('#hidden_msg'));
         } else {
             $('.hidden_msg').css("display", "none");
@@ -579,32 +578,32 @@
             <td align="right">状态</td>
             <td>
                 <label style="color: red;">
-                    <input type="radio" name="status" value="2" onchange="hiddenOrShow(this)">
+                    <input type="radio" name="status" value="2" >
                     审核通过
                 </label>
                 <label style="color: red;">
-                    <input type="radio" name="status" value="-1" onchange="hiddenOrShow(this)">
+                    <input type="radio" name="status" value="-1" >
                     审核不通过
                 </label>
                 <br/>
                 <label style="color: red;">
-                    <input type="radio" name="status" value="-2" onchange="hiddenOrShow(this)">
+                    <input type="radio" name="status" value="-2" >
                     冻结
                 </label>
                 <label style="color: red;">
-                    <input type="radio" name="status" value="5" onchange="hiddenOrShow(this)">
+                    <input type="radio" name="status" value="5" >
                     退款中
                 </label>
                 <label style="color: red;">
-                    <input type="radio" name="status" value="15" onchange="hiddenOrShow(this)">
+                    <input type="radio" name="status" value="15" >
                     提现失败
                 </label>
                 <label style="color: red;">
-                    <input type="radio" name="status" value="12" onchange="hiddenOrShow(this)">
+                    <input type="radio" name="status" value="12" >
                     到帐成功
                 </label>
                 <label style="color: red;">
-                    <input type="radio" name="status" value="8" onchange="hiddenOrShow(this)">
+                    <input type="radio" name="status" value="8" >
                     绑卡失败
                 </label>
             </td>
