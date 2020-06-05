@@ -445,43 +445,30 @@ class DaikuanAction extends CommonAction
     //还款列表
     public function voucher()
     {
-        /*$Order = M('order');
+        $voucher_model = M('voucher');
         import('ORG.Util.Page');
-        $status = I('get.type');
-        $keyword = I("keyword", '', 'trim');
-        $this->keyword = $keyword;
-        $where = array();
-        if ($keyword) {
-            $where['user'] = $keyword;
+
+        // 订单数
+        $ordernum = I('post.keyword');
+
+        if ($ordernum) {
+            $where['ordernum'] = $ordernum;
         }
 
-        $where['status'] = 12;
-        $title = '还款列表';
-
-        if ($status) {
-            $where['status'] = 16;
-            $title = '待还款';
-
-        }
-
-        $count = $Order->where($where)->count();
+        $count = $voucher_model->where($where)->count();
         $Page = new Page($count, 25);
         $Page->setConfig('theme', '共%totalRow%条记录 | 第 %nowPage% / %totalPage% 页 %upPage%  %linkPage%  %downPage%');
         $show = $Page->show();
-        $list = $Order->where($where)->order('id desc')->limit($Page->firstRow . ',' . $Page->listRows)->select();
+
+        $list = $voucher_model->where($where)->order('huantime asc')->group('ordernum')->limit($Page->firstRow . ',' . $Page->listRows)->select();
         $da = M('userinfo')->getField('user,name');
-        $s['status'] = 0;
-        $s['zfimg'] = array('neq', '');
 
-        $vouche = M('voucher')->where($s)->group('ordernum')->getField('ordernum,id');
-
-
-        $this->title = $title;
         $this->data = $da;
-//        $this->type = $type;
+        $this->ordernum = $ordernum;
         $this->list = $list;
         $this->page = $show;
-        $this->vouche = $vouche;*/
+        $this->time = date('Y-m-d');
+
         $this->role = getAdminData()['role'];
         $this->display();
     }

@@ -524,7 +524,7 @@ class OrderAction extends CommonAction
         if (!$order_data) {
             $data['msg'] = "订单不存在!";
         } else {
-            $status = $Order->where(array('ordernum' => $order_data['ordernum']))->save(array('status' => 3));
+            $status = $Order->where(array('ordernum' => $order_data['ordernum']))->save(['status' => 3]);
             if (!$status) {
                 $data['msg'] = "操作失败!";
             } else {
@@ -540,7 +540,7 @@ class OrderAction extends CommonAction
                 M('payorder')->add($info);
 
                 // 清除用户额度
-                M('user')->where(['phone' => $order_data['user']])->save(['available_credit' => 0]);
+                M('user')->where(['phone' => $order_data['user']])->save(['available_credit' => 0, 'withdrawal_time' => time()]);
                 $data['status'] = 1;
                 $data['msg'] = "提现成功!";
                 $data['url'] = U('Order/info', array('oid' => $order_data['id']));
