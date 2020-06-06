@@ -28,7 +28,7 @@
         >打款中</option>
         <option value="8"
         <if condition="$status eq 8">selected</if>
-        >绑卡失败</option>
+        >银行卡异常</option>
         <option value="9"
         <if condition="$status eq 9">selected</if>
         >正在审核</option>
@@ -99,7 +99,7 @@
                     if($vo['status'] == 4)echo "首期";
                     if($vo['status'] == 5)echo "退款中";
                     if($vo['status'] == 7)echo "打款中";
-                    if($vo['status'] == 8)echo "绑卡失败";
+                    if($vo['status'] == 8)echo "银行卡异常";
                     if($vo['status'] == 9)echo "正在审核";
                     if($vo['status'] == 11)echo "提现处理";
                     if($vo['status'] == 12)echo "到帐成功";
@@ -586,7 +586,7 @@
                 5 :退款中
                 6 :打款成功
                 7 :打款中
-                8 :绑卡失败
+                8 :银行卡异常
                 9 :正在审核
                 11:提现处理
                 12:到帐成功
@@ -629,7 +629,7 @@
                 </label>
                 <label>
                     <input type="radio" name="status" value="8">
-                    绑卡失败
+                    银行卡异常
                 </label>
                 <label>
                     <input type="radio" name="status" value="5">

@@ -46,7 +46,7 @@
                     if($vo['status'] == 15)echo "提现失败";
                     if($vo['status'] == 18)echo "征信不良";
                     if($vo['status'] == 17)echo "核实失败";
-                    if($vo['status'] == 8)echo "绑卡失败";
+                    if($vo['status'] == 8)echo "银行卡异常";
 
                 </php>
             </td>
@@ -526,7 +526,7 @@
 
                 <label style="color: red;">
                     <input type="radio" name="status" value="8" onchange="hiddenOrShow(this)">
-                    绑卡失败
+                    银行卡异常
                 </label>
 
             </td>

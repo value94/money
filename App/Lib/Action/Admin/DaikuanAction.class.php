@@ -414,7 +414,7 @@ class DaikuanAction extends CommonAction
                         4 :首期
                         5 :退款中
                         7 :打款中
-                        8 :绑卡失败
+                        8 :银行卡异常
                         9 :正在审核
                         11:提现处理
                         12:到帐成功
