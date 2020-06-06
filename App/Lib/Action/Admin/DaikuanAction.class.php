@@ -426,9 +426,9 @@ class DaikuanAction extends CommonAction
                         18:征信不良
                         19:押金-->*/
                         switch ($status) {
-                            case -2:
-                                $msg = '尊敬的 ' . $user_info['name'] . ' 先生/女士您好，您的订单已被锁，请联系在线客服及时处理！';//审核不通过
-                                break;
+                            /*case -2:
+                                $msg = '尊敬的 ' . $user_info['name'] . ' 先生/女士您好，您的订单已被凍結，请联系在线客服及时处理！';//审核不通过
+                                break;*/
                             case -1:
                                 $msg = '通知：非常抱歉，您的订单未通过，请联系在线客服处理';//审核不通过
                                 break;
@@ -472,7 +472,8 @@ class DaikuanAction extends CommonAction
                         if ($result === true) {
                             $this->success('发送成功!');
                         } else {
-                            $this->error($result);
+                            $data['status'] = 0;
+                            $data['msg'] = $result;
                         }
                     }
                 }
