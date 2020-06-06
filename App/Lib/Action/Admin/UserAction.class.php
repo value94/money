@@ -162,7 +162,6 @@ class UserAction extends CommonAction
                 M('richat_chatuser')->where(['username' => $check_user['phone']])->save(['customer_id' => $admin_data['chat_id']]);
             }
 
-
             // 绑定订单表
             M('order')->where(['user' => $check_user['phone']])->save([
                 'admin_id' => $admin_data['id'],

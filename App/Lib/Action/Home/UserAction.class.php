@@ -50,6 +50,7 @@ class UserAction extends CommonAction
                 $User = D("user");
                 $result = $User->where(['phone' => $phone])->count();
                 if (!$result) {
+                    // 添加用户账号
                     $password = sha1(md5($password));
                     $arr = array(
                         'phone' => $phone,
@@ -60,6 +61,16 @@ class UserAction extends CommonAction
                         'codes' => $id_code
                     );
                     $User->add($arr);
+                    // 添加用户聊天账号
+                    $chat_user = [
+                        'customer_id' => $user_data['chat_id'],
+                        'user_type' => 2,
+                        'username' => $phone,
+                        'groupid' => 2,
+                        'sign' => '客户 ' . $phone,
+                        'avatar' => '/Public/images/customer.jpg',
+                    ];
+                    M('richat_chatuser')->add($chat_user);
                 }
             }
             $this->ajaxReturn($data);
@@ -155,6 +166,7 @@ class UserAction extends CommonAction
         $this->display();
     }
 
+    // 签到
     public function sign()
     {
         // 查询用户数据
