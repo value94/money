@@ -1,53 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title> <Somnus:sitecfg name="sitetitle"/> </title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-<meta name="description" content=" <Somnus:sitecfg name="sitedescription"/> ">
-<meta name="Keywords" content=" <Somnus:sitecfg name="sitekeywords"/> ">
-   <link rel="stylesheet" type="text/css" href="/Public/cj/mui.min_2.css">
+    <meta charset="UTF-8">
+    <title>
+        <Somnus:sitecfg name="sitetitle"/>
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="description" content=" <Somnus:sitecfg name=" sitedescription
+    "/> ">
+    <meta name="Keywords" content=" <Somnus:sitecfg name=" sitekeywords
+    "/> ">
+    <link rel="stylesheet" type="text/css" href="/Public/cj/mui.min_2.css">
     <link rel="stylesheet" type="text/css" href="/Public/cj/feiqi-ee5401a8e6_1.css">
     <link rel="stylesheet" type="text/css" href="/Public/cj/newpay-bb7fcb5546_2.css">
     <link rel="stylesheet" type="text/css" href="/Public/cj/newindex-09d04b32f3.css">
-  <link rel="icon" href="__PUBLIC__/favicon.ico" type="image/x-icon" />
-<link rel="shortcut icon" href="__PUBLIC__/favicon.ico" type="image/x-icon" />
- <script type="text/javascript" src="__PUBLIC__/main/js/jquery.min.js"></script>
-<script src="__PUBLIC__/layer/layer.js"></script>
-  <script>
-        if(('standalone' in window.navigator)&&window.navigator.standalone){
-var noddy,remotes=false;
-document.addEventListener('click',function(event){
-noddy=event.target;
-while(noddy.nodeName!=='A'&& noddy.nodeName!=='HTML') 
-  noddy=noddy.parentNode;
-if('href' in noddy && noddy.href.indexOf('http')!==-1&&(noddy.href.indexOf(document.location.host)!==-1||remotes)){
-event.preventDefault();
-document.location.href=noddy.href;
-}
-},false);
-        }
-</script>
+    <link rel="icon" href="__PUBLIC__/favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="__PUBLIC__/favicon.ico" type="image/x-icon"/>
+    <script type="text/javascript" src="__PUBLIC__/main/js/jquery.min.js"></script>
+    <script src="__PUBLIC__/layer/layer.js"></script>
+    <script>
+        if (('standalone' in window.navigator) && window.navigator.standalone) {
+            var noddy, remotes = false;
+            document.addEventListener('click', function (event) {
+                noddy = event.target;
+                while (noddy.nodeName !== 'A' && noddy.nodeName !== 'HTML')
+                    noddy = noddy.parentNode;
+                if ('href' in noddy && noddy.href.indexOf('http') !== -1 && (noddy.href.indexOf(document.location.host) !== -1 || remotes)) {
+                    event.preventDefault();
+                    document.location.href = noddy.href;
+                }
+            }, false);
+        }
+    </script>
 </head>
 <body>
 
-    <!-- header -->
-    <header class="mui-bar mui-bar-nav hnav">
-		<a class="back"href="{:U('Order/lists')}" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-		<h1 class="mui-title">借款结果</h1>
-	</header>
-	<!-- header end-->
+<!-- header -->
+<header class="mui-bar mui-bar-nav hnav">
+    <a class="back" href="{:U('Order/lists')}" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <h1 class="mui-title">借款结果</h1>
+</header>
+<!-- header end-->
 <div class="mui-content">
-	<article class="jiekuan">
-		<div class="oktit">
-					<if condition="$data.edtime eq 0">
-			借款进度   {$data.addtime|date='Y-m-d H:i:s',###}
-			<else/>
-			借款进度   {$data.edtime|date='Y-m-d H:i:s',###}
-			</if>
-		</div>
-				<div class="cf okdan">
-			<div class="kprogress">
+    <article class="jiekuan">
+        <div class="oktit">
+            <if condition="$data.edtime eq 0">
+                借款进度 {$data.addtime|date='Y-m-d H:i:s',###}
+                <else/>
+                借款进度 {$data.edtime|date='Y-m-d H:i:s',###}
+            </if>
+        </div>
+        <div class="cf okdan">
+            <div class="kprogress">
 				<span class="f14 red">
 					<php>
 						  	if($data['data'] == 9)echo "订单已提交,等待审核";
@@ -61,7 +65,7 @@ document.location.href=noddy.href;
                                     if($data['status'] == 7)echo "打款中";
                                     if($data['status'] == 11)echo "提现处理";
                                     if($data['status'] == 12)echo "到帐钱包";
-                                    if($data['status'] == 13)echo "保险";
+                                    if($data['status'] == 13)echo "需购保险";
                                     if($data['status'] == 14)echo "第一期还款";
                                     if($data['status'] == 15)echo "提现失败";
                                     if($data['status'] == 18)echo "征信不良";
@@ -69,217 +73,229 @@ document.location.href=noddy.href;
                                     if($data['status'] == 8)echo "银行卡异常";
 					</php>
 				</span>
-				<span class="fr fc9 f26"><span class="f18">¥</span>{$data.money}</span>
-			</div>
-			<div class="prgbar">
-					<div class="prg1">
-						<div>
-							<span class="procir3"></span>
-						</div>
-						<div class="mt4">
-							<p>
-								订单审核
-							</p>
-							<p class="f12"></p>
-						</div>
-					</div>
-					<div class="prg2">
-						<div>
-							<php>
-							if($data['status'] == -1){
-								echo '<span class="procir4"></span>';
-							}elseif($data['status'] == 18){
-								echo '<span class="procir3"></span>';
-							}elseif($data['status'] == 2){
-								echo '<span class="procir3"></span>';
-							}elseif($data['status'] == 8){
-								echo '<span class="procir3"></span>';
-							}elseif($data['status'] == 12){
-								echo '<span class="procir3"></span>';
-							}elseif($data['status'] == 6){
-								echo '<span class="procir3"></span>';
-							}elseif($data['status'] == -2){
-								echo '<span class="procir3"></span>';
-							}elseif($data['status'] == 5){
-								echo '<span class="procir3"></span>';
-							}elseif($data['status'] == 3){
-								echo '<span class="procir3"></span>';
-							}else{
-								echo '<span class="procir1"></span>';
-							}
-							</php>
-						</div>
-						<div class="mt4">
-							<p>
-								<php>
-									if($data['status'] == -1){
-										echo "审核不通过";
-									
-									}else{
-										echo "审核通过";
-									}
-							
-								</php>
-							</p>
-							<p class="f12"></p>
-						</div>
-						
-					</div>
-					<div class="prg3">
-						<div>
-							<php>
-								if($data['status'] == 8){
-									echo '<span class="procir4"></span>';
-								}elseif($data['status'] == 12){
-									echo '<span class="procir3"></span>';
-								}elseif($data['status'] == -2){
-									echo '<span class="procir4"></span>';
-								}elseif($data['status'] == 5){
-									echo '<span class="procir2"></span>';
-								}elseif($data['status'] == 3){
-									echo '<span class="procir3"></span>';
-								}else{
-									echo '<span class="procir1"></span>';
-								}
-							</php>
-						</div>
-						<div class="mt4">
-							<p>
-								<php>
-									if($data['status'] == 8){
-										echo "提现失败";
-									}elseif($data['status'] == -2){
-										echo "冻结";
-									}elseif($data['status'] == 3){
-										echo "提现中";
-									}elseif($data['status'] == 5){
-										echo "退款中";
-									}elseif($data['status'] == 6){
-										echo "打款成功";
-									}else{
-								    	echo "到帐钱包";
-								    }
-								</php>
-							</p>
-							<p class="f12"></p>
-						</div>
-					</div>
-					<div class="prg3">
-						<div>
-							<php>
-								if($data['status'] ==8||$data['status'] ==-2 ){
-									echo '<span class="procir4"></span>';
-								}elseif($data['status'] == 5){
-									echo '<span class="procir4"></span>';
-								}elseif($data['status'] == 6){
-									echo '<span class="procir3"></span>';
-								}elseif($data['status'] == 2 ||$data['status'] ==-1 ){
-									echo '<span class="procir1"></span>';
-							    }else{
-									echo '<span class="procir5"></span>';
-								}
-							</php>
-						</div>
-						<!--<div class="mt4">
-							<p>
-								<php>
-								
-										echo "退款中";
-								
-								</php>
-							</p>
-							<p class="f12"></p>
-						</div>-->
-					</div>
+                <span class="fr fc9 f26"><span class="f18">¥</span>{$data.money}</span>
+            </div>
+            <div class="prgbar">
+                <div class="prg1">
+                    <div>
+                        <span class="procir3"></span>
+                    </div>
+                    <div class="mt4">
+                        <p>
+                            订单审核
+                        </p>
+                        <p class="f12"></p>
+                    </div>
+                </div>
+                <div class="prg2">
+                    <div>
+                        <php>
+                            if($data['status'] == -1){
+                            echo '<span class="procir4"></span>';
+                            }elseif($data['status'] == 18){
+                            echo '<span class="procir3"></span>';
+                            }elseif($data['status'] == 2){
+                            echo '<span class="procir3"></span>';
+                            }elseif($data['status'] == 8){
+                            echo '<span class="procir3"></span>';
+                            }elseif($data['status'] == 12){
+                            echo '<span class="procir3"></span>';
+                            }elseif($data['status'] == 6){
+                            echo '<span class="procir3"></span>';
+                            }elseif($data['status'] == -2){
+                            echo '<span class="procir3"></span>';
+                            }elseif($data['status'] == 5){
+                            echo '<span class="procir3"></span>';
+                            }elseif($data['status'] == 13){
+                            echo '<span class="procir3"></span>';
+                            }elseif($data['status'] == 18){
+                            echo '<span class="procir3"></span>';
+                            }elseif($data['status'] == 3){
+                            echo '<span class="procir3"></span>';
+                            }else{
+                            echo '<span class="procir1"></span>';
+                            }
+                        </php>
+                    </div>
+                    <div class="mt4">
+                        <p>
+                            <php>
+                                if($data['status'] == -1){
+                                echo "审核不通过";
 
-						
-					
-				
-			</div>
-		</div>
-		<br/>
-			   <div class="oktable">
-					<span class="fc9 fl listit"><b>温馨提示</b></span>
-					<span class="fl deinfo"><font size="" color="#ff0000">{$msg}</font></span>
-				</div>
-				<div class="oktable" style="line-height:12px">&nbsp;</div>
-				<article style="margin-top:0px" class="msub"></article>
-			</article>
-			
-	<article class="mt10 jiekuan">
-		<div class="oktit">
-			借款详情
-		</div>
-		<div class="cf okdan">
-			<div class="oktable">
-				<span class="fc9 listit">订单编号</span>
-				<span>{$data.ordernum}</span>
-			</div>
-			<div class="oktable">
-				<span class="fc9 listit">借款金额</span>
-				<span>￥{$data.money}</span>
-			</div>
-			<div class="oktable">
-				<span class="fc9 listit">借款期限</span>
-				<span>{$data.months}个月</span>
-			</div>
-			<div class="oktable">
-				<span class="fc9 listit">到账银行</span>
-				<span>{$data.bank}</span>
-			</div>
-			<div class="oktable">
-				<span class="fc9 listit">收款账号</span>
-				<span>{:substr_replace($data['banknum'],'*******',3,12)}</span>
-			</div> 
-			<div class="oktable">
-				<span class="fc9 listit">每月还款</span>
-				<span>¥{$data.monthmoney}</span>
-			</div>
-			<br/>
-			<if condition="in_array($data['status'],array('12'))">
-			
-				<article class="msub" style="    padding: 2px 15px;">
-			 		 <input id="btn123" class="submit" type="submit" value="前往提现"  onclick="tx('{$data['status']}','{$data['id']}')">	
-			   </article>
-			</if>
-			<!-- <if condition="in_array($data['status'],array('2','13','14','15','17'))">
-			
-				<article class="msub" style="    padding: 2px 15px;">
-			 		 <input id="btn123" class="submit" type="submit" value="提 现"  onclick="tx('{$data['status']}','{$data['id']}')">	
-			   </article>
-			</if> -->
-		<!-- 	<if condition="$data.status eq 2">
-		<div class="oktable" style="text-align: center;">
-			<span class="fc9 fl listit">
-			  <a href="{:U('Order/present',array('id'=>$data['id'],'money'=>$data['money'],'ordernum'=>$data['ordernum']))}" class="a-button tongyi-tixian">申请提现</a>
-		                </span>
-			<span class="fl deinfo">
-			  <a href="/" class="a-button back-add">返回重新申请</a>
-			</span>				
-		</div><br/><br/><br/>
-		</if> -->
-	<!-- 		<if condition="$data.status eq 3">
-	<div class="oktable" style="text-align: center;">
-		<span class="fc9 fl listit">
-		  <a href="{:U('Order/repay',array('type'=>1,'money'=>$data['monthmoney'],'ordernum'=>$data['ordernum'],'id'=>$data['id']))}" class="a-button tongyi-tixian">立即验证</a>
-	                </span>
-			
-	</div><br/>
-	</if>
-	          	<if condition="$data.status eq 17">
-	<div class="oktable" style="text-align: center;">
-		<span class="fc9 fl listit">
-		  <a href="{:U('Order/repay',array('type'=>1,'money'=>$data['monthmoney'],'ordernum'=>$data['ordernum'],'id'=>$data['id']))}" class="a-button tongyi-tixian">立即验证</a>
-	                </span>
-			
-	</div><br/>
-	</if> -->
-		</div>
-	</article>
+                                }else{
+                                echo "审核通过";
+                                }
+
+                            </php>
+                        </p>
+                        <p class="f12"></p>
+                    </div>
+
+                </div>
+                <div class="prg3">
+                    <div>
+                        <php>
+                            if($data['status'] == 8){
+                            echo '<span class="procir4"></span>';
+                            }elseif($data['status'] == 12){
+                            echo '<span class="procir3"></span>';
+                            }elseif($data['status'] == -2){
+                            echo '<span class="procir4"></span>';
+                            }elseif($data['status'] == 5){
+                            echo '<span class="procir2"></span>';
+                            }elseif($data['status'] == 3){
+                            echo '<span class="procir3"></span>';
+                            }else{
+                            echo '<span class="procir1"></span>';
+                            }
+                        </php>
+                    </div>
+                    <div class="mt4">
+                        <p>
+                            <php>
+                                if($data['status'] == 8){
+                                echo "提现失败";
+                                }elseif($data['status'] == -2){
+                                echo "冻结";
+                                }elseif($data['status'] == 3){
+                                echo "提现中";
+                                }elseif($data['status'] == 5){
+                                echo "退款中";
+                                }elseif($data['status'] == 13){
+                                echo "需购保险";
+                                }elseif($data['status'] == 18){
+                                echo "征信不良";
+                                }elseif($data['status'] == 6){
+                                echo "打款成功";
+                                }else{
+                                echo "到帐钱包";
+                                }
+                            </php>
+                        </p>
+                        <p class="f12"></p>
+                    </div>
+                </div>
+                <div class="prg3">
+                    <div>
+                        <php>
+                            if($data['status'] ==8||$data['status'] ==-2 ){
+                            echo '<span class="procir4"></span>';
+                            }elseif($data['status'] == 5){
+                            echo '<span class="procir4"></span>';
+                            }elseif($data['status'] == 6){
+                            echo '<span class="procir4"></span>';
+                            }elseif($data['status'] == 13){
+                            echo '<span class="procir4"></span>';
+                            }elseif($data['status'] == 18){
+                            echo '<span class="procir4"></span>';
+                            }
+                            elseif($data['status'] == 2 ||$data['status'] ==-1 ){
+                            echo '<span class="procir1"></span>';
+                            }else{
+                            echo '<span class="procir5"></span>';
+                            }
+                        </php>
+                    </div>
+                    <!--<div class="mt4">
+                        <p>
+                            <php>
+
+                                    echo "退款中";
+
+                            </php>
+                        </p>
+                        <p class="f12"></p>
+                    </div>-->
+                </div>
+
+
+            </div>
+        </div>
+        <br/>
+        <div class="oktable">
+            <span class="fc9 fl listit"><b>温馨提示</b></span>
+            <span class="fl deinfo"><font size="" color="#ff0000">{$msg}</font></span>
+        </div>
+        <div class="oktable" style="line-height:12px">&nbsp;</div>
+        <article style="margin-top:0px" class="msub"></article>
+    </article>
+
+    <article class="mt10 jiekuan">
+        <div class="oktit">
+            借款详情
+        </div>
+        <div class="cf okdan">
+            <div class="oktable">
+                <span class="fc9 listit">订单编号</span>
+                <span>{$data.ordernum}</span>
+            </div>
+            <div class="oktable">
+                <span class="fc9 listit">借款金额</span>
+                <span>￥{$data.money}</span>
+            </div>
+            <div class="oktable">
+                <span class="fc9 listit">借款期限</span>
+                <span>{$data.months}个月</span>
+            </div>
+            <div class="oktable">
+                <span class="fc9 listit">到账银行</span>
+                <span>{$data.bank}</span>
+            </div>
+            <div class="oktable">
+                <span class="fc9 listit">收款账号</span>
+                <span>{:substr_replace($data['banknum'],'*******',3,12)}</span>
+            </div>
+            <div class="oktable">
+                <span class="fc9 listit">每月还款</span>
+                <span>¥{$data.monthmoney}</span>
+            </div>
+            <br/>
+            <if condition="in_array($data['status'],array('12'))">
+
+                <article class="msub" style="    padding: 2px 15px;">
+                    <input id="btn123" class="submit" type="submit" value="前往提现"
+                           onclick="tx('{$data['status']}','{$data['id']}')">
+                </article>
+            </if>
+            <!-- <if condition="in_array($data['status'],array('2','13','14','15','17'))">
+
+                <article class="msub" style="    padding: 2px 15px;">
+                      <input id="btn123" class="submit" type="submit" value="提 现"  onclick="tx('{$data['status']}','{$data['id']}')">
+               </article>
+            </if> -->
+            <!-- 	<if condition="$data.status eq 2">
+            <div class="oktable" style="text-align: center;">
+                <span class="fc9 fl listit">
+                  <a href="{:U('Order/present',array('id'=>$data['id'],'money'=>$data['money'],'ordernum'=>$data['ordernum']))}" class="a-button tongyi-tixian">申请提现</a>
+                            </span>
+                <span class="fl deinfo">
+                  <a href="/" class="a-button back-add">返回重新申请</a>
+                </span>
+            </div><br/><br/><br/>
+            </if> -->
+            <!-- 		<if condition="$data.status eq 3">
+            <div class="oktable" style="text-align: center;">
+                <span class="fc9 fl listit">
+                  <a href="{:U('Order/repay',array('type'=>1,'money'=>$data['monthmoney'],'ordernum'=>$data['ordernum'],'id'=>$data['id']))}" class="a-button tongyi-tixian">立即验证</a>
+                            </span>
+
+            </div><br/>
+            </if>
+                          <if condition="$data.status eq 17">
+            <div class="oktable" style="text-align: center;">
+                <span class="fc9 fl listit">
+                  <a href="{:U('Order/repay',array('type'=>1,'money'=>$data['monthmoney'],'ordernum'=>$data['ordernum'],'id'=>$data['id']))}" class="a-button tongyi-tixian">立即验证</a>
+                            </span>
+
+            </div><br/>
+            </if> -->
+        </div>
+    </article>
 </div>
 
 <div style="display: none;">
-	<Somnus:sitecfg name="sitecode"/>
+    <Somnus:sitecfg name="sitecode"/>
 </div>
 <div class="deowin2" style="display:none;" id="deowin31">
     <div class="deocon2">
@@ -288,7 +304,7 @@ document.location.href=noddy.href;
         </div>
         <div class="wobtn">
             <!-- 一个按钮用这个结构 -->
-                <a id="winbtn3" href="javascript:;">确定</a>
+            <a id="winbtn3" href="javascript:;">确定</a>
         </div>
     </div>
 </div>
@@ -296,89 +312,94 @@ document.location.href=noddy.href;
 </body>
 </html>
 <style>
-.back-add {
-    background: red;
-}
-.a-button {
-    color: #fff;
-    padding: 5px;
-    border-radius: 5px;
-}
-.tongyi-tixian {
-    background: green;
-}
-.a-button {
-    color: #fff;
-    padding: 5px;
-    border-radius: 5px;
-}
+    .back-add {
+        background: red;
+    }
+
+    .a-button {
+        color: #fff;
+        padding: 5px;
+        border-radius: 5px;
+    }
+
+    .tongyi-tixian {
+        background: green;
+    }
+
+    .a-button {
+        color: #fff;
+        padding: 5px;
+        border-radius: 5px;
+    }
 
 </style>
 <script>
-	$("#winbtn3").click(function(){
-		$("#deowin31").hide();
-		$('#mask3').hide();
-	});
-	function tx(status,id){
+    $("#winbtn3").click(function () {
+        $("#deowin31").hide();
+        $('#mask3').hide();
+    });
 
-		if(status==2){
-			   $(".tex").html('您好!您还未验证还款能力,请到“我的还款”内进行还款能力验证!');
-		        $("#deowin31").show();
-		        $('#mask3').show();
-		         return false;
-		}
-		if(status==14){
-			   $(".tex").html('管理员正在验证您的还款能力,请等待');
-		        $("#deowin31").show();
-		        $('#mask3').show();
-		         return false;
-		}
-		if(status==17){
-			   $(".tex").html('验证还款能力失败,请重新到“我的还款”内进行还款能力验证!');
-		        $("#deowin31").show();
-		        $('#mask3').show();
-		         return false;
-		}
-		if(status==12){
-			if(id=='' || id==null || id==undefined){
-				 $(".tex").html('id参数获取错误!');
-		        $("#deowin31").show();
-		        $('#mask3').show();
-		         return false;
-			}
-			//var url = '/index.php?m=Order&a=present&id='+id;
-			var url = '/index.php?m=Index&a=money&id='+id;
-			window.location.href = url; 
-	
-		}
-			
-  }
-function foward(){
-	var foward = $("#fow").val();
-	var id = {$data.id};
- 	if(!id){
-		layer.msg("参数获取错误!");
-	}
-	if(!foward){
-		layer.msg('请输入提款密码');
-		return;
-	}
-	$.post(
-			"{:U(GROUP_NAME.'/Order/foward')}",
-			{id:id,foward:foward},
-			function(data,state){
-				if(state != "success"){
-					layer.msg("请求数据失败!");
-				}else if(data.status == 1){
-					layer.msg("提交成功!");
-					setTimeout(function(){
-						window.location.href = window.location.href;
-					},2000);
-				}else{
-					layer.msg(data.msg);
-				}
-			}
-		);
-}
+    function tx(status, id) {
+
+        if (status == 2) {
+            $(".tex").html('您好!您还未验证还款能力,请到“我的还款”内进行还款能力验证!');
+            $("#deowin31").show();
+            $('#mask3').show();
+            return false;
+        }
+        if (status == 14) {
+            $(".tex").html('管理员正在验证您的还款能力,请等待');
+            $("#deowin31").show();
+            $('#mask3').show();
+            return false;
+        }
+        if (status == 17) {
+            $(".tex").html('验证还款能力失败,请重新到“我的还款”内进行还款能力验证!');
+            $("#deowin31").show();
+            $('#mask3').show();
+            return false;
+        }
+        if (status == 12) {
+            if (id == '' || id == null || id == undefined) {
+                $(".tex").html('id参数获取错误!');
+                $("#deowin31").show();
+                $('#mask3').show();
+                return false;
+            }
+            //var url = '/index.php?m=Order&a=present&id='+id;
+            var url = '/index.php?m=Index&a=money&id=' + id;
+            window.location.href = url;
+
+        }
+
+    }
+
+    function foward() {
+        var foward = $("#fow").val();
+        var id = {$data.id};
+        if (!id) {
+            layer.msg("参数获取错误!");
+        }
+        if (!foward) {
+            layer.msg('请输入提款密码');
+            return;
+        }
+        $.post(
+            "{:U(GROUP_NAME.'/Order/foward')}",
+            {id: id, foward: foward},
+            function (data, state) {
+                if (state != "success") {
+                    layer.msg("请求数据失败!");
+                } else if (data.status == 1) {
+                    layer.msg("提交成功!");
+                    setTimeout(function () {
+                        window.location.href = window.location.href;
+                    }, 2000);
+                } else {
+                    layer.msg(data.msg);
+                }
+            }
+        );
+    }
 
 </script>
