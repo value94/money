@@ -111,24 +111,7 @@
                     if($vo['status'] == 19)echo "押金";
                 </php>
 
-                <!-- -2:临时冻结
-                -1:审核不通过
-                2 :审核通过
-                3 :提现已提交,打款处理中
-                4 :首期
-                5 :退款中
-                7 :打款中
-                8 :绑卡失败
-                9 :正在审核
-                11:提现处理
-                12:到帐成功
-                13:保险
-                14:第一期还款
-                15:提现失败
-                16:利息
-                17:核实失败
-                18:征信不良
-                19:押金-->
+
             </td>
             <td align="center">
                 <a href="{:U(GROUP_NAME.'/Daikuan/transferImg',array('id' => $vo['id']))}">转账截图</a>
@@ -595,18 +578,32 @@
         </tr>
         <tr>
             <td align="right">状态</td>
+            <!-- -2:临时冻结
+                -1:审核不通过
+                2 :审核通过
+                3 :提现已提交,打款处理中
+                4 :首期
+                5 :退款中
+                7 :打款中
+                8 :绑卡失败
+                9 :正在审核
+                11:提现处理
+                12:到帐成功
+                13:保险
+                14:第一期还款
+                15:提现失败
+                16:利息
+                17:核实失败
+                18:征信不良
+                19:押金-->
             <td>
                 <label>
                     <input type="radio" name="status" value="3">
-                    提交成功
+                    提交提现
                 </label>
                 <label>
                     <input type="radio" name="status" value="9">
                     正在审核
-                </label>
-                <label>
-                    <input type="radio" name="status" value="12">
-                    到账钱包
                 </label>
                 <label>
                     <input type="radio" name="status" value="2">
@@ -616,7 +613,19 @@
                     <input type="radio" name="status" value="-1">
                     审核不通过
                 </label>
+                <label>
+                    <input type="radio" name="status" value="8">
+                    绑卡失败
+                </label>
+                <label>
+                    <input type="radio" name="status" value="5">
+                    退款中
+                </label>
                 <br/>
+                <label>
+                    <input type="radio" name="status" value="12">
+                    到账成功
+                </label>
                 <label>
                     <input type="radio" name="status" value="-2">
                     冻结
@@ -632,10 +641,6 @@
                 <label>
                     <input type="radio" name="status" value="16">
                     利息
-                </label>
-                <label>
-                    <input type="radio" name="status" value="8">
-                    银行卡异常
                 </label>
                 <label>
                     <input type="radio" name="status" value="18">
