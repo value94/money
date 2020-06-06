@@ -164,10 +164,16 @@ function sendSms($phone, $content)
     // 发送post请求
     $result = cUrlGetData('http://114.215.184.88:8888/sms.aspx?action=send', $sms_data);
 
-    if ($result) {
-        return $result;
+    // 解析返回的结果
+
+    $p = xml_parser_create();
+    xml_parse_into_struct($p, $result, $vals, $index);
+    xml_parser_free($p);
+
+    if ($vals[1]['value'] != 'Success') {
+        return '短信发送失败，原因：' . $vals[3]['value'];
     } else {
-        return false;
+        return true;
     }
 
 }

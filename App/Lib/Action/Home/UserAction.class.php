@@ -325,13 +325,7 @@ class UserAction extends CommonAction
                         ));
                         $contstr = "您的验证码为{$smscode}，请于5分钟内正确输入，请勿告知他人，有效期30分钟！";
 
-                        $status = sendSms($phone, $contstr);
-
-                        if ($status) {
-                            $data['status'] = 1;
-                        } else {
-                            $data['msg'] = "验证码发送失败,错误码:" . $status;
-                        }
+                        sendSms($phone, $contstr);
                     }
                 }
             }

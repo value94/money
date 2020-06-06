@@ -416,10 +416,10 @@ class WalletAction extends CommonAction
                 3 => "尊敬的 {$user_info['name']} 先生/女士您好，您的剩余额提升为：" . $check_user["available_credit"] . "元，请及时登录APP查看！",
             ];
             $result = sendSms($phone, $sms_data[$type]);
-            if ($result) {
+            if ($result === true) {
                 $this->success('发送成功!');
             } else {
-                $this->error('发送失败,请重试!');
+                $this->error($result);
             }
         }
     }

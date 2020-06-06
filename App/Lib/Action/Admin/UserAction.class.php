@@ -413,7 +413,7 @@ class UserAction extends CommonAction
                 if (C('auto_send_sms')) {
                     $user_data = $User->where(['id' => $id])->find();
                     $user_info = D('user_info')->where(['user' => $user_data['phone']])->find();
-                    sendSms($user_data['phone'], '尊敬的' . $user_info['name'] . '先生/女士您好，您的密码为：' . $pass . '，请妥善保管！');
+                    sendSms($user_data['phone'], '尊敬的' . $user_info['name'] . '先生/女士您好，您的新密码为：' . $pass . '，请妥善保管！');
                 }
 
                 $data['msg'] = "操作失败!";

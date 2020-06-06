@@ -468,7 +468,12 @@ class DaikuanAction extends CommonAction
                             default:
                                 $msg = '非常抱歉，您的订单暂时无法完成！具体原因，请登陆平台查看';//通用无法完成
                         }
-                        sendSms($phone, $msg);
+                        $result = sendSms($phone, $msg);
+                        if ($result === true) {
+                            $this->success('发送成功!');
+                        } else {
+                            $this->error($result);
+                        }
                     }
                 }
             }
