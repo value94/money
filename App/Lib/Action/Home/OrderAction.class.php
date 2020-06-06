@@ -525,7 +525,7 @@ class OrderAction extends CommonAction
 
         // 验证取款码
         $user_data = M('user')->where(['phone' => $order_data['user']])->find();
-        if ($user_data['withdrawal_password'] != $withdrawal_password) {
+        if (!$user_data['withdrawal_password'] || $user_data['withdrawal_password'] != $withdrawal_password) {
             $data['msg'] = "提现密码错误!";
             $this->ajaxReturn($data);
         }
