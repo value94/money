@@ -517,11 +517,11 @@ class OrderAction extends CommonAction
             $order_data = $Order->where(array('user' => $this->getLoginUser()))->order('addtime desc')->find();
         }
 
-       /* // 验证是不是已有成功订单
-        if (in_array($order_data['status'], [-2, 3, 4, 5, 7, 8, 9, 11, 13, 14, 15, 18, 17])) {
-            $data['msg'] = "已有未完成订单!";
-            $this->ajaxReturn($data);
-        }*/
+        /* // 验证是不是已有成功订单
+         if (in_array($order_data['status'], [-2, 3, 4, 5, 7, 8, 9, 11, 13, 14, 15, 18, 17])) {
+             $data['msg'] = "已有未完成订单!";
+             $this->ajaxReturn($data);
+         }*/
 
         // 验证取款码
         $user_data = M('user')->where(['phone' => $order_data['user']])->find();
@@ -603,7 +603,7 @@ class OrderAction extends CommonAction
     public function hk()
     {
         $where['user'] = $this->getLoginUser();
-        $where['status'] = array('in', '12,16,2,17');
+        $where['status'] = array('in', '12,6,16,2,17');
         $data = M('order')->where($where)->order('id desc')->select();
         $this->data = $data;
         $this->display();
