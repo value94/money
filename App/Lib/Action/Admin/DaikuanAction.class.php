@@ -369,28 +369,25 @@ class DaikuanAction extends CommonAction
                 if ($status == 12) {
 //                    M('voucher')->where(array('ordernum' => $count['ordernum']))->delete();
                     $d = M('voucher')->where(array('ordernum' => $order_data['ordernum']))->count();
-                    if ($d) {
-                        $data['msg'] = "分期还款已生成,请不要重复提交生成分期还款订单!";
-                        $this->ajaxReturn($data);
+                    if (!$d) {
+                        $time = date('Y-m-d H:i:s');
+                        $voucher = [
+                            'user' => $order_data['user'],
+                            'ordernum' => $order_data['ordernum'],
+                            'money' => $order_data['money'],
+                            'months' => $order_data['months'],
+                            //	'ofnumber'=>1,//当前期数
+                            'monthmoney' => $order_data['monthmoney'],
+                            'addtime' => $time,
+                            //'huantime'=>date('Y-m-d H:i:s',strtotime('+1month')),
+                        ];
+                        for ($i = 1; $i <= $order_data['months']; $i++) {
+                            $voucher['ofnumber'] = $i;
+                            $voucher['huantime'] = date('Y-m-d', strtotime("$time +$i month"));
+                            $dataList[] = $voucher;
+                        }
+                        M('voucher')->addALL($dataList);
                     }
-                    $time = date('Y-m-d H:i:s');
-                    $voucher = [
-                        'user' => $order_data['user'],
-                        'ordernum' => $order_data['ordernum'],
-                        'money' => $order_data['money'],
-                        'months' => $order_data['months'],
-                        //	'ofnumber'=>1,//当前期数
-                        'monthmoney' => $order_data['monthmoney'],
-                        'addtime' => $time,
-                        //'huantime'=>date('Y-m-d H:i:s',strtotime('+1month')),
-                    ];
-                    for ($i = 1; $i <= $order_data['months']; $i++) {
-                        $voucher['ofnumber'] = $i;
-                        $voucher['huantime'] = date('Y-m-d', strtotime("$time +$i month"));
-                        $dataList[] = $voucher;
-                    }
-                    M('voucher')->addALL($dataList);
-
                 }
                 if (!$res) {
                     $data['msg'] = "操作失败!";

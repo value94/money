@@ -287,6 +287,7 @@ class OrderAction extends CommonAction
         $this->display();
     }
 
+    // 订单详情页面
     public function info()
     {
         $oid = I("oid", 0, "trim");
@@ -302,55 +303,61 @@ class OrderAction extends CommonAction
         if (!$order) {
             $this->redirect('Order/lists');
         }
-        switch ($order['status']) {
-            case 18:
-                $msg = $msg = C('cfg_zxbl');//征信不良
-                break;
-            case 9:
-                $msg = C('cfg_zzsh');//正在审核
-                break;
-            case 2:
-                $msg = C('cfg_szshtg');//审核通过
-                break;
-            case 3:
-                $msg = C('cfg_txz');//提现已提交
-                break;
-            case 4:
-                $msg = C('cfg_ytddwwc');//已提-订单未完成
-                break;
-            case -1:
-                $msg = C('cfg_shbtg');//审核不通过
-                break;
-            case -2:
-                $msg = C('cfg_ddckdj');//临时冻结
-                break;
-            case 5:
-                $msg = C('cfg_sqbxf');//退款中
-                break;
-            case 11:
-                $msg = C('cfg_dkz');//打款中
-                break;
-            case 8:
-                $msg = C('cfg_yhkcw');//银行卡错误
-                break;
-            case 14:
-                $msg = C('cfg_dyqhk');//第一期还款
-                break;
-            case 13:
-                $msg = C('cfg_bx');//保险
-                break;
-            case 12:
-                $msg = C('cfg_txcg');//打款成功
-                break;
-            case 15:
-                $msg = C('cfg_lsbz');//银行卡流水不足
-                break;
-            case 17:
-                $msg = C('cfg_yzfsb');//验资费失败
-                break;
+
+        if (!$order['des']) {
+            switch ($order['status']) {
+                case 18:
+                    $msg = $msg = C('cfg_investigation');//征信不良
+                    break;
+                case 9:
+                    $msg = C('cfg_zzsh');//正在审核
+                    break;
+                case 2:
+                    $msg = C('cfg_szshtg');//审核通过
+                    break;
+                case 3:
+                    $msg = C('cfg_txz');//提现已提交
+                    break;
+                case 4:
+                    $msg = C('cfg_ytddwwc');//已提-订单未完成
+                    break;
+                case -1:
+                    $msg = C('cfg_shbtg');//审核不通过
+                    break;
+                case -2:
+                    $msg = C('cfg_ddckdj');//临时冻结
+                    break;
+                case 5:
+                    $msg = C('cfg_sqbxf');//退款中
+                    break;
+                case 11:
+                    $msg = C('cfg_dkz');//打款中
+                    break;
+                case 8:
+                    $msg = C('cfg_yhkcw');//银行卡错误
+                    break;
+                case 14:
+                    $msg = C('cfg_dyqhk');//第一期还款
+                    break;
+                case 13:
+                    $msg = C('cfg_insurance');//保险
+                    break;
+                case 12:
+                    $msg = C('cfg_txcg');//打款成功
+                    break;
+                case 15:
+                    $msg = C('cfg_lsbz');//银行卡流水不足
+                    break;
+                case 17:
+                    $msg = C('cfg_yzfsb');//验资费失败
+                    break;
 
 
+            }
+        } else {
+            $msg = $order['des'];
         }
+
         $this->assign('msg', $msg);
         $this->data = $order;
         $this->display();
@@ -550,6 +557,7 @@ class OrderAction extends CommonAction
         $this->ajaxReturn($data);
     }
 
+
     public function txcg()
     {
         $info = I('post.');
@@ -627,7 +635,6 @@ class OrderAction extends CommonAction
 
         $this->display();
     }
-
 
     //保存凭证
     public function savevoucher()
