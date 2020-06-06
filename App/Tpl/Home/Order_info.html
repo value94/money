@@ -57,9 +57,10 @@ document.location.href=noddy.href;
                                     if($data['status'] == -1)echo "审核不通过";
                                     if($data['status'] == -2)echo "临时冻结";
                                     if($data['status'] == 5)echo "退款中";
+                                    if($data['status'] == 6)echo "打款成功";
                                     if($data['status'] == 7)echo "打款中";
                                     if($data['status'] == 11)echo "提现处理";
-                                    if($data['status'] == 12)echo "到帐成功";
+                                    if($data['status'] == 12)echo "到帐钱包";
                                     if($data['status'] == 13)echo "保险";
                                     if($data['status'] == 14)echo "第一期还款";
                                     if($data['status'] == 15)echo "提现失败";
@@ -94,6 +95,8 @@ document.location.href=noddy.href;
 							}elseif($data['status'] == 8){
 								echo '<span class="procir3"></span>';
 							}elseif($data['status'] == 12){
+								echo '<span class="procir3"></span>';
+							}elseif($data['status'] == 6){
 								echo '<span class="procir3"></span>';
 							}elseif($data['status'] == -2){
 								echo '<span class="procir3"></span>';
@@ -151,8 +154,10 @@ document.location.href=noddy.href;
 										echo "提现中";
 									}elseif($data['status'] == 5){
 										echo "退款中";
+									}elseif($data['status'] == 6){
+										echo "打款成功";
 									}else{
-								    	echo "到帐成功";
+								    	echo "到帐钱包";
 								    }
 								</php>
 							</p>
@@ -165,7 +170,9 @@ document.location.href=noddy.href;
 								if($data['status'] ==8||$data['status'] ==-2 ){
 									echo '<span class="procir4"></span>';
 								}elseif($data['status'] == 5){
-									echo '<span class="procir2"></span>';
+									echo '<span class="procir4"></span>';
+								}elseif($data['status'] == 6){
+									echo '<span class="procir3"></span>';
 								}elseif($data['status'] == 2 ||$data['status'] ==-1 ){
 									echo '<span class="procir1"></span>';
 							    }else{

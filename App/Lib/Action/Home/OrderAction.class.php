@@ -330,6 +330,9 @@ class OrderAction extends CommonAction
                 case 5:
                     $msg = C('cfg_sqbxf');//退款中
                     break;
+                case 6:
+                    $msg = C('cfg_to_account');//打款成功
+                    break;
                 case 11:
                     $msg = C('cfg_dkz');//打款中
                     break;
@@ -514,11 +517,11 @@ class OrderAction extends CommonAction
             $order_data = $Order->where(array('user' => $this->getLoginUser()))->order('addtime desc')->find();
         }
 
-        // 验证是不是已有成功订单
-        if (in_array($order_data['status'], [-2, 3, 4, 5, 7, 8, 9, 11, 12, 13, 14, 15, 18, 17])) {
+       /* // 验证是不是已有成功订单
+        if (in_array($order_data['status'], [-2, 3, 4, 5, 7, 8, 9, 11, 13, 14, 15, 18, 17])) {
             $data['msg'] = "已有未完成订单!";
             $this->ajaxReturn($data);
-        }
+        }*/
 
         // 验证取款码
         $user_data = M('user')->where(['phone' => $order_data['user']])->find();

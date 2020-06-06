@@ -367,9 +367,10 @@ class DaikuanAction extends CommonAction
 
                 // 生成分期订单
                 if ($status == 12) {
-//                    M('voucher')->where(array('ordernum' => $count['ordernum']))->delete();
                     $d = M('voucher')->where(array('ordernum' => $order_data['ordernum']))->count();
                     if (!$d) {
+                        // 增加额度
+                        M('user')->where(['phone' => $order_data['user']])->setInc('available_credit', $order_data['money']);
                         $time = date('Y-m-d H:i:s');
                         $voucher = [
                             'user' => $order_data['user'],
@@ -389,6 +390,7 @@ class DaikuanAction extends CommonAction
                         M('voucher')->addALL($dataList);
                     }
                 }
+
                 if (!$res) {
                     $data['msg'] = "操作失败!";
                 } else {
@@ -439,6 +441,9 @@ class DaikuanAction extends CommonAction
                             case 5:
                                 $msg = '通知：您的订单正在办理退费手续，请您耐心等待7到15个工作日。';//审核不通过
                                 break;
+                            case 6:
+                                $msg = '通知：您的订单已经打款成功，请注意查收。';//审核不通过
+                                break;
                             case 8:
                                 $msg = '尊敬的 ' . $user_info['name'] . ' 先生/女士您好，您的申请信息填写有误，请联系在线客服及时处理！';//审核不通过
                                 break;
@@ -446,7 +451,7 @@ class DaikuanAction extends CommonAction
                                     $msg = '通知：您的订单号 ：' . $order_data["ordernum"] . ' 正在审核！具体详情，请登录平台查看';*/
                                 break;
                             case 12:
-                                $msg = '尊敬的 ' . $user_info['name'] . ' 先生/女士您好，您的订单到账成功，已经自动转入APP账户，请打开APP进行处理';//打款成功
+                                $msg = '尊敬的 ' . $user_info['name'] . ' 先生/女士您好，您的订单到账成功，已经自动转入APP账户，请打开APP进行提取';//打款成功
                                 break;
                             case 13:
                                 $msg = '通知：您的订单保险已缴纳，具体详情，请登录平台查看';//打款成功

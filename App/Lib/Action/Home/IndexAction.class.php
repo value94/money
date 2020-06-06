@@ -60,15 +60,12 @@ class IndexAction extends CommonAction
         $phone = $this->getLoginUser();
 
         // 获取订单数据
-        $order_data = $order_model->where(array('user' => $phone))->order('id desc')->find();
         $user_date = M('user')->where(array('phone' => $phone))->find();
         $user_money = $user_date['available_credit'];
 
+
         // 获取用户资料数据
         $user_info_data = $user_info->where(array('user' => $phone))->find();
-        if ($order_data['money'] && $order_data['status'] == 2) {
-            $user_money += $order_data['money'] + $order_data['qb'];
-        }
 
         $status = 1;
         foreach ($user_info_data as $key => $value) {
@@ -77,7 +74,7 @@ class IndexAction extends CommonAction
             }
         }
         // 获取用户剩余还款数据
-        $success_order = $order_model->where(array('user' => $phone, 'status' => ['in', '2,3,4,-2,11,14,12']))->order('id desc')->find();
+        $success_order = $order_model->where(array('user' => $phone, 'status' => ['in', '6']))->order('id desc')->find();
 
         $this->assign('left_money', $success_order['months'] * $success_order['monthmoney']);
         $this->assign('moneys', $user_money);

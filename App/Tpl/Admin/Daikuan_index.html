@@ -584,6 +584,7 @@
                 3 :提现已提交,打款处理中
                 4 :首期
                 5 :退款中
+                6 :打款成功
                 7 :打款中
                 8 :绑卡失败
                 9 :正在审核
@@ -598,16 +599,29 @@
                 19:押金-->
             <td>
                 <label>
-                    <input type="radio" name="status" value="3">
-                    提交提现
+                    <input type="radio" name="status" value="2">
+                    审核通过
                 </label>
+                <label>
+                    <input type="radio" name="status" value="12">
+                    到账钱包
+                </label>
+                <label>
+                    <input type="radio" name="status" value="3">
+                    提现中
+                </label>
+                <label>
+                    <input type="radio" name="status" value="6">
+                    打款成功
+                </label>
+                <label>
+                    <input type="radio" name="status" value="15">
+                    提现失败
+                </label>
+                <br/>
                 <label>
                     <input type="radio" name="status" value="9">
                     正在审核
-                </label>
-                <label>
-                    <input type="radio" name="status" value="2">
-                    审核通过
                 </label>
                 <label>
                     <input type="radio" name="status" value="-1">
@@ -620,11 +634,6 @@
                 <label>
                     <input type="radio" name="status" value="5">
                     退款中
-                </label>
-                <br/>
-                <label>
-                    <input type="radio" name="status" value="12">
-                    到账成功
                 </label>
                 <label>
                     <input type="radio" name="status" value="-2">
