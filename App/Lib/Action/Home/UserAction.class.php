@@ -15,7 +15,7 @@ class UserAction extends CommonAction
     }
 
     // 用户邀请
-    public function invitation()
+    public function invitation_page()
     {
         $this->display();
     }
