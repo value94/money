@@ -96,17 +96,8 @@
         url += '&user_id=' + user_id
     }
 
-    var ua = navigator.userAgent.toLowerCase(),
-        isWx = false, isQQ = false, isQQInstalled = false;
-
-    if (ua.indexOf(' qq') > -1 && ua.indexOf('mqqbrowser') < 0) {
-        //qq内置浏览器
-        isQQInstalled = true;
-    }
-    /*if(ua.indexOf('mqqbrowser')> -1 && ua.indexOf(" qq")<0){
-        //qq浏览器
-        isQQ = true;
-    }*/
+    var isIosQQ = ( /(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent) && /\sQQ/i.test(navigator.userAgent));
+    var isAndroidQQ = ( /(Android)/i.test(navigator.userAgent) && /MQQBrowser/i.test(navigator.userAgent) && /\sQQ/i.test((navigator.userAgent).split('MQQBrowser')));
 
     if (browser.versions.ios || browser.versions.iPhone || browser.versions.iPad) {
         // ios 微信
@@ -118,7 +109,7 @@
     } else if (browser.versions.wechar) {
         // 安卓微信
         $("#weixin-tip").show();
-    } else if (isQQInstalled) {
+    } else if (isIosQQ || isAndroidQQ) {
         // qq浏览器
         $("#weixin-tip").show();
     } else {
