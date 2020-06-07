@@ -254,12 +254,15 @@ class OrderAction extends CommonAction
         }
         $rmb = $this->rmb_format($order['money']);
         $order['rmb'] = $rmb;
-        $this->order = $order;
-        $this->user = $info;
+
         $fff = C('cfg_fuwufei');
         $f = explode(",", $fff);
         $f = $f[0];
+
+        $this->order = $order;
+        $this->user = $info;
         $this->f = $f;
+
         $this->display();
     }
 
