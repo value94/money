@@ -33,7 +33,7 @@ class ChatlogAction extends Action
         $id = I('id');
         $type = I('type');
 
-        $uid = cookie('uid');
+        $uid = cookie('user_id');
 
         if ('friend' == $type) {
             $result = M('richat_chatlog')->where(['_string' => "((fromid={$uid} and toid={$id}) or (fromid={$id} and toid={$uid})) and type='friend'"])

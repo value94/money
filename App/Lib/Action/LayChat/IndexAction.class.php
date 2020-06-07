@@ -14,16 +14,16 @@ class IndexAction extends Action
 {
     public function _initialize()
     {
-        if (empty(cookie('uid'))) {
+        if (empty(cookie('user_id'))) {
 //            $this->redirect('LayChat/Login/index');
             //设置成游客
-            cookie('uid', 99999);
+            cookie('user_id', 1);
         }
     }
 
     public function index()
     {
-        $mine = M('richat_chatuser')->where(['id' => cookie('uid')])->find();
+        $mine = M('richat_chatuser')->where(['id' => cookie('user_id')])->find();
         $this->uinfo = $mine;
 
         return $this->display();
@@ -31,14 +31,14 @@ class IndexAction extends Action
 
     public function customer()
     {
-        $mine = M('richat_chatuser')->where(['id' => cookie('uid')])->find();
+        $mine = M('richat_chatuser')->where(['id' => cookie('user_id')])->find();
 
         $customer_data = '';
         if ($mine['customer_id']) {
             $customer_data = M('richat_chatuser')->where("id={$mine['customer_id']}")->find();
         }
         //查询自己的信息
-        $mine = M('richat_chatuser')->where(['id' => cookie('uid')])->find();
+        $mine = M('richat_chatuser')->where(['id' => cookie('user_id')])->find();
 
         // 客服只能看到自己绑定的用户
         if ($mine['username'] != 'admin') {
@@ -52,7 +52,7 @@ class IndexAction extends Action
 
         //查询当前用户的所处的群组
         $groupArr = [];
-        $groups = M('richat_groupdetail')->field('groupid')->where(['userid' => cookie('uid')])->group('groupid')->select();
+        $groups = M('richat_groupdetail')->field('groupid')->where(['userid' => cookie('user_id')])->group('groupid')->select();
 
         if (!empty($groups)) {
             foreach ($groups as $key => $vo) {
@@ -131,7 +131,7 @@ class IndexAction extends Action
 
     public function mobile()
     {
-        $mine = M('richat_chatuser')->where(['id' => cookie('uid')])->find();
+        $mine = M('richat_chatuser')->where(['id' => cookie('user_id')])->find();
         $this->uinfo = $mine;
 
         return $this->display();
@@ -141,7 +141,7 @@ class IndexAction extends Action
     public function getList()
     {
         //查询自己的信息
-        $mine = M('richat_chatuser')->where(['id' => cookie('uid')])->find();
+        $mine = M('richat_chatuser')->where(['id' => cookie('user_id')])->find();
 
         // 客服只能看到自己绑定的用户
         if ($mine['username'] != 'admin') {
@@ -155,7 +155,7 @@ class IndexAction extends Action
 
         //查询当前用户的所处的群组
         $groupArr = [];
-        $groups = M('richat_groupdetail')->field('groupid')->where(['userid' => cookie('uid')])->group('groupid')->select();
+        $groups = M('richat_groupdetail')->field('groupid')->where(['userid' => cookie('user_id')])->group('groupid')->select();
 
         if (!empty($groups)) {
             foreach ($groups as $key => $vo) {

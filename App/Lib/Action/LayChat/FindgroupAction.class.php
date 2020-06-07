@@ -49,10 +49,10 @@ class FindgroupAction extends Action
             exit();
         }
 
-        $uid = cookie('uid');
+        $user_id = cookie('user_id');
         //已经加入了
         $allready = M('richat_groupdetail')->field('userid')
-            ->where(['groupid' => $groupid, 'userid' => $uid])
+            ->where(['groupid' => $groupid, 'userid' => $user_id])
             ->find();
 
         if (!empty($allready)) {
@@ -61,7 +61,7 @@ class FindgroupAction extends Action
         }
 
         $param = [
-            'userid' => $uid,
+            'userid' => $user_id,
             'username' => cookie('username'),
             'useravatar' => cookie('avatar'),
             'usersign' => cookie('sign'),
@@ -72,7 +72,7 @@ class FindgroupAction extends Action
 
         //socket data
         $join_data = '{"type":"joinGroup", "data" : {"avatar":"' . $has['avatar'] . '","groupname":"' . $has['groupname'] . '",';
-        $join_data .= '"id":"' . $groupid . '", "uid":"' . $uid . '"}}';
+        $join_data .= '"id":"' . $groupid . '", "uid":"' . $user_id . '"}}';
 
         echo json_encode(['code' => 1, 'data' => $join_data, 'msg' => '成功加入']);
         exit();
@@ -81,7 +81,7 @@ class FindgroupAction extends Action
     //添加群组
     public function addGroup()
     {
-        if (empty(cookie('uid'))) {
+        if (empty(cookie('user_id'))) {
             $this->redirect('Index/index');
         }
 
@@ -105,7 +105,7 @@ class FindgroupAction extends Action
             $this->_getUpFile($param);
 
             $param['owner_name'] = cookie('username');
-            $param['owner_id'] = cookie('uid');
+            $param['owner_id'] = cookie('user_id');
             $param['owner_avatar'] = cookie('avatar');
             $param['owner_sign'] = cookie('sign');
 
@@ -118,7 +118,7 @@ class FindgroupAction extends Action
 
             //unset( $param );
             //拼装上自己
-            $ids .= "," . cookie('uid');
+            $ids .= "," . cookie('user_id');
             $groupid = M('richat_chatgroup')->getLastInsID();
 
             $users = M('richat_chatuser')->where(["id" => ['in', $ids]])->select();
@@ -164,7 +164,7 @@ class FindgroupAction extends Action
 
         $group = [];
         $users = [];
-        $group = M('richat_chatgroup')->field('id,groupname')->where(['owner_id' => cookie('uid')])->select();
+        $group = M('richat_chatgroup')->field('id,groupname')->where(['owner_id' => cookie('user_id')])->select();
         if (!empty($group)) {
             $users = M('richat_groupdetail')->field('username,userid,useravatar,groupid')->where(['groupid' => $group['0']['id']])->select();
         }
@@ -241,7 +241,7 @@ class FindgroupAction extends Action
     public function getUsers()
     {
         $result = M('richat_chatuser')->field('id,username,groupid')
-            ->where(['id' => ['neq', cookie('uid')]])
+            ->where(['id' => ['neq', cookie('user_id')]])
             ->select();
 
         if (empty($result)) {

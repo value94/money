@@ -32,7 +32,7 @@ class LoginAction extends Action
 
         //设置为登录状态
         M('richat_chatuser')->where(['username' => $uname])->setField('status', 'online');
-        cookie('uid', $userinfo['id']);
+        cookie('user_id', $userinfo['id']);
         cookie('username', $userinfo['username']);
         cookie('avatar', $userinfo['avatar']);
         cookie('sign', $userinfo['sign']);
