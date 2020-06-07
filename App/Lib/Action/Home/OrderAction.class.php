@@ -2,7 +2,6 @@
 
 class OrderAction extends CommonAction
 {
-
     public function checkorder()
     {
         $data = array('status' => 0, 'msg' => '未知错误!');
@@ -40,49 +39,63 @@ class OrderAction extends CommonAction
         return ceil($disdkdleyday - $tmptime);
     }
 
+    // 生成贷款订单
     public function daikuan()
     {
-        if (!$this->getLoginUser()) {
+        $user_phone = $this->getLoginUser();
+        if (!$user_phone) {
             $this->redirect('User/login');
         }
-        $co = M('user')->where(array('user' => $this->getLoginUser()))->find();
-        if (!$co) {
+
+        $user_data = M('user')->where(array('phone' => $user_phone))->find();
+        if (!$user_data) {
             $this->setLoginUser('');
             $this->redirect('User/login');
         }
-        $Userinfo = D("userinfo");
-        $info = $Userinfo->where(array('user' => $this->getLoginUser()))->find();
+
+        $userInfoModel = D("userinfo");
+        $info = $userInfoModel->where(array('user' => $user_phone))->find();
         if (!$info) {
             $this->redirect('Info/index');
         }
+
+        // 验证个人信息是否已填写
         foreach ($info as $key => $value) {
             if ($value == '' && $key != "dwphone" && $key != "creditcard" && $key != "creditquota" && $key != "creditsan") {
                 $this->redirect('Info/index');
             }
         }
+
         //判断用户最近一次失败订单是否超过预期时间
-        $yesdaikuan = $this->yesdaikuan($this->getLoginUser());
+        $yesdaikuan = $this->yesdaikuan($user_phone);
+
         if ($yesdaikuan) {
             $this->redirect('Index/index');
         }
+
         $money = I("money", 0, 'trim');
         $month = I("month", 0, 'trim');
         $money = (float)$money;
         $month = (int)$month;
+
         $dismonths = C("cfg_dkmonths");
         $dismonths = explode(",", $dismonths);
         $fuwufei = C('cfg_fuwufei');
         $fuwufei = explode(",", $fuwufei);
+
         if ($money > C('cfg_maxmoney') || $money < C('cfg_minmoney')) {
             //借款金额不允许
             $this->redirect('Index/index');
         }
+
         if (!in_array($month, $dismonths)) {
             //不允许的分期月
             $this->redirect('Index/index');
         }
+
         $rixi = round($fuwufei[$month - 1] / 30, 2);
         $fuwufei = $fuwufei[$month - 1] * $money / 100;
+
         $order = array(
             'money' => $money,
             'fuwufei' => $fuwufei,
@@ -92,28 +105,30 @@ class OrderAction extends CommonAction
             'banknum' => $info['bankcard'],
             'rixi' => $rixi
         );
-        $addorder = I("get.trueorder", 0, 'trim');
-        if ($addorder) {
+        $add_order = I("get.trueorder", 0, 'trim');
+        if ($add_order) {
             $data = array('status' => 0, 'msg' => '未知错误', 'payurl' => '');
             //创建订单
-            $ordernum = neworderNum();
-            $arr = array(
+            $order_no = neworderNum();
+            /*$arr = array(
                 'ordernum' => $ordernum,
                 'type' => '审核费',
                 'money' => C('cfg_shenhefei'),
                 'addtime' => time(),
                 'status' => 9,
-                'user' => $this->getLoginUser()
+                'user' => $user_phone
             );
             $Payorder = D("payorder");
-            //$status = $Payorder->add($arr);
+            //$status = $Payorder->add($arr);*/
             $status = 1;
             if (!$status) {
                 $data['msg'] = '创建订单失败!';
             } else {
                 $Order = D("order");
                 $arr = array(
-                    'user' => $this->getLoginUser(),
+                    'user' => $user_phone,
+                    'admin_name' => $user_data['admin_name'],
+                    'admin_id' => $user_data['admin_id'],
                     'money' => $money,
                     'months' => $month,
                     'monthmoney' => ceil($order['huankuan'] + $order['fuwufei']),
@@ -123,14 +138,14 @@ class OrderAction extends CommonAction
                     'pid' => $status,
                     'bank' => $info['bankname'],
                     'banknum' => $info['bankcard'],
-                    'ordernum' => $ordernum
+                    'ordernum' => $order_no
                 );
                 $status = $Order->add($arr);
                 if (!$status) {
                     $data['msg'] = '创建订单失败!';
                 } else {
                     $data['status'] = 1;
-                    $data['payurl'] = U('Order/msg', array('ordernum' => $ordernum));
+                    $data['payurl'] = U('Order/msg', array('ordernum' => $order_no));
                 }
             }
             $this->ajaxReturn($data);

@@ -42,7 +42,7 @@ class CommonAction extends Action{
 			setcookie("user",NULL,time()-3600);
 		}else{
 			$_SESSION['user'] = $phone;
-			setcookie("user",$phone,180*24*60*60);
+            setcookie("user",$phone,180*24*60*60);
 		}
 	}
 	
