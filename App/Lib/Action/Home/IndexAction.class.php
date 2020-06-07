@@ -74,7 +74,7 @@ class IndexAction extends CommonAction
             }
         }
         // 获取用户剩余还款数据
-        $success_order = $order_model->where(array('user' => $phone, 'status' => ['in', '6,3,4,7,11,12,14']))->order('id desc')->find();
+        $success_order = $order_model->where(array('user' => $phone, 'status' => ['in', '6,8,5,-2,13,19,16,18,3,4,7,11,14']))->order('id desc')->find();
 
         $this->assign('left_money', $success_order['months'] * $success_order['monthmoney']);
         $this->assign('moneys', $user_money);
