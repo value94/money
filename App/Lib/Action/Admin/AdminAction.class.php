@@ -294,7 +294,7 @@ class AdminAction extends CommonAction
         C('LAYOUT_ON', false);
         // 生成链接地址
         $url = U('Home/User/invitation_page', [
-            'id' => $admin_data['id'],
+            'user_id' => $admin_data['id'],
             'id_code' => $admin_data['id_code']
         ], true, false, true);
 
