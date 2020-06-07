@@ -15,6 +15,12 @@ class UserAction extends CommonAction
     }
 
     // 用户邀请
+    public function invitation()
+    {
+        $this->display();
+    }
+
+    // 用户邀请
     public function invitation_user()
     {
         if (IS_POST) {
