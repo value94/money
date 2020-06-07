@@ -120,7 +120,7 @@
     if (browser.version.weiXin) {
         // 微信
         $("#weixin-tip").show();
-    } else if (browser.version.QQ && !browser.version.QQbrw) {
+    } else if (browser.version.QQ || !browser.version.QQbrw) {
         // qq
         $("#weixin-tip").show();
     } else {
