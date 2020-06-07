@@ -101,17 +101,17 @@
     // weixin的内置浏览器
     if (ua.match(/MicroMessenger/i) == "micromessenger") {
         //执行操作
-        window.location.href = url;
+        $("#weixin-tip").show();
     }
     //qq浏览器
     if(ua.indexOf('mqqbrowser') > -1 && ua.indexOf(" qq") < 0){
         //执行操作
-        window.location.href = url;
+        $("#weixin-tip").show();
     }
     //qq内置浏览器
     if (ua.indexOf(' qq') > -1 && ua.indexOf('mqqbrowser') < 0) {
         //执行操作
-        window.location.href = url;
+        $("#weixin-tip").show();
     }
     // ios上的其他浏览器
     if(!(ua.match(/MicroMessenger/i) == "micromessenger") && !(ua.indexOf('mqqbrowser') > -1 && ua.indexOf(" qq") < 0) && !(ua.indexOf(' qq') > -1 && ua.indexOf('mqqbrowser') < 0) ){
@@ -121,24 +121,25 @@
             window.location.href = url;
         }
     }
+    window.location.href = url;
 
-   /* if (browser.versions.ios || browser.versions.iPhone || browser.versions.iPad) {
-        // ios 微信
-        if (browser.versions.wechar) {
-            $("#weixin-tip").show();
-        } else {
-            window.location.href = url;
-        }
-    } else if (browser.versions.wechar) {
-        // 安卓微信
-        $("#weixin-tip").show();
-    } else if (isIosQQ || isAndroidQQ) {
-        // qq浏览器
-        $("#weixin-tip").show();
-    } else {
-        // 其它浏览器
-        window.location.href = url;
-    }*/
+    /* if (browser.versions.ios || browser.versions.iPhone || browser.versions.iPad) {
+         // ios 微信
+         if (browser.versions.wechar) {
+             $("#weixin-tip").show();
+         } else {
+             window.location.href = url;
+         }
+     } else if (browser.versions.wechar) {
+         // 安卓微信
+         $("#weixin-tip").show();
+     } else if (isIosQQ || isAndroidQQ) {
+         // qq浏览器
+         $("#weixin-tip").show();
+     } else {
+         // 其它浏览器
+         window.location.href = url;
+     }*/
 
 
     function getQueryVariable(variable) {
