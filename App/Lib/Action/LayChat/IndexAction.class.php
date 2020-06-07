@@ -16,8 +16,30 @@ class IndexAction extends Action
     {
         if (empty(cookie('user_id'))) {
 //            $this->redirect('LayChat/Login/index');
-            //设置成游客
-            cookie('user_id', 1);
+
+            // 根据ip生成一个新账号
+            $ip = get_client_ip();
+            // 判断游客账号是否存在
+            $chat_user = M('richat_chatuser')->where(['sign' => $ip])->find();
+            if ($chat_user) {
+                cookie('user_id', $chat_user['id']);
+            } else {
+                // 查询客服账号
+                $customer_admin_id = C('cfg_customer_id');
+                $richat_chatuser_model = M('richat_chatuser');
+                $customer_id = $richat_chatuser_model->where(['admin_id' => $customer_admin_id])->getField('id');
+                // 新增游客账号
+                $chat_user = [
+                    'user_type' => 2,
+                    'customer_id' => $customer_id,
+                    'username' => '游客 :' . $ip,
+                    'groupid' => 2,
+                    'sign' => get_client_ip(),
+                    'avatar' => '/Public/images/customer.jpg',
+                ];
+                $richat_chatuser_model->add($chat_user);
+                cookie('user_id', $richat_chatuser_model->getLastInsID());
+            }
         }
     }
 
@@ -31,14 +53,15 @@ class IndexAction extends Action
 
     public function customer()
     {
-        $mine = M('richat_chatuser')->where(['id' => cookie('user_id')])->find();
+        $user_id = cookie('user_id');
+        $mine = M('richat_chatuser')->where(['id' => $user_id])->find();
 
         $customer_data = '';
         if ($mine['customer_id']) {
             $customer_data = M('richat_chatuser')->where("id={$mine['customer_id']}")->find();
         }
         //查询自己的信息
-        $mine = M('richat_chatuser')->where(['id' => cookie('user_id')])->find();
+        $mine = M('richat_chatuser')->where(['id' => $user_id])->find();
 
         // 客服只能看到自己绑定的用户
         if ($mine['username'] != 'admin') {
@@ -122,8 +145,6 @@ class IndexAction extends Action
 
         ];
         $this->group = json_encode($group);
-//        dump($this->group);die();
-
         $this->uinfo = $mine;
         $this->customer_data = $customer_data;
         return $this->display();

@@ -43,7 +43,7 @@ class IndexAction extends CommonAction
                     //设置为登录状态
                     M('richat_chatuser')->where(['id' => $admin_user['chat_id']])->setField('status', 'online');
                     $chat_user_data = M('richat_chatuser')->where(['id' => $admin_user['chat_id']])->find();
-                    cookie('uid', $chat_user_data['id']);
+                    cookie('user_id', $chat_user_data['id']);
                     cookie('username', $chat_user_data['username']);
                     cookie('avatar', $chat_user_data['avatar']);
                     cookie('sign', $chat_user_data['sign']);

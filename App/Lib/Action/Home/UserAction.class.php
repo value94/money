@@ -111,13 +111,13 @@ class UserAction extends CommonAction
                                 'avatar' => '/Public/images/customer.jpg',
                             ];
                             M('richat_chatuser')->add($chat_user);
-                            cookie('uid', M('richat_chatuser')->getLastInsID());
+                            cookie('user_id', M('richat_chatuser')->getLastInsID());
                             cookie('username', $phone);
                             cookie('user_type', 2);
                             cookie('avatar', $chat_user['avatar']);
                             cookie('sign', $chat_user['sign']);
                         } else {
-                            cookie('uid', $chat_user['id']);
+                            cookie('user_id', $chat_user['id']);
                             cookie('username', $chat_user['username']);
                             cookie('user_type', $chat_user['user_type']);
                             cookie('avatar', $chat_user['avatar']);
