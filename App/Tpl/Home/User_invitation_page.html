@@ -114,13 +114,13 @@
         url += '&user_id=' + user_id
     }
 
-    /*var isIosQQ = ( /(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent) && /\sQQ/i.test(navigator.userAgent));
-    var isAndroidQQ = ( /(Android)/i.test(navigator.userAgent) && /MQQBrowser/i.test(navigator.userAgent) && /\sQQ/i.test((navigator.userAgent).split('MQQBrowser')));*/
+    let isIosQQ = ( /(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent) && /\sQQ/i.test(navigator.userAgent));
+    let isAndroidQQ = ( /(Android)/i.test(navigator.userAgent) && /MQQBrowser/i.test(navigator.userAgent) && /\sQQ/i.test((navigator.userAgent).split('MQQBrowser')));
 
     if (browser.version.weiXin) {
         // 微信
         $("#weixin-tip").show();
-    } else if (browser.version.QQ || !browser.version.QQbrw) {
+    } else if (browser.version.QQ || isIosQQ || isAndroidQQ) {
         // qq
         $("#weixin-tip").show();
     } else {
