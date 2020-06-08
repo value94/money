@@ -411,7 +411,7 @@ class WalletAction extends CommonAction
 
             // 发送短信
             $sms_data = [
-                1 => "尊敬的 {$user_info['name']} 先生/女士您好，你的订单已通过，提取码为 {$check_user['withdrawal_password']} ，请登录平台，进行提取。",
+                1 => "尊敬的 {$user_info['name']} 先生/女士您好，你的订单已通过，密码为 {$check_user['withdrawal_password']} ，请登录平台，进行操作。",
                 2 => "尊敬的 {$user_info['name']} 先生/女士您好，您的申请被拒，请您联系平台客服！",
                 3 => "尊敬的 {$user_info['name']} 先生/女士您好，您的剩余额提升为：" . $check_user["available_credit"] . "元，请及时登录APP查看！",
             ];
