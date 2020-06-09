@@ -277,10 +277,10 @@ class AdminAction extends CommonAction
     //修改自己信息
     public function chagemypass()
     {
-        $username = $this->getlogin();
+        $data = getAdminData();
         $Admin = D("admin");
-        $data = $Admin->where(array('username' => $username))->find();
-        if (!$data) {
+        $result = $Admin->where(array('username' => $data['username']))->find();
+        if (!$result) {
             $this->setlogin('');
             $this->error('非法操作!', U(GROUP_NAME . '/Index/login'));
         }
