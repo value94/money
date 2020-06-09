@@ -1,4 +1,4 @@
-it /*
+/*
 Navicat MySQL Data Transfer
 
 Source Server         : 127.0.0.1
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50726
 File Encoding         : 65001
 
-Date: 2020-05-26 18:24:22
+Date: 2020-06-09 16:09:28
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -24,21 +24,23 @@ CREATE TABLE `admin` (
   `chat_id` int(11) DEFAULT NULL COMMENT '客服id',
   `username` varchar(12) NOT NULL,
   `password` varchar(35) NOT NULL,
+  `marks` varchar(128) DEFAULT NULL COMMENT '备注',
   `gid` int(11) NOT NULL DEFAULT '1',
   `id_code` varchar(32) DEFAULT NULL COMMENT '用户推广码',
   `role` tinyint(2) DEFAULT '2' COMMENT '用户权限',
   `addtime` int(11) NOT NULL,
   `lastlogin` int(11) NOT NULL,
+  `work_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '上班状态',
   `status` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of admin
 -- ----------------------------
-INSERT INTO `admin` VALUES ('44', '29', 'kefu2', '22e1bc525432de9878534afd9c0a0dcb', '1', 'weezvjzm', '2', '1590477235', '1590481344', '1');
-INSERT INTO `admin` VALUES ('43', '28', 'admin', 'f11ec7022bbe2bf69670d1a181646f0e', '1', 'mtciily6', '1', '1590476422', '1590477221', '1');
-INSERT INTO `admin` VALUES ('42', '22', 'kefu', '57cea37edd561f91185ee4044f528e75', '1', 'gehn5xk2', '2', '1590475576', '1590476953', '1');
+INSERT INTO `admin` VALUES ('1', '28', 'admin', 'f11ec7022bbe2bf69670d1a181646f0e', '1111', '1', 'mtciily6', '1', '1590476422', '1591529800', '1', '1');
+INSERT INTO `admin` VALUES ('2', '29', 'kefu2', '22e1bc525432de9878534afd9c0a0dcb', '', '1', 'weezvjzm', '2', '1590477235', '1590557807', '1', '1');
+INSERT INTO `admin` VALUES ('3', '22', 'kefu', '57cea37edd561f91185ee4044f528e75', '', '1', 'gehn5xk2', '2', '1590475576', '1591516694', '1', '1');
 
 -- ----------------------------
 -- Table structure for admin_login
@@ -50,115 +52,11 @@ CREATE TABLE `admin_login` (
   `logintime` int(11) NOT NULL DEFAULT '0',
   `loginip` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=105 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of admin_login
 -- ----------------------------
-INSERT INTO `admin_login` VALUES ('1', 'admin', '1577000856', '180.124.82.84');
-INSERT INTO `admin_login` VALUES ('2', 'admin', '1577009041', '203.168.21.81');
-INSERT INTO `admin_login` VALUES ('3', 'admin', '1577161762', '183.202.120.121');
-INSERT INTO `admin_login` VALUES ('4', 'admin', '1577162025', '223.111.137.156');
-INSERT INTO `admin_login` VALUES ('5', 'admin', '1577184210', '223.111.137.156');
-INSERT INTO `admin_login` VALUES ('6', 'admin', '1577237683', '223.111.137.156');
-INSERT INTO `admin_login` VALUES ('7', 'admin', '1577270748', '223.111.137.156');
-INSERT INTO `admin_login` VALUES ('8', 'admin', '1577323447', '223.111.137.156');
-INSERT INTO `admin_login` VALUES ('9', 'admin', '1577408962', '223.111.137.156');
-INSERT INTO `admin_login` VALUES ('10', 'admin', '1577510428', '223.111.137.156');
-INSERT INTO `admin_login` VALUES ('11', 'admin', '1577587927', '223.111.137.156');
-INSERT INTO `admin_login` VALUES ('12', 'admin', '1577595694', '223.111.137.156');
-INSERT INTO `admin_login` VALUES ('13', 'admin', '1577603362', '223.111.137.156');
-INSERT INTO `admin_login` VALUES ('14', 'admin', '1577604457', '223.111.137.156');
-INSERT INTO `admin_login` VALUES ('15', 'admin', '1577678607', '223.111.137.158');
-INSERT INTO `admin_login` VALUES ('16', 'admin', '1577699057', '223.111.137.157');
-INSERT INTO `admin_login` VALUES ('17', 'admin', '1577768280', '223.111.137.156');
-INSERT INTO `admin_login` VALUES ('18', 'admin', '1577849452', '223.111.137.156');
-INSERT INTO `admin_login` VALUES ('19', 'admin', '1577926387', '223.111.137.156');
-INSERT INTO `admin_login` VALUES ('20', 'admin', '1577941586', '223.111.137.156');
-INSERT INTO `admin_login` VALUES ('21', 'admin', '1577974104', '223.111.137.156');
-INSERT INTO `admin_login` VALUES ('22', 'admin', '1578015962', '223.111.137.156');
-INSERT INTO `admin_login` VALUES ('23', 'admin', '1578021123', '223.111.137.156');
-INSERT INTO `admin_login` VALUES ('24', 'admin', '1578034766', '223.111.137.156');
-INSERT INTO `admin_login` VALUES ('25', 'admin', '1578061513', '223.111.137.156');
-INSERT INTO `admin_login` VALUES ('26', 'admin', '1578064580', '223.111.137.156');
-INSERT INTO `admin_login` VALUES ('27', 'admin', '1578187410', '223.111.137.156');
-INSERT INTO `admin_login` VALUES ('28', 'admin', '1578191870', '223.111.137.156');
-INSERT INTO `admin_login` VALUES ('29', 'admin', '1578274757', '223.111.137.156');
-INSERT INTO `admin_login` VALUES ('30', 'admin', '1578303613', '223.111.137.156');
-INSERT INTO `admin_login` VALUES ('31', 'admin', '1578383766', '124.167.76.138');
-INSERT INTO `admin_login` VALUES ('32', 'admin', '1578383788', '124.167.76.138');
-INSERT INTO `admin_login` VALUES ('33', 'admin', '1578383797', '124.167.76.138');
-INSERT INTO `admin_login` VALUES ('34', 'admin', '1578384245', '223.66.190.254');
-INSERT INTO `admin_login` VALUES ('35', 'admin', '1578394431', '42.100.134.157');
-INSERT INTO `admin_login` VALUES ('36', 'admin', '1582039778', '171.122.248.4');
-INSERT INTO `admin_login` VALUES ('37', 'admin', '1583117398', '58.35.136.78');
-INSERT INTO `admin_login` VALUES ('38', 'admin', '1583306662', '111.112.242.177');
-INSERT INTO `admin_login` VALUES ('39', 'admin', '1583999068', '218.205.55.60');
-INSERT INTO `admin_login` VALUES ('40', 'admin', '1584036580', '117.136.60.129');
-INSERT INTO `admin_login` VALUES ('41', 'admin', '1584077370', '218.205.55.114');
-INSERT INTO `admin_login` VALUES ('42', 'admin', '1584083027', '183.40.28.166');
-INSERT INTO `admin_login` VALUES ('43', 'admin', '1584605633', '124.167.200.241');
-INSERT INTO `admin_login` VALUES ('44', 'admin', '1584692841', '171.122.23.251');
-INSERT INTO `admin_login` VALUES ('45', 'admin', '1584713377', '111.174.41.29');
-INSERT INTO `admin_login` VALUES ('46', 'admin', '1584780690', '223.66.190.178');
-INSERT INTO `admin_login` VALUES ('47', 'admin', '1584780926', '116.249.168.146');
-INSERT INTO `admin_login` VALUES ('48', 'admin', '1584903619', '180.140.220.212');
-INSERT INTO `admin_login` VALUES ('49', 'admin', '1585101984', '117.136.46.111');
-INSERT INTO `admin_login` VALUES ('50', 'admin', '1585277962', '218.77.41.80');
-INSERT INTO `admin_login` VALUES ('51', 'admin', '1585450368', '37.111.15.92');
-INSERT INTO `admin_login` VALUES ('52', 'admin', '1585818489', '111.112.244.27');
-INSERT INTO `admin_login` VALUES ('53', 'admin', '1586162751', '180.130.2.33');
-INSERT INTO `admin_login` VALUES ('54', 'admin', '1586164265', '117.151.241.5');
-INSERT INTO `admin_login` VALUES ('55', 'admin', '1586177454', '117.151.241.5');
-INSERT INTO `admin_login` VALUES ('56', 'admin', '1586243405', '37.111.9.176');
-INSERT INTO `admin_login` VALUES ('57', 'admin', '1586245097', '171.122.250.128');
-INSERT INTO `admin_login` VALUES ('58', 'admin', '1586248277', '101.206.169.59');
-INSERT INTO `admin_login` VALUES ('59', 'admin', '1586263154', '37.111.9.176');
-INSERT INTO `admin_login` VALUES ('60', 'admin', '1586389424', '223.104.14.96');
-INSERT INTO `admin_login` VALUES ('61', 'admin', '1586437028', '120.229.11.213');
-INSERT INTO `admin_login` VALUES ('62', 'admin', '1586509127', '117.151.250.126');
-INSERT INTO `admin_login` VALUES ('63', 'admin', '1588063638', '111.112.245.219');
-INSERT INTO `admin_login` VALUES ('64', 'admin', '1588151358', '125.80.138.231');
-INSERT INTO `admin_login` VALUES ('65', 'admin', '1588565987', '123.147.250.212');
-INSERT INTO `admin_login` VALUES ('66', 'admin', '1588607412', '115.120.192.33');
-INSERT INTO `admin_login` VALUES ('67', 'admin', '1589436604', '120.239.137.1');
-INSERT INTO `admin_login` VALUES ('68', 'admin', '1589436979', '112.123.71.4');
-INSERT INTO `admin_login` VALUES ('69', 'admin', '1589460487', '180.124.82.79');
-INSERT INTO `admin_login` VALUES ('70', 'admin', '1589510073', '180.124.82.79');
-INSERT INTO `admin_login` VALUES ('71', 'admin', '1589510365', '183.95.250.206');
-INSERT INTO `admin_login` VALUES ('72', 'admin', '1589510806', '140.250.201.12');
-INSERT INTO `admin_login` VALUES ('73', 'admin', '1589510869', '140.250.201.12');
-INSERT INTO `admin_login` VALUES ('74', 'admin', '1589522930', '113.87.129.144');
-INSERT INTO `admin_login` VALUES ('75', 'admin', '1589525594', '112.32.80.248');
-INSERT INTO `admin_login` VALUES ('76', 'admin', '1589526120', '125.211.152.245');
-INSERT INTO `admin_login` VALUES ('77', 'admin', '1589526214', '112.97.245.231');
-INSERT INTO `admin_login` VALUES ('78', 'admin', '1589526499', '180.140.14.152');
-INSERT INTO `admin_login` VALUES ('79', 'admin', '1589532749', '125.211.152.245');
-INSERT INTO `admin_login` VALUES ('80', 'admin', '1589603096', '127.0.0.1');
-INSERT INTO `admin_login` VALUES ('81', 'kefu', '1589604284', '127.0.0.1');
-INSERT INTO `admin_login` VALUES ('82', 'admin', '1589604292', '127.0.0.1');
-INSERT INTO `admin_login` VALUES ('83', 'admin', '1589681780', '127.0.0.1');
-INSERT INTO `admin_login` VALUES ('84', 'kefu', '1589686817', '127.0.0.1');
-INSERT INTO `admin_login` VALUES ('85', 'admin', '1589687365', '127.0.0.1');
-INSERT INTO `admin_login` VALUES ('86', 'kefu', '1589687712', '127.0.0.1');
-INSERT INTO `admin_login` VALUES ('87', 'kefu', '1589689078', '127.0.0.1');
-INSERT INTO `admin_login` VALUES ('88', 'kefu', '1589689281', '127.0.0.1');
-INSERT INTO `admin_login` VALUES ('89', 'admin', '1589867865', '127.0.0.1');
-INSERT INTO `admin_login` VALUES ('90', 'kefu', '1589949898', '127.0.0.1');
-INSERT INTO `admin_login` VALUES ('91', 'admin', '1589974676', '127.0.0.1');
-INSERT INTO `admin_login` VALUES ('92', 'admin', '1590294071', '127.0.0.1');
-INSERT INTO `admin_login` VALUES ('93', 'admin', '1590472465', '127.0.0.1');
-INSERT INTO `admin_login` VALUES ('94', 'admin', '1590474716', '127.0.0.1');
-INSERT INTO `admin_login` VALUES ('95', 'admin', '1590475538', '127.0.0.1');
-INSERT INTO `admin_login` VALUES ('96', 'kefu', '1590475603', '127.0.0.1');
-INSERT INTO `admin_login` VALUES ('97', 'admin', '1590475729', '127.0.0.1');
-INSERT INTO `admin_login` VALUES ('98', 'kefu', '1590475772', '127.0.0.1');
-INSERT INTO `admin_login` VALUES ('99', 'admin', '1590476406', '127.0.0.1');
-INSERT INTO `admin_login` VALUES ('100', 'admin', '1590476462', '127.0.0.1');
-INSERT INTO `admin_login` VALUES ('101', 'kefu', '1590476953', '127.0.0.1');
-INSERT INTO `admin_login` VALUES ('102', 'admin', '1590477221', '127.0.0.1');
-INSERT INTO `admin_login` VALUES ('103', 'kefu2', '1590477247', '127.0.0.1');
-INSERT INTO `admin_login` VALUES ('104', 'kefu2', '1590481344', '127.0.0.1');
 
 -- ----------------------------
 -- Table structure for article
@@ -262,7 +160,7 @@ CREATE TABLE `cat` (
 -- ----------------------------
 -- Records of cat
 -- ----------------------------
-INSERT INTO `cat` VALUES ('8', '贷款申请', '贷款申请', '1529387793', '0', '1', '', '贷款申请', '贷款申请', 'http://two.jinziyu.club/Upload/image/20191102/20191102232811_36065.png');
+INSERT INTO `cat` VALUES ('8', '贷款申请', '贷款申请', '1529387793', '0', '1', '', '贷款申请', '贷款申请', '/Upload/image/20200604/20200604195831_70347.png');
 INSERT INTO `cat` VALUES ('9', '审核相关', '审核相关', '1529387892', '0', '2', '', '审核相关', '审核相关', 'http://two.jinziyu.club/Upload/image/20191102/20191102232827_82536.png');
 INSERT INTO `cat` VALUES ('10', '放款相关', '放款相关', '1529387912', '0', '3', '', '放款相关', '放款相关', 'http://two.jinziyu.club/Upload/image/20191102/20191102232836_54861.png');
 INSERT INTO `cat` VALUES ('11', '还款相关', '还款相关', '1529387932', '0', '4', '', '还款相关', '还款相关', 'http://two.jinziyu.club/Upload/image/20191102/20191102232847_46462.png');
@@ -278,12 +176,11 @@ CREATE TABLE `invitation` (
   `addtime` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `codes` (`codes`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='业务员邀请码推广表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='业务员邀请码推广表';
 
 -- ----------------------------
 -- Records of invitation
 -- ----------------------------
-INSERT INTO `invitation` VALUES ('2', '4241', 'LLBC856954', '2019-11-01 22:07:42');
 
 -- ----------------------------
 -- Table structure for logs
@@ -297,7 +194,7 @@ CREATE TABLE `logs` (
   `log_type` tinyint(2) DEFAULT NULL COMMENT '操作类型: 1/用户绑定 2/解绑 3/用户删除 4/订单删除',
   `add_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of logs
@@ -335,6 +232,14 @@ INSERT INTO `logs` VALUES ('30', '42', 'kefu', '13681794059|13681794059|1', '1',
 INSERT INTO `logs` VALUES ('31', '42', 'kefu', '15918476606|15918476606|1', '1', '2020-05-26 14:49:57');
 INSERT INTO `logs` VALUES ('32', '44', 'kefu2', '18930872298|18930872298|1', '1', '2020-05-26 15:14:11');
 INSERT INTO `logs` VALUES ('33', '44', 'kefu2', '13479628995|13479628995|1', '1', '2020-05-26 15:14:13');
+INSERT INTO `logs` VALUES ('34', '43', 'admin', '13257744517|13257744517|2', '2', '2020-05-30 13:36:14');
+INSERT INTO `logs` VALUES ('35', '43', 'admin', '15918476606|15918476606|2', '2', '2020-05-30 13:36:36');
+INSERT INTO `logs` VALUES ('36', '43', 'admin', '13681794059|13681794059|2', '2', '2020-05-30 13:36:55');
+INSERT INTO `logs` VALUES ('37', '43', 'admin', '13257744517|13257744517|3', '3', '2020-05-30 13:50:42');
+INSERT INTO `logs` VALUES ('38', '43', 'admin', '18956501550|18956501550|4', '4', '2020-05-30 14:22:01');
+INSERT INTO `logs` VALUES ('39', '42', 'kefu', '18569396549|18569396549|1', '1', '2020-06-03 13:20:03');
+INSERT INTO `logs` VALUES ('40', '42', 'kefu', '18569396549|18569396549|1', '1', '2020-06-03 17:30:37');
+INSERT INTO `logs` VALUES ('41', '42', 'kefu', '游客|游客|1', '1', '2020-06-07 15:30:44');
 
 -- ----------------------------
 -- Table structure for order
@@ -344,51 +249,53 @@ CREATE TABLE `order` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user` varchar(255) NOT NULL,
   `admin_id` int(11) DEFAULT NULL COMMENT '管理员id',
+  `admin_name` varchar(128) DEFAULT NULL,
   `money` float NOT NULL DEFAULT '0',
   `months` int(11) NOT NULL DEFAULT '0',
   `monthmoney` float NOT NULL,
   `donemonth` int(11) NOT NULL DEFAULT '0',
   `addtime` int(11) NOT NULL DEFAULT '0',
-  `status` int(11) NOT NULL DEFAULT '9',
+  `status` int(11) NOT NULL DEFAULT '9' COMMENT '-2:临时冻结 -1:审核不通过 2 :审核通过 3 :提现已提交,打款处理中 4 :首期 5 :退款中 7 :打款中 8 :绑卡失败 9 :正在审核 11:提现处理 12:到帐成功 13:保险 14:第一期还款 15:提现失败 18:征信不良 17:核实失败',
   `pid` int(11) NOT NULL,
   `ordernum` varchar(255) NOT NULL,
   `bank` varchar(255) NOT NULL,
   `fowardstatus` int(2) NOT NULL DEFAULT '0' COMMENT '1:已提交 0：未提交',
   `foward` varchar(255) NOT NULL DEFAULT '',
   `banknum` varchar(255) NOT NULL,
+  `des` varchar(255) DEFAULT NULL COMMENT '描述',
   `yzpz_img` varchar(255) NOT NULL COMMENT '验资费凭证图片',
   `qb` int(11) NOT NULL DEFAULT '0',
   `is_bank` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=57 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of order
 -- ----------------------------
-INSERT INTO `order` VALUES ('9', '13227547578', null, '30000', '12', '2680', '0', '1577345772', '2', '1', 'IC26457728925031', '农业银行', '0', '', '6228480759796251677', '', '0', '0');
-INSERT INTO `order` VALUES ('31', '15579161111', null, '50000', '12', '4467', '0', '1577785111', '12', '1', 'IC31851112189286', '浦发银行', '0', '', '49843200366487155', '', '0', '0');
-INSERT INTO `order` VALUES ('8', '18031927965', null, '30000', '12', '2680', '0', '1577344187', '2', '1', 'IC26441873333460', '农业银行', '0', '', '6228480639120567073', '', '0', '0');
-INSERT INTO `order` VALUES ('10', '15256233230', null, '90000', '12', '8040', '0', '1577421705', '2', '1', 'IC27217056421025', '工商银行', '0', '', '6222031302004206121', '', '0', '1');
-INSERT INTO `order` VALUES ('11', '13222701199', null, '30000', '36', '1014', '0', '1577422326', '2', '1', 'IC27223262812508', '工商银行', '0', '', '6215581110003363498', '', '0', '0');
-INSERT INTO `order` VALUES ('12', '15815709239', null, '50000', '12', '4467', '0', '1577427982', '2', '1', 'IC27279823655318', '招商银行', '0', '', '6214837605203987', '', '0', '0');
-INSERT INTO `order` VALUES ('13', '13899409562', null, '30000', '36', '1014', '0', '1577429407', '-2', '1', 'IC27294070974135', '农业银行', '0', '', '6228483008354592974', '', '0', '0');
-INSERT INTO `order` VALUES ('15', '15089351761', null, '30000', '12', '2680', '0', '1577435145', '2', '1', 'IC27351457664513', '建设银行', '0', '', '6236683260003260450', '', '0', '0');
-INSERT INTO `order` VALUES ('24', '15702933428', null, '30000', '24', '1430', '0', '1577604486', '-2', '1', 'IC29044861297712', '建设银行', '0', '', '6217004220034689210', '', '0', '0');
-INSERT INTO `order` VALUES ('25', '15021770972', null, '30000', '12', '2680', '0', '1577604493', '-2', '1', 'IC29044933358656', '工商银行', '0', '', '6215581804005151543', '', '0', '0');
-INSERT INTO `order` VALUES ('26', '13733608333', null, '50000', '24', '2384', '0', '1577608573', '-2', '1', 'IC29085730262937', '邮储银行', '0', '', '6217995030015350786', '', '0', '0');
-INSERT INTO `order` VALUES ('20', '18735543883', null, '30000', '12', '2680', '0', '1577507408', '-2', '1', 'IC28074086891424', '浦发银行', '0', '', '6217923270360950', '', '0', '0');
-INSERT INTO `order` VALUES ('21', '13833078840', null, '30000', '36', '1014', '0', '1577516186', '-1', '1', 'IC28161863505690', '农业银行', '0', '', '6228481268349189672', '', '0', '0');
-INSERT INTO `order` VALUES ('27', '18569296287', null, '30000', '36', '1014', '0', '1577688110', '-2', '1', 'IC30881103248735', '建设银行', '0', '', '6217002920139319892', '', '0', '0');
-INSERT INTO `order` VALUES ('29', '13613183210', null, '52000', '36', '1757', '0', '1577771369', '-1', '1', 'IC31713697199709', '建设银行', '0', '', '6217000160002835482', '', '0', '0');
-INSERT INTO `order` VALUES ('30', '15830485640', null, '30000', '12', '2680', '0', '1577772387', '-1', '1', 'IC31723873405535', '工商银行', '0', '', '6212260407003672604', '', '0', '0');
-INSERT INTO `order` VALUES ('32', '15195523807', null, '63000', '36', '2128', '0', '1577852057', '-2', '1', 'J101520570370348', '中国银行', '0', '', '6215678100040883008', '', '0', '0');
-INSERT INTO `order` VALUES ('42', '13681794059', '42', '128000', '36', '4324', '0', '1578276647', '2', '1', 'J106766471376337', '建设银行', '0', '', '6217001180037804575', '', '0', '0');
-INSERT INTO `order` VALUES ('35', '18359838207', null, '50000', '36', '1689', '0', '1577949175', '-2', '1', 'J102491756662151', '建设银行', '0', '', '6217001830028411893', '', '0', '0');
-INSERT INTO `order` VALUES ('37', '18865186593', null, '30000', '36', '1014', '0', '1578018809', '-2', '1', 'J103188098565966', '工商银行', '0', '', '6212261712006157233', '', '0', '0');
-INSERT INTO `order` VALUES ('49', '13257744517', '42', '21000', '12', '1876', '0', '1586247395', '2', '1', 'J407473951465638', '工商银行', '0', '', '887885', '', '10000', '1');
-INSERT INTO `order` VALUES ('45', '17791797821', '33', '300000', '12', '26800', '0', '1578287981', '2', '1', 'J106879818853154', '工商银行', '0', '', '6216693600003336836', '', '0', '0');
-INSERT INTO `order` VALUES ('47', '15706790550', null, '20000', '12', '1787', '0', '1578358828', '12', '1', 'J107588285769093', '中信银行', '0', '', '6217731302511544', '', '0', '0');
-INSERT INTO `order` VALUES ('50', '18956501550', null, '20000', '12', '1787', '0', '1589610282', '2', '1', 'J516102829007614', '工商银行', '0', '', '12312312312312312312', '', '10', '0');
+INSERT INTO `order` VALUES ('9', '13227547578', null, null, '30000', '12', '2680', '0', '1577345772', '2', '1', 'IC26457728925031', '农业银行', '0', '', '6228480759796251677', null, '', '0', '0');
+INSERT INTO `order` VALUES ('31', '15579161111', null, null, '50000', '12', '4467', '0', '1577785111', '12', '1', 'IC31851112189286', '浦发银行', '0', '', '49843200366487155', null, '', '0', '0');
+INSERT INTO `order` VALUES ('8', '18031927965', null, null, '30000', '12', '2680', '0', '1577344187', '2', '1', 'IC26441873333460', '农业银行', '0', '', '6228480639120567073', null, '', '0', '0');
+INSERT INTO `order` VALUES ('10', '15256233230', null, null, '90000', '12', '8040', '0', '1577421705', '9', '1', 'IC27217056421025', '工商银行', '0', '', '6222031302004206121', null, '', '0', '1');
+INSERT INTO `order` VALUES ('11', '13222701199', null, null, '30000', '36', '1014', '0', '1577422326', '9', '1', 'IC27223262812508', '工商银行', '0', '', '6215581110003363498', null, '', '0', '0');
+INSERT INTO `order` VALUES ('12', '15815709239', null, null, '50000', '12', '4467', '0', '1577427982', '9', '1', 'IC27279823655318', '招商银行', '0', '', '6214837605203987', null, '', '0', '0');
+INSERT INTO `order` VALUES ('13', '13899409562', null, null, '30000', '36', '1014', '0', '1577429407', '9', '1', 'IC27294070974135', '农业银行', '0', '', '6228483008354592974', null, '', '0', '0');
+INSERT INTO `order` VALUES ('15', '15089351761', null, null, '30000', '12', '2680', '0', '1577435145', '9', '1', 'IC27351457664513', '建设银行', '0', '', '6236683260003260450', null, '', '0', '0');
+INSERT INTO `order` VALUES ('24', '15702933428', null, null, '30000', '24', '1430', '0', '1577604486', '9', '1', 'IC29044861297712', '建设银行', '0', '', '6217004220034689210', null, '', '0', '0');
+INSERT INTO `order` VALUES ('25', '15021770972', null, null, '30000', '12', '2680', '0', '1577604493', '12', '1', 'IC29044933358656', '工商银行', '0', '', '6215581804005151543', null, '', '0', '0');
+INSERT INTO `order` VALUES ('26', '13733608333', null, null, '50000', '24', '2384', '0', '1577608573', '12', '1', 'IC29085730262937', '邮储银行', '0', '', '6217995030015350786', null, '', '0', '0');
+INSERT INTO `order` VALUES ('20', '18735543883', null, null, '30000', '12', '2680', '0', '1577507408', '9', '1', 'IC28074086891424', '浦发银行', '0', '', '6217923270360950', null, '', '0', '0');
+INSERT INTO `order` VALUES ('21', '13833078840', null, null, '30000', '36', '1014', '0', '1577516186', '-1', '1', 'IC28161863505690', '农业银行', '0', '', '6228481268349189672', null, '', '0', '0');
+INSERT INTO `order` VALUES ('27', '18569296287', null, null, '30000', '36', '1014', '0', '1577688110', '-2', '1', 'IC30881103248735', '建设银行', '0', '', '6217002920139319892', null, '', '0', '0');
+INSERT INTO `order` VALUES ('29', '13613183210', null, null, '52000', '36', '1757', '0', '1577771369', '-1', '1', 'IC31713697199709', '建设银行', '0', '', '6217000160002835482', null, '', '0', '0');
+INSERT INTO `order` VALUES ('30', '15830485640', null, null, '30000', '12', '2680', '0', '1577772387', '-1', '1', 'IC31723873405535', '工商银行', '0', '', '6212260407003672604', null, '', '0', '0');
+INSERT INTO `order` VALUES ('32', '15195523807', null, null, '63000', '36', '2128', '0', '1577852057', '-2', '1', 'J101520570370348', '中国银行', '0', '', '6215678100040883008', null, '', '0', '0');
+INSERT INTO `order` VALUES ('42', '13681794059', '42', null, '128000', '36', '4324', '0', '1578276647', '2', '1', 'J106766471376337', '建设银行', '0', '', '6217001180037804575', null, '', '0', '0');
+INSERT INTO `order` VALUES ('35', '18359838207', null, null, '50000', '36', '1689', '0', '1577949175', '-2', '1', 'J102491756662151', '建设银行', '0', '', '6217001830028411893', null, '', '0', '0');
+INSERT INTO `order` VALUES ('37', '18865186593', null, null, '30000', '36', '1014', '0', '1578018809', '-2', '1', 'J103188098565966', '工商银行', '0', '', '6212261712006157233', null, '', '0', '0');
+INSERT INTO `order` VALUES ('49', '13257744517', '42', null, '21000', '12', '1876', '0', '1586247395', '12', '1', 'J407473951465638', '工商银行', '0', '', '887885', '', '', '10000', '1');
+INSERT INTO `order` VALUES ('45', '17791797821', '33', null, '300000', '12', '26800', '0', '1578287981', '2', '1', 'J106879818853154', '工商银行', '0', '', '6216693600003336836', null, '', '0', '0');
+INSERT INTO `order` VALUES ('47', '15706790550', null, null, '20000', '12', '1787', '0', '1578358828', '12', '1', 'J107588285769093', '中信银行', '0', '', '6217731302511544', null, '', '0', '0');
+INSERT INTO `order` VALUES ('56', '18569396549', '42', 'kefu', '20000', '12', '1787', '0', '1591508930', '9', '1', 'J607089308822664', '工商银行', '0', '', '12312312312312312312', null, '', '0', '0');
 
 -- ----------------------------
 -- Table structure for otherinfo
@@ -438,7 +345,7 @@ CREATE TABLE `payorder` (
   `addtime` int(11) NOT NULL DEFAULT '0',
   `account` varchar(255) NOT NULL DEFAULT '0' COMMENT '收款账户',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='提现表';
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COMMENT='提现表';
 
 -- ----------------------------
 -- Records of payorder
@@ -454,6 +361,11 @@ INSERT INTO `payorder` VALUES ('8', 'IC25404021256708', '15579161111', '刘田',
 INSERT INTO `payorder` VALUES ('9', 'IC25404021256708', '15579161111', '刘田', '工商银行', '0', '30000', '1577242275', '6192234529965325852');
 INSERT INTO `payorder` VALUES ('10', 'J102327210428071', '18637179846', '王超', '交通银行', '0', '50000', '1577938718', '6222620620019409068');
 INSERT INTO `payorder` VALUES ('11', 'J407473951465638', '13257744517', '孙嘉彬', '工商银行相对湿度', '0', '21000', '1586250808', '887885');
+INSERT INTO `payorder` VALUES ('12', 'J602955315581098', '18569396549', '唐大帅', '工商银行', '0', '300000', '1591102054', '12312312312312312312');
+INSERT INTO `payorder` VALUES ('13', 'J602049136583724', '18569396549', '唐大帅', '工商银行', '0', '300000', '1591338734', '12312312312312312312');
+INSERT INTO `payorder` VALUES ('14', 'J602049136583724', '18569396549', '唐大帅', '工商银行', '0', '300000', '1591340058', '12312312312312312312');
+INSERT INTO `payorder` VALUES ('15', 'J606337074556559', '18569396549', '唐大帅', '工商银行', '0', '20000', '1591433944', '12312312312312312312');
+INSERT INTO `payorder` VALUES ('16', 'J606337074556559', '18569396549', '唐大帅', '工商银行', '0', '20000', '1591438646', '12312312312312312312');
 
 -- ----------------------------
 -- Table structure for richat_archives
@@ -546,12 +458,39 @@ CREATE TABLE `richat_chatlog` (
   PRIMARY KEY (`id`),
   KEY `fromid` (`fromid`) USING BTREE,
   KEY `toid` (`toid`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of richat_chatlog
 -- ----------------------------
 INSERT INTO `richat_chatlog` VALUES ('24', '32', '18359202475', '/Public/images/customer.jpg', '22', '1111', '1590479989', 'friend', '0');
+INSERT INTO `richat_chatlog` VALUES ('25', '22', 'kefu', '/Public/images/sj.png', '22', '1111', '1590502741', 'friend', '0');
+INSERT INTO `richat_chatlog` VALUES ('26', '22', 'kefu', '/Public/images/sj.png', '22', '2222', '1590502745', 'friend', '0');
+INSERT INTO `richat_chatlog` VALUES ('27', '29', 'kefu2', '/Public/images/sj.png', '22', '1111', '1590557816', 'friend', '0');
+INSERT INTO `richat_chatlog` VALUES ('28', '22', 'kefu', '/Public/images/sj.png', '29', '3333', '1590557889', 'friend', '0');
+INSERT INTO `richat_chatlog` VALUES ('29', '22', 'kefu', '/Public/images/sj.png', '29', '1111', '1590558104', 'friend', '0');
+INSERT INTO `richat_chatlog` VALUES ('30', '2134', '18569396549', '/Public/images/customer.jpg', '22', '1111', '1591165448', 'friend', '0');
+INSERT INTO `richat_chatlog` VALUES ('31', '22', 'kefu', '/Public/images/sj.png', '2134', '啥事啊', '1591165455', 'friend', '0');
+INSERT INTO `richat_chatlog` VALUES ('32', '2134', '18569396549', '/Public/images/customer.jpg', '22', '我要充钱', '1591165474', 'friend', '0');
+INSERT INTO `richat_chatlog` VALUES ('33', '2134', '18569396549', '/Public/images/customer.jpg', '22', '我要充钱', '1591165474', 'friend', '0');
+INSERT INTO `richat_chatlog` VALUES ('34', '2134', '18569396549', '/Public/images/customer.jpg', '22', '重启', '1591165484', 'friend', '0');
+INSERT INTO `richat_chatlog` VALUES ('35', '2134', '18569396549', '/Public/images/customer.jpg', '22', '重启', '1591165484', 'friend', '0');
+INSERT INTO `richat_chatlog` VALUES ('36', '2134', '18569396549', '/Public/images/customer.jpg', '22', '111', '1591165591', 'friend', '0');
+INSERT INTO `richat_chatlog` VALUES ('37', '2134', '18569396549', '/Public/images/customer.jpg', '22', '现在对么', '1591165602', 'friend', '0');
+INSERT INTO `richat_chatlog` VALUES ('38', '22', 'kefu', '/Public/images/sj.png', '2134', '对了', '1591165607', 'friend', '0');
+INSERT INTO `richat_chatlog` VALUES ('39', '2134', '18569396549', '/Public/images/customer.jpg', '22', '1111\\', '1591165627', 'friend', '0');
+INSERT INTO `richat_chatlog` VALUES ('40', '2134', '18569396549', '/Public/images/customer.jpg', '22', '消息记录怎么没有了', '1591165700', 'friend', '0');
+INSERT INTO `richat_chatlog` VALUES ('41', '2134', '18569396549', '/Public/images/customer.jpg', '22', '因为走的是新的聊天窗口么', '1591165716', 'friend', '0');
+INSERT INTO `richat_chatlog` VALUES ('42', '22', 'kefu', '/Public/images/sj.png', '2134', '是的', '1591165721', 'friend', '0');
+INSERT INTO `richat_chatlog` VALUES ('43', '99999', '游客', '/Public/images/customer.jpg', '22', '111', '1591165764', 'friend', '0');
+INSERT INTO `richat_chatlog` VALUES ('44', '22', 'kefu', '/Public/images/sj.png', '100001', '在么', '1591176747', 'friend', '0');
+INSERT INTO `richat_chatlog` VALUES ('45', '22', 'kefu', '/Public/images/sj.png', '100001', '1', '1591176884', 'friend', '0');
+INSERT INTO `richat_chatlog` VALUES ('46', '22', 'kefu', '/Public/images/sj.png', '100001', '1111', '1591176907', 'friend', '0');
+INSERT INTO `richat_chatlog` VALUES ('47', '100001', '18569396549', '/Public/images/customer.jpg', '22', '1111', '1591177269', 'friend', '0');
+INSERT INTO `richat_chatlog` VALUES ('48', '99999', '游客', '/Public/images/customer.jpg', '22', '你干啥呢', '1591178066', 'friend', '0');
+INSERT INTO `richat_chatlog` VALUES ('49', '1', '游客', '/Public/images/customer.jpg', '22', '1111', '1591516822', 'friend', '0');
+INSERT INTO `richat_chatlog` VALUES ('50', '1', '游客', '/Public/images/customer.jpg', '22', '11111', '1591516828', 'friend', '0');
+INSERT INTO `richat_chatlog` VALUES ('51', '100004', '游客 :127.0.0.1', '/Public/images/customer.jpg', '22', '1111231', '1591518131', 'friend', '0');
 
 -- ----------------------------
 -- Table structure for richat_chatuser
@@ -569,14 +508,14 @@ CREATE TABLE `richat_chatuser` (
   `sign` varchar(255) DEFAULT NULL,
   `avatar` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=100005 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of richat_chatuser
 -- ----------------------------
-INSERT INTO `richat_chatuser` VALUES ('25', null, '22', '2', '13257744517', null, '2', null, '客户 13257744517', '/Public/images/customer.jpg');
-INSERT INTO `richat_chatuser` VALUES ('26', null, '22', '2', '13681794059', null, '2', null, '客户 13681794059', '/Public/images/customer.jpg');
-INSERT INTO `richat_chatuser` VALUES ('27', null, '22', '2', '15918476606', null, '2', null, '客户 15918476606', '/Public/images/customer.jpg');
+INSERT INTO `richat_chatuser` VALUES ('10', null, '22', '2', '游客', null, '2', null, '游客', '/Public/images/customer.jpg');
+INSERT INTO `richat_chatuser` VALUES ('26', null, null, '2', '13681794059', null, '2', null, '客户 13681794059', '/Public/images/customer.jpg');
+INSERT INTO `richat_chatuser` VALUES ('27', null, null, '2', '15918476606', null, '2', null, '客户 15918476606', '/Public/images/customer.jpg');
 INSERT INTO `richat_chatuser` VALUES ('28', '43', null, '1', 'admin', 'f11ec7022bbe2bf69670d1a181646f0e', '1', 'online', '客服 admin', '/Public/images/sj.png');
 INSERT INTO `richat_chatuser` VALUES ('24', null, '22', '2', '18359202476', null, '2', null, '客户 18359202476', '/Public/images/customer.jpg');
 INSERT INTO `richat_chatuser` VALUES ('22', '42', null, '1', 'kefu', '57cea37edd561f91185ee4044f528e75', '1', 'online', '客服 kefu', '/Public/images/sj.png');
@@ -584,6 +523,16 @@ INSERT INTO `richat_chatuser` VALUES ('29', '44', null, '1', 'kefu2', '22e1bc525
 INSERT INTO `richat_chatuser` VALUES ('30', null, '29', '2', '18930872298', null, '2', null, '客户 18930872298', '/Public/images/customer.jpg');
 INSERT INTO `richat_chatuser` VALUES ('31', null, '29', '2', '13479628995', null, '2', null, '客户 13479628995', '/Public/images/customer.jpg');
 INSERT INTO `richat_chatuser` VALUES ('32', null, '29', '2', '18359202475', null, '2', null, '客户 18359202475', '/Public/images/customer.jpg');
+INSERT INTO `richat_chatuser` VALUES ('33', '45', null, '1', '123456', 'edeccff4668c9c81cb144dbc5c86ace2', '1', null, '客服 123456', '/Public/images/sj.png');
+INSERT INTO `richat_chatuser` VALUES ('34', '46', null, '1', '123457', 'ec0479b18c575cb508fec693ad48992a', '1', null, '客服 123457', '/Public/images/sj.png');
+INSERT INTO `richat_chatuser` VALUES ('36', '48', null, '1', '123459', '965ba7de93e77f417ade24fccf7a8b22', '1', null, '客服 123459', '/Public/images/sj.png');
+INSERT INTO `richat_chatuser` VALUES ('37', '49', null, '1', '123460', '08fd696506756cd0b8eb47460df13aa9', '1', null, '客服 123460', '/Public/images/sj.png');
+INSERT INTO `richat_chatuser` VALUES ('38', '50', null, '1', '123461', '35c5c6fd43072e6bcdb82bf88be81e57', '1', null, '客服 123461', '/Public/images/sj.png');
+INSERT INTO `richat_chatuser` VALUES ('39', '51', null, '1', '123462', '9e5501c8a42af470d6aa5129b0301a90', '1', null, '客服 123462', '/Public/images/sj.png');
+INSERT INTO `richat_chatuser` VALUES ('40', '52', null, '1', '123463', '184571fb380dcda240f9b3d13499a3cd', '1', null, '客服 123463', '/Public/images/sj.png');
+INSERT INTO `richat_chatuser` VALUES ('100004', null, '22', '2', '游客 :127.0.0.1', null, '2', null, '127.0.0.1', '/Public/images/customer.jpg');
+INSERT INTO `richat_chatuser` VALUES ('100002', null, null, '2', '18569396549', null, '2', null, '客户 18569396549', '/Public/images/customer.jpg');
+INSERT INTO `richat_chatuser` VALUES ('1', null, '22', '2', '游客', null, '2', null, '游客', '/Public/images/customer.jpg');
 
 -- ----------------------------
 -- Table structure for richat_groupdetail
@@ -604,122 +553,6 @@ INSERT INTO `richat_groupdetail` VALUES ('22', 'kefu', '/Public/images/sj.png', 
 INSERT INTO `richat_groupdetail` VALUES ('2', '马云', 'http://tp4.sinaimg.cn/2145291155/180/5601307179/1', '让天下没有难写的代码', '39');
 
 -- ----------------------------
--- Table structure for richat_node
--- ----------------------------
-DROP TABLE IF EXISTS `richat_node`;
-CREATE TABLE `richat_node` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `node_name` varchar(155) NOT NULL DEFAULT '' COMMENT '节点名称',
-  `module_name` varchar(155) NOT NULL DEFAULT '' COMMENT '模块名',
-  `control_name` varchar(155) NOT NULL DEFAULT '' COMMENT '控制器名',
-  `action_name` varchar(155) NOT NULL COMMENT '方法名',
-  `is_menu` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否是菜单项 1不是 2是',
-  `typeid` int(11) NOT NULL COMMENT '父级节点id',
-  `style` varchar(155) DEFAULT '' COMMENT '菜单样式',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of richat_node
--- ----------------------------
-INSERT INTO `richat_node` VALUES ('1', '用户管理', '#', '#', '#', '2', '0', 'fa fa-users');
-INSERT INTO `richat_node` VALUES ('2', '用户列表', 'admin', 'user', 'index', '2', '1', '');
-INSERT INTO `richat_node` VALUES ('3', '添加用户', 'admin', 'user', 'useradd', '1', '2', '');
-INSERT INTO `richat_node` VALUES ('4', '编辑用户', 'admin', 'user', 'useredit', '1', '2', '');
-INSERT INTO `richat_node` VALUES ('5', '删除用户', 'admin', 'user', 'userdel', '1', '2', '');
-INSERT INTO `richat_node` VALUES ('6', '角色列表', 'admin', 'role', 'index', '2', '1', '');
-INSERT INTO `richat_node` VALUES ('7', '添加角色', 'admin', 'role', 'roleadd', '1', '6', '');
-INSERT INTO `richat_node` VALUES ('8', '编辑角色', 'admin', 'role', 'roleedit', '1', '6', '');
-INSERT INTO `richat_node` VALUES ('9', '删除角色', 'admin', 'role', 'roledel', '1', '6', '');
-INSERT INTO `richat_node` VALUES ('10', '分配权限', 'admin', 'role', 'giveaccess', '1', '6', '');
-INSERT INTO `richat_node` VALUES ('11', '系统管理', '#', '#', '#', '2', '0', 'fa fa-desktop');
-INSERT INTO `richat_node` VALUES ('12', '数据备份/还原', 'admin', 'data', 'index', '2', '11', '');
-INSERT INTO `richat_node` VALUES ('13', '备份数据', 'admin', 'data', 'importdata', '1', '12', '');
-INSERT INTO `richat_node` VALUES ('14', '还原数据', 'admin', 'data', 'backdata', '1', '12', '');
-INSERT INTO `richat_node` VALUES ('15', '采集管理', 'admin', '#', '#', '2', '0', 'fa fa-hdd-o');
-INSERT INTO `richat_node` VALUES ('16', '采集测试', 'admin', 'tcollect', 'index', '2', '15', '');
-INSERT INTO `richat_node` VALUES ('17', '测试列表', 'admin', 'tcollect', 'testlist', '1', '17', '');
-INSERT INTO `richat_node` VALUES ('18', '测试文章', 'admin', 'tcollect', 'testarc', '1', '17', '');
-INSERT INTO `richat_node` VALUES ('19', '采集规则列表', 'admin', 'rulelist', 'index', '2', '15', '');
-INSERT INTO `richat_node` VALUES ('20', '添加采集规则', 'admin', 'rulelist', 'ruleadd', '1', '20', '');
-INSERT INTO `richat_node` VALUES ('21', '编辑采集规则', 'admin', 'rulelist', 'ruleedit', '1', '20', '');
-INSERT INTO `richat_node` VALUES ('22', '删除采集规则', 'admin', 'rulelist', 'ruledel', '1', '20', '');
-INSERT INTO `richat_node` VALUES ('23', 'LayChat管理', '#', '#', '#', '2', '0', 'fa fa-paw');
-INSERT INTO `richat_node` VALUES ('24', 'laychat用户管理', 'admin', 'layuser', 'index', '2', '23', '');
-INSERT INTO `richat_node` VALUES ('25', 'laychat消息记录', 'admin', 'laymsg', 'index', '2', '23', '');
-INSERT INTO `richat_node` VALUES ('26', 'laychat用户添加', 'admin', 'layuser', 'useradd', '1', '24', '');
-INSERT INTO `richat_node` VALUES ('27', 'laychat用户删除', 'admin', 'layuser', 'userdel', '1', '24', '');
-INSERT INTO `richat_node` VALUES ('28', 'laychat用户编辑', 'admin', 'layuser', 'useredit', '1', '24', '');
-
--- ----------------------------
--- Table structure for richat_role
--- ----------------------------
-DROP TABLE IF EXISTS `richat_role`;
-CREATE TABLE `richat_role` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `rolename` varchar(155) NOT NULL COMMENT '角色名称',
-  `rule` varchar(255) DEFAULT '' COMMENT '权限节点数据',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of richat_role
--- ----------------------------
-INSERT INTO `richat_role` VALUES ('1', '超级管理员', '');
-INSERT INTO `richat_role` VALUES ('2', '系统维护员', '1,2,3,4,5,6,7,8,9,10');
-INSERT INTO `richat_role` VALUES ('3', '新闻发布员', '1,2,3,4,5');
-
--- ----------------------------
--- Table structure for richat_rule
--- ----------------------------
-DROP TABLE IF EXISTS `richat_rule`;
-CREATE TABLE `richat_rule` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `rulename` varchar(155) NOT NULL COMMENT '规则标题',
-  `baseurl` varchar(155) NOT NULL COMMENT '采集站点的地址',
-  `listurl` varchar(155) NOT NULL COMMENT '列表页地址',
-  `ismore` tinyint(1) NOT NULL COMMENT '是否批量采集 1 否 2是',
-  `start` int(11) DEFAULT '0' COMMENT '列表页开始地址',
-  `end` int(11) DEFAULT '0' COMMENT '列表页结束地址',
-  `titlediv` varchar(155) NOT NULL COMMENT '标题父层地址',
-  `title` varchar(155) NOT NULL COMMENT '文章标题内容规则',
-  `titleurl` varchar(155) NOT NULL COMMENT '标题地址规则',
-  `body` varchar(155) NOT NULL COMMENT '文章内容规则',
-  `addtime` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of richat_rule
--- ----------------------------
-INSERT INTO `richat_rule` VALUES ('1', '脚本之家php文章采集', 'http://www.jb51.net', 'http://www.jb51.net/list/list_15_1.htm', '1', '0', '0', '.artlist dl dt a', 'text', 'href', '#content', '1471244221');
-INSERT INTO `richat_rule` VALUES ('2', 'thinkphp官网文章规则', 'http://www.thinkphp.cn', 'http://www.thinkphp.cn/code/system/p/1.html', '1', '0', '0', '.extend ul li .hd a', 'text', 'href', '.wrapper .detail-bd', '1471244221');
-INSERT INTO `richat_rule` VALUES ('3', '果壳网科学人采集规则', 'http://www.guokr.com', 'http://www.guokr.com/scientific/', '1', '0', '0', '#waterfall .article h3 a', 'text', 'href', '.document div:eq(0)', '1471247277');
-
--- ----------------------------
--- Table structure for richat_user
--- ----------------------------
-DROP TABLE IF EXISTS `richat_user`;
-CREATE TABLE `richat_user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(255) COLLATE utf8_bin DEFAULT '' COMMENT '用户名',
-  `password` varchar(255) COLLATE utf8_bin DEFAULT '' COMMENT '密码',
-  `loginnum` int(11) DEFAULT '0' COMMENT '登陆次数',
-  `last_login_ip` varchar(255) COLLATE utf8_bin DEFAULT '' COMMENT '最后登录IP',
-  `last_login_time` int(11) DEFAULT '0' COMMENT '最后登录时间',
-  `real_name` varchar(255) COLLATE utf8_bin DEFAULT '' COMMENT '真实姓名',
-  `status` int(1) DEFAULT '0' COMMENT '状态',
-  `typeid` int(11) DEFAULT '1' COMMENT '用户角色id',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- ----------------------------
--- Records of richat_user
--- ----------------------------
-INSERT INTO `richat_user` VALUES ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3', '65', '127.0.0.1', '1590046557', 'admin', '1', '1');
-INSERT INTO `richat_user` VALUES ('2', 'xiaobai', '4297f44b13955235245b2497399d7a93', '6', '127.0.0.1', '1470368260', '小白', '1', '2');
-
--- ----------------------------
 -- Table structure for smscode
 -- ----------------------------
 DROP TABLE IF EXISTS `smscode`;
@@ -729,7 +562,7 @@ CREATE TABLE `smscode` (
   `code` varchar(12) NOT NULL,
   `sendtime` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=311 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=312 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of smscode
@@ -1044,6 +877,7 @@ INSERT INTO `smscode` VALUES ('307', '18359202476', '803775', '1585510809');
 INSERT INTO `smscode` VALUES ('308', '17710573616', '575618', '1588063746');
 INSERT INTO `smscode` VALUES ('309', '17710573616', '911527', '1588063840');
 INSERT INTO `smscode` VALUES ('310', '18359202475', '012621', '1590477596');
+INSERT INTO `smscode` VALUES ('311', '18569396549', '371723', '1591092852');
 
 -- ----------------------------
 -- Table structure for spread
@@ -1064,7 +898,7 @@ CREATE TABLE `spread` (
 -- ----------------------------
 -- Records of spread
 -- ----------------------------
-INSERT INTO `spread` VALUES ('1', '通道1	', 'http://4d10e.ftfers.887f.cn/index.php?m=User&a=rlx&td=1', '0', '0', '0', '0', '2020-05-16 09:35:04');
+INSERT INTO `spread` VALUES ('1', '通道1	', 'http://get-money.im/index.php?g=Home&m=User&a=invitation_user', '0', '0', '0', '0', '2020-05-16 09:35:04');
 
 -- ----------------------------
 -- Table structure for user
@@ -1082,48 +916,48 @@ CREATE TABLE `user` (
   `withdrawal_time` int(11) DEFAULT NULL COMMENT '提现时间',
   `withdrawal_status` tinyint(2) DEFAULT '0' COMMENT '提现状态: 0/未提现 1/已提现',
   `addtime` int(11) NOT NULL DEFAULT '0',
+  `sign_time` int(11) DEFAULT NULL COMMENT '签到时间',
   `status` int(1) NOT NULL DEFAULT '1',
   `codes` varchar(255) DEFAULT NULL COMMENT '邀请码',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('9', null, null, '15579161111', '1f82ea75c5cc526729e2d581aeb3aeccfef4407e', null, '0', '0', null, '0', '1577422190', '1', null);
-INSERT INTO `user` VALUES ('3', null, null, '13227547578', '0747ba547fbc1b06d93d64c1fe606a2d729c1f88', null, '0', '0', null, '0', '1577270708', '1', '0');
-INSERT INTO `user` VALUES ('4', null, null, '18031927965', '111e582bcf5d88f67e46c13944b7c83d2066038c', null, '0', '0', null, '0', '1577342789', '1', '0');
-INSERT INTO `user` VALUES ('5', null, null, '13222701199', '438751b5581e229111f0f21a7cc89f40384d6e81', null, '0', '0', null, '0', '1577421187', '1', '0');
-INSERT INTO `user` VALUES ('6', null, null, '15256233230', 'b964800f273c7bebfbd314ce168735addb2d84c3', null, '0', '0', null, '0', '1577421296', '1', '0');
-INSERT INTO `user` VALUES ('14', null, null, '18735543883', 'cadf1711199cdf1e0446254213d9074e700e85f5', null, '0', '0', null, '0', '1577501523', '1', '0');
-INSERT INTO `user` VALUES ('10', null, null, '15815709239', 'a3c182ff36d058f055f9cbd51f1a05b4858248c4', null, '0', '0', null, '0', '1577426873', '1', '0');
-INSERT INTO `user` VALUES ('11', null, null, '13899409562', 'a7ee86605e6d815b3842aa1ff6e51b943edbce2f', null, '0', '0', null, '0', '1577427903', '1', '0');
-INSERT INTO `user` VALUES ('15', null, null, '18475324511', '8d0133904a18dbee7cc65a2133c0496f5ee784e7', null, '0', '0', null, '0', '1577507545', '1', '0');
-INSERT INTO `user` VALUES ('16', null, null, '13833078840', 'acf58f68f25710c5d619b0e9a3894d3cd7e76776', null, '0', '0', null, '0', '1577514131', '1', '0');
-INSERT INTO `user` VALUES ('17', null, null, '13571699708', 'f38d3191a6f3506f889eb93a0ad1c99256090ba1', null, '0', '0', null, '0', '1577595118', '1', '0');
-INSERT INTO `user` VALUES ('18', null, null, '15702933428', '534f0e3b9fe28872be1c2140f65901f5a830f176', null, '0', '0', null, '0', '1577600460', '1', '0');
-INSERT INTO `user` VALUES ('19', null, null, '15021770972', '762a14f9ccd8b0b8519d892ffb9775b6b31b6795', null, '0', '0', null, '0', '1577603409', '1', '0');
-INSERT INTO `user` VALUES ('20', null, null, '13733608333', 'ae13208a7ed95b514b0629bce6577f4d36afe91b', null, '0', '0', null, '0', '1577606244', '1', '0');
-INSERT INTO `user` VALUES ('21', null, null, '18518115260', '305ac4cd15aeb2a094026248e829163d9993b88a', null, '0', '0', null, '0', '1577671257', '1', '0');
-INSERT INTO `user` VALUES ('22', null, null, '18569296287', 'e0c720c83d692665999b9fd8230377b33bd0c72d', null, '0', '0', null, '0', '1577687229', '1', '0');
-INSERT INTO `user` VALUES ('43', 'kefu', '42', '15918476606', '769bb589287f8bc6d7c45c2e205a5798a738047e', null, '0', '0', null, '0', '1578305065', '0', '0');
-INSERT INTO `user` VALUES ('24', null, null, '13613183210', 'e479ddaa22e2058a0489f9d9f025fba8efe57faf', null, '0', '0', null, '0', '1577770833', '1', '0');
-INSERT INTO `user` VALUES ('25', null, null, '15830485640', '64b8aa1a6153799b0391b38ff6aac66148d37394', null, '0', '0', null, '0', '1577771738', '1', '0');
-INSERT INTO `user` VALUES ('40', null, null, '15126782331', '048e7aafe2e5e4a2a1a372082954d2eebf6d3a64', null, '0', '0', null, '0', '1578204780', '1', '0');
-INSERT INTO `user` VALUES ('41', null, null, '17791797821', 'a511f545295b66e672b357999749551fac8cbdc7', null, '0', '0', null, '0', '1578276023', '1', '0');
-INSERT INTO `user` VALUES ('28', null, null, '15195523807', 'a1d61fd349d3d8d257dae90339e69d0f319729d0', null, '0', '0', null, '0', '1577851430', '1', '0');
-INSERT INTO `user` VALUES ('30', null, null, '18834478477', 'fe9b86978ec92e01af838b3bc9d6ed636fb38c12', null, '0', '0', null, '0', '1577862812', '1', '0');
-INSERT INTO `user` VALUES ('31', null, null, '15706790550', '0286d2c0563aa4b8c62440ad6ccc0e8c15621923', null, '0', '0', null, '0', '1577863865', '1', '0');
-INSERT INTO `user` VALUES ('32', null, null, '13668514505', 'de110c2030db320a675126043455c6095aafd54f', null, '0', '0', null, '0', '1577872121', '1', '0');
-INSERT INTO `user` VALUES ('45', null, null, '13780000892', '10470c3b4b1fed12c3baac014be15fac67c6e815', '123456', '0', '0', null, '1', '1579161218', '1', '0');
-INSERT INTO `user` VALUES ('34', null, null, '18359838207', 'd52109df8e960ea9dd44fd1341279fd823e2edf7', null, '0', '0', null, '0', '1577947789', '1', '0');
-INSERT INTO `user` VALUES ('35', null, null, '18865186593', '9ef158f1dfccaad030ec1b243f71ef8fae8cb7c8', null, '0', '0', null, '0', '1577948407', '0', '0');
-INSERT INTO `user` VALUES ('36', null, null, '13841354168', 'a5d570de86ab4dae7b7be98d83e5a4e865dc713e', null, '0', '0', null, '0', '1577953082', '1', '0');
-INSERT INTO `user` VALUES ('44', 'kefu', '42', '13681794059', '8d0133904a18dbee7cc65a2133c0496f5ee784e7', null, '0', '0', null, '0', '1578455811', '1', '0');
-INSERT INTO `user` VALUES ('46', 'kefu2', '44', '13479628995', '10470c3b4b1fed12c3baac014be15fac67c6e815', null, '0', '0', null, '0', '1582041136', '1', '0');
-INSERT INTO `user` VALUES ('47', 'kefu2', '44', '18930872298', '0d33f4798bf05770e15e0543720c7d00ddf1af5e', '123456', '0', '0', null, '0', '1582448394', '1', '0');
-INSERT INTO `user` VALUES ('51', 'kefu', '42', '13257744517', '10470c3b4b1fed12c3baac014be15fac67c6e815', '111111', '0', '0', null, '0', '1584951254', '0', '0');
-INSERT INTO `user` VALUES ('52', 'kefu', '42', '18359202475', '900207797ad161af8a5e8645f0efddfffa6bff1a', null, '0', '0', null, '0', '1585510839', '1', '0');
+INSERT INTO `user` VALUES ('1', null, null, '游客', '', null, '0', '0', '1577421705', '0', '1577422190', null, '1', null);
+INSERT INTO `user` VALUES ('3', null, null, '13227547578', '0747ba547fbc1b06d93d64c1fe606a2d729c1f88', null, '0', '0', '1577421705', '0', '1577270708', null, '1', '0');
+INSERT INTO `user` VALUES ('4', null, null, '18031927965', '111e582bcf5d88f67e46c13944b7c83d2066038c', null, '0', '0', '1577421705', '0', '1577342789', null, '1', '0');
+INSERT INTO `user` VALUES ('5', null, null, '13222701199', '438751b5581e229111f0f21a7cc89f40384d6e81', null, '0', '0', '1577421705', '0', '1577421187', null, '1', '0');
+INSERT INTO `user` VALUES ('6', null, null, '15256233230', 'b964800f273c7bebfbd314ce168735addb2d84c3', null, '0', '0', '1577421705', '0', '1577421296', null, '1', '0');
+INSERT INTO `user` VALUES ('14', null, null, '18735543883', 'cadf1711199cdf1e0446254213d9074e700e85f5', null, '0', '0', '1577421705', '0', '1577501523', null, '1', '0');
+INSERT INTO `user` VALUES ('10', null, null, '15815709239', 'a3c182ff36d058f055f9cbd51f1a05b4858248c4', null, '0', '0', '1577421705', '0', '1577426873', null, '1', '0');
+INSERT INTO `user` VALUES ('11', null, null, '13899409562', 'a7ee86605e6d815b3842aa1ff6e51b943edbce2f', null, '0', '0', '1577421705', '0', '1577427903', null, '1', '0');
+INSERT INTO `user` VALUES ('15', null, null, '18475324511', '8d0133904a18dbee7cc65a2133c0496f5ee784e7', null, '0', '0', '1577421705', '0', '1577507545', null, '1', '0');
+INSERT INTO `user` VALUES ('16', null, null, '13833078840', 'acf58f68f25710c5d619b0e9a3894d3cd7e76776', null, '0', '0', '1577421705', '0', '1577514131', null, '1', '0');
+INSERT INTO `user` VALUES ('17', null, null, '13571699708', 'f38d3191a6f3506f889eb93a0ad1c99256090ba1', null, '0', '0', '1577421705', '0', '1577595118', null, '1', '0');
+INSERT INTO `user` VALUES ('18', null, null, '15702933428', '534f0e3b9fe28872be1c2140f65901f5a830f176', null, '0', '0', '1577421705', '0', '1577600460', null, '1', '0');
+INSERT INTO `user` VALUES ('19', null, null, '15021770972', '762a14f9ccd8b0b8519d892ffb9775b6b31b6795', null, '0', '0', '1577421705', '0', '1577603409', null, '1', '0');
+INSERT INTO `user` VALUES ('20', null, null, '13733608333', 'ae13208a7ed95b514b0629bce6577f4d36afe91b', null, '0', '0', '1577421705', '0', '1577606244', null, '1', '0');
+INSERT INTO `user` VALUES ('21', null, null, '18518115260', '305ac4cd15aeb2a094026248e829163d9993b88a', null, '0', '0', '1577421705', '0', '1577671257', null, '1', '0');
+INSERT INTO `user` VALUES ('22', null, null, '18569296287', 'e0c720c83d692665999b9fd8230377b33bd0c72d', null, '0', '0', '1577421705', '0', '1577687229', null, '1', '0');
+INSERT INTO `user` VALUES ('43', null, null, '15918476606', '769bb589287f8bc6d7c45c2e205a5798a738047e', null, '0', '0', '1577421705', '0', '1578305065', null, '0', '0');
+INSERT INTO `user` VALUES ('24', null, null, '13613183210', 'e479ddaa22e2058a0489f9d9f025fba8efe57faf', null, '0', '0', '1577421705', '0', '1577770833', null, '1', '0');
+INSERT INTO `user` VALUES ('25', null, null, '15830485640', '64b8aa1a6153799b0391b38ff6aac66148d37394', null, '0', '0', '1577421705', '0', '1577771738', null, '1', '0');
+INSERT INTO `user` VALUES ('40', null, null, '15126782331', '048e7aafe2e5e4a2a1a372082954d2eebf6d3a64', null, '0', '0', '1577421705', '0', '1578204780', null, '1', '0');
+INSERT INTO `user` VALUES ('41', null, null, '17791797821', 'a511f545295b66e672b357999749551fac8cbdc7', null, '0', '0', '1577421705', '0', '1578276023', null, '1', '0');
+INSERT INTO `user` VALUES ('28', null, null, '15195523807', 'a1d61fd349d3d8d257dae90339e69d0f319729d0', null, '0', '0', '1577421705', '0', '1577851430', null, '1', '0');
+INSERT INTO `user` VALUES ('30', null, null, '18834478477', 'fe9b86978ec92e01af838b3bc9d6ed636fb38c12', null, '0', '0', '1577421705', '0', '1577862812', null, '1', '0');
+INSERT INTO `user` VALUES ('31', null, null, '15706790550', '0286d2c0563aa4b8c62440ad6ccc0e8c15621923', null, '0', '0', '1577421705', '0', '1577863865', null, '1', '0');
+INSERT INTO `user` VALUES ('32', null, null, '13668514505', 'de110c2030db320a675126043455c6095aafd54f', null, '0', '0', '1577421705', '0', '1577872121', null, '1', '0');
+INSERT INTO `user` VALUES ('45', null, null, '13780000892', '10470c3b4b1fed12c3baac014be15fac67c6e815', '123456', '0', '0', '1577421705', '1', '1579161218', null, '1', '0');
+INSERT INTO `user` VALUES ('34', null, null, '18359838207', 'd52109df8e960ea9dd44fd1341279fd823e2edf7', null, '0', '0', '1577421705', '0', '1577947789', null, '1', '0');
+INSERT INTO `user` VALUES ('35', null, null, '18865186593', '9ef158f1dfccaad030ec1b243f71ef8fae8cb7c8', null, '0', '0', '1577421705', '0', '1577948407', null, '0', '0');
+INSERT INTO `user` VALUES ('36', null, null, '13841354168', 'a5d570de86ab4dae7b7be98d83e5a4e865dc713e', null, '0', '0', '1577421705', '0', '1577953082', null, '1', '0');
+INSERT INTO `user` VALUES ('44', null, null, '13681794059', '8d0133904a18dbee7cc65a2133c0496f5ee784e7', null, '0', '0', '1577421705', '0', '1578455811', null, '1', '0');
+INSERT INTO `user` VALUES ('46', null, null, '13479628995', '10470c3b4b1fed12c3baac014be15fac67c6e815', null, '0', '0', '1577421705', '0', '1582041136', null, '1', '0');
+INSERT INTO `user` VALUES ('47', null, null, '18930872298', '0d33f4798bf05770e15e0543720c7d00ddf1af5e', '123456', '0', '0', '1577421705', '0', '1582448394', null, '1', '0');
+INSERT INTO `user` VALUES ('52', null, null, '18569396549', 'a5b5288afb7db409feb025917387ac4ca9cb6ea3', '123456', '1000', '0', '1577421705', '0', '1585510839', null, '1', '0');
 
 -- ----------------------------
 -- Table structure for userinfo
@@ -1163,61 +997,11 @@ CREATE TABLE `userinfo` (
   `zhimaxinyou` int(11) NOT NULL DEFAULT '0',
   `is_check` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of userinfo
 -- ----------------------------
-INSERT INTO `userinfo` VALUES ('1', '16556896331', '刘锦', '420922199511015711', '/Upload/image/20191222/20191222214225_81034.jpg', '/Upload/image/20191222/20191222214247_22599.jpg', '/Upload/image/20191222/20191222214321_72989.jpg', '广东省 深圳市 罗湖区', '广州深圳', '广州恒大', '广东省 深圳市 罗湖区', '广州深圳罗湖', '经理', '6', '6217025238466612553', '工商银行', '0', '0', '', '8000', '刘锦', '16556896331', '16556896331', '刘锦', '16556896331', '兄妹', '610', '16556896331', '高中', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('2', '15579161111', '刘田', '423303199604123656', 'http://hld.qingman.wang/Upload/image/20191225/20191225094844_95794.jpg', 'http://hld.qingman.wang/Upload/image/20191225/20191225094859_44084.jpg', 'http://hld.qingman.wang/Upload/image/20191225/20191225094915_36455.jpg', '辽宁省 沈阳市 沈河区', '群明明掐指一算', '明年', '辽宁省 沈阳市 和平区', '寂寞千与千寻 网球王子', '还以为', '5', '49843200366487155', '浦发银行', '0', '0', '6799799797', '50000', '54597', '1369799797979', '同事', '55767', '15569799797', '同事', '556', '64699797', '大专', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('3', '13227547578', '张贵良', '420621196412022231', 'http://hld.qingman.wang/Upload/image/20191225/20191225184926_93072.jpg', 'http://hld.qingman.wang/Upload/image/20191225/20191225184950_36577.jpg', 'http://hld.qingman.wang/Upload/image/20191225/20191225185045_54467.jpg', '湖北省 襄阳市 襄州区', '张家集镇梅铺村二', '贵良生猪养殖专业合作社', '湖北省 襄阳市 襄州区', '张家集镇梅铺村二组', '法人代表', '10', '6228480759796251677', '农业银行', '0', '0', '13476371680', '30000', '王志英', '13871736023', '同事', '张艳涛', '15597275334', '朋友', '550', '988988', '高中', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('4', '18031927965', '王晓雪', '130185198911211832', 'http://hld.qingman.wang/Upload/image/20191226/20191226150021_60011.jpg', 'http://hld.qingman.wang/Upload/image/20191226/20191226150055_85605.jpg', 'http://hld.qingman.wang/Upload/image/20191226/20191226150122_16791.jpg', '河北省 石家庄市 鹿泉市', '李村镇西小壁村富康街十八巷7号', '韩书军', '河北省 石家庄市 鹿泉市', '李村镇王村垃圾站旁边', '司机', '2', '6228480639120567073', '农业银行', '0', '0', '', '7000', '王林山', '15830672665', '父母', '周顶', '14785136572', '同事', '587', '18031927965', '初中', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('5', '13222701199', '郭小连', '320826197608263217', 'http://hld.qingman.wang/Upload/image/20191227/20191227123745_78953.jpg', 'http://hld.qingman.wang/Upload/image/20191227/20191227123830_70539.jpg', 'http://hld.qingman.wang/Upload/image/20191227/20191227123934_12695.jpg', '江苏省 淮安市 涟水县', '江苏省涟水县方渡乡', '南通市达欣工程有限公司', '江苏省 无锡市 锡山区', '江苏省无锡市锡山区云林苑', '安装空调', '10', '6215581110003363498', '工商银行', '0', '0', '', '8000', '郭根林', '19805031998', '兄妹', '曹梅方', '17715622366', '父母', '541', '13222701199', '初中', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('6', '15256233230', '王新杰', '342601198009010658', 'http://hld.qingman.wang/Upload/image/20191227/20191227123538_88818.jpg', 'http://hld.qingman.wang/Upload/image/20191227/20191227123552_87030.jpg', 'http://hld.qingman.wang/Upload/image/20191227/20191227123612_73211.jpg', '安徽省 合肥市 巢湖市', '巢湖市凤凰山路凤凰名城5栋1301', '巢湖市中陵交通工程设施有限公司', '安徽省 合肥市 巢湖市', '巢湖市半汤崌嶂社区紫薇路9号', '中层', '15', '6222031302004206121', '工商银行', '0', '0', '', '16780', '邓胜男', '13955251854', '同事', '王子龙', '15155763137', '朋友', '680', '15256233230', '大学', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('7', '15826823612', null, null, null, null, null, null, null, null, null, null, null, null, null, null, '0', '0', null, null, null, null, null, null, null, null, null, null, '', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('8', '15815709239', '邱华通', '4441781199309083554', 'http://hld.qingman.wang/Upload/image/20191227/20191227141556_60450.jpg', 'http://hld.qingman.wang/Upload/image/20191227/20191227141617_70331.jpg', 'http://hld.qingman.wang/Upload/image/20191227/20191227141804_62006.jpg', '广东省 中山市', '中山市三乡镇鸦岗村安庆街三巷62号', '中山三乡镇保安服务公司', '广东省 中山市', '中山市三乡镇建设路六号', '保安服务', '1', '6214837605203987', '招商银行', '0', '0', '076086685123', '5500', '何冬梅', '15815709239', '父母', '邱华权', '13539216931', '兄妹', '564', '15815709239', '中专', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('9', '13899409562', '加那尔古丽·哈米', '654325198102251164', 'http://hld.qingman.wang/Upload/image/20191227/20191227143526_67662.jpg', 'http://hld.qingman.wang/Upload/image/20191227/20191227143610_87393.jpg', 'http://hld.qingman.wang/Upload/image/20191227/20191227143739_25170.jpg', '新疆 阿勒泰地区 青河县', '青龙湖小区七号楼三单元304', '青河镇政府', '新疆 阿勒泰地区 青河县', '青河县青龙湖小区七号楼三单元304', '社保专干', '10', '6228483008354592974', '农业银行', '0', '0', '09068824372', '3000', '马依拉·哈米', '18097522419', '兄妹', '库丽孜依帕·加那尔', '18097526934', '朋友', '100', '无', '中专', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('10', '15089351761', '黄武雄', '445281198705202895', 'http://hld.qingman.wang/Upload/image/20191227/20191227161616_29812.jpg', 'http://hld.qingman.wang/Upload/image/20191227/20191227161641_77107.jpg', 'http://hld.qingman.wang/Upload/image/20191227/20191227161651_50021.jpg', '广东省 揭阳市 普宁市', '洪阳镇钱湖村新村23号之1', '东市水果行', '广东省 揭阳市 普宁市', '流沙后坛路口往东市三鸟市场方向50米', '老板', '10', '6236683260003260450', '建设银行', '0', '0', '06632161576', '10000', '老夏', '18718468700', '同事', '水果姨', '13620286869', '朋友', '616', '15089351761', '初中', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('11', '18265643628', '刘文建', '220603197107281167x', 'http://hld.qingman.wang/Upload/image/20191227/20191227172846_61446.jpg', 'http://hld.qingman.wang/Upload/image/20191227/20191227172820_72944.jpg', 'http://hld.qingman.wang/Upload/image/20191227/20191227172752_57431.jpg', '山东省 潍坊市 青州市', '山东省潍坊市青州市老汽车站西街1188号', '山东省潍坊市青州市玉溪木业有限公司', '山东省 潍坊市 青州市', '山东省潍坊市青州市益都办事处西张村157号', '生产厂长', '9', '6228480218695284073', '农业银行', '0', '0', '05363589230', '8000', '刘娣', '13943981765', '兄妹', '王伟', '13780852017', '同事', '603', '18265643628', '大专', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('12', '18735543883', '王鹏军', '140423197910203616', 'http://hld.qingman.wang/Upload/image/20191228/20191228105332_53260.jpg', 'http://hld.qingman.wang/Upload/image/20191228/20191228105341_74121.jpg', 'http://hld.qingman.wang/Upload/image/20191228/20191228105427_57140.jpg', '山西省 长治市 襄垣县', '王桥镇安宁村', '七一善福', '山西省 长治市 襄垣县', '襄垣县善福乡', '班长', '2', '6217923270360950', '浦发银行', '0', '0', '7469686', '8000', '王永太', '13834773796', '父母', '王耀华', '13734230546', '朋友', '637', '18735543883', '中专', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('13', '18475324511', null, null, null, null, null, null, null, null, null, null, null, null, null, null, '0', '0', null, null, null, null, null, null, null, null, null, null, '', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('14', '13833078840', '杨红娜', '130634197609071384', 'http://hld.qingman.wang/Upload/image/20191228/20191228142716_58958.jpg', 'http://hld.qingman.wang/Upload/image/20191228/20191228142746_78864.jpg', 'http://hld.qingman.wang/Upload/image/20191228/20191228143936_55794.jpg', '河北省 保定市 曲阳县', '西苑新区', '时尚鞋吧', '河北省 保定市 曲阳县', '西街南路7条12号', '老板', '10', '6228481268349189672', '农业银行', '0', '0', '', '18000', '杨鹏欣', '13111673015', '朋友', '雷果子', '13102999130', '父母', '633', '13833078840', '高中', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('15', '13571699708', null, null, null, null, null, null, null, null, null, null, null, null, null, null, '0', '0', null, null, null, null, null, null, null, null, null, null, '', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('16', '15021770972', '王陈林', '420624198803131839', 'http://hld.qingman.wang/Upload/image/20191229/20191229151134_59556.jpg', 'http://hld.qingman.wang/Upload/image/20191229/20191229151150_84882.jpg', 'http://hld.qingman.wang/Upload/image/20191229/20191229151238_34989.jpg', '上海市 上海市 浦东新区', '丽正路1515号', '上海金盾特种车辆装备有限公司', '上海市 上海市 浦东新区', '丽正路1515号', '普工', '7', '6215581804005151543', '工商银行', '0', '0', '', '6000', '王千菊', '15072252718', '父母', '李光成', '18621535828', '同事', '588', '18771501163', '中专', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('17', '15702933428', '侯秦安', '61010219630915063X', 'http://hld.qingman.wang/Upload/image/20191229/20191229152005_16935.jpg', 'http://hld.qingman.wang/Upload/image/20191229/20191229152016_68529.jpg', 'http://hld.qingman.wang/Upload/image/20191229/20191229152209_73730.jpg', '陕西省 西安市 新城区', '康宁里小区2号楼1单元6层22号', '西安朱雀国家森林公园有限公司', '陕西省 西安市 户县', '涝峪八里坪', '员工', '6', '6217004220034689210', '建设银行', '0', '0', '02984970888', '4500', '侯胜才', '18634592901', '兄妹', '郭宏嘉', '18034295883', '同事', '613', '15702933420', '高中', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('18', '13733608333', '张二显', '410426196507110516', 'http://hld.qingman.wang/Upload/image/20191229/20191229161920_20386.jpg', 'http://hld.qingman.wang/Upload/image/20191229/20191229161943_55937.jpg', 'http://hld.qingman.wang/Upload/image/20191229/20191229162024_59668.jpg', '河南省 许昌市 长葛市', '视察路东段', '个体户', '河南省 许昌市 长葛市', '和尚桥镇于井村', '老板', '15', '6217995030015350786', '邮储银行', '0', '0', '', '5000', '张文豪', '15893751819', '同事', '丁书民', '13603746633', '朋友', '643', '13733608333', '高中', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('19', '18518115260', '1', '1', 'http://hld.qingman.wang/Upload/image/20200107/20200107185553_36095.png', 'http://hld.qingman.wang/Upload/image/20200107/20200107185602_41042.png', 'http://hld.qingman.wang/Upload/image/20200107/20200107185623_23187.png', '北京市 北京市 东城区', '具体', '1', '北京市 北京市 东城区', '2', '1', '2', '123456789123456789', '工商银行', '0', '0', '', '18888', '具体', '1', '父母', '你', '22', '同事', '1', '1', '1', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('20', '18569296287', '李新农', '43052819890526305X', 'http://hld.qingman.wang/Upload/image/20191230/20191230142759_38212.jpg', 'http://hld.qingman.wang/Upload/image/20191230/20191230142809_43997.jpg', 'http://hld.qingman.wang/Upload/image/20191230/20191230142822_63969.jpg', '湖南省 邵阳市 新宁县', '金石镇马江村龙口组', '伟力振升颐人门窗厂', '湖南省 邵阳市 新宁县', '金石镇永安工业园', '员工', '3', '6217002920139319892', '建设银行', '0', '0', '', '8000', '刘晓丽', '18874213396', '同事', '徐海玲', '15992785719', '朋友', '602', '18569296287', '高中', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('21', '15016665056', null, null, null, null, null, null, null, null, null, null, null, null, null, null, '0', '0', null, null, null, null, null, null, null, null, null, null, '', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('22', '13613183210', '杨宝巨', '131122197108270412', 'http://hld.qingman.wang/Upload/image/20191231/20191231134114_23001.jpeg', 'http://hld.qingman.wang/Upload/image/20191231/20191231134128_99448.jpeg', 'http://hld.qingman.wang/Upload/image/20191231/20191231134200_73237.jpg', '河北省 衡水市 桃城区', '丽都花苑5幢二单元202', '衡水市桃城区德谦茶店', '河北省 衡水市 桃城区', '永兴东路2182号', '法人', '3', '6217000160002835482', '建设银行', '0', '0', '03186666164', '10000', '杨军', '18903286050', '兄妹', '张存武', '13932838932', '朋友', '654', '13613183210', '高中', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('23', '15830485640', '郭爱娜', '131181198310020964', 'http://hld.qingman.wang/Upload/image/20191231/20191231135804_72026.jpg', 'http://hld.qingman.wang/Upload/image/20191231/20191231135822_89766.jpg', 'http://hld.qingman.wang/Upload/image/20191231/20191231135905_34496.jpg', '河北省 衡水市 桃城区', '榕花北大街惠丰家园二号楼二单元三零二室', '衡水市桃城区德歉茶店', '河北省 衡水市 桃城区', '永兴东路德歉茶店2182号', '销售部经理', '3', '6212260407003672604', '工商银行', '0', '0', '', '6000', '王新贞', '15132845670', '同事', '付婷', '15130879492', '兄妹', '593', '15830485640', '高中', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('24', '15690571917', null, null, null, null, null, null, null, null, null, null, null, null, null, null, '0', '0', null, null, null, null, null, null, null, null, null, null, '', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('25', '13912808084', null, null, null, null, null, null, null, null, null, null, null, null, null, null, '0', '0', null, null, null, null, null, null, null, null, null, null, '', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('26', '15195523807', '丨吴贵兵', '320925195909090014', 'http://hld.qingman.wang/Upload/image/20200101/20200101120448_88529.jpg', 'http://hld.qingman.wang/Upload/image/20200101/20200101120457_93338.jpeg', 'http://hld.qingman.wang/Upload/image/20200101/20200101120517_50246.jpg', '江苏省 盐城市 建湖县', '近湖镇万福新村36幢108室', '建湖县贸易办公室', '江苏省 盐城市 建湖县', '人民南路210号', '综合科负责人', '12', '6215678100040883008', '中国银行', '0', '0', '051585361570', '5500', '金寅泰', '15962021158', '同事', '石云', '15161908699', '兄妹', '598', '13813225628', '大专', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('27', '13477293077', null, null, null, null, null, null, null, null, null, null, null, null, null, null, '0', '0', null, null, null, null, null, null, null, null, null, null, '', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('28', '18834478477', '张小艾', '142702198901275520', 'http://hld.qingman.wang/Upload/image/20200101/20200101151431_54304.jpg', 'http://hld.qingman.wang/Upload/image/20200101/20200101151450_37899.jpg', 'http://hld.qingman.wang/Upload/image/20200101/20200101151529_67229.jpg', null, null, null, null, null, null, null, null, null, '0', '0', null, null, null, null, null, null, null, null, null, null, '', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('29', '15706790550', '陈玲光', '352224197812115918', 'http://hld.qingman.wang/Upload/image/20200102/20200102122012_73155.jpg', 'http://hld.qingman.wang/Upload/image/20200102/20200102122116_67165.jpg', 'http://hld.qingman.wang/Upload/image/20200103/20200103134753_41681.jpg', '浙江省 温州市 苍南县', '凤池88号', '精武门', '浙江省 温州市 苍南县', '苍南县灵溪镇二中东路125号', '木工', '20', '6217731302511544', '中信银行', '0', '0', '13091953350', '15000', '陈存福', '15167733414', '兄妹', '陈玲紫怡', '13868336581', '朋友', '580', '15706790550', '小学', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('30', '13668514505', '余先国', '522725198102283511', 'http://hld.qingman.wang/Upload/image/20200101/20200101175100_62326.jpg', 'http://hld.qingman.wang/Upload/image/20200101/20200101175135_10765.jpg', 'http://hld.qingman.wang/Upload/image/20200101/20200101175242_57903.jpg', '贵州省 贵阳市 云岩区', '贵乌北路20号', '余先国粉面馆', '贵州省 贵阳市 云岩区', '贵乌北路20号', '负责人', '1', '6212262402019763263', '工商银行', '0', '0', '085185616718', '12000', '余先平', '15286209581', '兄妹', '赵成林', '13984168799', '朋友', '587', '13668514505', '大专', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('31', '18637179846', '王超', '41082519830808601X', 'http://hld.qingman.wang/Upload/image/20200102/20200102101256_53877.jpg', 'http://hld.qingman.wang/Upload/image/20200102/20200102101332_10850.jpg', 'http://hld.qingman.wang/Upload/image/20200102/20200102101355_78073.jpg', '陕西省 西安市 未央区', '保利拉菲公馆南区21号楼2单元304', '陕西德胜合建筑劳务有限公司', '陕西省 西安市 灞桥区', '东湖路中新浐灞半岛A15区13栋一单元10层', '部门经理', '10', '6222620260019409068', '交通银行', '0', '0', '', '20000', '冯菲', '13733853854', '朋友', '王满仓', '13259884158', '父母', '707', '18637179846', '本科', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('32', '18359838207', '蒋海军', '350582198710105594', 'http://hld.qingman.wang/Upload/image/20200102/20200102145102_18355.jpg', 'http://hld.qingman.wang/Upload/image/20200102/20200102145116_52046.jpg', 'http://hld.qingman.wang/Upload/image/20200102/20200102145211_83141.jpg', '福建省 泉州市 晋江市', '福建省晋江市金井镇福全村北区62号', '石圳东方骆驼', '福建省 泉州市 晋江市', '石圳村东方骆驼', '管理员', '7', '6217001830028411893', '建设银行', '0', '0', '0595', '6500', '蒋福利', '15959547426', '父母', '蔡荣图', '15960777143', '朋友', '530', '18359838207', '初中', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('33', '18865186593', '刘田田', '371522198605079679', 'http://hld.qingman.wang/Upload/image/20200103/20200103103019_40597.jpg', 'http://hld.qingman.wang/Upload/image/20200103/20200103103107_31784.jpg', 'http://hld.qingman.wang/Upload/image/20200103/20200103103204_39095.jpg', '山东省 聊城市 莘县', '古云镇刘楼村68号', '山东九鼎新材料有限公司', '山东省 聊城市 莘县', '古云镇祥云街1号', '员工', '3', '6212261712006157233', '工商银行', '0', '0', '', '6000', '罗进美', '15106865954', '父母', '孙来威', '15166587183', '朋友', '635', '774864086@qq.com', '高中', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('34', '13841354168', '李铁滨', '210403197109270912', 'http://hld.qingman.wang/Upload/image/20200102/20200102162019_13429.jpg', 'http://hld.qingman.wang/Upload/image/20200102/20200102162041_72674.jpg', 'http://hld.qingman.wang/Upload/image/20200102/20200102162156_26495.jpg', '辽宁省 抚顺市 东洲区', '辽宁省抚顺市东洲区万新街13号楼2单元103', '方顺超市', '辽宁省 抚顺市 东洲区', '辽宁省抚顺市东洲区万新街', '经理', '13', '6212260705001989627', '工商银行', '0', '0', '02454300126', '7', '李俊梅', '15694136368', '兄妹', '李永伟', '15641347895', '朋友', '564', '13841354168', '大专', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('35', '18423207030', null, null, null, null, null, null, null, null, null, null, null, null, null, null, '0', '0', null, null, null, null, null, null, null, null, null, null, '', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('36', '13858718214', '周大呀', '330327197707102882', 'http://hld.qingman.wang/Upload/image/20200104/20200104164400_64479.jpeg', 'http://hld.qingman.wang/Upload/image/20200104/20200104164420_73364.jpeg', 'http://hld.qingman.wang/Upload/image/20200104/20200104164720_27506.jpeg', '浙江省 温州市 苍南县', '银苑大厦30F', '温州国豪工艺品进出口有限公司', '浙江省 温州市 苍南县', '苍南县龙港镇世纪大道699弄4-6栋第六层', '销售部门经理', '8', '6228410334548907672', '农业银行', '0', '0', '057768588188', '8000', '吕心晨', '15257711153', '同事', '黄祖喜', '13262397488', '朋友', '550', '13858718214', '高中', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('37', '13681794059', '高继林', '342422196609108554', 'http://hld.qingman.wang/Upload/image/20200105/20200105131736_68741.jpg', 'http://hld.qingman.wang/Upload/image/20200105/20200105131757_16471.jpg', 'http://hld.qingman.wang/Upload/image/20200105/20200105131844_93234.jpg', '上海市 上海市 浦东新区', '华夏东路860弄6号702', '温州国豪工艺品进出口有限公司', '浙江省 温州市 苍南县', '苍南县龙港镇世纪大道699弄4-6号四幢第六层', '经理', '20', '6217001180037804575', '建设银行', '0', '0', '057768588188', '15000', '高翔', '13524973222', '父子', '宋桂兵', '13120677322', '同事', '675', '13681794059', '高中', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('38', '15126782331', '闻金春', '532621198602180712', 'http://hld.qingman.wang/Upload/image/20200105/20200105141837_41276.jpg', 'http://hld.qingman.wang/Upload/image/20200105/20200105141844_20321.jpg', 'http://hld.qingman.wang/Upload/image/20200105/20200105141921_28801.jpg', '云南省 文山壮族苗族自治州 文山县', '文山市追栗街镇硝厂村二村', '个体', '云南省 文山壮族苗族自治州 文山县', '文山市追栗街镇硝厂村二村', '个体', '1', null, null, '0', '0', '18126782331', '4500', '闻凯生', '15187112191', '父母', '李金成', '18387614283', '朋友', '593', '15126782331', '初中', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('39', '17791797821', '刘备', '1387584955684888846', 'http://hld.qingman.wang/Upload/image/20200106/20200106100151_30494.png', 'http://hld.qingman.wang/Upload/image/20200106/20200106100204_56796.jpg', 'http://hld.qingman.wang/Upload/image/20200106/20200106100224_30005.jpg', '河北省 石家庄市 桥东区', '太让我伤心', '视屏', '北京市 北京市 东城区', '积木去', '视屏', '5', '6216693600003336836', '工商银行', '0', '0', '02138580587', '15000', '李华', '15125153779', '同事', '老虎', '13524179465', '兄妹', '650', '15144499941', '高中', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('40', '18361837377', '时平静', '321281199403087477', 'http://hld.qingman.wang/Upload/image/20200106/20200106125618_46065.jpeg', 'http://hld.qingman.wang/Upload/image/20200106/20200106125618_29280.jpeg', 'http://hld.qingman.wang/Upload/image/20200106/20200106125853_65635.jpeg', '江苏省 扬州市 邗江区', '文汇苑A区4栋904', '邗江区米粒儿童摄影店', '江苏省 扬州市 邗江区', '文汇西路永安综合楼104', '店长', '3', '6217231115000334574', '工商银行', '0', '0', '051489993346', '20000', '安安', '18762348887', '同事', '吴传亮', '18752347897', '同事', '650', '18762348886', '大专', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('41', '15918476606', '熊红才', '429006196808292133', 'http://hld.qingman.wang/Upload/image/20200106/20200106183809_37735.jpg', 'http://hld.qingman.wang/Upload/image/20200106/20200106183820_20974.jpg', 'http://hld.qingman.wang/Upload/image/20200106/20200106184017_44391.jpg', '广东省 广州市 海珠区', '广册市海珠区西约南大街二巷36号', '温问州国豪工艺品进出口有限公司', '浙江省 温州市 鹿城区', '巷南县龙港镇世纪大道699弄4-6号四幢', '员工', '5', '6217003320045804674', '建设银行', '0', '0', '057768588188', '8500', '熊良才', '13938898527', '兄妹', '万胜波', '15622794186', '朋友', '675', '15918476606', '高中', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('42', '13780000892', null, null, null, null, null, null, null, null, null, null, null, null, null, null, '0', '0', null, null, null, null, null, null, null, null, null, null, '', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('43', '18930872298', null, null, null, null, null, null, null, null, null, null, null, null, null, null, '0', '0', null, null, null, null, null, null, null, null, null, null, '', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('44', '15757851836', null, null, null, null, null, null, null, null, null, null, null, null, null, null, '0', '0', null, null, null, null, null, null, null, null, null, null, '', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('45', '15258234501', null, null, null, null, null, null, null, null, null, null, null, null, null, null, '0', '0', null, null, null, null, null, null, null, null, null, null, '', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('46', '15559763298', null, null, null, null, null, null, null, null, null, null, null, null, null, null, '0', '0', null, null, null, null, null, null, null, null, null, null, '', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('47', '13257744517', '孙嘉彬', '610104198202176137', '/Upload/image/20200323/20200323161734_95432.png', '/Upload/image/20200323/20200323161749_72758.png', 'http://hld.qingman.wang/Upload/image/20200323/20200323161759_24788.png', '北京市 北京市 东城区', '脚手架', '我们', '北京市 北京市 东城区', '我们就没有办法', '我们', '10', '887885', '工商银行', '0', '0', '', '10000', '一直都', '13100000000', '父母', '我们的', '13666666666', '父母', '1212', '12345', '我们', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('50', '18359202475', null, null, null, null, null, null, null, null, null, null, null, null, null, null, '0', '0', null, null, null, null, null, null, null, null, null, null, '', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('48', '18359202476', null, null, null, null, null, null, null, null, null, null, null, null, '62366837600651876528', '工商银行', '0', '0', null, null, null, null, null, null, null, null, null, null, '', '0', '0', '0');
-INSERT INTO `userinfo` VALUES ('49', '18956501550', '唐大帅', '43110299405112756', 'http://get-money.im/Upload/image/20200516/20200516142235_49358.jpg', 'http://get-money.im/Upload/image/20200516/20200516142238_33966.jpg', 'http://get-money.im/Upload/image/20200516/20200516142243_84704.jpeg', '湖南省 长沙市 芙蓉区', '斯达舒大撒多', '腾讯', '湖南省 长沙市 芙蓉区', '大发大打发', '程序猿', '5', '12312312312312312312', '工商银行', '0', '0', '', '10000', '爱的发的是', '1231231231231', '父母', '打发', '123123123121', '同事', '760', '121231123131', '本科', '0', '0', '0');
 
 -- ----------------------------
 -- Table structure for voucher
@@ -1233,1012 +1017,12 @@ CREATE TABLE `voucher` (
   `monthmoney` float NOT NULL COMMENT '每期还款金额',
   `zfimg` varchar(255) NOT NULL COMMENT '支付凭证图',
   `status` int(11) NOT NULL COMMENT '支付状态0：未支付1：已支付',
-  `addtime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '生成日期',
-  `huantime` date NOT NULL DEFAULT '0000-00-00' COMMENT '还款日期',
+  `addtime` datetime NOT NULL COMMENT '生成日期',
+  `huantime` date NOT NULL COMMENT '还款日期',
   `paytime` datetime DEFAULT NULL COMMENT '客户支付日期',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1549 DEFAULT CHARSET=utf8 COMMENT='还款列表订单';
+) ENGINE=MyISAM AUTO_INCREMENT=1645 DEFAULT CHARSET=utf8 COMMENT='还款列表订单';
 
 -- ----------------------------
 -- Records of voucher
--- ----------------------------
-INSERT INTO `voucher` VALUES ('24', '13268371295', 'IB15970644060114', '300000', '12', '12', '26800', '', '0', '2019-11-15 13:52:47', '2020-11-15', null);
-INSERT INTO `voucher` VALUES ('23', '13268371295', 'IB15970644060114', '300000', '12', '11', '26800', '', '0', '2019-11-15 13:52:47', '2020-10-15', null);
-INSERT INTO `voucher` VALUES ('22', '13268371295', 'IB15970644060114', '300000', '12', '10', '26800', '', '0', '2019-11-15 13:52:47', '2020-09-15', null);
-INSERT INTO `voucher` VALUES ('21', '13268371295', 'IB15970644060114', '300000', '12', '9', '26800', '', '0', '2019-11-15 13:52:47', '2020-08-15', null);
-INSERT INTO `voucher` VALUES ('20', '13268371295', 'IB15970644060114', '300000', '12', '8', '26800', '', '0', '2019-11-15 13:52:47', '2020-07-15', null);
-INSERT INTO `voucher` VALUES ('19', '13268371295', 'IB15970644060114', '300000', '12', '7', '26800', '', '0', '2019-11-15 13:52:47', '2020-06-15', null);
-INSERT INTO `voucher` VALUES ('18', '13268371295', 'IB15970644060114', '300000', '12', '6', '26800', '', '0', '2019-11-15 13:52:47', '2020-05-15', null);
-INSERT INTO `voucher` VALUES ('17', '13268371295', 'IB15970644060114', '300000', '12', '5', '26800', '', '0', '2019-11-15 13:52:47', '2020-04-15', null);
-INSERT INTO `voucher` VALUES ('16', '13268371295', 'IB15970644060114', '300000', '12', '4', '26800', '', '0', '2019-11-15 13:52:47', '2020-03-15', null);
-INSERT INTO `voucher` VALUES ('15', '13268371295', 'IB15970644060114', '300000', '12', '3', '26800', '', '0', '2019-11-15 13:52:47', '2020-02-15', null);
-INSERT INTO `voucher` VALUES ('14', '13268371295', 'IB15970644060114', '300000', '12', '2', '26800', '', '0', '2019-11-15 13:52:47', '2020-01-15', null);
-INSERT INTO `voucher` VALUES ('13', '13268371295', 'IB15970644060114', '300000', '12', '1', '26800', '', '0', '2019-11-15 13:52:47', '2019-12-15', null);
-INSERT INTO `voucher` VALUES ('456', '13924695233', 'IB15998313951627', '60000', '24', '24', '2860', '', '0', '2019-11-17 16:28:25', '2021-11-17', null);
-INSERT INTO `voucher` VALUES ('455', '13924695233', 'IB15998313951627', '60000', '24', '23', '2860', '', '0', '2019-11-17 16:28:25', '2021-10-17', null);
-INSERT INTO `voucher` VALUES ('454', '13924695233', 'IB15998313951627', '60000', '24', '22', '2860', '', '0', '2019-11-17 16:28:25', '2021-09-17', null);
-INSERT INTO `voucher` VALUES ('453', '13924695233', 'IB15998313951627', '60000', '24', '21', '2860', '', '0', '2019-11-17 16:28:25', '2021-08-17', null);
-INSERT INTO `voucher` VALUES ('452', '13924695233', 'IB15998313951627', '60000', '24', '20', '2860', '', '0', '2019-11-17 16:28:25', '2021-07-17', null);
-INSERT INTO `voucher` VALUES ('451', '13924695233', 'IB15998313951627', '60000', '24', '19', '2860', '', '0', '2019-11-17 16:28:25', '2021-06-17', null);
-INSERT INTO `voucher` VALUES ('450', '13924695233', 'IB15998313951627', '60000', '24', '18', '2860', '', '0', '2019-11-17 16:28:25', '2021-05-17', null);
-INSERT INTO `voucher` VALUES ('449', '13924695233', 'IB15998313951627', '60000', '24', '17', '2860', '', '0', '2019-11-17 16:28:25', '2021-04-17', null);
-INSERT INTO `voucher` VALUES ('448', '13924695233', 'IB15998313951627', '60000', '24', '16', '2860', '', '0', '2019-11-17 16:28:25', '2021-03-17', null);
-INSERT INTO `voucher` VALUES ('447', '13924695233', 'IB15998313951627', '60000', '24', '15', '2860', '', '0', '2019-11-17 16:28:25', '2021-02-17', null);
-INSERT INTO `voucher` VALUES ('446', '13924695233', 'IB15998313951627', '60000', '24', '14', '2860', '', '0', '2019-11-17 16:28:25', '2021-01-17', null);
-INSERT INTO `voucher` VALUES ('445', '13924695233', 'IB15998313951627', '60000', '24', '13', '2860', '', '0', '2019-11-17 16:28:25', '2020-12-17', null);
-INSERT INTO `voucher` VALUES ('444', '13924695233', 'IB15998313951627', '60000', '24', '12', '2860', '', '0', '2019-11-17 16:28:25', '2020-11-17', null);
-INSERT INTO `voucher` VALUES ('443', '13924695233', 'IB15998313951627', '60000', '24', '11', '2860', '', '0', '2019-11-17 16:28:25', '2020-10-17', null);
-INSERT INTO `voucher` VALUES ('442', '13924695233', 'IB15998313951627', '60000', '24', '10', '2860', '', '0', '2019-11-17 16:28:25', '2020-09-17', null);
-INSERT INTO `voucher` VALUES ('441', '13924695233', 'IB15998313951627', '60000', '24', '9', '2860', '', '0', '2019-11-17 16:28:25', '2020-08-17', null);
-INSERT INTO `voucher` VALUES ('440', '13924695233', 'IB15998313951627', '60000', '24', '8', '2860', '', '0', '2019-11-17 16:28:25', '2020-07-17', null);
-INSERT INTO `voucher` VALUES ('439', '13924695233', 'IB15998313951627', '60000', '24', '7', '2860', '', '0', '2019-11-17 16:28:25', '2020-06-17', null);
-INSERT INTO `voucher` VALUES ('438', '13924695233', 'IB15998313951627', '60000', '24', '6', '2860', '', '0', '2019-11-17 16:28:25', '2020-05-17', null);
-INSERT INTO `voucher` VALUES ('437', '13924695233', 'IB15998313951627', '60000', '24', '5', '2860', '', '0', '2019-11-17 16:28:25', '2020-04-17', null);
-INSERT INTO `voucher` VALUES ('436', '13924695233', 'IB15998313951627', '60000', '24', '4', '2860', '', '0', '2019-11-17 16:28:25', '2020-03-17', null);
-INSERT INTO `voucher` VALUES ('435', '13924695233', 'IB15998313951627', '60000', '24', '3', '2860', '', '0', '2019-11-17 16:28:25', '2020-02-17', null);
-INSERT INTO `voucher` VALUES ('434', '13924695233', 'IB15998313951627', '60000', '24', '2', '2860', '', '0', '2019-11-17 16:28:25', '2020-01-17', null);
-INSERT INTO `voucher` VALUES ('433', '13924695233', 'IB15998313951627', '60000', '24', '1', '2860', '', '0', '2019-11-17 16:28:25', '2019-12-17', null);
-INSERT INTO `voucher` VALUES ('49', '18725122464', 'IB15149023415112', '30000', '12', '1', '2680', '', '0', '2019-11-15 19:43:35', '2019-12-15', null);
-INSERT INTO `voucher` VALUES ('50', '18725122464', 'IB15149023415112', '30000', '12', '2', '2680', '', '0', '2019-11-15 19:43:35', '2020-01-15', null);
-INSERT INTO `voucher` VALUES ('51', '18725122464', 'IB15149023415112', '30000', '12', '3', '2680', '', '0', '2019-11-15 19:43:35', '2020-02-15', null);
-INSERT INTO `voucher` VALUES ('52', '18725122464', 'IB15149023415112', '30000', '12', '4', '2680', '', '0', '2019-11-15 19:43:35', '2020-03-15', null);
-INSERT INTO `voucher` VALUES ('53', '18725122464', 'IB15149023415112', '30000', '12', '5', '2680', '', '0', '2019-11-15 19:43:35', '2020-04-15', null);
-INSERT INTO `voucher` VALUES ('54', '18725122464', 'IB15149023415112', '30000', '12', '6', '2680', '', '0', '2019-11-15 19:43:35', '2020-05-15', null);
-INSERT INTO `voucher` VALUES ('55', '18725122464', 'IB15149023415112', '30000', '12', '7', '2680', '', '0', '2019-11-15 19:43:35', '2020-06-15', null);
-INSERT INTO `voucher` VALUES ('56', '18725122464', 'IB15149023415112', '30000', '12', '8', '2680', '', '0', '2019-11-15 19:43:35', '2020-07-15', null);
-INSERT INTO `voucher` VALUES ('57', '18725122464', 'IB15149023415112', '30000', '12', '9', '2680', '', '0', '2019-11-15 19:43:35', '2020-08-15', null);
-INSERT INTO `voucher` VALUES ('58', '18725122464', 'IB15149023415112', '30000', '12', '10', '2680', '', '0', '2019-11-15 19:43:35', '2020-09-15', null);
-INSERT INTO `voucher` VALUES ('59', '18725122464', 'IB15149023415112', '30000', '12', '11', '2680', '', '0', '2019-11-15 19:43:35', '2020-10-15', null);
-INSERT INTO `voucher` VALUES ('60', '18725122464', 'IB15149023415112', '30000', '12', '12', '2680', '', '0', '2019-11-15 19:43:35', '2020-11-15', null);
-INSERT INTO `voucher` VALUES ('61', '18218526507', 'IB15181174812560', '205000', '36', '1', '6925', '', '0', '2019-11-15 19:43:50', '2019-12-15', null);
-INSERT INTO `voucher` VALUES ('62', '18218526507', 'IB15181174812560', '205000', '36', '2', '6925', '', '0', '2019-11-15 19:43:50', '2020-01-15', null);
-INSERT INTO `voucher` VALUES ('63', '18218526507', 'IB15181174812560', '205000', '36', '3', '6925', '', '0', '2019-11-15 19:43:50', '2020-02-15', null);
-INSERT INTO `voucher` VALUES ('64', '18218526507', 'IB15181174812560', '205000', '36', '4', '6925', '', '0', '2019-11-15 19:43:50', '2020-03-15', null);
-INSERT INTO `voucher` VALUES ('65', '18218526507', 'IB15181174812560', '205000', '36', '5', '6925', '', '0', '2019-11-15 19:43:50', '2020-04-15', null);
-INSERT INTO `voucher` VALUES ('66', '18218526507', 'IB15181174812560', '205000', '36', '6', '6925', '', '0', '2019-11-15 19:43:50', '2020-05-15', null);
-INSERT INTO `voucher` VALUES ('67', '18218526507', 'IB15181174812560', '205000', '36', '7', '6925', '', '0', '2019-11-15 19:43:50', '2020-06-15', null);
-INSERT INTO `voucher` VALUES ('68', '18218526507', 'IB15181174812560', '205000', '36', '8', '6925', '', '0', '2019-11-15 19:43:50', '2020-07-15', null);
-INSERT INTO `voucher` VALUES ('69', '18218526507', 'IB15181174812560', '205000', '36', '9', '6925', '', '0', '2019-11-15 19:43:50', '2020-08-15', null);
-INSERT INTO `voucher` VALUES ('70', '18218526507', 'IB15181174812560', '205000', '36', '10', '6925', '', '0', '2019-11-15 19:43:50', '2020-09-15', null);
-INSERT INTO `voucher` VALUES ('71', '18218526507', 'IB15181174812560', '205000', '36', '11', '6925', '', '0', '2019-11-15 19:43:50', '2020-10-15', null);
-INSERT INTO `voucher` VALUES ('72', '18218526507', 'IB15181174812560', '205000', '36', '12', '6925', '', '0', '2019-11-15 19:43:50', '2020-11-15', null);
-INSERT INTO `voucher` VALUES ('73', '18218526507', 'IB15181174812560', '205000', '36', '13', '6925', '', '0', '2019-11-15 19:43:50', '2020-12-15', null);
-INSERT INTO `voucher` VALUES ('74', '18218526507', 'IB15181174812560', '205000', '36', '14', '6925', '', '0', '2019-11-15 19:43:50', '2021-01-15', null);
-INSERT INTO `voucher` VALUES ('75', '18218526507', 'IB15181174812560', '205000', '36', '15', '6925', '', '0', '2019-11-15 19:43:50', '2021-02-15', null);
-INSERT INTO `voucher` VALUES ('76', '18218526507', 'IB15181174812560', '205000', '36', '16', '6925', '', '0', '2019-11-15 19:43:50', '2021-03-15', null);
-INSERT INTO `voucher` VALUES ('77', '18218526507', 'IB15181174812560', '205000', '36', '17', '6925', '', '0', '2019-11-15 19:43:50', '2021-04-15', null);
-INSERT INTO `voucher` VALUES ('78', '18218526507', 'IB15181174812560', '205000', '36', '18', '6925', '', '0', '2019-11-15 19:43:50', '2021-05-15', null);
-INSERT INTO `voucher` VALUES ('79', '18218526507', 'IB15181174812560', '205000', '36', '19', '6925', '', '0', '2019-11-15 19:43:50', '2021-06-15', null);
-INSERT INTO `voucher` VALUES ('80', '18218526507', 'IB15181174812560', '205000', '36', '20', '6925', '', '0', '2019-11-15 19:43:50', '2021-07-15', null);
-INSERT INTO `voucher` VALUES ('81', '18218526507', 'IB15181174812560', '205000', '36', '21', '6925', '', '0', '2019-11-15 19:43:50', '2021-08-15', null);
-INSERT INTO `voucher` VALUES ('82', '18218526507', 'IB15181174812560', '205000', '36', '22', '6925', '', '0', '2019-11-15 19:43:50', '2021-09-15', null);
-INSERT INTO `voucher` VALUES ('83', '18218526507', 'IB15181174812560', '205000', '36', '23', '6925', '', '0', '2019-11-15 19:43:50', '2021-10-15', null);
-INSERT INTO `voucher` VALUES ('84', '18218526507', 'IB15181174812560', '205000', '36', '24', '6925', '', '0', '2019-11-15 19:43:50', '2021-11-15', null);
-INSERT INTO `voucher` VALUES ('85', '18218526507', 'IB15181174812560', '205000', '36', '25', '6925', '', '0', '2019-11-15 19:43:50', '2021-12-15', null);
-INSERT INTO `voucher` VALUES ('86', '18218526507', 'IB15181174812560', '205000', '36', '26', '6925', '', '0', '2019-11-15 19:43:50', '2022-01-15', null);
-INSERT INTO `voucher` VALUES ('87', '18218526507', 'IB15181174812560', '205000', '36', '27', '6925', '', '0', '2019-11-15 19:43:50', '2022-02-15', null);
-INSERT INTO `voucher` VALUES ('88', '18218526507', 'IB15181174812560', '205000', '36', '28', '6925', '', '0', '2019-11-15 19:43:50', '2022-03-15', null);
-INSERT INTO `voucher` VALUES ('89', '18218526507', 'IB15181174812560', '205000', '36', '29', '6925', '', '0', '2019-11-15 19:43:50', '2022-04-15', null);
-INSERT INTO `voucher` VALUES ('90', '18218526507', 'IB15181174812560', '205000', '36', '30', '6925', '', '0', '2019-11-15 19:43:50', '2022-05-15', null);
-INSERT INTO `voucher` VALUES ('91', '18218526507', 'IB15181174812560', '205000', '36', '31', '6925', '', '0', '2019-11-15 19:43:50', '2022-06-15', null);
-INSERT INTO `voucher` VALUES ('92', '18218526507', 'IB15181174812560', '205000', '36', '32', '6925', '', '0', '2019-11-15 19:43:50', '2022-07-15', null);
-INSERT INTO `voucher` VALUES ('93', '18218526507', 'IB15181174812560', '205000', '36', '33', '6925', '', '0', '2019-11-15 19:43:50', '2022-08-15', null);
-INSERT INTO `voucher` VALUES ('94', '18218526507', 'IB15181174812560', '205000', '36', '34', '6925', '', '0', '2019-11-15 19:43:50', '2022-09-15', null);
-INSERT INTO `voucher` VALUES ('95', '18218526507', 'IB15181174812560', '205000', '36', '35', '6925', '', '0', '2019-11-15 19:43:50', '2022-10-15', null);
-INSERT INTO `voucher` VALUES ('96', '18218526507', 'IB15181174812560', '205000', '36', '36', '6925', '', '0', '2019-11-15 19:43:50', '2022-11-15', null);
-INSERT INTO `voucher` VALUES ('336', '15197015437', 'IB15171772114298', '90000', '24', '24', '4290', '', '0', '2019-11-16 16:34:49', '2021-11-16', null);
-INSERT INTO `voucher` VALUES ('335', '15197015437', 'IB15171772114298', '90000', '24', '23', '4290', '', '0', '2019-11-16 16:34:49', '2021-10-16', null);
-INSERT INTO `voucher` VALUES ('334', '15197015437', 'IB15171772114298', '90000', '24', '22', '4290', '', '0', '2019-11-16 16:34:49', '2021-09-16', null);
-INSERT INTO `voucher` VALUES ('333', '15197015437', 'IB15171772114298', '90000', '24', '21', '4290', '', '0', '2019-11-16 16:34:49', '2021-08-16', null);
-INSERT INTO `voucher` VALUES ('332', '15197015437', 'IB15171772114298', '90000', '24', '20', '4290', '', '0', '2019-11-16 16:34:49', '2021-07-16', null);
-INSERT INTO `voucher` VALUES ('331', '15197015437', 'IB15171772114298', '90000', '24', '19', '4290', '', '0', '2019-11-16 16:34:49', '2021-06-16', null);
-INSERT INTO `voucher` VALUES ('330', '15197015437', 'IB15171772114298', '90000', '24', '18', '4290', '', '0', '2019-11-16 16:34:49', '2021-05-16', null);
-INSERT INTO `voucher` VALUES ('329', '15197015437', 'IB15171772114298', '90000', '24', '17', '4290', '', '0', '2019-11-16 16:34:49', '2021-04-16', null);
-INSERT INTO `voucher` VALUES ('328', '15197015437', 'IB15171772114298', '90000', '24', '16', '4290', '', '0', '2019-11-16 16:34:49', '2021-03-16', null);
-INSERT INTO `voucher` VALUES ('327', '15197015437', 'IB15171772114298', '90000', '24', '15', '4290', '', '0', '2019-11-16 16:34:49', '2021-02-16', null);
-INSERT INTO `voucher` VALUES ('326', '15197015437', 'IB15171772114298', '90000', '24', '14', '4290', '', '0', '2019-11-16 16:34:49', '2021-01-16', null);
-INSERT INTO `voucher` VALUES ('325', '15197015437', 'IB15171772114298', '90000', '24', '13', '4290', '', '0', '2019-11-16 16:34:49', '2020-12-16', null);
-INSERT INTO `voucher` VALUES ('324', '15197015437', 'IB15171772114298', '90000', '24', '12', '4290', '', '0', '2019-11-16 16:34:49', '2020-11-16', null);
-INSERT INTO `voucher` VALUES ('323', '15197015437', 'IB15171772114298', '90000', '24', '11', '4290', '', '0', '2019-11-16 16:34:49', '2020-10-16', null);
-INSERT INTO `voucher` VALUES ('322', '15197015437', 'IB15171772114298', '90000', '24', '10', '4290', '', '0', '2019-11-16 16:34:49', '2020-09-16', null);
-INSERT INTO `voucher` VALUES ('321', '15197015437', 'IB15171772114298', '90000', '24', '9', '4290', '', '0', '2019-11-16 16:34:49', '2020-08-16', null);
-INSERT INTO `voucher` VALUES ('320', '15197015437', 'IB15171772114298', '90000', '24', '8', '4290', '', '0', '2019-11-16 16:34:49', '2020-07-16', null);
-INSERT INTO `voucher` VALUES ('319', '15197015437', 'IB15171772114298', '90000', '24', '7', '4290', '', '0', '2019-11-16 16:34:49', '2020-06-16', null);
-INSERT INTO `voucher` VALUES ('318', '15197015437', 'IB15171772114298', '90000', '24', '6', '4290', '', '0', '2019-11-16 16:34:49', '2020-05-16', null);
-INSERT INTO `voucher` VALUES ('317', '15197015437', 'IB15171772114298', '90000', '24', '5', '4290', '', '0', '2019-11-16 16:34:49', '2020-04-16', null);
-INSERT INTO `voucher` VALUES ('316', '15197015437', 'IB15171772114298', '90000', '24', '4', '4290', '', '0', '2019-11-16 16:34:49', '2020-03-16', null);
-INSERT INTO `voucher` VALUES ('315', '15197015437', 'IB15171772114298', '90000', '24', '3', '4290', '', '0', '2019-11-16 16:34:49', '2020-02-16', null);
-INSERT INTO `voucher` VALUES ('314', '15197015437', 'IB15171772114298', '90000', '24', '2', '4290', '', '0', '2019-11-16 16:34:49', '2020-01-16', null);
-INSERT INTO `voucher` VALUES ('313', '15197015437', 'IB15171772114298', '90000', '24', '1', '4290', '', '0', '2019-11-16 16:34:49', '2019-12-16', null);
-INSERT INTO `voucher` VALUES ('121', '17515750925', 'IB15239353533600', '30000', '12', '1', '2680', '', '0', '2019-11-16 10:03:34', '2019-12-16', null);
-INSERT INTO `voucher` VALUES ('122', '17515750925', 'IB15239353533600', '30000', '12', '2', '2680', '', '0', '2019-11-16 10:03:34', '2020-01-16', null);
-INSERT INTO `voucher` VALUES ('123', '17515750925', 'IB15239353533600', '30000', '12', '3', '2680', '', '0', '2019-11-16 10:03:34', '2020-02-16', null);
-INSERT INTO `voucher` VALUES ('124', '17515750925', 'IB15239353533600', '30000', '12', '4', '2680', '', '0', '2019-11-16 10:03:34', '2020-03-16', null);
-INSERT INTO `voucher` VALUES ('125', '17515750925', 'IB15239353533600', '30000', '12', '5', '2680', '', '0', '2019-11-16 10:03:34', '2020-04-16', null);
-INSERT INTO `voucher` VALUES ('126', '17515750925', 'IB15239353533600', '30000', '12', '6', '2680', '', '0', '2019-11-16 10:03:34', '2020-05-16', null);
-INSERT INTO `voucher` VALUES ('127', '17515750925', 'IB15239353533600', '30000', '12', '7', '2680', '', '0', '2019-11-16 10:03:34', '2020-06-16', null);
-INSERT INTO `voucher` VALUES ('128', '17515750925', 'IB15239353533600', '30000', '12', '8', '2680', '', '0', '2019-11-16 10:03:34', '2020-07-16', null);
-INSERT INTO `voucher` VALUES ('129', '17515750925', 'IB15239353533600', '30000', '12', '9', '2680', '', '0', '2019-11-16 10:03:34', '2020-08-16', null);
-INSERT INTO `voucher` VALUES ('130', '17515750925', 'IB15239353533600', '30000', '12', '10', '2680', '', '0', '2019-11-16 10:03:34', '2020-09-16', null);
-INSERT INTO `voucher` VALUES ('131', '17515750925', 'IB15239353533600', '30000', '12', '11', '2680', '', '0', '2019-11-16 10:03:34', '2020-10-16', null);
-INSERT INTO `voucher` VALUES ('132', '17515750925', 'IB15239353533600', '30000', '12', '12', '2680', '', '0', '2019-11-16 10:03:34', '2020-11-16', null);
-INSERT INTO `voucher` VALUES ('204', '13376367980', 'IB15249243400389', '30000', '36', '36', '1014', '', '0', '2019-11-16 10:34:33', '2022-11-16', null);
-INSERT INTO `voucher` VALUES ('203', '13376367980', 'IB15249243400389', '30000', '36', '35', '1014', '', '0', '2019-11-16 10:34:33', '2022-10-16', null);
-INSERT INTO `voucher` VALUES ('202', '13376367980', 'IB15249243400389', '30000', '36', '34', '1014', '', '0', '2019-11-16 10:34:33', '2022-09-16', null);
-INSERT INTO `voucher` VALUES ('201', '13376367980', 'IB15249243400389', '30000', '36', '33', '1014', '', '0', '2019-11-16 10:34:33', '2022-08-16', null);
-INSERT INTO `voucher` VALUES ('200', '13376367980', 'IB15249243400389', '30000', '36', '32', '1014', '', '0', '2019-11-16 10:34:33', '2022-07-16', null);
-INSERT INTO `voucher` VALUES ('199', '13376367980', 'IB15249243400389', '30000', '36', '31', '1014', '', '0', '2019-11-16 10:34:33', '2022-06-16', null);
-INSERT INTO `voucher` VALUES ('198', '13376367980', 'IB15249243400389', '30000', '36', '30', '1014', '', '0', '2019-11-16 10:34:33', '2022-05-16', null);
-INSERT INTO `voucher` VALUES ('197', '13376367980', 'IB15249243400389', '30000', '36', '29', '1014', '', '0', '2019-11-16 10:34:33', '2022-04-16', null);
-INSERT INTO `voucher` VALUES ('196', '13376367980', 'IB15249243400389', '30000', '36', '28', '1014', '', '0', '2019-11-16 10:34:33', '2022-03-16', null);
-INSERT INTO `voucher` VALUES ('195', '13376367980', 'IB15249243400389', '30000', '36', '27', '1014', '', '0', '2019-11-16 10:34:33', '2022-02-16', null);
-INSERT INTO `voucher` VALUES ('194', '13376367980', 'IB15249243400389', '30000', '36', '26', '1014', '', '0', '2019-11-16 10:34:33', '2022-01-16', null);
-INSERT INTO `voucher` VALUES ('193', '13376367980', 'IB15249243400389', '30000', '36', '25', '1014', '', '0', '2019-11-16 10:34:33', '2021-12-16', null);
-INSERT INTO `voucher` VALUES ('192', '13376367980', 'IB15249243400389', '30000', '36', '24', '1014', '', '0', '2019-11-16 10:34:33', '2021-11-16', null);
-INSERT INTO `voucher` VALUES ('191', '13376367980', 'IB15249243400389', '30000', '36', '23', '1014', '', '0', '2019-11-16 10:34:33', '2021-10-16', null);
-INSERT INTO `voucher` VALUES ('190', '13376367980', 'IB15249243400389', '30000', '36', '22', '1014', '', '0', '2019-11-16 10:34:33', '2021-09-16', null);
-INSERT INTO `voucher` VALUES ('189', '13376367980', 'IB15249243400389', '30000', '36', '21', '1014', '', '0', '2019-11-16 10:34:33', '2021-08-16', null);
-INSERT INTO `voucher` VALUES ('188', '13376367980', 'IB15249243400389', '30000', '36', '20', '1014', '', '0', '2019-11-16 10:34:33', '2021-07-16', null);
-INSERT INTO `voucher` VALUES ('187', '13376367980', 'IB15249243400389', '30000', '36', '19', '1014', '', '0', '2019-11-16 10:34:33', '2021-06-16', null);
-INSERT INTO `voucher` VALUES ('186', '13376367980', 'IB15249243400389', '30000', '36', '18', '1014', '', '0', '2019-11-16 10:34:33', '2021-05-16', null);
-INSERT INTO `voucher` VALUES ('185', '13376367980', 'IB15249243400389', '30000', '36', '17', '1014', '', '0', '2019-11-16 10:34:33', '2021-04-16', null);
-INSERT INTO `voucher` VALUES ('184', '13376367980', 'IB15249243400389', '30000', '36', '16', '1014', '', '0', '2019-11-16 10:34:33', '2021-03-16', null);
-INSERT INTO `voucher` VALUES ('183', '13376367980', 'IB15249243400389', '30000', '36', '15', '1014', '', '0', '2019-11-16 10:34:33', '2021-02-16', null);
-INSERT INTO `voucher` VALUES ('182', '13376367980', 'IB15249243400389', '30000', '36', '14', '1014', '', '0', '2019-11-16 10:34:33', '2021-01-16', null);
-INSERT INTO `voucher` VALUES ('181', '13376367980', 'IB15249243400389', '30000', '36', '13', '1014', '', '0', '2019-11-16 10:34:33', '2020-12-16', null);
-INSERT INTO `voucher` VALUES ('180', '13376367980', 'IB15249243400389', '30000', '36', '12', '1014', '', '0', '2019-11-16 10:34:33', '2020-11-16', null);
-INSERT INTO `voucher` VALUES ('179', '13376367980', 'IB15249243400389', '30000', '36', '11', '1014', '', '0', '2019-11-16 10:34:33', '2020-10-16', null);
-INSERT INTO `voucher` VALUES ('178', '13376367980', 'IB15249243400389', '30000', '36', '10', '1014', '', '0', '2019-11-16 10:34:33', '2020-09-16', null);
-INSERT INTO `voucher` VALUES ('177', '13376367980', 'IB15249243400389', '30000', '36', '9', '1014', '', '0', '2019-11-16 10:34:33', '2020-08-16', null);
-INSERT INTO `voucher` VALUES ('176', '13376367980', 'IB15249243400389', '30000', '36', '8', '1014', '', '0', '2019-11-16 10:34:33', '2020-07-16', null);
-INSERT INTO `voucher` VALUES ('175', '13376367980', 'IB15249243400389', '30000', '36', '7', '1014', '', '0', '2019-11-16 10:34:33', '2020-06-16', null);
-INSERT INTO `voucher` VALUES ('174', '13376367980', 'IB15249243400389', '30000', '36', '6', '1014', '', '0', '2019-11-16 10:34:33', '2020-05-16', null);
-INSERT INTO `voucher` VALUES ('173', '13376367980', 'IB15249243400389', '30000', '36', '5', '1014', '', '0', '2019-11-16 10:34:33', '2020-04-16', null);
-INSERT INTO `voucher` VALUES ('172', '13376367980', 'IB15249243400389', '30000', '36', '4', '1014', '', '0', '2019-11-16 10:34:33', '2020-03-16', null);
-INSERT INTO `voucher` VALUES ('171', '13376367980', 'IB15249243400389', '30000', '36', '3', '1014', '', '0', '2019-11-16 10:34:33', '2020-02-16', null);
-INSERT INTO `voucher` VALUES ('170', '13376367980', 'IB15249243400389', '30000', '36', '2', '1014', '', '0', '2019-11-16 10:34:33', '2020-01-16', null);
-INSERT INTO `voucher` VALUES ('169', '13376367980', 'IB15249243400389', '30000', '36', '1', '1014', '', '0', '2019-11-16 10:34:33', '2019-12-16', null);
-INSERT INTO `voucher` VALUES ('205', '18348690429', 'IB16712145924776', '150000', '36', '1', '5067', '', '0', '2019-11-16 11:53:49', '2019-12-16', null);
-INSERT INTO `voucher` VALUES ('206', '18348690429', 'IB16712145924776', '150000', '36', '2', '5067', '', '0', '2019-11-16 11:53:49', '2020-01-16', null);
-INSERT INTO `voucher` VALUES ('207', '18348690429', 'IB16712145924776', '150000', '36', '3', '5067', '', '0', '2019-11-16 11:53:49', '2020-02-16', null);
-INSERT INTO `voucher` VALUES ('208', '18348690429', 'IB16712145924776', '150000', '36', '4', '5067', '', '0', '2019-11-16 11:53:49', '2020-03-16', null);
-INSERT INTO `voucher` VALUES ('209', '18348690429', 'IB16712145924776', '150000', '36', '5', '5067', '', '0', '2019-11-16 11:53:49', '2020-04-16', null);
-INSERT INTO `voucher` VALUES ('210', '18348690429', 'IB16712145924776', '150000', '36', '6', '5067', '', '0', '2019-11-16 11:53:49', '2020-05-16', null);
-INSERT INTO `voucher` VALUES ('211', '18348690429', 'IB16712145924776', '150000', '36', '7', '5067', '', '0', '2019-11-16 11:53:49', '2020-06-16', null);
-INSERT INTO `voucher` VALUES ('212', '18348690429', 'IB16712145924776', '150000', '36', '8', '5067', '', '0', '2019-11-16 11:53:49', '2020-07-16', null);
-INSERT INTO `voucher` VALUES ('213', '18348690429', 'IB16712145924776', '150000', '36', '9', '5067', '', '0', '2019-11-16 11:53:49', '2020-08-16', null);
-INSERT INTO `voucher` VALUES ('214', '18348690429', 'IB16712145924776', '150000', '36', '10', '5067', '', '0', '2019-11-16 11:53:49', '2020-09-16', null);
-INSERT INTO `voucher` VALUES ('215', '18348690429', 'IB16712145924776', '150000', '36', '11', '5067', '', '0', '2019-11-16 11:53:49', '2020-10-16', null);
-INSERT INTO `voucher` VALUES ('216', '18348690429', 'IB16712145924776', '150000', '36', '12', '5067', '', '0', '2019-11-16 11:53:49', '2020-11-16', null);
-INSERT INTO `voucher` VALUES ('217', '18348690429', 'IB16712145924776', '150000', '36', '13', '5067', '', '0', '2019-11-16 11:53:49', '2020-12-16', null);
-INSERT INTO `voucher` VALUES ('218', '18348690429', 'IB16712145924776', '150000', '36', '14', '5067', '', '0', '2019-11-16 11:53:49', '2021-01-16', null);
-INSERT INTO `voucher` VALUES ('219', '18348690429', 'IB16712145924776', '150000', '36', '15', '5067', '', '0', '2019-11-16 11:53:49', '2021-02-16', null);
-INSERT INTO `voucher` VALUES ('220', '18348690429', 'IB16712145924776', '150000', '36', '16', '5067', '', '0', '2019-11-16 11:53:49', '2021-03-16', null);
-INSERT INTO `voucher` VALUES ('221', '18348690429', 'IB16712145924776', '150000', '36', '17', '5067', '', '0', '2019-11-16 11:53:49', '2021-04-16', null);
-INSERT INTO `voucher` VALUES ('222', '18348690429', 'IB16712145924776', '150000', '36', '18', '5067', '', '0', '2019-11-16 11:53:49', '2021-05-16', null);
-INSERT INTO `voucher` VALUES ('223', '18348690429', 'IB16712145924776', '150000', '36', '19', '5067', '', '0', '2019-11-16 11:53:49', '2021-06-16', null);
-INSERT INTO `voucher` VALUES ('224', '18348690429', 'IB16712145924776', '150000', '36', '20', '5067', '', '0', '2019-11-16 11:53:49', '2021-07-16', null);
-INSERT INTO `voucher` VALUES ('225', '18348690429', 'IB16712145924776', '150000', '36', '21', '5067', '', '0', '2019-11-16 11:53:49', '2021-08-16', null);
-INSERT INTO `voucher` VALUES ('226', '18348690429', 'IB16712145924776', '150000', '36', '22', '5067', '', '0', '2019-11-16 11:53:49', '2021-09-16', null);
-INSERT INTO `voucher` VALUES ('227', '18348690429', 'IB16712145924776', '150000', '36', '23', '5067', '', '0', '2019-11-16 11:53:49', '2021-10-16', null);
-INSERT INTO `voucher` VALUES ('228', '18348690429', 'IB16712145924776', '150000', '36', '24', '5067', '', '0', '2019-11-16 11:53:49', '2021-11-16', null);
-INSERT INTO `voucher` VALUES ('229', '18348690429', 'IB16712145924776', '150000', '36', '25', '5067', '', '0', '2019-11-16 11:53:49', '2021-12-16', null);
-INSERT INTO `voucher` VALUES ('230', '18348690429', 'IB16712145924776', '150000', '36', '26', '5067', '', '0', '2019-11-16 11:53:49', '2022-01-16', null);
-INSERT INTO `voucher` VALUES ('231', '18348690429', 'IB16712145924776', '150000', '36', '27', '5067', '', '0', '2019-11-16 11:53:49', '2022-02-16', null);
-INSERT INTO `voucher` VALUES ('232', '18348690429', 'IB16712145924776', '150000', '36', '28', '5067', '', '0', '2019-11-16 11:53:49', '2022-03-16', null);
-INSERT INTO `voucher` VALUES ('233', '18348690429', 'IB16712145924776', '150000', '36', '29', '5067', '', '0', '2019-11-16 11:53:49', '2022-04-16', null);
-INSERT INTO `voucher` VALUES ('234', '18348690429', 'IB16712145924776', '150000', '36', '30', '5067', '', '0', '2019-11-16 11:53:49', '2022-05-16', null);
-INSERT INTO `voucher` VALUES ('235', '18348690429', 'IB16712145924776', '150000', '36', '31', '5067', '', '0', '2019-11-16 11:53:49', '2022-06-16', null);
-INSERT INTO `voucher` VALUES ('236', '18348690429', 'IB16712145924776', '150000', '36', '32', '5067', '', '0', '2019-11-16 11:53:49', '2022-07-16', null);
-INSERT INTO `voucher` VALUES ('237', '18348690429', 'IB16712145924776', '150000', '36', '33', '5067', '', '0', '2019-11-16 11:53:49', '2022-08-16', null);
-INSERT INTO `voucher` VALUES ('238', '18348690429', 'IB16712145924776', '150000', '36', '34', '5067', '', '0', '2019-11-16 11:53:49', '2022-09-16', null);
-INSERT INTO `voucher` VALUES ('239', '18348690429', 'IB16712145924776', '150000', '36', '35', '5067', '', '0', '2019-11-16 11:53:49', '2022-10-16', null);
-INSERT INTO `voucher` VALUES ('240', '18348690429', 'IB16712145924776', '150000', '36', '36', '5067', '', '0', '2019-11-16 11:53:49', '2022-11-16', null);
-INSERT INTO `voucher` VALUES ('348', '13659006751', 'IB16807251548272', '36000', '12', '12', '3216', '', '0', '2019-11-16 17:32:23', '2020-11-16', null);
-INSERT INTO `voucher` VALUES ('347', '13659006751', 'IB16807251548272', '36000', '12', '11', '3216', '', '0', '2019-11-16 17:32:23', '2020-10-16', null);
-INSERT INTO `voucher` VALUES ('346', '13659006751', 'IB16807251548272', '36000', '12', '10', '3216', '', '0', '2019-11-16 17:32:23', '2020-09-16', null);
-INSERT INTO `voucher` VALUES ('345', '13659006751', 'IB16807251548272', '36000', '12', '9', '3216', '', '0', '2019-11-16 17:32:23', '2020-08-16', null);
-INSERT INTO `voucher` VALUES ('344', '13659006751', 'IB16807251548272', '36000', '12', '8', '3216', '', '0', '2019-11-16 17:32:23', '2020-07-16', null);
-INSERT INTO `voucher` VALUES ('343', '13659006751', 'IB16807251548272', '36000', '12', '7', '3216', '', '0', '2019-11-16 17:32:23', '2020-06-16', null);
-INSERT INTO `voucher` VALUES ('342', '13659006751', 'IB16807251548272', '36000', '12', '6', '3216', '', '0', '2019-11-16 17:32:23', '2020-05-16', null);
-INSERT INTO `voucher` VALUES ('341', '13659006751', 'IB16807251548272', '36000', '12', '5', '3216', '', '0', '2019-11-16 17:32:23', '2020-04-16', null);
-INSERT INTO `voucher` VALUES ('340', '13659006751', 'IB16807251548272', '36000', '12', '4', '3216', '', '0', '2019-11-16 17:32:23', '2020-03-16', null);
-INSERT INTO `voucher` VALUES ('339', '13659006751', 'IB16807251548272', '36000', '12', '3', '3216', '', '0', '2019-11-16 17:32:23', '2020-02-16', null);
-INSERT INTO `voucher` VALUES ('338', '13659006751', 'IB16807251548272', '36000', '12', '2', '3216', '', '0', '2019-11-16 17:32:23', '2020-01-16', null);
-INSERT INTO `voucher` VALUES ('337', '13659006751', 'IB16807251548272', '36000', '12', '1', '3216', '', '0', '2019-11-16 17:32:23', '2019-12-16', null);
-INSERT INTO `voucher` VALUES ('277', '18930632627', 'IB15010688784899', '100000', '36', '1', '3378', '', '0', '2019-11-16 15:10:12', '2019-12-16', null);
-INSERT INTO `voucher` VALUES ('278', '18930632627', 'IB15010688784899', '100000', '36', '2', '3378', '', '0', '2019-11-16 15:10:12', '2020-01-16', null);
-INSERT INTO `voucher` VALUES ('279', '18930632627', 'IB15010688784899', '100000', '36', '3', '3378', '', '0', '2019-11-16 15:10:12', '2020-02-16', null);
-INSERT INTO `voucher` VALUES ('280', '18930632627', 'IB15010688784899', '100000', '36', '4', '3378', '', '0', '2019-11-16 15:10:12', '2020-03-16', null);
-INSERT INTO `voucher` VALUES ('281', '18930632627', 'IB15010688784899', '100000', '36', '5', '3378', '', '0', '2019-11-16 15:10:12', '2020-04-16', null);
-INSERT INTO `voucher` VALUES ('282', '18930632627', 'IB15010688784899', '100000', '36', '6', '3378', '', '0', '2019-11-16 15:10:12', '2020-05-16', null);
-INSERT INTO `voucher` VALUES ('283', '18930632627', 'IB15010688784899', '100000', '36', '7', '3378', '', '0', '2019-11-16 15:10:12', '2020-06-16', null);
-INSERT INTO `voucher` VALUES ('284', '18930632627', 'IB15010688784899', '100000', '36', '8', '3378', '', '0', '2019-11-16 15:10:12', '2020-07-16', null);
-INSERT INTO `voucher` VALUES ('285', '18930632627', 'IB15010688784899', '100000', '36', '9', '3378', '', '0', '2019-11-16 15:10:12', '2020-08-16', null);
-INSERT INTO `voucher` VALUES ('286', '18930632627', 'IB15010688784899', '100000', '36', '10', '3378', '', '0', '2019-11-16 15:10:12', '2020-09-16', null);
-INSERT INTO `voucher` VALUES ('287', '18930632627', 'IB15010688784899', '100000', '36', '11', '3378', '', '0', '2019-11-16 15:10:12', '2020-10-16', null);
-INSERT INTO `voucher` VALUES ('288', '18930632627', 'IB15010688784899', '100000', '36', '12', '3378', '', '0', '2019-11-16 15:10:12', '2020-11-16', null);
-INSERT INTO `voucher` VALUES ('289', '18930632627', 'IB15010688784899', '100000', '36', '13', '3378', '', '0', '2019-11-16 15:10:12', '2020-12-16', null);
-INSERT INTO `voucher` VALUES ('290', '18930632627', 'IB15010688784899', '100000', '36', '14', '3378', '', '0', '2019-11-16 15:10:12', '2021-01-16', null);
-INSERT INTO `voucher` VALUES ('291', '18930632627', 'IB15010688784899', '100000', '36', '15', '3378', '', '0', '2019-11-16 15:10:12', '2021-02-16', null);
-INSERT INTO `voucher` VALUES ('292', '18930632627', 'IB15010688784899', '100000', '36', '16', '3378', '', '0', '2019-11-16 15:10:12', '2021-03-16', null);
-INSERT INTO `voucher` VALUES ('293', '18930632627', 'IB15010688784899', '100000', '36', '17', '3378', '', '0', '2019-11-16 15:10:12', '2021-04-16', null);
-INSERT INTO `voucher` VALUES ('294', '18930632627', 'IB15010688784899', '100000', '36', '18', '3378', '', '0', '2019-11-16 15:10:12', '2021-05-16', null);
-INSERT INTO `voucher` VALUES ('295', '18930632627', 'IB15010688784899', '100000', '36', '19', '3378', '', '0', '2019-11-16 15:10:12', '2021-06-16', null);
-INSERT INTO `voucher` VALUES ('296', '18930632627', 'IB15010688784899', '100000', '36', '20', '3378', '', '0', '2019-11-16 15:10:12', '2021-07-16', null);
-INSERT INTO `voucher` VALUES ('297', '18930632627', 'IB15010688784899', '100000', '36', '21', '3378', '', '0', '2019-11-16 15:10:12', '2021-08-16', null);
-INSERT INTO `voucher` VALUES ('298', '18930632627', 'IB15010688784899', '100000', '36', '22', '3378', '', '0', '2019-11-16 15:10:12', '2021-09-16', null);
-INSERT INTO `voucher` VALUES ('299', '18930632627', 'IB15010688784899', '100000', '36', '23', '3378', '', '0', '2019-11-16 15:10:12', '2021-10-16', null);
-INSERT INTO `voucher` VALUES ('300', '18930632627', 'IB15010688784899', '100000', '36', '24', '3378', '', '0', '2019-11-16 15:10:12', '2021-11-16', null);
-INSERT INTO `voucher` VALUES ('301', '18930632627', 'IB15010688784899', '100000', '36', '25', '3378', '', '0', '2019-11-16 15:10:12', '2021-12-16', null);
-INSERT INTO `voucher` VALUES ('302', '18930632627', 'IB15010688784899', '100000', '36', '26', '3378', '', '0', '2019-11-16 15:10:12', '2022-01-16', null);
-INSERT INTO `voucher` VALUES ('303', '18930632627', 'IB15010688784899', '100000', '36', '27', '3378', '', '0', '2019-11-16 15:10:12', '2022-02-16', null);
-INSERT INTO `voucher` VALUES ('304', '18930632627', 'IB15010688784899', '100000', '36', '28', '3378', '', '0', '2019-11-16 15:10:12', '2022-03-16', null);
-INSERT INTO `voucher` VALUES ('305', '18930632627', 'IB15010688784899', '100000', '36', '29', '3378', '', '0', '2019-11-16 15:10:12', '2022-04-16', null);
-INSERT INTO `voucher` VALUES ('306', '18930632627', 'IB15010688784899', '100000', '36', '30', '3378', '', '0', '2019-11-16 15:10:12', '2022-05-16', null);
-INSERT INTO `voucher` VALUES ('307', '18930632627', 'IB15010688784899', '100000', '36', '31', '3378', '', '0', '2019-11-16 15:10:12', '2022-06-16', null);
-INSERT INTO `voucher` VALUES ('308', '18930632627', 'IB15010688784899', '100000', '36', '32', '3378', '', '0', '2019-11-16 15:10:12', '2022-07-16', null);
-INSERT INTO `voucher` VALUES ('309', '18930632627', 'IB15010688784899', '100000', '36', '33', '3378', '', '0', '2019-11-16 15:10:12', '2022-08-16', null);
-INSERT INTO `voucher` VALUES ('310', '18930632627', 'IB15010688784899', '100000', '36', '34', '3378', '', '0', '2019-11-16 15:10:12', '2022-09-16', null);
-INSERT INTO `voucher` VALUES ('311', '18930632627', 'IB15010688784899', '100000', '36', '35', '3378', '', '0', '2019-11-16 15:10:12', '2022-10-16', null);
-INSERT INTO `voucher` VALUES ('312', '18930632627', 'IB15010688784899', '100000', '36', '36', '3378', '', '0', '2019-11-16 15:10:12', '2022-11-16', null);
-INSERT INTO `voucher` VALUES ('349', '18834418014', 'IB16034932092093', '45000', '36', '1', '1520', '', '0', '2019-11-16 20:52:47', '2019-12-16', null);
-INSERT INTO `voucher` VALUES ('350', '18834418014', 'IB16034932092093', '45000', '36', '2', '1520', '', '0', '2019-11-16 20:52:47', '2020-01-16', null);
-INSERT INTO `voucher` VALUES ('351', '18834418014', 'IB16034932092093', '45000', '36', '3', '1520', '', '0', '2019-11-16 20:52:47', '2020-02-16', null);
-INSERT INTO `voucher` VALUES ('352', '18834418014', 'IB16034932092093', '45000', '36', '4', '1520', '', '0', '2019-11-16 20:52:47', '2020-03-16', null);
-INSERT INTO `voucher` VALUES ('353', '18834418014', 'IB16034932092093', '45000', '36', '5', '1520', '', '0', '2019-11-16 20:52:47', '2020-04-16', null);
-INSERT INTO `voucher` VALUES ('354', '18834418014', 'IB16034932092093', '45000', '36', '6', '1520', '', '0', '2019-11-16 20:52:47', '2020-05-16', null);
-INSERT INTO `voucher` VALUES ('355', '18834418014', 'IB16034932092093', '45000', '36', '7', '1520', '', '0', '2019-11-16 20:52:47', '2020-06-16', null);
-INSERT INTO `voucher` VALUES ('356', '18834418014', 'IB16034932092093', '45000', '36', '8', '1520', '', '0', '2019-11-16 20:52:47', '2020-07-16', null);
-INSERT INTO `voucher` VALUES ('357', '18834418014', 'IB16034932092093', '45000', '36', '9', '1520', '', '0', '2019-11-16 20:52:47', '2020-08-16', null);
-INSERT INTO `voucher` VALUES ('358', '18834418014', 'IB16034932092093', '45000', '36', '10', '1520', '', '0', '2019-11-16 20:52:47', '2020-09-16', null);
-INSERT INTO `voucher` VALUES ('359', '18834418014', 'IB16034932092093', '45000', '36', '11', '1520', '', '0', '2019-11-16 20:52:47', '2020-10-16', null);
-INSERT INTO `voucher` VALUES ('360', '18834418014', 'IB16034932092093', '45000', '36', '12', '1520', '', '0', '2019-11-16 20:52:47', '2020-11-16', null);
-INSERT INTO `voucher` VALUES ('361', '18834418014', 'IB16034932092093', '45000', '36', '13', '1520', '', '0', '2019-11-16 20:52:47', '2020-12-16', null);
-INSERT INTO `voucher` VALUES ('362', '18834418014', 'IB16034932092093', '45000', '36', '14', '1520', '', '0', '2019-11-16 20:52:47', '2021-01-16', null);
-INSERT INTO `voucher` VALUES ('363', '18834418014', 'IB16034932092093', '45000', '36', '15', '1520', '', '0', '2019-11-16 20:52:47', '2021-02-16', null);
-INSERT INTO `voucher` VALUES ('364', '18834418014', 'IB16034932092093', '45000', '36', '16', '1520', '', '0', '2019-11-16 20:52:47', '2021-03-16', null);
-INSERT INTO `voucher` VALUES ('365', '18834418014', 'IB16034932092093', '45000', '36', '17', '1520', '', '0', '2019-11-16 20:52:47', '2021-04-16', null);
-INSERT INTO `voucher` VALUES ('366', '18834418014', 'IB16034932092093', '45000', '36', '18', '1520', '', '0', '2019-11-16 20:52:47', '2021-05-16', null);
-INSERT INTO `voucher` VALUES ('367', '18834418014', 'IB16034932092093', '45000', '36', '19', '1520', '', '0', '2019-11-16 20:52:47', '2021-06-16', null);
-INSERT INTO `voucher` VALUES ('368', '18834418014', 'IB16034932092093', '45000', '36', '20', '1520', '', '0', '2019-11-16 20:52:47', '2021-07-16', null);
-INSERT INTO `voucher` VALUES ('369', '18834418014', 'IB16034932092093', '45000', '36', '21', '1520', '', '0', '2019-11-16 20:52:47', '2021-08-16', null);
-INSERT INTO `voucher` VALUES ('370', '18834418014', 'IB16034932092093', '45000', '36', '22', '1520', '', '0', '2019-11-16 20:52:47', '2021-09-16', null);
-INSERT INTO `voucher` VALUES ('371', '18834418014', 'IB16034932092093', '45000', '36', '23', '1520', '', '0', '2019-11-16 20:52:47', '2021-10-16', null);
-INSERT INTO `voucher` VALUES ('372', '18834418014', 'IB16034932092093', '45000', '36', '24', '1520', '', '0', '2019-11-16 20:52:47', '2021-11-16', null);
-INSERT INTO `voucher` VALUES ('373', '18834418014', 'IB16034932092093', '45000', '36', '25', '1520', '', '0', '2019-11-16 20:52:47', '2021-12-16', null);
-INSERT INTO `voucher` VALUES ('374', '18834418014', 'IB16034932092093', '45000', '36', '26', '1520', '', '0', '2019-11-16 20:52:47', '2022-01-16', null);
-INSERT INTO `voucher` VALUES ('375', '18834418014', 'IB16034932092093', '45000', '36', '27', '1520', '', '0', '2019-11-16 20:52:47', '2022-02-16', null);
-INSERT INTO `voucher` VALUES ('376', '18834418014', 'IB16034932092093', '45000', '36', '28', '1520', '', '0', '2019-11-16 20:52:47', '2022-03-16', null);
-INSERT INTO `voucher` VALUES ('377', '18834418014', 'IB16034932092093', '45000', '36', '29', '1520', '', '0', '2019-11-16 20:52:47', '2022-04-16', null);
-INSERT INTO `voucher` VALUES ('378', '18834418014', 'IB16034932092093', '45000', '36', '30', '1520', '', '0', '2019-11-16 20:52:47', '2022-05-16', null);
-INSERT INTO `voucher` VALUES ('379', '18834418014', 'IB16034932092093', '45000', '36', '31', '1520', '', '0', '2019-11-16 20:52:47', '2022-06-16', null);
-INSERT INTO `voucher` VALUES ('380', '18834418014', 'IB16034932092093', '45000', '36', '32', '1520', '', '0', '2019-11-16 20:52:47', '2022-07-16', null);
-INSERT INTO `voucher` VALUES ('381', '18834418014', 'IB16034932092093', '45000', '36', '33', '1520', '', '0', '2019-11-16 20:52:47', '2022-08-16', null);
-INSERT INTO `voucher` VALUES ('382', '18834418014', 'IB16034932092093', '45000', '36', '34', '1520', '', '0', '2019-11-16 20:52:47', '2022-09-16', null);
-INSERT INTO `voucher` VALUES ('383', '18834418014', 'IB16034932092093', '45000', '36', '35', '1520', '', '0', '2019-11-16 20:52:47', '2022-10-16', null);
-INSERT INTO `voucher` VALUES ('384', '18834418014', 'IB16034932092093', '45000', '36', '36', '1520', '', '0', '2019-11-16 20:52:47', '2022-11-16', null);
-INSERT INTO `voucher` VALUES ('385', '18218526507', 'IB17535086261342', '200000', '12', '1', '17867', '', '0', '2019-11-17 09:19:06', '2019-12-17', null);
-INSERT INTO `voucher` VALUES ('386', '18218526507', 'IB17535086261342', '200000', '12', '2', '17867', '', '0', '2019-11-17 09:19:06', '2020-01-17', null);
-INSERT INTO `voucher` VALUES ('387', '18218526507', 'IB17535086261342', '200000', '12', '3', '17867', '', '0', '2019-11-17 09:19:06', '2020-02-17', null);
-INSERT INTO `voucher` VALUES ('388', '18218526507', 'IB17535086261342', '200000', '12', '4', '17867', '', '0', '2019-11-17 09:19:06', '2020-03-17', null);
-INSERT INTO `voucher` VALUES ('389', '18218526507', 'IB17535086261342', '200000', '12', '5', '17867', '', '0', '2019-11-17 09:19:06', '2020-04-17', null);
-INSERT INTO `voucher` VALUES ('390', '18218526507', 'IB17535086261342', '200000', '12', '6', '17867', '', '0', '2019-11-17 09:19:06', '2020-05-17', null);
-INSERT INTO `voucher` VALUES ('391', '18218526507', 'IB17535086261342', '200000', '12', '7', '17867', '', '0', '2019-11-17 09:19:06', '2020-06-17', null);
-INSERT INTO `voucher` VALUES ('392', '18218526507', 'IB17535086261342', '200000', '12', '8', '17867', '', '0', '2019-11-17 09:19:06', '2020-07-17', null);
-INSERT INTO `voucher` VALUES ('393', '18218526507', 'IB17535086261342', '200000', '12', '9', '17867', '', '0', '2019-11-17 09:19:06', '2020-08-17', null);
-INSERT INTO `voucher` VALUES ('394', '18218526507', 'IB17535086261342', '200000', '12', '10', '17867', '', '0', '2019-11-17 09:19:06', '2020-09-17', null);
-INSERT INTO `voucher` VALUES ('395', '18218526507', 'IB17535086261342', '200000', '12', '11', '17867', '', '0', '2019-11-17 09:19:06', '2020-10-17', null);
-INSERT INTO `voucher` VALUES ('396', '18218526507', 'IB17535086261342', '200000', '12', '12', '17867', '', '0', '2019-11-17 09:19:06', '2020-11-17', null);
-INSERT INTO `voucher` VALUES ('397', '18861020514', 'IB17578061233074', '60000', '24', '1', '2860', '', '0', '2019-11-17 11:12:11', '2019-12-17', null);
-INSERT INTO `voucher` VALUES ('398', '18861020514', 'IB17578061233074', '60000', '24', '2', '2860', '', '0', '2019-11-17 11:12:11', '2020-01-17', null);
-INSERT INTO `voucher` VALUES ('399', '18861020514', 'IB17578061233074', '60000', '24', '3', '2860', '', '0', '2019-11-17 11:12:11', '2020-02-17', null);
-INSERT INTO `voucher` VALUES ('400', '18861020514', 'IB17578061233074', '60000', '24', '4', '2860', '', '0', '2019-11-17 11:12:11', '2020-03-17', null);
-INSERT INTO `voucher` VALUES ('401', '18861020514', 'IB17578061233074', '60000', '24', '5', '2860', '', '0', '2019-11-17 11:12:11', '2020-04-17', null);
-INSERT INTO `voucher` VALUES ('402', '18861020514', 'IB17578061233074', '60000', '24', '6', '2860', '', '0', '2019-11-17 11:12:11', '2020-05-17', null);
-INSERT INTO `voucher` VALUES ('403', '18861020514', 'IB17578061233074', '60000', '24', '7', '2860', '', '0', '2019-11-17 11:12:11', '2020-06-17', null);
-INSERT INTO `voucher` VALUES ('404', '18861020514', 'IB17578061233074', '60000', '24', '8', '2860', '', '0', '2019-11-17 11:12:11', '2020-07-17', null);
-INSERT INTO `voucher` VALUES ('405', '18861020514', 'IB17578061233074', '60000', '24', '9', '2860', '', '0', '2019-11-17 11:12:11', '2020-08-17', null);
-INSERT INTO `voucher` VALUES ('406', '18861020514', 'IB17578061233074', '60000', '24', '10', '2860', '', '0', '2019-11-17 11:12:11', '2020-09-17', null);
-INSERT INTO `voucher` VALUES ('407', '18861020514', 'IB17578061233074', '60000', '24', '11', '2860', '', '0', '2019-11-17 11:12:11', '2020-10-17', null);
-INSERT INTO `voucher` VALUES ('408', '18861020514', 'IB17578061233074', '60000', '24', '12', '2860', '', '0', '2019-11-17 11:12:11', '2020-11-17', null);
-INSERT INTO `voucher` VALUES ('409', '18861020514', 'IB17578061233074', '60000', '24', '13', '2860', '', '0', '2019-11-17 11:12:11', '2020-12-17', null);
-INSERT INTO `voucher` VALUES ('410', '18861020514', 'IB17578061233074', '60000', '24', '14', '2860', '', '0', '2019-11-17 11:12:11', '2021-01-17', null);
-INSERT INTO `voucher` VALUES ('411', '18861020514', 'IB17578061233074', '60000', '24', '15', '2860', '', '0', '2019-11-17 11:12:11', '2021-02-17', null);
-INSERT INTO `voucher` VALUES ('412', '18861020514', 'IB17578061233074', '60000', '24', '16', '2860', '', '0', '2019-11-17 11:12:11', '2021-03-17', null);
-INSERT INTO `voucher` VALUES ('413', '18861020514', 'IB17578061233074', '60000', '24', '17', '2860', '', '0', '2019-11-17 11:12:11', '2021-04-17', null);
-INSERT INTO `voucher` VALUES ('414', '18861020514', 'IB17578061233074', '60000', '24', '18', '2860', '', '0', '2019-11-17 11:12:11', '2021-05-17', null);
-INSERT INTO `voucher` VALUES ('415', '18861020514', 'IB17578061233074', '60000', '24', '19', '2860', '', '0', '2019-11-17 11:12:11', '2021-06-17', null);
-INSERT INTO `voucher` VALUES ('416', '18861020514', 'IB17578061233074', '60000', '24', '20', '2860', '', '0', '2019-11-17 11:12:11', '2021-07-17', null);
-INSERT INTO `voucher` VALUES ('417', '18861020514', 'IB17578061233074', '60000', '24', '21', '2860', '', '0', '2019-11-17 11:12:11', '2021-08-17', null);
-INSERT INTO `voucher` VALUES ('418', '18861020514', 'IB17578061233074', '60000', '24', '22', '2860', '', '0', '2019-11-17 11:12:11', '2021-09-17', null);
-INSERT INTO `voucher` VALUES ('419', '18861020514', 'IB17578061233074', '60000', '24', '23', '2860', '', '0', '2019-11-17 11:12:11', '2021-10-17', null);
-INSERT INTO `voucher` VALUES ('420', '18861020514', 'IB17578061233074', '60000', '24', '24', '2860', '', '0', '2019-11-17 11:12:11', '2021-11-17', null);
-INSERT INTO `voucher` VALUES ('421', '15027913862', 'IB16870982331044', '30000', '12', '1', '2680', '', '0', '2019-11-17 12:07:44', '2019-12-17', null);
-INSERT INTO `voucher` VALUES ('422', '15027913862', 'IB16870982331044', '30000', '12', '2', '2680', '', '0', '2019-11-17 12:07:44', '2020-01-17', null);
-INSERT INTO `voucher` VALUES ('423', '15027913862', 'IB16870982331044', '30000', '12', '3', '2680', '', '0', '2019-11-17 12:07:44', '2020-02-17', null);
-INSERT INTO `voucher` VALUES ('424', '15027913862', 'IB16870982331044', '30000', '12', '4', '2680', '', '0', '2019-11-17 12:07:44', '2020-03-17', null);
-INSERT INTO `voucher` VALUES ('425', '15027913862', 'IB16870982331044', '30000', '12', '5', '2680', '', '0', '2019-11-17 12:07:44', '2020-04-17', null);
-INSERT INTO `voucher` VALUES ('426', '15027913862', 'IB16870982331044', '30000', '12', '6', '2680', '', '0', '2019-11-17 12:07:44', '2020-05-17', null);
-INSERT INTO `voucher` VALUES ('427', '15027913862', 'IB16870982331044', '30000', '12', '7', '2680', '', '0', '2019-11-17 12:07:44', '2020-06-17', null);
-INSERT INTO `voucher` VALUES ('428', '15027913862', 'IB16870982331044', '30000', '12', '8', '2680', '', '0', '2019-11-17 12:07:44', '2020-07-17', null);
-INSERT INTO `voucher` VALUES ('429', '15027913862', 'IB16870982331044', '30000', '12', '9', '2680', '', '0', '2019-11-17 12:07:44', '2020-08-17', null);
-INSERT INTO `voucher` VALUES ('430', '15027913862', 'IB16870982331044', '30000', '12', '10', '2680', '', '0', '2019-11-17 12:07:44', '2020-09-17', null);
-INSERT INTO `voucher` VALUES ('431', '15027913862', 'IB16870982331044', '30000', '12', '11', '2680', '', '0', '2019-11-17 12:07:44', '2020-10-17', null);
-INSERT INTO `voucher` VALUES ('432', '15027913862', 'IB16870982331044', '30000', '12', '12', '2680', '', '0', '2019-11-17 12:07:44', '2020-11-17', null);
-INSERT INTO `voucher` VALUES ('576', '15880377315', 'IB17769158939033', '49500', '12', '12', '4422', '', '0', '2019-11-18 16:00:00', '2020-11-18', null);
-INSERT INTO `voucher` VALUES ('575', '15880377315', 'IB17769158939033', '49500', '12', '11', '4422', '', '0', '2019-11-18 16:00:00', '2020-10-18', null);
-INSERT INTO `voucher` VALUES ('574', '15880377315', 'IB17769158939033', '49500', '12', '10', '4422', '', '0', '2019-11-18 16:00:00', '2020-09-18', null);
-INSERT INTO `voucher` VALUES ('573', '15880377315', 'IB17769158939033', '49500', '12', '9', '4422', '', '0', '2019-11-18 16:00:00', '2020-08-18', null);
-INSERT INTO `voucher` VALUES ('572', '15880377315', 'IB17769158939033', '49500', '12', '8', '4422', '', '0', '2019-11-18 16:00:00', '2020-07-18', null);
-INSERT INTO `voucher` VALUES ('571', '15880377315', 'IB17769158939033', '49500', '12', '7', '4422', '', '0', '2019-11-18 16:00:00', '2020-06-18', null);
-INSERT INTO `voucher` VALUES ('570', '15880377315', 'IB17769158939033', '49500', '12', '6', '4422', '', '0', '2019-11-18 16:00:00', '2020-05-18', null);
-INSERT INTO `voucher` VALUES ('569', '15880377315', 'IB17769158939033', '49500', '12', '5', '4422', '', '0', '2019-11-18 16:00:00', '2020-04-18', null);
-INSERT INTO `voucher` VALUES ('568', '15880377315', 'IB17769158939033', '49500', '12', '4', '4422', '', '0', '2019-11-18 16:00:00', '2020-03-18', null);
-INSERT INTO `voucher` VALUES ('567', '15880377315', 'IB17769158939033', '49500', '12', '3', '4422', '', '0', '2019-11-18 16:00:00', '2020-02-18', null);
-INSERT INTO `voucher` VALUES ('566', '15880377315', 'IB17769158939033', '49500', '12', '2', '4422', '', '0', '2019-11-18 16:00:00', '2020-01-18', null);
-INSERT INTO `voucher` VALUES ('565', '15880377315', 'IB17769158939033', '49500', '12', '1', '4422', '', '0', '2019-11-18 16:00:00', '2019-12-18', null);
-INSERT INTO `voucher` VALUES ('469', '15880664988', 'IB17775618370774', '30000', '36', '1', '1014', '', '0', '2019-11-17 17:15:20', '2019-12-17', null);
-INSERT INTO `voucher` VALUES ('470', '15880664988', 'IB17775618370774', '30000', '36', '2', '1014', '', '0', '2019-11-17 17:15:20', '2020-01-17', null);
-INSERT INTO `voucher` VALUES ('471', '15880664988', 'IB17775618370774', '30000', '36', '3', '1014', '', '0', '2019-11-17 17:15:20', '2020-02-17', null);
-INSERT INTO `voucher` VALUES ('472', '15880664988', 'IB17775618370774', '30000', '36', '4', '1014', '', '0', '2019-11-17 17:15:20', '2020-03-17', null);
-INSERT INTO `voucher` VALUES ('473', '15880664988', 'IB17775618370774', '30000', '36', '5', '1014', '', '0', '2019-11-17 17:15:20', '2020-04-17', null);
-INSERT INTO `voucher` VALUES ('474', '15880664988', 'IB17775618370774', '30000', '36', '6', '1014', '', '0', '2019-11-17 17:15:20', '2020-05-17', null);
-INSERT INTO `voucher` VALUES ('475', '15880664988', 'IB17775618370774', '30000', '36', '7', '1014', '', '0', '2019-11-17 17:15:20', '2020-06-17', null);
-INSERT INTO `voucher` VALUES ('476', '15880664988', 'IB17775618370774', '30000', '36', '8', '1014', '', '0', '2019-11-17 17:15:20', '2020-07-17', null);
-INSERT INTO `voucher` VALUES ('477', '15880664988', 'IB17775618370774', '30000', '36', '9', '1014', '', '0', '2019-11-17 17:15:20', '2020-08-17', null);
-INSERT INTO `voucher` VALUES ('478', '15880664988', 'IB17775618370774', '30000', '36', '10', '1014', '', '0', '2019-11-17 17:15:20', '2020-09-17', null);
-INSERT INTO `voucher` VALUES ('479', '15880664988', 'IB17775618370774', '30000', '36', '11', '1014', '', '0', '2019-11-17 17:15:20', '2020-10-17', null);
-INSERT INTO `voucher` VALUES ('480', '15880664988', 'IB17775618370774', '30000', '36', '12', '1014', '', '0', '2019-11-17 17:15:20', '2020-11-17', null);
-INSERT INTO `voucher` VALUES ('481', '15880664988', 'IB17775618370774', '30000', '36', '13', '1014', '', '0', '2019-11-17 17:15:20', '2020-12-17', null);
-INSERT INTO `voucher` VALUES ('482', '15880664988', 'IB17775618370774', '30000', '36', '14', '1014', '', '0', '2019-11-17 17:15:20', '2021-01-17', null);
-INSERT INTO `voucher` VALUES ('483', '15880664988', 'IB17775618370774', '30000', '36', '15', '1014', '', '0', '2019-11-17 17:15:20', '2021-02-17', null);
-INSERT INTO `voucher` VALUES ('484', '15880664988', 'IB17775618370774', '30000', '36', '16', '1014', '', '0', '2019-11-17 17:15:20', '2021-03-17', null);
-INSERT INTO `voucher` VALUES ('485', '15880664988', 'IB17775618370774', '30000', '36', '17', '1014', '', '0', '2019-11-17 17:15:20', '2021-04-17', null);
-INSERT INTO `voucher` VALUES ('486', '15880664988', 'IB17775618370774', '30000', '36', '18', '1014', '', '0', '2019-11-17 17:15:20', '2021-05-17', null);
-INSERT INTO `voucher` VALUES ('487', '15880664988', 'IB17775618370774', '30000', '36', '19', '1014', '', '0', '2019-11-17 17:15:20', '2021-06-17', null);
-INSERT INTO `voucher` VALUES ('488', '15880664988', 'IB17775618370774', '30000', '36', '20', '1014', '', '0', '2019-11-17 17:15:20', '2021-07-17', null);
-INSERT INTO `voucher` VALUES ('489', '15880664988', 'IB17775618370774', '30000', '36', '21', '1014', '', '0', '2019-11-17 17:15:20', '2021-08-17', null);
-INSERT INTO `voucher` VALUES ('490', '15880664988', 'IB17775618370774', '30000', '36', '22', '1014', '', '0', '2019-11-17 17:15:20', '2021-09-17', null);
-INSERT INTO `voucher` VALUES ('491', '15880664988', 'IB17775618370774', '30000', '36', '23', '1014', '', '0', '2019-11-17 17:15:20', '2021-10-17', null);
-INSERT INTO `voucher` VALUES ('492', '15880664988', 'IB17775618370774', '30000', '36', '24', '1014', '', '0', '2019-11-17 17:15:20', '2021-11-17', null);
-INSERT INTO `voucher` VALUES ('493', '15880664988', 'IB17775618370774', '30000', '36', '25', '1014', '', '0', '2019-11-17 17:15:20', '2021-12-17', null);
-INSERT INTO `voucher` VALUES ('494', '15880664988', 'IB17775618370774', '30000', '36', '26', '1014', '', '0', '2019-11-17 17:15:20', '2022-01-17', null);
-INSERT INTO `voucher` VALUES ('495', '15880664988', 'IB17775618370774', '30000', '36', '27', '1014', '', '0', '2019-11-17 17:15:20', '2022-02-17', null);
-INSERT INTO `voucher` VALUES ('496', '15880664988', 'IB17775618370774', '30000', '36', '28', '1014', '', '0', '2019-11-17 17:15:20', '2022-03-17', null);
-INSERT INTO `voucher` VALUES ('497', '15880664988', 'IB17775618370774', '30000', '36', '29', '1014', '', '0', '2019-11-17 17:15:20', '2022-04-17', null);
-INSERT INTO `voucher` VALUES ('498', '15880664988', 'IB17775618370774', '30000', '36', '30', '1014', '', '0', '2019-11-17 17:15:20', '2022-05-17', null);
-INSERT INTO `voucher` VALUES ('499', '15880664988', 'IB17775618370774', '30000', '36', '31', '1014', '', '0', '2019-11-17 17:15:20', '2022-06-17', null);
-INSERT INTO `voucher` VALUES ('500', '15880664988', 'IB17775618370774', '30000', '36', '32', '1014', '', '0', '2019-11-17 17:15:20', '2022-07-17', null);
-INSERT INTO `voucher` VALUES ('501', '15880664988', 'IB17775618370774', '30000', '36', '33', '1014', '', '0', '2019-11-17 17:15:20', '2022-08-17', null);
-INSERT INTO `voucher` VALUES ('502', '15880664988', 'IB17775618370774', '30000', '36', '34', '1014', '', '0', '2019-11-17 17:15:20', '2022-09-17', null);
-INSERT INTO `voucher` VALUES ('503', '15880664988', 'IB17775618370774', '30000', '36', '35', '1014', '', '0', '2019-11-17 17:15:20', '2022-10-17', null);
-INSERT INTO `voucher` VALUES ('504', '15880664988', 'IB17775618370774', '30000', '36', '36', '1014', '', '0', '2019-11-17 17:15:20', '2022-11-17', null);
-INSERT INTO `voucher` VALUES ('505', '18218526507', 'IB18435319247358', '180000', '36', '1', '6080', '', '0', '2019-11-18 10:19:25', '2019-12-18', null);
-INSERT INTO `voucher` VALUES ('506', '18218526507', 'IB18435319247358', '180000', '36', '2', '6080', '', '0', '2019-11-18 10:19:25', '2020-01-18', null);
-INSERT INTO `voucher` VALUES ('507', '18218526507', 'IB18435319247358', '180000', '36', '3', '6080', '', '0', '2019-11-18 10:19:25', '2020-02-18', null);
-INSERT INTO `voucher` VALUES ('508', '18218526507', 'IB18435319247358', '180000', '36', '4', '6080', '', '0', '2019-11-18 10:19:25', '2020-03-18', null);
-INSERT INTO `voucher` VALUES ('509', '18218526507', 'IB18435319247358', '180000', '36', '5', '6080', '', '0', '2019-11-18 10:19:25', '2020-04-18', null);
-INSERT INTO `voucher` VALUES ('510', '18218526507', 'IB18435319247358', '180000', '36', '6', '6080', '', '0', '2019-11-18 10:19:25', '2020-05-18', null);
-INSERT INTO `voucher` VALUES ('511', '18218526507', 'IB18435319247358', '180000', '36', '7', '6080', '', '0', '2019-11-18 10:19:25', '2020-06-18', null);
-INSERT INTO `voucher` VALUES ('512', '18218526507', 'IB18435319247358', '180000', '36', '8', '6080', '', '0', '2019-11-18 10:19:25', '2020-07-18', null);
-INSERT INTO `voucher` VALUES ('513', '18218526507', 'IB18435319247358', '180000', '36', '9', '6080', '', '0', '2019-11-18 10:19:25', '2020-08-18', null);
-INSERT INTO `voucher` VALUES ('514', '18218526507', 'IB18435319247358', '180000', '36', '10', '6080', '', '0', '2019-11-18 10:19:25', '2020-09-18', null);
-INSERT INTO `voucher` VALUES ('515', '18218526507', 'IB18435319247358', '180000', '36', '11', '6080', '', '0', '2019-11-18 10:19:25', '2020-10-18', null);
-INSERT INTO `voucher` VALUES ('516', '18218526507', 'IB18435319247358', '180000', '36', '12', '6080', '', '0', '2019-11-18 10:19:25', '2020-11-18', null);
-INSERT INTO `voucher` VALUES ('517', '18218526507', 'IB18435319247358', '180000', '36', '13', '6080', '', '0', '2019-11-18 10:19:25', '2020-12-18', null);
-INSERT INTO `voucher` VALUES ('518', '18218526507', 'IB18435319247358', '180000', '36', '14', '6080', '', '0', '2019-11-18 10:19:25', '2021-01-18', null);
-INSERT INTO `voucher` VALUES ('519', '18218526507', 'IB18435319247358', '180000', '36', '15', '6080', '', '0', '2019-11-18 10:19:25', '2021-02-18', null);
-INSERT INTO `voucher` VALUES ('520', '18218526507', 'IB18435319247358', '180000', '36', '16', '6080', '', '0', '2019-11-18 10:19:25', '2021-03-18', null);
-INSERT INTO `voucher` VALUES ('521', '18218526507', 'IB18435319247358', '180000', '36', '17', '6080', '', '0', '2019-11-18 10:19:25', '2021-04-18', null);
-INSERT INTO `voucher` VALUES ('522', '18218526507', 'IB18435319247358', '180000', '36', '18', '6080', '', '0', '2019-11-18 10:19:25', '2021-05-18', null);
-INSERT INTO `voucher` VALUES ('523', '18218526507', 'IB18435319247358', '180000', '36', '19', '6080', '', '0', '2019-11-18 10:19:25', '2021-06-18', null);
-INSERT INTO `voucher` VALUES ('524', '18218526507', 'IB18435319247358', '180000', '36', '20', '6080', '', '0', '2019-11-18 10:19:25', '2021-07-18', null);
-INSERT INTO `voucher` VALUES ('525', '18218526507', 'IB18435319247358', '180000', '36', '21', '6080', '', '0', '2019-11-18 10:19:25', '2021-08-18', null);
-INSERT INTO `voucher` VALUES ('526', '18218526507', 'IB18435319247358', '180000', '36', '22', '6080', '', '0', '2019-11-18 10:19:25', '2021-09-18', null);
-INSERT INTO `voucher` VALUES ('527', '18218526507', 'IB18435319247358', '180000', '36', '23', '6080', '', '0', '2019-11-18 10:19:25', '2021-10-18', null);
-INSERT INTO `voucher` VALUES ('528', '18218526507', 'IB18435319247358', '180000', '36', '24', '6080', '', '0', '2019-11-18 10:19:25', '2021-11-18', null);
-INSERT INTO `voucher` VALUES ('529', '18218526507', 'IB18435319247358', '180000', '36', '25', '6080', '', '0', '2019-11-18 10:19:25', '2021-12-18', null);
-INSERT INTO `voucher` VALUES ('530', '18218526507', 'IB18435319247358', '180000', '36', '26', '6080', '', '0', '2019-11-18 10:19:25', '2022-01-18', null);
-INSERT INTO `voucher` VALUES ('531', '18218526507', 'IB18435319247358', '180000', '36', '27', '6080', '', '0', '2019-11-18 10:19:25', '2022-02-18', null);
-INSERT INTO `voucher` VALUES ('532', '18218526507', 'IB18435319247358', '180000', '36', '28', '6080', '', '0', '2019-11-18 10:19:25', '2022-03-18', null);
-INSERT INTO `voucher` VALUES ('533', '18218526507', 'IB18435319247358', '180000', '36', '29', '6080', '', '0', '2019-11-18 10:19:25', '2022-04-18', null);
-INSERT INTO `voucher` VALUES ('534', '18218526507', 'IB18435319247358', '180000', '36', '30', '6080', '', '0', '2019-11-18 10:19:25', '2022-05-18', null);
-INSERT INTO `voucher` VALUES ('535', '18218526507', 'IB18435319247358', '180000', '36', '31', '6080', '', '0', '2019-11-18 10:19:25', '2022-06-18', null);
-INSERT INTO `voucher` VALUES ('536', '18218526507', 'IB18435319247358', '180000', '36', '32', '6080', '', '0', '2019-11-18 10:19:25', '2022-07-18', null);
-INSERT INTO `voucher` VALUES ('537', '18218526507', 'IB18435319247358', '180000', '36', '33', '6080', '', '0', '2019-11-18 10:19:25', '2022-08-18', null);
-INSERT INTO `voucher` VALUES ('538', '18218526507', 'IB18435319247358', '180000', '36', '34', '6080', '', '0', '2019-11-18 10:19:25', '2022-09-18', null);
-INSERT INTO `voucher` VALUES ('539', '18218526507', 'IB18435319247358', '180000', '36', '35', '6080', '', '0', '2019-11-18 10:19:25', '2022-10-18', null);
-INSERT INTO `voucher` VALUES ('540', '18218526507', 'IB18435319247358', '180000', '36', '36', '6080', '', '0', '2019-11-18 10:19:25', '2022-11-18', null);
-INSERT INTO `voucher` VALUES ('541', '15076206035', 'IB18491540804035', '30000', '12', '1', '2680', '', '0', '2019-11-18 12:55:12', '2019-12-18', null);
-INSERT INTO `voucher` VALUES ('542', '15076206035', 'IB18491540804035', '30000', '12', '2', '2680', '', '0', '2019-11-18 12:55:12', '2020-01-18', null);
-INSERT INTO `voucher` VALUES ('543', '15076206035', 'IB18491540804035', '30000', '12', '3', '2680', '', '0', '2019-11-18 12:55:12', '2020-02-18', null);
-INSERT INTO `voucher` VALUES ('544', '15076206035', 'IB18491540804035', '30000', '12', '4', '2680', '', '0', '2019-11-18 12:55:12', '2020-03-18', null);
-INSERT INTO `voucher` VALUES ('545', '15076206035', 'IB18491540804035', '30000', '12', '5', '2680', '', '0', '2019-11-18 12:55:12', '2020-04-18', null);
-INSERT INTO `voucher` VALUES ('546', '15076206035', 'IB18491540804035', '30000', '12', '6', '2680', '', '0', '2019-11-18 12:55:12', '2020-05-18', null);
-INSERT INTO `voucher` VALUES ('547', '15076206035', 'IB18491540804035', '30000', '12', '7', '2680', '', '0', '2019-11-18 12:55:12', '2020-06-18', null);
-INSERT INTO `voucher` VALUES ('548', '15076206035', 'IB18491540804035', '30000', '12', '8', '2680', '', '0', '2019-11-18 12:55:12', '2020-07-18', null);
-INSERT INTO `voucher` VALUES ('549', '15076206035', 'IB18491540804035', '30000', '12', '9', '2680', '', '0', '2019-11-18 12:55:12', '2020-08-18', null);
-INSERT INTO `voucher` VALUES ('550', '15076206035', 'IB18491540804035', '30000', '12', '10', '2680', '', '0', '2019-11-18 12:55:12', '2020-09-18', null);
-INSERT INTO `voucher` VALUES ('551', '15076206035', 'IB18491540804035', '30000', '12', '11', '2680', '', '0', '2019-11-18 12:55:12', '2020-10-18', null);
-INSERT INTO `voucher` VALUES ('552', '15076206035', 'IB18491540804035', '30000', '12', '12', '2680', '', '0', '2019-11-18 12:55:12', '2020-11-18', null);
-INSERT INTO `voucher` VALUES ('577', '15262378634', 'IB18555217980963', '60000', '24', '1', '2860', '', '0', '2019-11-18 16:08:35', '2019-12-18', null);
-INSERT INTO `voucher` VALUES ('578', '15262378634', 'IB18555217980963', '60000', '24', '2', '2860', '', '0', '2019-11-18 16:08:35', '2020-01-18', null);
-INSERT INTO `voucher` VALUES ('579', '15262378634', 'IB18555217980963', '60000', '24', '3', '2860', '', '0', '2019-11-18 16:08:35', '2020-02-18', null);
-INSERT INTO `voucher` VALUES ('580', '15262378634', 'IB18555217980963', '60000', '24', '4', '2860', '', '0', '2019-11-18 16:08:35', '2020-03-18', null);
-INSERT INTO `voucher` VALUES ('581', '15262378634', 'IB18555217980963', '60000', '24', '5', '2860', '', '0', '2019-11-18 16:08:35', '2020-04-18', null);
-INSERT INTO `voucher` VALUES ('582', '15262378634', 'IB18555217980963', '60000', '24', '6', '2860', '', '0', '2019-11-18 16:08:35', '2020-05-18', null);
-INSERT INTO `voucher` VALUES ('583', '15262378634', 'IB18555217980963', '60000', '24', '7', '2860', '', '0', '2019-11-18 16:08:35', '2020-06-18', null);
-INSERT INTO `voucher` VALUES ('584', '15262378634', 'IB18555217980963', '60000', '24', '8', '2860', '', '0', '2019-11-18 16:08:35', '2020-07-18', null);
-INSERT INTO `voucher` VALUES ('585', '15262378634', 'IB18555217980963', '60000', '24', '9', '2860', '', '0', '2019-11-18 16:08:35', '2020-08-18', null);
-INSERT INTO `voucher` VALUES ('586', '15262378634', 'IB18555217980963', '60000', '24', '10', '2860', '', '0', '2019-11-18 16:08:35', '2020-09-18', null);
-INSERT INTO `voucher` VALUES ('587', '15262378634', 'IB18555217980963', '60000', '24', '11', '2860', '', '0', '2019-11-18 16:08:35', '2020-10-18', null);
-INSERT INTO `voucher` VALUES ('588', '15262378634', 'IB18555217980963', '60000', '24', '12', '2860', '', '0', '2019-11-18 16:08:35', '2020-11-18', null);
-INSERT INTO `voucher` VALUES ('589', '15262378634', 'IB18555217980963', '60000', '24', '13', '2860', '', '0', '2019-11-18 16:08:35', '2020-12-18', null);
-INSERT INTO `voucher` VALUES ('590', '15262378634', 'IB18555217980963', '60000', '24', '14', '2860', '', '0', '2019-11-18 16:08:35', '2021-01-18', null);
-INSERT INTO `voucher` VALUES ('591', '15262378634', 'IB18555217980963', '60000', '24', '15', '2860', '', '0', '2019-11-18 16:08:35', '2021-02-18', null);
-INSERT INTO `voucher` VALUES ('592', '15262378634', 'IB18555217980963', '60000', '24', '16', '2860', '', '0', '2019-11-18 16:08:35', '2021-03-18', null);
-INSERT INTO `voucher` VALUES ('593', '15262378634', 'IB18555217980963', '60000', '24', '17', '2860', '', '0', '2019-11-18 16:08:35', '2021-04-18', null);
-INSERT INTO `voucher` VALUES ('594', '15262378634', 'IB18555217980963', '60000', '24', '18', '2860', '', '0', '2019-11-18 16:08:35', '2021-05-18', null);
-INSERT INTO `voucher` VALUES ('595', '15262378634', 'IB18555217980963', '60000', '24', '19', '2860', '', '0', '2019-11-18 16:08:35', '2021-06-18', null);
-INSERT INTO `voucher` VALUES ('596', '15262378634', 'IB18555217980963', '60000', '24', '20', '2860', '', '0', '2019-11-18 16:08:35', '2021-07-18', null);
-INSERT INTO `voucher` VALUES ('597', '15262378634', 'IB18555217980963', '60000', '24', '21', '2860', '', '0', '2019-11-18 16:08:35', '2021-08-18', null);
-INSERT INTO `voucher` VALUES ('598', '15262378634', 'IB18555217980963', '60000', '24', '22', '2860', '', '0', '2019-11-18 16:08:35', '2021-09-18', null);
-INSERT INTO `voucher` VALUES ('599', '15262378634', 'IB18555217980963', '60000', '24', '23', '2860', '', '0', '2019-11-18 16:08:35', '2021-10-18', null);
-INSERT INTO `voucher` VALUES ('600', '15262378634', 'IB18555217980963', '60000', '24', '24', '2860', '', '0', '2019-11-18 16:08:35', '2021-11-18', null);
-INSERT INTO `voucher` VALUES ('828', '18293732211', 'IB18626507369220', '132000', '36', '36', '4459', '', '0', '2019-11-20 14:40:52', '2022-11-20', null);
-INSERT INTO `voucher` VALUES ('827', '18293732211', 'IB18626507369220', '132000', '36', '35', '4459', '', '0', '2019-11-20 14:40:52', '2022-10-20', null);
-INSERT INTO `voucher` VALUES ('826', '18293732211', 'IB18626507369220', '132000', '36', '34', '4459', '', '0', '2019-11-20 14:40:52', '2022-09-20', null);
-INSERT INTO `voucher` VALUES ('825', '18293732211', 'IB18626507369220', '132000', '36', '33', '4459', '', '0', '2019-11-20 14:40:52', '2022-08-20', null);
-INSERT INTO `voucher` VALUES ('824', '18293732211', 'IB18626507369220', '132000', '36', '32', '4459', '', '0', '2019-11-20 14:40:52', '2022-07-20', null);
-INSERT INTO `voucher` VALUES ('823', '18293732211', 'IB18626507369220', '132000', '36', '31', '4459', '', '0', '2019-11-20 14:40:52', '2022-06-20', null);
-INSERT INTO `voucher` VALUES ('822', '18293732211', 'IB18626507369220', '132000', '36', '30', '4459', '', '0', '2019-11-20 14:40:52', '2022-05-20', null);
-INSERT INTO `voucher` VALUES ('821', '18293732211', 'IB18626507369220', '132000', '36', '29', '4459', '', '0', '2019-11-20 14:40:52', '2022-04-20', null);
-INSERT INTO `voucher` VALUES ('820', '18293732211', 'IB18626507369220', '132000', '36', '28', '4459', '', '0', '2019-11-20 14:40:52', '2022-03-20', null);
-INSERT INTO `voucher` VALUES ('819', '18293732211', 'IB18626507369220', '132000', '36', '27', '4459', '', '0', '2019-11-20 14:40:52', '2022-02-20', null);
-INSERT INTO `voucher` VALUES ('818', '18293732211', 'IB18626507369220', '132000', '36', '26', '4459', '', '0', '2019-11-20 14:40:52', '2022-01-20', null);
-INSERT INTO `voucher` VALUES ('817', '18293732211', 'IB18626507369220', '132000', '36', '25', '4459', '', '0', '2019-11-20 14:40:52', '2021-12-20', null);
-INSERT INTO `voucher` VALUES ('816', '18293732211', 'IB18626507369220', '132000', '36', '24', '4459', '', '0', '2019-11-20 14:40:52', '2021-11-20', null);
-INSERT INTO `voucher` VALUES ('815', '18293732211', 'IB18626507369220', '132000', '36', '23', '4459', '', '0', '2019-11-20 14:40:52', '2021-10-20', null);
-INSERT INTO `voucher` VALUES ('814', '18293732211', 'IB18626507369220', '132000', '36', '22', '4459', '', '0', '2019-11-20 14:40:52', '2021-09-20', null);
-INSERT INTO `voucher` VALUES ('813', '18293732211', 'IB18626507369220', '132000', '36', '21', '4459', '', '0', '2019-11-20 14:40:52', '2021-08-20', null);
-INSERT INTO `voucher` VALUES ('812', '18293732211', 'IB18626507369220', '132000', '36', '20', '4459', '', '0', '2019-11-20 14:40:52', '2021-07-20', null);
-INSERT INTO `voucher` VALUES ('811', '18293732211', 'IB18626507369220', '132000', '36', '19', '4459', '', '0', '2019-11-20 14:40:52', '2021-06-20', null);
-INSERT INTO `voucher` VALUES ('810', '18293732211', 'IB18626507369220', '132000', '36', '18', '4459', '', '0', '2019-11-20 14:40:52', '2021-05-20', null);
-INSERT INTO `voucher` VALUES ('809', '18293732211', 'IB18626507369220', '132000', '36', '17', '4459', '', '0', '2019-11-20 14:40:52', '2021-04-20', null);
-INSERT INTO `voucher` VALUES ('808', '18293732211', 'IB18626507369220', '132000', '36', '16', '4459', '', '0', '2019-11-20 14:40:52', '2021-03-20', null);
-INSERT INTO `voucher` VALUES ('807', '18293732211', 'IB18626507369220', '132000', '36', '15', '4459', '', '0', '2019-11-20 14:40:52', '2021-02-20', null);
-INSERT INTO `voucher` VALUES ('806', '18293732211', 'IB18626507369220', '132000', '36', '14', '4459', '', '0', '2019-11-20 14:40:52', '2021-01-20', null);
-INSERT INTO `voucher` VALUES ('805', '18293732211', 'IB18626507369220', '132000', '36', '13', '4459', '', '0', '2019-11-20 14:40:52', '2020-12-20', null);
-INSERT INTO `voucher` VALUES ('804', '18293732211', 'IB18626507369220', '132000', '36', '12', '4459', '', '0', '2019-11-20 14:40:52', '2020-11-20', null);
-INSERT INTO `voucher` VALUES ('803', '18293732211', 'IB18626507369220', '132000', '36', '11', '4459', '', '0', '2019-11-20 14:40:52', '2020-10-20', null);
-INSERT INTO `voucher` VALUES ('802', '18293732211', 'IB18626507369220', '132000', '36', '10', '4459', '', '0', '2019-11-20 14:40:52', '2020-09-20', null);
-INSERT INTO `voucher` VALUES ('801', '18293732211', 'IB18626507369220', '132000', '36', '9', '4459', '', '0', '2019-11-20 14:40:52', '2020-08-20', null);
-INSERT INTO `voucher` VALUES ('800', '18293732211', 'IB18626507369220', '132000', '36', '8', '4459', '', '0', '2019-11-20 14:40:52', '2020-07-20', null);
-INSERT INTO `voucher` VALUES ('799', '18293732211', 'IB18626507369220', '132000', '36', '7', '4459', '', '0', '2019-11-20 14:40:52', '2020-06-20', null);
-INSERT INTO `voucher` VALUES ('798', '18293732211', 'IB18626507369220', '132000', '36', '6', '4459', '', '0', '2019-11-20 14:40:52', '2020-05-20', null);
-INSERT INTO `voucher` VALUES ('797', '18293732211', 'IB18626507369220', '132000', '36', '5', '4459', '', '0', '2019-11-20 14:40:52', '2020-04-20', null);
-INSERT INTO `voucher` VALUES ('796', '18293732211', 'IB18626507369220', '132000', '36', '4', '4459', '', '0', '2019-11-20 14:40:52', '2020-03-20', null);
-INSERT INTO `voucher` VALUES ('795', '18293732211', 'IB18626507369220', '132000', '36', '3', '4459', '', '0', '2019-11-20 14:40:52', '2020-02-20', null);
-INSERT INTO `voucher` VALUES ('794', '18293732211', 'IB18626507369220', '132000', '36', '2', '4459', '', '0', '2019-11-20 14:40:52', '2020-01-20', null);
-INSERT INTO `voucher` VALUES ('793', '18293732211', 'IB18626507369220', '132000', '36', '1', '4459', '', '0', '2019-11-20 14:40:52', '2019-12-20', null);
-INSERT INTO `voucher` VALUES ('637', '13547114001', 'IB19277290759994', '50000', '24', '1', '2384', '', '0', '2019-11-19 10:58:39', '2019-12-19', null);
-INSERT INTO `voucher` VALUES ('638', '13547114001', 'IB19277290759994', '50000', '24', '2', '2384', '', '0', '2019-11-19 10:58:39', '2020-01-19', null);
-INSERT INTO `voucher` VALUES ('639', '13547114001', 'IB19277290759994', '50000', '24', '3', '2384', '', '0', '2019-11-19 10:58:39', '2020-02-19', null);
-INSERT INTO `voucher` VALUES ('640', '13547114001', 'IB19277290759994', '50000', '24', '4', '2384', '', '0', '2019-11-19 10:58:39', '2020-03-19', null);
-INSERT INTO `voucher` VALUES ('641', '13547114001', 'IB19277290759994', '50000', '24', '5', '2384', '', '0', '2019-11-19 10:58:39', '2020-04-19', null);
-INSERT INTO `voucher` VALUES ('642', '13547114001', 'IB19277290759994', '50000', '24', '6', '2384', '', '0', '2019-11-19 10:58:39', '2020-05-19', null);
-INSERT INTO `voucher` VALUES ('643', '13547114001', 'IB19277290759994', '50000', '24', '7', '2384', '', '0', '2019-11-19 10:58:39', '2020-06-19', null);
-INSERT INTO `voucher` VALUES ('644', '13547114001', 'IB19277290759994', '50000', '24', '8', '2384', '', '0', '2019-11-19 10:58:39', '2020-07-19', null);
-INSERT INTO `voucher` VALUES ('645', '13547114001', 'IB19277290759994', '50000', '24', '9', '2384', '', '0', '2019-11-19 10:58:39', '2020-08-19', null);
-INSERT INTO `voucher` VALUES ('646', '13547114001', 'IB19277290759994', '50000', '24', '10', '2384', '', '0', '2019-11-19 10:58:39', '2020-09-19', null);
-INSERT INTO `voucher` VALUES ('647', '13547114001', 'IB19277290759994', '50000', '24', '11', '2384', '', '0', '2019-11-19 10:58:39', '2020-10-19', null);
-INSERT INTO `voucher` VALUES ('648', '13547114001', 'IB19277290759994', '50000', '24', '12', '2384', '', '0', '2019-11-19 10:58:39', '2020-11-19', null);
-INSERT INTO `voucher` VALUES ('649', '13547114001', 'IB19277290759994', '50000', '24', '13', '2384', '', '0', '2019-11-19 10:58:39', '2020-12-19', null);
-INSERT INTO `voucher` VALUES ('650', '13547114001', 'IB19277290759994', '50000', '24', '14', '2384', '', '0', '2019-11-19 10:58:39', '2021-01-19', null);
-INSERT INTO `voucher` VALUES ('651', '13547114001', 'IB19277290759994', '50000', '24', '15', '2384', '', '0', '2019-11-19 10:58:39', '2021-02-19', null);
-INSERT INTO `voucher` VALUES ('652', '13547114001', 'IB19277290759994', '50000', '24', '16', '2384', '', '0', '2019-11-19 10:58:39', '2021-03-19', null);
-INSERT INTO `voucher` VALUES ('653', '13547114001', 'IB19277290759994', '50000', '24', '17', '2384', '', '0', '2019-11-19 10:58:39', '2021-04-19', null);
-INSERT INTO `voucher` VALUES ('654', '13547114001', 'IB19277290759994', '50000', '24', '18', '2384', '', '0', '2019-11-19 10:58:39', '2021-05-19', null);
-INSERT INTO `voucher` VALUES ('655', '13547114001', 'IB19277290759994', '50000', '24', '19', '2384', '', '0', '2019-11-19 10:58:39', '2021-06-19', null);
-INSERT INTO `voucher` VALUES ('656', '13547114001', 'IB19277290759994', '50000', '24', '20', '2384', '', '0', '2019-11-19 10:58:39', '2021-07-19', null);
-INSERT INTO `voucher` VALUES ('657', '13547114001', 'IB19277290759994', '50000', '24', '21', '2384', '', '0', '2019-11-19 10:58:39', '2021-08-19', null);
-INSERT INTO `voucher` VALUES ('658', '13547114001', 'IB19277290759994', '50000', '24', '22', '2384', '', '0', '2019-11-19 10:58:39', '2021-09-19', null);
-INSERT INTO `voucher` VALUES ('659', '13547114001', 'IB19277290759994', '50000', '24', '23', '2384', '', '0', '2019-11-19 10:58:39', '2021-10-19', null);
-INSERT INTO `voucher` VALUES ('660', '13547114001', 'IB19277290759994', '50000', '24', '24', '2384', '', '0', '2019-11-19 10:58:39', '2021-11-19', null);
-INSERT INTO `voucher` VALUES ('768', '15711421949', 'IB19337544106956', '60000', '24', '24', '2860', '', '0', '2019-11-19 16:54:38', '2021-11-19', null);
-INSERT INTO `voucher` VALUES ('767', '15711421949', 'IB19337544106956', '60000', '24', '23', '2860', '', '0', '2019-11-19 16:54:38', '2021-10-19', null);
-INSERT INTO `voucher` VALUES ('766', '15711421949', 'IB19337544106956', '60000', '24', '22', '2860', '', '0', '2019-11-19 16:54:38', '2021-09-19', null);
-INSERT INTO `voucher` VALUES ('765', '15711421949', 'IB19337544106956', '60000', '24', '21', '2860', '', '0', '2019-11-19 16:54:38', '2021-08-19', null);
-INSERT INTO `voucher` VALUES ('764', '15711421949', 'IB19337544106956', '60000', '24', '20', '2860', '', '0', '2019-11-19 16:54:38', '2021-07-19', null);
-INSERT INTO `voucher` VALUES ('763', '15711421949', 'IB19337544106956', '60000', '24', '19', '2860', '', '0', '2019-11-19 16:54:38', '2021-06-19', null);
-INSERT INTO `voucher` VALUES ('762', '15711421949', 'IB19337544106956', '60000', '24', '18', '2860', '', '0', '2019-11-19 16:54:38', '2021-05-19', null);
-INSERT INTO `voucher` VALUES ('761', '15711421949', 'IB19337544106956', '60000', '24', '17', '2860', '', '0', '2019-11-19 16:54:38', '2021-04-19', null);
-INSERT INTO `voucher` VALUES ('760', '15711421949', 'IB19337544106956', '60000', '24', '16', '2860', '', '0', '2019-11-19 16:54:38', '2021-03-19', null);
-INSERT INTO `voucher` VALUES ('759', '15711421949', 'IB19337544106956', '60000', '24', '15', '2860', '', '0', '2019-11-19 16:54:38', '2021-02-19', null);
-INSERT INTO `voucher` VALUES ('758', '15711421949', 'IB19337544106956', '60000', '24', '14', '2860', '', '0', '2019-11-19 16:54:38', '2021-01-19', null);
-INSERT INTO `voucher` VALUES ('757', '15711421949', 'IB19337544106956', '60000', '24', '13', '2860', '', '0', '2019-11-19 16:54:38', '2020-12-19', null);
-INSERT INTO `voucher` VALUES ('756', '15711421949', 'IB19337544106956', '60000', '24', '12', '2860', '', '0', '2019-11-19 16:54:38', '2020-11-19', null);
-INSERT INTO `voucher` VALUES ('755', '15711421949', 'IB19337544106956', '60000', '24', '11', '2860', '', '0', '2019-11-19 16:54:38', '2020-10-19', null);
-INSERT INTO `voucher` VALUES ('754', '15711421949', 'IB19337544106956', '60000', '24', '10', '2860', '', '0', '2019-11-19 16:54:38', '2020-09-19', null);
-INSERT INTO `voucher` VALUES ('753', '15711421949', 'IB19337544106956', '60000', '24', '9', '2860', '', '0', '2019-11-19 16:54:38', '2020-08-19', null);
-INSERT INTO `voucher` VALUES ('752', '15711421949', 'IB19337544106956', '60000', '24', '8', '2860', '', '0', '2019-11-19 16:54:38', '2020-07-19', null);
-INSERT INTO `voucher` VALUES ('751', '15711421949', 'IB19337544106956', '60000', '24', '7', '2860', '', '0', '2019-11-19 16:54:38', '2020-06-19', null);
-INSERT INTO `voucher` VALUES ('750', '15711421949', 'IB19337544106956', '60000', '24', '6', '2860', '', '0', '2019-11-19 16:54:38', '2020-05-19', null);
-INSERT INTO `voucher` VALUES ('749', '15711421949', 'IB19337544106956', '60000', '24', '5', '2860', '', '0', '2019-11-19 16:54:38', '2020-04-19', null);
-INSERT INTO `voucher` VALUES ('748', '15711421949', 'IB19337544106956', '60000', '24', '4', '2860', '', '0', '2019-11-19 16:54:38', '2020-03-19', null);
-INSERT INTO `voucher` VALUES ('747', '15711421949', 'IB19337544106956', '60000', '24', '3', '2860', '', '0', '2019-11-19 16:54:38', '2020-02-19', null);
-INSERT INTO `voucher` VALUES ('746', '15711421949', 'IB19337544106956', '60000', '24', '2', '2860', '', '0', '2019-11-19 16:54:38', '2020-01-19', null);
-INSERT INTO `voucher` VALUES ('745', '15711421949', 'IB19337544106956', '60000', '24', '1', '2860', '', '0', '2019-11-19 16:54:38', '2019-12-19', null);
-INSERT INTO `voucher` VALUES ('685', '13205690271', 'IB19384730262021', '80000', '36', '1', '2703', '', '0', '2019-11-19 14:35:03', '2019-12-19', null);
-INSERT INTO `voucher` VALUES ('686', '13205690271', 'IB19384730262021', '80000', '36', '2', '2703', '', '0', '2019-11-19 14:35:03', '2020-01-19', null);
-INSERT INTO `voucher` VALUES ('687', '13205690271', 'IB19384730262021', '80000', '36', '3', '2703', '', '0', '2019-11-19 14:35:03', '2020-02-19', null);
-INSERT INTO `voucher` VALUES ('688', '13205690271', 'IB19384730262021', '80000', '36', '4', '2703', '', '0', '2019-11-19 14:35:03', '2020-03-19', null);
-INSERT INTO `voucher` VALUES ('689', '13205690271', 'IB19384730262021', '80000', '36', '5', '2703', '', '0', '2019-11-19 14:35:03', '2020-04-19', null);
-INSERT INTO `voucher` VALUES ('690', '13205690271', 'IB19384730262021', '80000', '36', '6', '2703', '', '0', '2019-11-19 14:35:03', '2020-05-19', null);
-INSERT INTO `voucher` VALUES ('691', '13205690271', 'IB19384730262021', '80000', '36', '7', '2703', '', '0', '2019-11-19 14:35:03', '2020-06-19', null);
-INSERT INTO `voucher` VALUES ('692', '13205690271', 'IB19384730262021', '80000', '36', '8', '2703', '', '0', '2019-11-19 14:35:03', '2020-07-19', null);
-INSERT INTO `voucher` VALUES ('693', '13205690271', 'IB19384730262021', '80000', '36', '9', '2703', '', '0', '2019-11-19 14:35:03', '2020-08-19', null);
-INSERT INTO `voucher` VALUES ('694', '13205690271', 'IB19384730262021', '80000', '36', '10', '2703', '', '0', '2019-11-19 14:35:03', '2020-09-19', null);
-INSERT INTO `voucher` VALUES ('695', '13205690271', 'IB19384730262021', '80000', '36', '11', '2703', '', '0', '2019-11-19 14:35:03', '2020-10-19', null);
-INSERT INTO `voucher` VALUES ('696', '13205690271', 'IB19384730262021', '80000', '36', '12', '2703', '', '0', '2019-11-19 14:35:03', '2020-11-19', null);
-INSERT INTO `voucher` VALUES ('697', '13205690271', 'IB19384730262021', '80000', '36', '13', '2703', '', '0', '2019-11-19 14:35:03', '2020-12-19', null);
-INSERT INTO `voucher` VALUES ('698', '13205690271', 'IB19384730262021', '80000', '36', '14', '2703', '', '0', '2019-11-19 14:35:03', '2021-01-19', null);
-INSERT INTO `voucher` VALUES ('699', '13205690271', 'IB19384730262021', '80000', '36', '15', '2703', '', '0', '2019-11-19 14:35:03', '2021-02-19', null);
-INSERT INTO `voucher` VALUES ('700', '13205690271', 'IB19384730262021', '80000', '36', '16', '2703', '', '0', '2019-11-19 14:35:03', '2021-03-19', null);
-INSERT INTO `voucher` VALUES ('701', '13205690271', 'IB19384730262021', '80000', '36', '17', '2703', '', '0', '2019-11-19 14:35:03', '2021-04-19', null);
-INSERT INTO `voucher` VALUES ('702', '13205690271', 'IB19384730262021', '80000', '36', '18', '2703', '', '0', '2019-11-19 14:35:03', '2021-05-19', null);
-INSERT INTO `voucher` VALUES ('703', '13205690271', 'IB19384730262021', '80000', '36', '19', '2703', '', '0', '2019-11-19 14:35:03', '2021-06-19', null);
-INSERT INTO `voucher` VALUES ('704', '13205690271', 'IB19384730262021', '80000', '36', '20', '2703', '', '0', '2019-11-19 14:35:03', '2021-07-19', null);
-INSERT INTO `voucher` VALUES ('705', '13205690271', 'IB19384730262021', '80000', '36', '21', '2703', '', '0', '2019-11-19 14:35:03', '2021-08-19', null);
-INSERT INTO `voucher` VALUES ('706', '13205690271', 'IB19384730262021', '80000', '36', '22', '2703', '', '0', '2019-11-19 14:35:03', '2021-09-19', null);
-INSERT INTO `voucher` VALUES ('707', '13205690271', 'IB19384730262021', '80000', '36', '23', '2703', '', '0', '2019-11-19 14:35:03', '2021-10-19', null);
-INSERT INTO `voucher` VALUES ('708', '13205690271', 'IB19384730262021', '80000', '36', '24', '2703', '', '0', '2019-11-19 14:35:03', '2021-11-19', null);
-INSERT INTO `voucher` VALUES ('709', '13205690271', 'IB19384730262021', '80000', '36', '25', '2703', '', '0', '2019-11-19 14:35:03', '2021-12-19', null);
-INSERT INTO `voucher` VALUES ('710', '13205690271', 'IB19384730262021', '80000', '36', '26', '2703', '', '0', '2019-11-19 14:35:03', '2022-01-19', null);
-INSERT INTO `voucher` VALUES ('711', '13205690271', 'IB19384730262021', '80000', '36', '27', '2703', '', '0', '2019-11-19 14:35:03', '2022-02-19', null);
-INSERT INTO `voucher` VALUES ('712', '13205690271', 'IB19384730262021', '80000', '36', '28', '2703', '', '0', '2019-11-19 14:35:03', '2022-03-19', null);
-INSERT INTO `voucher` VALUES ('713', '13205690271', 'IB19384730262021', '80000', '36', '29', '2703', '', '0', '2019-11-19 14:35:03', '2022-04-19', null);
-INSERT INTO `voucher` VALUES ('714', '13205690271', 'IB19384730262021', '80000', '36', '30', '2703', '', '0', '2019-11-19 14:35:03', '2022-05-19', null);
-INSERT INTO `voucher` VALUES ('715', '13205690271', 'IB19384730262021', '80000', '36', '31', '2703', '', '0', '2019-11-19 14:35:03', '2022-06-19', null);
-INSERT INTO `voucher` VALUES ('716', '13205690271', 'IB19384730262021', '80000', '36', '32', '2703', '', '0', '2019-11-19 14:35:03', '2022-07-19', null);
-INSERT INTO `voucher` VALUES ('717', '13205690271', 'IB19384730262021', '80000', '36', '33', '2703', '', '0', '2019-11-19 14:35:03', '2022-08-19', null);
-INSERT INTO `voucher` VALUES ('718', '13205690271', 'IB19384730262021', '80000', '36', '34', '2703', '', '0', '2019-11-19 14:35:03', '2022-09-19', null);
-INSERT INTO `voucher` VALUES ('719', '13205690271', 'IB19384730262021', '80000', '36', '35', '2703', '', '0', '2019-11-19 14:35:03', '2022-10-19', null);
-INSERT INTO `voucher` VALUES ('720', '13205690271', 'IB19384730262021', '80000', '36', '36', '2703', '', '0', '2019-11-19 14:35:03', '2022-11-19', null);
-INSERT INTO `voucher` VALUES ('721', '15875973899', 'IB19441305963824', '50000', '24', '1', '2384', '', '0', '2019-11-19 16:10:12', '2019-12-19', null);
-INSERT INTO `voucher` VALUES ('722', '15875973899', 'IB19441305963824', '50000', '24', '2', '2384', '', '0', '2019-11-19 16:10:12', '2020-01-19', null);
-INSERT INTO `voucher` VALUES ('723', '15875973899', 'IB19441305963824', '50000', '24', '3', '2384', '', '0', '2019-11-19 16:10:12', '2020-02-19', null);
-INSERT INTO `voucher` VALUES ('724', '15875973899', 'IB19441305963824', '50000', '24', '4', '2384', '', '0', '2019-11-19 16:10:12', '2020-03-19', null);
-INSERT INTO `voucher` VALUES ('725', '15875973899', 'IB19441305963824', '50000', '24', '5', '2384', '', '0', '2019-11-19 16:10:12', '2020-04-19', null);
-INSERT INTO `voucher` VALUES ('726', '15875973899', 'IB19441305963824', '50000', '24', '6', '2384', '', '0', '2019-11-19 16:10:12', '2020-05-19', null);
-INSERT INTO `voucher` VALUES ('727', '15875973899', 'IB19441305963824', '50000', '24', '7', '2384', '', '0', '2019-11-19 16:10:12', '2020-06-19', null);
-INSERT INTO `voucher` VALUES ('728', '15875973899', 'IB19441305963824', '50000', '24', '8', '2384', '', '0', '2019-11-19 16:10:12', '2020-07-19', null);
-INSERT INTO `voucher` VALUES ('729', '15875973899', 'IB19441305963824', '50000', '24', '9', '2384', '', '0', '2019-11-19 16:10:12', '2020-08-19', null);
-INSERT INTO `voucher` VALUES ('730', '15875973899', 'IB19441305963824', '50000', '24', '10', '2384', '', '0', '2019-11-19 16:10:12', '2020-09-19', null);
-INSERT INTO `voucher` VALUES ('731', '15875973899', 'IB19441305963824', '50000', '24', '11', '2384', '', '0', '2019-11-19 16:10:12', '2020-10-19', null);
-INSERT INTO `voucher` VALUES ('732', '15875973899', 'IB19441305963824', '50000', '24', '12', '2384', '', '0', '2019-11-19 16:10:12', '2020-11-19', null);
-INSERT INTO `voucher` VALUES ('733', '15875973899', 'IB19441305963824', '50000', '24', '13', '2384', '', '0', '2019-11-19 16:10:12', '2020-12-19', null);
-INSERT INTO `voucher` VALUES ('734', '15875973899', 'IB19441305963824', '50000', '24', '14', '2384', '', '0', '2019-11-19 16:10:12', '2021-01-19', null);
-INSERT INTO `voucher` VALUES ('735', '15875973899', 'IB19441305963824', '50000', '24', '15', '2384', '', '0', '2019-11-19 16:10:12', '2021-02-19', null);
-INSERT INTO `voucher` VALUES ('736', '15875973899', 'IB19441305963824', '50000', '24', '16', '2384', '', '0', '2019-11-19 16:10:12', '2021-03-19', null);
-INSERT INTO `voucher` VALUES ('737', '15875973899', 'IB19441305963824', '50000', '24', '17', '2384', '', '0', '2019-11-19 16:10:12', '2021-04-19', null);
-INSERT INTO `voucher` VALUES ('738', '15875973899', 'IB19441305963824', '50000', '24', '18', '2384', '', '0', '2019-11-19 16:10:12', '2021-05-19', null);
-INSERT INTO `voucher` VALUES ('739', '15875973899', 'IB19441305963824', '50000', '24', '19', '2384', '', '0', '2019-11-19 16:10:12', '2021-06-19', null);
-INSERT INTO `voucher` VALUES ('740', '15875973899', 'IB19441305963824', '50000', '24', '20', '2384', '', '0', '2019-11-19 16:10:12', '2021-07-19', null);
-INSERT INTO `voucher` VALUES ('741', '15875973899', 'IB19441305963824', '50000', '24', '21', '2384', '', '0', '2019-11-19 16:10:12', '2021-08-19', null);
-INSERT INTO `voucher` VALUES ('742', '15875973899', 'IB19441305963824', '50000', '24', '22', '2384', '', '0', '2019-11-19 16:10:12', '2021-09-19', null);
-INSERT INTO `voucher` VALUES ('743', '15875973899', 'IB19441305963824', '50000', '24', '23', '2384', '', '0', '2019-11-19 16:10:12', '2021-10-19', null);
-INSERT INTO `voucher` VALUES ('744', '15875973899', 'IB19441305963824', '50000', '24', '24', '2384', '', '0', '2019-11-19 16:10:12', '2021-11-19', null);
-INSERT INTO `voucher` VALUES ('769', '18218526507', 'IB20127710547756', '168000', '12', '1', '15008', '', '0', '2019-11-20 09:20:03', '2019-12-20', null);
-INSERT INTO `voucher` VALUES ('770', '18218526507', 'IB20127710547756', '168000', '12', '2', '15008', '', '0', '2019-11-20 09:20:03', '2020-01-20', null);
-INSERT INTO `voucher` VALUES ('771', '18218526507', 'IB20127710547756', '168000', '12', '3', '15008', '', '0', '2019-11-20 09:20:03', '2020-02-20', null);
-INSERT INTO `voucher` VALUES ('772', '18218526507', 'IB20127710547756', '168000', '12', '4', '15008', '', '0', '2019-11-20 09:20:03', '2020-03-20', null);
-INSERT INTO `voucher` VALUES ('773', '18218526507', 'IB20127710547756', '168000', '12', '5', '15008', '', '0', '2019-11-20 09:20:03', '2020-04-20', null);
-INSERT INTO `voucher` VALUES ('774', '18218526507', 'IB20127710547756', '168000', '12', '6', '15008', '', '0', '2019-11-20 09:20:03', '2020-05-20', null);
-INSERT INTO `voucher` VALUES ('775', '18218526507', 'IB20127710547756', '168000', '12', '7', '15008', '', '0', '2019-11-20 09:20:03', '2020-06-20', null);
-INSERT INTO `voucher` VALUES ('776', '18218526507', 'IB20127710547756', '168000', '12', '8', '15008', '', '0', '2019-11-20 09:20:03', '2020-07-20', null);
-INSERT INTO `voucher` VALUES ('777', '18218526507', 'IB20127710547756', '168000', '12', '9', '15008', '', '0', '2019-11-20 09:20:03', '2020-08-20', null);
-INSERT INTO `voucher` VALUES ('778', '18218526507', 'IB20127710547756', '168000', '12', '10', '15008', '', '0', '2019-11-20 09:20:03', '2020-09-20', null);
-INSERT INTO `voucher` VALUES ('779', '18218526507', 'IB20127710547756', '168000', '12', '11', '15008', '', '0', '2019-11-20 09:20:03', '2020-10-20', null);
-INSERT INTO `voucher` VALUES ('780', '18218526507', 'IB20127710547756', '168000', '12', '12', '15008', '', '0', '2019-11-20 09:20:03', '2020-11-20', null);
-INSERT INTO `voucher` VALUES ('781', '14768081816', 'IB20210345363988', '50000', '12', '1', '4467', '', '0', '2019-11-20 12:31:27', '2019-12-20', null);
-INSERT INTO `voucher` VALUES ('782', '14768081816', 'IB20210345363988', '50000', '12', '2', '4467', '', '0', '2019-11-20 12:31:27', '2020-01-20', null);
-INSERT INTO `voucher` VALUES ('783', '14768081816', 'IB20210345363988', '50000', '12', '3', '4467', '', '0', '2019-11-20 12:31:27', '2020-02-20', null);
-INSERT INTO `voucher` VALUES ('784', '14768081816', 'IB20210345363988', '50000', '12', '4', '4467', '', '0', '2019-11-20 12:31:27', '2020-03-20', null);
-INSERT INTO `voucher` VALUES ('785', '14768081816', 'IB20210345363988', '50000', '12', '5', '4467', '', '0', '2019-11-20 12:31:27', '2020-04-20', null);
-INSERT INTO `voucher` VALUES ('786', '14768081816', 'IB20210345363988', '50000', '12', '6', '4467', '', '0', '2019-11-20 12:31:27', '2020-05-20', null);
-INSERT INTO `voucher` VALUES ('787', '14768081816', 'IB20210345363988', '50000', '12', '7', '4467', '', '0', '2019-11-20 12:31:27', '2020-06-20', null);
-INSERT INTO `voucher` VALUES ('788', '14768081816', 'IB20210345363988', '50000', '12', '8', '4467', '', '0', '2019-11-20 12:31:27', '2020-07-20', null);
-INSERT INTO `voucher` VALUES ('789', '14768081816', 'IB20210345363988', '50000', '12', '9', '4467', '', '0', '2019-11-20 12:31:27', '2020-08-20', null);
-INSERT INTO `voucher` VALUES ('790', '14768081816', 'IB20210345363988', '50000', '12', '10', '4467', '', '0', '2019-11-20 12:31:27', '2020-09-20', null);
-INSERT INTO `voucher` VALUES ('791', '14768081816', 'IB20210345363988', '50000', '12', '11', '4467', '', '0', '2019-11-20 12:31:27', '2020-10-20', null);
-INSERT INTO `voucher` VALUES ('792', '14768081816', 'IB20210345363988', '50000', '12', '12', '4467', '', '0', '2019-11-20 12:31:27', '2020-11-20', null);
-INSERT INTO `voucher` VALUES ('829', '15769582948', 'IB19416256076872', '60000', '36', '1', '2027', '', '0', '2019-11-20 16:07:49', '2019-12-20', null);
-INSERT INTO `voucher` VALUES ('830', '15769582948', 'IB19416256076872', '60000', '36', '2', '2027', '', '0', '2019-11-20 16:07:49', '2020-01-20', null);
-INSERT INTO `voucher` VALUES ('831', '15769582948', 'IB19416256076872', '60000', '36', '3', '2027', '', '0', '2019-11-20 16:07:49', '2020-02-20', null);
-INSERT INTO `voucher` VALUES ('832', '15769582948', 'IB19416256076872', '60000', '36', '4', '2027', '', '0', '2019-11-20 16:07:49', '2020-03-20', null);
-INSERT INTO `voucher` VALUES ('833', '15769582948', 'IB19416256076872', '60000', '36', '5', '2027', '', '0', '2019-11-20 16:07:49', '2020-04-20', null);
-INSERT INTO `voucher` VALUES ('834', '15769582948', 'IB19416256076872', '60000', '36', '6', '2027', '', '0', '2019-11-20 16:07:49', '2020-05-20', null);
-INSERT INTO `voucher` VALUES ('835', '15769582948', 'IB19416256076872', '60000', '36', '7', '2027', '', '0', '2019-11-20 16:07:49', '2020-06-20', null);
-INSERT INTO `voucher` VALUES ('836', '15769582948', 'IB19416256076872', '60000', '36', '8', '2027', '', '0', '2019-11-20 16:07:49', '2020-07-20', null);
-INSERT INTO `voucher` VALUES ('837', '15769582948', 'IB19416256076872', '60000', '36', '9', '2027', '', '0', '2019-11-20 16:07:49', '2020-08-20', null);
-INSERT INTO `voucher` VALUES ('838', '15769582948', 'IB19416256076872', '60000', '36', '10', '2027', '', '0', '2019-11-20 16:07:49', '2020-09-20', null);
-INSERT INTO `voucher` VALUES ('839', '15769582948', 'IB19416256076872', '60000', '36', '11', '2027', '', '0', '2019-11-20 16:07:49', '2020-10-20', null);
-INSERT INTO `voucher` VALUES ('840', '15769582948', 'IB19416256076872', '60000', '36', '12', '2027', '', '0', '2019-11-20 16:07:49', '2020-11-20', null);
-INSERT INTO `voucher` VALUES ('841', '15769582948', 'IB19416256076872', '60000', '36', '13', '2027', '', '0', '2019-11-20 16:07:49', '2020-12-20', null);
-INSERT INTO `voucher` VALUES ('842', '15769582948', 'IB19416256076872', '60000', '36', '14', '2027', '', '0', '2019-11-20 16:07:49', '2021-01-20', null);
-INSERT INTO `voucher` VALUES ('843', '15769582948', 'IB19416256076872', '60000', '36', '15', '2027', '', '0', '2019-11-20 16:07:49', '2021-02-20', null);
-INSERT INTO `voucher` VALUES ('844', '15769582948', 'IB19416256076872', '60000', '36', '16', '2027', '', '0', '2019-11-20 16:07:49', '2021-03-20', null);
-INSERT INTO `voucher` VALUES ('845', '15769582948', 'IB19416256076872', '60000', '36', '17', '2027', '', '0', '2019-11-20 16:07:49', '2021-04-20', null);
-INSERT INTO `voucher` VALUES ('846', '15769582948', 'IB19416256076872', '60000', '36', '18', '2027', '', '0', '2019-11-20 16:07:49', '2021-05-20', null);
-INSERT INTO `voucher` VALUES ('847', '15769582948', 'IB19416256076872', '60000', '36', '19', '2027', '', '0', '2019-11-20 16:07:49', '2021-06-20', null);
-INSERT INTO `voucher` VALUES ('848', '15769582948', 'IB19416256076872', '60000', '36', '20', '2027', '', '0', '2019-11-20 16:07:49', '2021-07-20', null);
-INSERT INTO `voucher` VALUES ('849', '15769582948', 'IB19416256076872', '60000', '36', '21', '2027', '', '0', '2019-11-20 16:07:49', '2021-08-20', null);
-INSERT INTO `voucher` VALUES ('850', '15769582948', 'IB19416256076872', '60000', '36', '22', '2027', '', '0', '2019-11-20 16:07:49', '2021-09-20', null);
-INSERT INTO `voucher` VALUES ('851', '15769582948', 'IB19416256076872', '60000', '36', '23', '2027', '', '0', '2019-11-20 16:07:49', '2021-10-20', null);
-INSERT INTO `voucher` VALUES ('852', '15769582948', 'IB19416256076872', '60000', '36', '24', '2027', '', '0', '2019-11-20 16:07:49', '2021-11-20', null);
-INSERT INTO `voucher` VALUES ('853', '15769582948', 'IB19416256076872', '60000', '36', '25', '2027', '', '0', '2019-11-20 16:07:49', '2021-12-20', null);
-INSERT INTO `voucher` VALUES ('854', '15769582948', 'IB19416256076872', '60000', '36', '26', '2027', '', '0', '2019-11-20 16:07:49', '2022-01-20', null);
-INSERT INTO `voucher` VALUES ('855', '15769582948', 'IB19416256076872', '60000', '36', '27', '2027', '', '0', '2019-11-20 16:07:49', '2022-02-20', null);
-INSERT INTO `voucher` VALUES ('856', '15769582948', 'IB19416256076872', '60000', '36', '28', '2027', '', '0', '2019-11-20 16:07:49', '2022-03-20', null);
-INSERT INTO `voucher` VALUES ('857', '15769582948', 'IB19416256076872', '60000', '36', '29', '2027', '', '0', '2019-11-20 16:07:49', '2022-04-20', null);
-INSERT INTO `voucher` VALUES ('858', '15769582948', 'IB19416256076872', '60000', '36', '30', '2027', '', '0', '2019-11-20 16:07:49', '2022-05-20', null);
-INSERT INTO `voucher` VALUES ('859', '15769582948', 'IB19416256076872', '60000', '36', '31', '2027', '', '0', '2019-11-20 16:07:49', '2022-06-20', null);
-INSERT INTO `voucher` VALUES ('860', '15769582948', 'IB19416256076872', '60000', '36', '32', '2027', '', '0', '2019-11-20 16:07:49', '2022-07-20', null);
-INSERT INTO `voucher` VALUES ('861', '15769582948', 'IB19416256076872', '60000', '36', '33', '2027', '', '0', '2019-11-20 16:07:49', '2022-08-20', null);
-INSERT INTO `voucher` VALUES ('862', '15769582948', 'IB19416256076872', '60000', '36', '34', '2027', '', '0', '2019-11-20 16:07:49', '2022-09-20', null);
-INSERT INTO `voucher` VALUES ('863', '15769582948', 'IB19416256076872', '60000', '36', '35', '2027', '', '0', '2019-11-20 16:07:49', '2022-10-20', null);
-INSERT INTO `voucher` VALUES ('864', '15769582948', 'IB19416256076872', '60000', '36', '36', '2027', '', '0', '2019-11-20 16:07:49', '2022-11-20', null);
-INSERT INTO `voucher` VALUES ('888', '17608471751', 'IB23410819465543', '30000', '12', '12', '2680', '', '0', '2019-11-23 01:22:08', '2020-11-23', null);
-INSERT INTO `voucher` VALUES ('887', '17608471751', 'IB23410819465543', '30000', '12', '11', '2680', '', '0', '2019-11-23 01:22:08', '2020-10-23', null);
-INSERT INTO `voucher` VALUES ('886', '17608471751', 'IB23410819465543', '30000', '12', '10', '2680', '', '0', '2019-11-23 01:22:08', '2020-09-23', null);
-INSERT INTO `voucher` VALUES ('885', '17608471751', 'IB23410819465543', '30000', '12', '9', '2680', '', '0', '2019-11-23 01:22:08', '2020-08-23', null);
-INSERT INTO `voucher` VALUES ('884', '17608471751', 'IB23410819465543', '30000', '12', '8', '2680', '', '0', '2019-11-23 01:22:08', '2020-07-23', null);
-INSERT INTO `voucher` VALUES ('883', '17608471751', 'IB23410819465543', '30000', '12', '7', '2680', '', '0', '2019-11-23 01:22:08', '2020-06-23', null);
-INSERT INTO `voucher` VALUES ('882', '17608471751', 'IB23410819465543', '30000', '12', '6', '2680', '', '0', '2019-11-23 01:22:08', '2020-05-23', null);
-INSERT INTO `voucher` VALUES ('881', '17608471751', 'IB23410819465543', '30000', '12', '5', '2680', '', '0', '2019-11-23 01:22:08', '2020-04-23', null);
-INSERT INTO `voucher` VALUES ('880', '17608471751', 'IB23410819465543', '30000', '12', '4', '2680', '', '0', '2019-11-23 01:22:08', '2020-03-23', null);
-INSERT INTO `voucher` VALUES ('879', '17608471751', 'IB23410819465543', '30000', '12', '3', '2680', '', '0', '2019-11-23 01:22:08', '2020-02-23', null);
-INSERT INTO `voucher` VALUES ('878', '17608471751', 'IB23410819465543', '30000', '12', '2', '2680', '', '0', '2019-11-23 01:22:08', '2020-01-23', null);
-INSERT INTO `voucher` VALUES ('877', '17608471751', 'IB23410819465543', '30000', '12', '1', '2680', '', '0', '2019-11-23 01:22:08', '2019-12-23', null);
-INSERT INTO `voucher` VALUES ('889', '17608471751', 'IB23535792837244', '30000', '12', '1', '2680', '', '0', '2019-11-23 04:28:37', '2019-12-23', null);
-INSERT INTO `voucher` VALUES ('890', '17608471751', 'IB23535792837244', '30000', '12', '2', '2680', '', '0', '2019-11-23 04:28:37', '2020-01-23', null);
-INSERT INTO `voucher` VALUES ('891', '17608471751', 'IB23535792837244', '30000', '12', '3', '2680', '', '0', '2019-11-23 04:28:37', '2020-02-23', null);
-INSERT INTO `voucher` VALUES ('892', '17608471751', 'IB23535792837244', '30000', '12', '4', '2680', '', '0', '2019-11-23 04:28:37', '2020-03-23', null);
-INSERT INTO `voucher` VALUES ('893', '17608471751', 'IB23535792837244', '30000', '12', '5', '2680', '', '0', '2019-11-23 04:28:37', '2020-04-23', null);
-INSERT INTO `voucher` VALUES ('894', '17608471751', 'IB23535792837244', '30000', '12', '6', '2680', '', '0', '2019-11-23 04:28:37', '2020-05-23', null);
-INSERT INTO `voucher` VALUES ('895', '17608471751', 'IB23535792837244', '30000', '12', '7', '2680', '', '0', '2019-11-23 04:28:37', '2020-06-23', null);
-INSERT INTO `voucher` VALUES ('896', '17608471751', 'IB23535792837244', '30000', '12', '8', '2680', '', '0', '2019-11-23 04:28:37', '2020-07-23', null);
-INSERT INTO `voucher` VALUES ('897', '17608471751', 'IB23535792837244', '30000', '12', '9', '2680', '', '0', '2019-11-23 04:28:37', '2020-08-23', null);
-INSERT INTO `voucher` VALUES ('898', '17608471751', 'IB23535792837244', '30000', '12', '10', '2680', '', '0', '2019-11-23 04:28:37', '2020-09-23', null);
-INSERT INTO `voucher` VALUES ('899', '17608471751', 'IB23535792837244', '30000', '12', '11', '2680', '', '0', '2019-11-23 04:28:37', '2020-10-23', null);
-INSERT INTO `voucher` VALUES ('900', '17608471751', 'IB23535792837244', '30000', '12', '12', '2680', '', '0', '2019-11-23 04:28:37', '2020-11-23', null);
-INSERT INTO `voucher` VALUES ('924', '17608471751', 'IB23559104150867', '30000', '12', '12', '2680', '', '0', '2019-11-23 05:12:16', '2020-11-23', null);
-INSERT INTO `voucher` VALUES ('923', '17608471751', 'IB23559104150867', '30000', '12', '11', '2680', '', '0', '2019-11-23 05:12:16', '2020-10-23', null);
-INSERT INTO `voucher` VALUES ('922', '17608471751', 'IB23559104150867', '30000', '12', '10', '2680', '', '0', '2019-11-23 05:12:16', '2020-09-23', null);
-INSERT INTO `voucher` VALUES ('921', '17608471751', 'IB23559104150867', '30000', '12', '9', '2680', '', '0', '2019-11-23 05:12:16', '2020-08-23', null);
-INSERT INTO `voucher` VALUES ('920', '17608471751', 'IB23559104150867', '30000', '12', '8', '2680', '', '0', '2019-11-23 05:12:16', '2020-07-23', null);
-INSERT INTO `voucher` VALUES ('919', '17608471751', 'IB23559104150867', '30000', '12', '7', '2680', '', '0', '2019-11-23 05:12:16', '2020-06-23', null);
-INSERT INTO `voucher` VALUES ('918', '17608471751', 'IB23559104150867', '30000', '12', '6', '2680', '', '0', '2019-11-23 05:12:16', '2020-05-23', null);
-INSERT INTO `voucher` VALUES ('917', '17608471751', 'IB23559104150867', '30000', '12', '5', '2680', '', '0', '2019-11-23 05:12:16', '2020-04-23', null);
-INSERT INTO `voucher` VALUES ('916', '17608471751', 'IB23559104150867', '30000', '12', '4', '2680', '', '0', '2019-11-23 05:12:16', '2020-03-23', null);
-INSERT INTO `voucher` VALUES ('915', '17608471751', 'IB23559104150867', '30000', '12', '3', '2680', '', '0', '2019-11-23 05:12:16', '2020-02-23', null);
-INSERT INTO `voucher` VALUES ('914', '17608471751', 'IB23559104150867', '30000', '12', '2', '2680', '', '0', '2019-11-23 05:12:16', '2020-01-23', null);
-INSERT INTO `voucher` VALUES ('913', '17608471751', 'IB23559104150867', '30000', '12', '1', '2680', '', '0', '2019-11-23 05:12:16', '2019-12-23', null);
-INSERT INTO `voucher` VALUES ('925', '17608471751', 'IB23573044148227', '30000', '12', '1', '2680', '', '0', '2019-11-23 05:17:35', '2019-12-23', null);
-INSERT INTO `voucher` VALUES ('926', '17608471751', 'IB23573044148227', '30000', '12', '2', '2680', '', '0', '2019-11-23 05:17:35', '2020-01-23', null);
-INSERT INTO `voucher` VALUES ('927', '17608471751', 'IB23573044148227', '30000', '12', '3', '2680', '', '0', '2019-11-23 05:17:35', '2020-02-23', null);
-INSERT INTO `voucher` VALUES ('928', '17608471751', 'IB23573044148227', '30000', '12', '4', '2680', '', '0', '2019-11-23 05:17:35', '2020-03-23', null);
-INSERT INTO `voucher` VALUES ('929', '17608471751', 'IB23573044148227', '30000', '12', '5', '2680', '', '0', '2019-11-23 05:17:35', '2020-04-23', null);
-INSERT INTO `voucher` VALUES ('930', '17608471751', 'IB23573044148227', '30000', '12', '6', '2680', '', '0', '2019-11-23 05:17:35', '2020-05-23', null);
-INSERT INTO `voucher` VALUES ('931', '17608471751', 'IB23573044148227', '30000', '12', '7', '2680', '', '0', '2019-11-23 05:17:35', '2020-06-23', null);
-INSERT INTO `voucher` VALUES ('932', '17608471751', 'IB23573044148227', '30000', '12', '8', '2680', '', '0', '2019-11-23 05:17:35', '2020-07-23', null);
-INSERT INTO `voucher` VALUES ('933', '17608471751', 'IB23573044148227', '30000', '12', '9', '2680', '', '0', '2019-11-23 05:17:35', '2020-08-23', null);
-INSERT INTO `voucher` VALUES ('934', '17608471751', 'IB23573044148227', '30000', '12', '10', '2680', '', '0', '2019-11-23 05:17:35', '2020-09-23', null);
-INSERT INTO `voucher` VALUES ('935', '17608471751', 'IB23573044148227', '30000', '12', '11', '2680', '', '0', '2019-11-23 05:17:35', '2020-10-23', null);
-INSERT INTO `voucher` VALUES ('936', '17608471751', 'IB23573044148227', '30000', '12', '12', '2680', '', '0', '2019-11-23 05:17:35', '2020-11-23', null);
-INSERT INTO `voucher` VALUES ('1188', '16556896331', 'IC24849717800972', '130000', '36', '36', '4392', '', '0', '2019-12-24 19:22:59', '2022-12-24', null);
-INSERT INTO `voucher` VALUES ('1187', '16556896331', 'IC24849717800972', '130000', '36', '35', '4392', '', '0', '2019-12-24 19:22:59', '2022-11-24', null);
-INSERT INTO `voucher` VALUES ('1186', '16556896331', 'IC24849717800972', '130000', '36', '34', '4392', '', '0', '2019-12-24 19:22:59', '2022-10-24', null);
-INSERT INTO `voucher` VALUES ('1185', '16556896331', 'IC24849717800972', '130000', '36', '33', '4392', '', '0', '2019-12-24 19:22:59', '2022-09-24', null);
-INSERT INTO `voucher` VALUES ('1184', '16556896331', 'IC24849717800972', '130000', '36', '32', '4392', '', '0', '2019-12-24 19:22:59', '2022-08-24', null);
-INSERT INTO `voucher` VALUES ('1183', '16556896331', 'IC24849717800972', '130000', '36', '31', '4392', '', '0', '2019-12-24 19:22:59', '2022-07-24', null);
-INSERT INTO `voucher` VALUES ('1182', '16556896331', 'IC24849717800972', '130000', '36', '30', '4392', '', '0', '2019-12-24 19:22:59', '2022-06-24', null);
-INSERT INTO `voucher` VALUES ('1181', '16556896331', 'IC24849717800972', '130000', '36', '29', '4392', '', '0', '2019-12-24 19:22:59', '2022-05-24', null);
-INSERT INTO `voucher` VALUES ('1180', '16556896331', 'IC24849717800972', '130000', '36', '28', '4392', '', '0', '2019-12-24 19:22:59', '2022-04-24', null);
-INSERT INTO `voucher` VALUES ('1179', '16556896331', 'IC24849717800972', '130000', '36', '27', '4392', '', '0', '2019-12-24 19:22:59', '2022-03-24', null);
-INSERT INTO `voucher` VALUES ('1178', '16556896331', 'IC24849717800972', '130000', '36', '26', '4392', '', '0', '2019-12-24 19:22:59', '2022-02-24', null);
-INSERT INTO `voucher` VALUES ('1177', '16556896331', 'IC24849717800972', '130000', '36', '25', '4392', '', '0', '2019-12-24 19:22:59', '2022-01-24', null);
-INSERT INTO `voucher` VALUES ('1176', '16556896331', 'IC24849717800972', '130000', '36', '24', '4392', '', '0', '2019-12-24 19:22:59', '2021-12-24', null);
-INSERT INTO `voucher` VALUES ('1175', '16556896331', 'IC24849717800972', '130000', '36', '23', '4392', '', '0', '2019-12-24 19:22:59', '2021-11-24', null);
-INSERT INTO `voucher` VALUES ('1174', '16556896331', 'IC24849717800972', '130000', '36', '22', '4392', '', '0', '2019-12-24 19:22:59', '2021-10-24', null);
-INSERT INTO `voucher` VALUES ('1173', '16556896331', 'IC24849717800972', '130000', '36', '21', '4392', '', '0', '2019-12-24 19:22:59', '2021-09-24', null);
-INSERT INTO `voucher` VALUES ('1172', '16556896331', 'IC24849717800972', '130000', '36', '20', '4392', '', '0', '2019-12-24 19:22:59', '2021-08-24', null);
-INSERT INTO `voucher` VALUES ('1171', '16556896331', 'IC24849717800972', '130000', '36', '19', '4392', '', '0', '2019-12-24 19:22:59', '2021-07-24', null);
-INSERT INTO `voucher` VALUES ('1170', '16556896331', 'IC24849717800972', '130000', '36', '18', '4392', '', '0', '2019-12-24 19:22:59', '2021-06-24', null);
-INSERT INTO `voucher` VALUES ('1169', '16556896331', 'IC24849717800972', '130000', '36', '17', '4392', '', '0', '2019-12-24 19:22:59', '2021-05-24', null);
-INSERT INTO `voucher` VALUES ('1168', '16556896331', 'IC24849717800972', '130000', '36', '16', '4392', '', '0', '2019-12-24 19:22:59', '2021-04-24', null);
-INSERT INTO `voucher` VALUES ('1167', '16556896331', 'IC24849717800972', '130000', '36', '15', '4392', '', '0', '2019-12-24 19:22:59', '2021-03-24', null);
-INSERT INTO `voucher` VALUES ('1166', '16556896331', 'IC24849717800972', '130000', '36', '14', '4392', '', '0', '2019-12-24 19:22:59', '2021-02-24', null);
-INSERT INTO `voucher` VALUES ('1165', '16556896331', 'IC24849717800972', '130000', '36', '13', '4392', '', '0', '2019-12-24 19:22:59', '2021-01-24', null);
-INSERT INTO `voucher` VALUES ('1164', '16556896331', 'IC24849717800972', '130000', '36', '12', '4392', '', '0', '2019-12-24 19:22:59', '2020-12-24', null);
-INSERT INTO `voucher` VALUES ('1163', '16556896331', 'IC24849717800972', '130000', '36', '11', '4392', '', '0', '2019-12-24 19:22:59', '2020-11-24', null);
-INSERT INTO `voucher` VALUES ('1162', '16556896331', 'IC24849717800972', '130000', '36', '10', '4392', '', '0', '2019-12-24 19:22:59', '2020-10-24', null);
-INSERT INTO `voucher` VALUES ('1161', '16556896331', 'IC24849717800972', '130000', '36', '9', '4392', '', '0', '2019-12-24 19:22:59', '2020-09-24', null);
-INSERT INTO `voucher` VALUES ('1160', '16556896331', 'IC24849717800972', '130000', '36', '8', '4392', '', '0', '2019-12-24 19:22:59', '2020-08-24', null);
-INSERT INTO `voucher` VALUES ('1159', '16556896331', 'IC24849717800972', '130000', '36', '7', '4392', '', '0', '2019-12-24 19:22:59', '2020-07-24', null);
-INSERT INTO `voucher` VALUES ('1158', '16556896331', 'IC24849717800972', '130000', '36', '6', '4392', '', '0', '2019-12-24 19:22:59', '2020-06-24', null);
-INSERT INTO `voucher` VALUES ('1157', '16556896331', 'IC24849717800972', '130000', '36', '5', '4392', '', '0', '2019-12-24 19:22:59', '2020-05-24', null);
-INSERT INTO `voucher` VALUES ('1156', '16556896331', 'IC24849717800972', '130000', '36', '4', '4392', '', '0', '2019-12-24 19:22:59', '2020-04-24', null);
-INSERT INTO `voucher` VALUES ('1155', '16556896331', 'IC24849717800972', '130000', '36', '3', '4392', '', '0', '2019-12-24 19:22:59', '2020-03-24', null);
-INSERT INTO `voucher` VALUES ('1154', '16556896331', 'IC24849717800972', '130000', '36', '2', '4392', '', '0', '2019-12-24 19:22:59', '2020-02-24', null);
-INSERT INTO `voucher` VALUES ('1153', '16556896331', 'IC24849717800972', '130000', '36', '1', '4392', '', '0', '2019-12-24 19:22:59', '2020-01-24', null);
-INSERT INTO `voucher` VALUES ('1189', '15579161111', 'IC25387263870568', '30000', '12', '1', '2680', '', '0', '2019-12-25 09:54:10', '2020-01-25', null);
-INSERT INTO `voucher` VALUES ('1190', '15579161111', 'IC25387263870568', '30000', '12', '2', '2680', '', '0', '2019-12-25 09:54:10', '2020-02-25', null);
-INSERT INTO `voucher` VALUES ('1191', '15579161111', 'IC25387263870568', '30000', '12', '3', '2680', '', '0', '2019-12-25 09:54:10', '2020-03-25', null);
-INSERT INTO `voucher` VALUES ('1192', '15579161111', 'IC25387263870568', '30000', '12', '4', '2680', '', '0', '2019-12-25 09:54:10', '2020-04-25', null);
-INSERT INTO `voucher` VALUES ('1193', '15579161111', 'IC25387263870568', '30000', '12', '5', '2680', '', '0', '2019-12-25 09:54:10', '2020-05-25', null);
-INSERT INTO `voucher` VALUES ('1194', '15579161111', 'IC25387263870568', '30000', '12', '6', '2680', '', '0', '2019-12-25 09:54:10', '2020-06-25', null);
-INSERT INTO `voucher` VALUES ('1195', '15579161111', 'IC25387263870568', '30000', '12', '7', '2680', '', '0', '2019-12-25 09:54:10', '2020-07-25', null);
-INSERT INTO `voucher` VALUES ('1196', '15579161111', 'IC25387263870568', '30000', '12', '8', '2680', '', '0', '2019-12-25 09:54:10', '2020-08-25', null);
-INSERT INTO `voucher` VALUES ('1197', '15579161111', 'IC25387263870568', '30000', '12', '9', '2680', '', '0', '2019-12-25 09:54:10', '2020-09-25', null);
-INSERT INTO `voucher` VALUES ('1198', '15579161111', 'IC25387263870568', '30000', '12', '10', '2680', '', '0', '2019-12-25 09:54:10', '2020-10-25', null);
-INSERT INTO `voucher` VALUES ('1199', '15579161111', 'IC25387263870568', '30000', '12', '11', '2680', '', '0', '2019-12-25 09:54:10', '2020-11-25', null);
-INSERT INTO `voucher` VALUES ('1200', '15579161111', 'IC25387263870568', '30000', '12', '12', '2680', '', '0', '2019-12-25 09:54:10', '2020-12-25', null);
-INSERT INTO `voucher` VALUES ('1201', '15579161111', 'IC25389139933632', '100000', '12', '1', '8934', '', '0', '2019-12-25 09:56:03', '2020-01-25', null);
-INSERT INTO `voucher` VALUES ('1202', '15579161111', 'IC25389139933632', '100000', '12', '2', '8934', '', '0', '2019-12-25 09:56:03', '2020-02-25', null);
-INSERT INTO `voucher` VALUES ('1203', '15579161111', 'IC25389139933632', '100000', '12', '3', '8934', '', '0', '2019-12-25 09:56:03', '2020-03-25', null);
-INSERT INTO `voucher` VALUES ('1204', '15579161111', 'IC25389139933632', '100000', '12', '4', '8934', '', '0', '2019-12-25 09:56:03', '2020-04-25', null);
-INSERT INTO `voucher` VALUES ('1205', '15579161111', 'IC25389139933632', '100000', '12', '5', '8934', '', '0', '2019-12-25 09:56:03', '2020-05-25', null);
-INSERT INTO `voucher` VALUES ('1206', '15579161111', 'IC25389139933632', '100000', '12', '6', '8934', '', '0', '2019-12-25 09:56:03', '2020-06-25', null);
-INSERT INTO `voucher` VALUES ('1207', '15579161111', 'IC25389139933632', '100000', '12', '7', '8934', '', '0', '2019-12-25 09:56:03', '2020-07-25', null);
-INSERT INTO `voucher` VALUES ('1208', '15579161111', 'IC25389139933632', '100000', '12', '8', '8934', '', '0', '2019-12-25 09:56:03', '2020-08-25', null);
-INSERT INTO `voucher` VALUES ('1209', '15579161111', 'IC25389139933632', '100000', '12', '9', '8934', '', '0', '2019-12-25 09:56:03', '2020-09-25', null);
-INSERT INTO `voucher` VALUES ('1210', '15579161111', 'IC25389139933632', '100000', '12', '10', '8934', '', '0', '2019-12-25 09:56:03', '2020-10-25', null);
-INSERT INTO `voucher` VALUES ('1211', '15579161111', 'IC25389139933632', '100000', '12', '11', '8934', '', '0', '2019-12-25 09:56:03', '2020-11-25', null);
-INSERT INTO `voucher` VALUES ('1212', '15579161111', 'IC25389139933632', '100000', '12', '12', '8934', '', '0', '2019-12-25 09:56:03', '2020-12-25', null);
-INSERT INTO `voucher` VALUES ('1236', '15579161111', 'IC25390878653255', '30000', '12', '12', '2680', '', '0', '2019-12-25 10:03:37', '2020-12-25', null);
-INSERT INTO `voucher` VALUES ('1235', '15579161111', 'IC25390878653255', '30000', '12', '11', '2680', '', '0', '2019-12-25 10:03:37', '2020-11-25', null);
-INSERT INTO `voucher` VALUES ('1234', '15579161111', 'IC25390878653255', '30000', '12', '10', '2680', '', '0', '2019-12-25 10:03:37', '2020-10-25', null);
-INSERT INTO `voucher` VALUES ('1233', '15579161111', 'IC25390878653255', '30000', '12', '9', '2680', '', '0', '2019-12-25 10:03:37', '2020-09-25', null);
-INSERT INTO `voucher` VALUES ('1232', '15579161111', 'IC25390878653255', '30000', '12', '8', '2680', '', '0', '2019-12-25 10:03:37', '2020-08-25', null);
-INSERT INTO `voucher` VALUES ('1231', '15579161111', 'IC25390878653255', '30000', '12', '7', '2680', '', '0', '2019-12-25 10:03:37', '2020-07-25', null);
-INSERT INTO `voucher` VALUES ('1230', '15579161111', 'IC25390878653255', '30000', '12', '6', '2680', '', '0', '2019-12-25 10:03:37', '2020-06-25', null);
-INSERT INTO `voucher` VALUES ('1229', '15579161111', 'IC25390878653255', '30000', '12', '5', '2680', '', '0', '2019-12-25 10:03:37', '2020-05-25', null);
-INSERT INTO `voucher` VALUES ('1228', '15579161111', 'IC25390878653255', '30000', '12', '4', '2680', '', '0', '2019-12-25 10:03:37', '2020-04-25', null);
-INSERT INTO `voucher` VALUES ('1227', '15579161111', 'IC25390878653255', '30000', '12', '3', '2680', '', '0', '2019-12-25 10:03:37', '2020-03-25', null);
-INSERT INTO `voucher` VALUES ('1226', '15579161111', 'IC25390878653255', '30000', '12', '2', '2680', '', '0', '2019-12-25 10:03:37', '2020-02-25', null);
-INSERT INTO `voucher` VALUES ('1225', '15579161111', 'IC25390878653255', '30000', '12', '1', '2680', '', '0', '2019-12-25 10:03:37', '2020-01-25', null);
-INSERT INTO `voucher` VALUES ('1260', '15579161111', 'IC25398304737685', '50000', '12', '12', '4467', '', '0', '2019-12-25 10:18:00', '2020-12-25', null);
-INSERT INTO `voucher` VALUES ('1259', '15579161111', 'IC25398304737685', '50000', '12', '11', '4467', '', '0', '2019-12-25 10:18:00', '2020-11-25', null);
-INSERT INTO `voucher` VALUES ('1258', '15579161111', 'IC25398304737685', '50000', '12', '10', '4467', '', '0', '2019-12-25 10:18:00', '2020-10-25', null);
-INSERT INTO `voucher` VALUES ('1257', '15579161111', 'IC25398304737685', '50000', '12', '9', '4467', '', '0', '2019-12-25 10:18:00', '2020-09-25', null);
-INSERT INTO `voucher` VALUES ('1256', '15579161111', 'IC25398304737685', '50000', '12', '8', '4467', '', '0', '2019-12-25 10:18:00', '2020-08-25', null);
-INSERT INTO `voucher` VALUES ('1255', '15579161111', 'IC25398304737685', '50000', '12', '7', '4467', '', '0', '2019-12-25 10:18:00', '2020-07-25', null);
-INSERT INTO `voucher` VALUES ('1254', '15579161111', 'IC25398304737685', '50000', '12', '6', '4467', '', '0', '2019-12-25 10:18:00', '2020-06-25', null);
-INSERT INTO `voucher` VALUES ('1253', '15579161111', 'IC25398304737685', '50000', '12', '5', '4467', '', '0', '2019-12-25 10:18:00', '2020-05-25', null);
-INSERT INTO `voucher` VALUES ('1252', '15579161111', 'IC25398304737685', '50000', '12', '4', '4467', '', '0', '2019-12-25 10:18:00', '2020-04-25', null);
-INSERT INTO `voucher` VALUES ('1251', '15579161111', 'IC25398304737685', '50000', '12', '3', '4467', '', '0', '2019-12-25 10:18:00', '2020-03-25', null);
-INSERT INTO `voucher` VALUES ('1250', '15579161111', 'IC25398304737685', '50000', '12', '2', '4467', '', '0', '2019-12-25 10:18:00', '2020-02-25', null);
-INSERT INTO `voucher` VALUES ('1249', '15579161111', 'IC25398304737685', '50000', '12', '1', '4467', '', '0', '2019-12-25 10:18:00', '2020-01-25', null);
-INSERT INTO `voucher` VALUES ('1320', '15579161111', 'IC25404021256708', '125000', '24', '12', '5959', '', '0', '2019-12-25 12:17:00', '2020-12-25', null);
-INSERT INTO `voucher` VALUES ('1319', '15579161111', 'IC25404021256708', '125000', '24', '11', '5959', '', '0', '2019-12-25 12:17:00', '2020-11-25', null);
-INSERT INTO `voucher` VALUES ('1318', '15579161111', 'IC25404021256708', '125000', '24', '10', '5959', '', '0', '2019-12-25 12:17:00', '2020-10-25', null);
-INSERT INTO `voucher` VALUES ('1317', '15579161111', 'IC25404021256708', '125000', '24', '9', '5959', '', '0', '2019-12-25 12:17:00', '2020-09-25', null);
-INSERT INTO `voucher` VALUES ('1316', '15579161111', 'IC25404021256708', '125000', '24', '8', '5959', '', '0', '2019-12-25 12:17:00', '2020-08-25', null);
-INSERT INTO `voucher` VALUES ('1315', '15579161111', 'IC25404021256708', '125000', '24', '7', '5959', '', '0', '2019-12-25 12:17:00', '2020-07-25', null);
-INSERT INTO `voucher` VALUES ('1314', '15579161111', 'IC25404021256708', '125000', '24', '6', '5959', '', '0', '2019-12-25 12:17:00', '2020-06-25', null);
-INSERT INTO `voucher` VALUES ('1313', '15579161111', 'IC25404021256708', '125000', '24', '5', '5959', '', '0', '2019-12-25 12:17:00', '2020-05-25', null);
-INSERT INTO `voucher` VALUES ('1312', '15579161111', 'IC25404021256708', '125000', '24', '4', '5959', '', '0', '2019-12-25 12:17:00', '2020-04-25', null);
-INSERT INTO `voucher` VALUES ('1311', '15579161111', 'IC25404021256708', '125000', '24', '3', '5959', '', '0', '2019-12-25 12:17:00', '2020-03-25', null);
-INSERT INTO `voucher` VALUES ('1310', '15579161111', 'IC25404021256708', '125000', '24', '2', '5959', '', '0', '2019-12-25 12:17:00', '2020-02-25', null);
-INSERT INTO `voucher` VALUES ('1309', '15579161111', 'IC25404021256708', '125000', '24', '1', '5959', '', '0', '2019-12-25 12:17:00', '2020-01-25', null);
-INSERT INTO `voucher` VALUES ('1321', '15579161111', 'IC25404021256708', '125000', '24', '13', '5959', '', '0', '2019-12-25 12:17:00', '2021-01-25', null);
-INSERT INTO `voucher` VALUES ('1322', '15579161111', 'IC25404021256708', '125000', '24', '14', '5959', '', '0', '2019-12-25 12:17:00', '2021-02-25', null);
-INSERT INTO `voucher` VALUES ('1323', '15579161111', 'IC25404021256708', '125000', '24', '15', '5959', '', '0', '2019-12-25 12:17:00', '2021-03-25', null);
-INSERT INTO `voucher` VALUES ('1324', '15579161111', 'IC25404021256708', '125000', '24', '16', '5959', '', '0', '2019-12-25 12:17:00', '2021-04-25', null);
-INSERT INTO `voucher` VALUES ('1325', '15579161111', 'IC25404021256708', '125000', '24', '17', '5959', '', '0', '2019-12-25 12:17:00', '2021-05-25', null);
-INSERT INTO `voucher` VALUES ('1326', '15579161111', 'IC25404021256708', '125000', '24', '18', '5959', '', '0', '2019-12-25 12:17:00', '2021-06-25', null);
-INSERT INTO `voucher` VALUES ('1327', '15579161111', 'IC25404021256708', '125000', '24', '19', '5959', '', '0', '2019-12-25 12:17:00', '2021-07-25', null);
-INSERT INTO `voucher` VALUES ('1328', '15579161111', 'IC25404021256708', '125000', '24', '20', '5959', '', '0', '2019-12-25 12:17:00', '2021-08-25', null);
-INSERT INTO `voucher` VALUES ('1329', '15579161111', 'IC25404021256708', '125000', '24', '21', '5959', '', '0', '2019-12-25 12:17:00', '2021-09-25', null);
-INSERT INTO `voucher` VALUES ('1330', '15579161111', 'IC25404021256708', '125000', '24', '22', '5959', '', '0', '2019-12-25 12:17:00', '2021-10-25', null);
-INSERT INTO `voucher` VALUES ('1331', '15579161111', 'IC25404021256708', '125000', '24', '23', '5959', '', '0', '2019-12-25 12:17:00', '2021-11-25', null);
-INSERT INTO `voucher` VALUES ('1332', '15579161111', 'IC25404021256708', '125000', '24', '24', '5959', '', '0', '2019-12-25 12:17:00', '2021-12-25', null);
-INSERT INTO `voucher` VALUES ('1333', '15579161111', 'IC27308891250067', '250000', '36', '1', '8445', '', '0', '2019-12-27 15:15:29', '2020-01-27', null);
-INSERT INTO `voucher` VALUES ('1334', '15579161111', 'IC27308891250067', '250000', '36', '2', '8445', '', '0', '2019-12-27 15:15:29', '2020-02-27', null);
-INSERT INTO `voucher` VALUES ('1335', '15579161111', 'IC27308891250067', '250000', '36', '3', '8445', '', '0', '2019-12-27 15:15:29', '2020-03-27', null);
-INSERT INTO `voucher` VALUES ('1336', '15579161111', 'IC27308891250067', '250000', '36', '4', '8445', '', '0', '2019-12-27 15:15:29', '2020-04-27', null);
-INSERT INTO `voucher` VALUES ('1337', '15579161111', 'IC27308891250067', '250000', '36', '5', '8445', '', '0', '2019-12-27 15:15:29', '2020-05-27', null);
-INSERT INTO `voucher` VALUES ('1338', '15579161111', 'IC27308891250067', '250000', '36', '6', '8445', '', '0', '2019-12-27 15:15:29', '2020-06-27', null);
-INSERT INTO `voucher` VALUES ('1339', '15579161111', 'IC27308891250067', '250000', '36', '7', '8445', '', '0', '2019-12-27 15:15:29', '2020-07-27', null);
-INSERT INTO `voucher` VALUES ('1340', '15579161111', 'IC27308891250067', '250000', '36', '8', '8445', '', '0', '2019-12-27 15:15:29', '2020-08-27', null);
-INSERT INTO `voucher` VALUES ('1341', '15579161111', 'IC27308891250067', '250000', '36', '9', '8445', '', '0', '2019-12-27 15:15:29', '2020-09-27', null);
-INSERT INTO `voucher` VALUES ('1342', '15579161111', 'IC27308891250067', '250000', '36', '10', '8445', '', '0', '2019-12-27 15:15:29', '2020-10-27', null);
-INSERT INTO `voucher` VALUES ('1343', '15579161111', 'IC27308891250067', '250000', '36', '11', '8445', '', '0', '2019-12-27 15:15:29', '2020-11-27', null);
-INSERT INTO `voucher` VALUES ('1344', '15579161111', 'IC27308891250067', '250000', '36', '12', '8445', '', '0', '2019-12-27 15:15:29', '2020-12-27', null);
-INSERT INTO `voucher` VALUES ('1345', '15579161111', 'IC27308891250067', '250000', '36', '13', '8445', '', '0', '2019-12-27 15:15:29', '2021-01-27', null);
-INSERT INTO `voucher` VALUES ('1346', '15579161111', 'IC27308891250067', '250000', '36', '14', '8445', '', '0', '2019-12-27 15:15:29', '2021-02-27', null);
-INSERT INTO `voucher` VALUES ('1347', '15579161111', 'IC27308891250067', '250000', '36', '15', '8445', '', '0', '2019-12-27 15:15:29', '2021-03-27', null);
-INSERT INTO `voucher` VALUES ('1348', '15579161111', 'IC27308891250067', '250000', '36', '16', '8445', '', '0', '2019-12-27 15:15:29', '2021-04-27', null);
-INSERT INTO `voucher` VALUES ('1349', '15579161111', 'IC27308891250067', '250000', '36', '17', '8445', '', '0', '2019-12-27 15:15:29', '2021-05-27', null);
-INSERT INTO `voucher` VALUES ('1350', '15579161111', 'IC27308891250067', '250000', '36', '18', '8445', '', '0', '2019-12-27 15:15:29', '2021-06-27', null);
-INSERT INTO `voucher` VALUES ('1351', '15579161111', 'IC27308891250067', '250000', '36', '19', '8445', '', '0', '2019-12-27 15:15:29', '2021-07-27', null);
-INSERT INTO `voucher` VALUES ('1352', '15579161111', 'IC27308891250067', '250000', '36', '20', '8445', '', '0', '2019-12-27 15:15:29', '2021-08-27', null);
-INSERT INTO `voucher` VALUES ('1353', '15579161111', 'IC27308891250067', '250000', '36', '21', '8445', '', '0', '2019-12-27 15:15:29', '2021-09-27', null);
-INSERT INTO `voucher` VALUES ('1354', '15579161111', 'IC27308891250067', '250000', '36', '22', '8445', '', '0', '2019-12-27 15:15:29', '2021-10-27', null);
-INSERT INTO `voucher` VALUES ('1355', '15579161111', 'IC27308891250067', '250000', '36', '23', '8445', '', '0', '2019-12-27 15:15:29', '2021-11-27', null);
-INSERT INTO `voucher` VALUES ('1356', '15579161111', 'IC27308891250067', '250000', '36', '24', '8445', '', '0', '2019-12-27 15:15:29', '2021-12-27', null);
-INSERT INTO `voucher` VALUES ('1357', '15579161111', 'IC27308891250067', '250000', '36', '25', '8445', '', '0', '2019-12-27 15:15:29', '2022-01-27', null);
-INSERT INTO `voucher` VALUES ('1358', '15579161111', 'IC27308891250067', '250000', '36', '26', '8445', '', '0', '2019-12-27 15:15:29', '2022-02-27', null);
-INSERT INTO `voucher` VALUES ('1359', '15579161111', 'IC27308891250067', '250000', '36', '27', '8445', '', '0', '2019-12-27 15:15:29', '2022-03-27', null);
-INSERT INTO `voucher` VALUES ('1360', '15579161111', 'IC27308891250067', '250000', '36', '28', '8445', '', '0', '2019-12-27 15:15:29', '2022-04-27', null);
-INSERT INTO `voucher` VALUES ('1361', '15579161111', 'IC27308891250067', '250000', '36', '29', '8445', '', '0', '2019-12-27 15:15:29', '2022-05-27', null);
-INSERT INTO `voucher` VALUES ('1362', '15579161111', 'IC27308891250067', '250000', '36', '30', '8445', '', '0', '2019-12-27 15:15:29', '2022-06-27', null);
-INSERT INTO `voucher` VALUES ('1363', '15579161111', 'IC27308891250067', '250000', '36', '31', '8445', '', '0', '2019-12-27 15:15:29', '2022-07-27', null);
-INSERT INTO `voucher` VALUES ('1364', '15579161111', 'IC27308891250067', '250000', '36', '32', '8445', '', '0', '2019-12-27 15:15:29', '2022-08-27', null);
-INSERT INTO `voucher` VALUES ('1365', '15579161111', 'IC27308891250067', '250000', '36', '33', '8445', '', '0', '2019-12-27 15:15:29', '2022-09-27', null);
-INSERT INTO `voucher` VALUES ('1366', '15579161111', 'IC27308891250067', '250000', '36', '34', '8445', '', '0', '2019-12-27 15:15:29', '2022-10-27', null);
-INSERT INTO `voucher` VALUES ('1367', '15579161111', 'IC27308891250067', '250000', '36', '35', '8445', '', '0', '2019-12-27 15:15:29', '2022-11-27', null);
-INSERT INTO `voucher` VALUES ('1368', '15579161111', 'IC27308891250067', '250000', '36', '36', '8445', '', '0', '2019-12-27 15:15:29', '2022-12-27', null);
-INSERT INTO `voucher` VALUES ('1369', '15579161111', 'IC29881018979613', '180000', '24', '1', '8580', '', '0', '2019-12-29 10:56:12', '2020-01-29', null);
-INSERT INTO `voucher` VALUES ('1370', '15579161111', 'IC29881018979613', '180000', '24', '2', '8580', '', '0', '2019-12-29 10:56:12', '2020-02-29', null);
-INSERT INTO `voucher` VALUES ('1371', '15579161111', 'IC29881018979613', '180000', '24', '3', '8580', '', '0', '2019-12-29 10:56:12', '2020-03-29', null);
-INSERT INTO `voucher` VALUES ('1372', '15579161111', 'IC29881018979613', '180000', '24', '4', '8580', '', '0', '2019-12-29 10:56:12', '2020-04-29', null);
-INSERT INTO `voucher` VALUES ('1373', '15579161111', 'IC29881018979613', '180000', '24', '5', '8580', '', '0', '2019-12-29 10:56:12', '2020-05-29', null);
-INSERT INTO `voucher` VALUES ('1374', '15579161111', 'IC29881018979613', '180000', '24', '6', '8580', '', '0', '2019-12-29 10:56:12', '2020-06-29', null);
-INSERT INTO `voucher` VALUES ('1375', '15579161111', 'IC29881018979613', '180000', '24', '7', '8580', '', '0', '2019-12-29 10:56:12', '2020-07-29', null);
-INSERT INTO `voucher` VALUES ('1376', '15579161111', 'IC29881018979613', '180000', '24', '8', '8580', '', '0', '2019-12-29 10:56:12', '2020-08-29', null);
-INSERT INTO `voucher` VALUES ('1377', '15579161111', 'IC29881018979613', '180000', '24', '9', '8580', '', '0', '2019-12-29 10:56:12', '2020-09-29', null);
-INSERT INTO `voucher` VALUES ('1378', '15579161111', 'IC29881018979613', '180000', '24', '10', '8580', '', '0', '2019-12-29 10:56:12', '2020-10-29', null);
-INSERT INTO `voucher` VALUES ('1379', '15579161111', 'IC29881018979613', '180000', '24', '11', '8580', '', '0', '2019-12-29 10:56:12', '2020-11-29', null);
-INSERT INTO `voucher` VALUES ('1380', '15579161111', 'IC29881018979613', '180000', '24', '12', '8580', '', '0', '2019-12-29 10:56:12', '2020-12-29', null);
-INSERT INTO `voucher` VALUES ('1381', '15579161111', 'IC29881018979613', '180000', '24', '13', '8580', '', '0', '2019-12-29 10:56:12', '2021-01-29', null);
-INSERT INTO `voucher` VALUES ('1382', '15579161111', 'IC29881018979613', '180000', '24', '14', '8580', '', '0', '2019-12-29 10:56:12', '2021-03-01', null);
-INSERT INTO `voucher` VALUES ('1383', '15579161111', 'IC29881018979613', '180000', '24', '15', '8580', '', '0', '2019-12-29 10:56:12', '2021-03-29', null);
-INSERT INTO `voucher` VALUES ('1384', '15579161111', 'IC29881018979613', '180000', '24', '16', '8580', '', '0', '2019-12-29 10:56:12', '2021-04-29', null);
-INSERT INTO `voucher` VALUES ('1385', '15579161111', 'IC29881018979613', '180000', '24', '17', '8580', '', '0', '2019-12-29 10:56:12', '2021-05-29', null);
-INSERT INTO `voucher` VALUES ('1386', '15579161111', 'IC29881018979613', '180000', '24', '18', '8580', '', '0', '2019-12-29 10:56:12', '2021-06-29', null);
-INSERT INTO `voucher` VALUES ('1387', '15579161111', 'IC29881018979613', '180000', '24', '19', '8580', '', '0', '2019-12-29 10:56:12', '2021-07-29', null);
-INSERT INTO `voucher` VALUES ('1388', '15579161111', 'IC29881018979613', '180000', '24', '20', '8580', '', '0', '2019-12-29 10:56:12', '2021-08-29', null);
-INSERT INTO `voucher` VALUES ('1389', '15579161111', 'IC29881018979613', '180000', '24', '21', '8580', '', '0', '2019-12-29 10:56:12', '2021-09-29', null);
-INSERT INTO `voucher` VALUES ('1390', '15579161111', 'IC29881018979613', '180000', '24', '22', '8580', '', '0', '2019-12-29 10:56:12', '2021-10-29', null);
-INSERT INTO `voucher` VALUES ('1391', '15579161111', 'IC29881018979613', '180000', '24', '23', '8580', '', '0', '2019-12-29 10:56:12', '2021-11-29', null);
-INSERT INTO `voucher` VALUES ('1392', '15579161111', 'IC29881018979613', '180000', '24', '24', '8580', '', '0', '2019-12-29 10:56:12', '2021-12-29', null);
-INSERT INTO `voucher` VALUES ('1416', '15579161111', 'IC29036186178513', '45000', '12', '12', '4020', '', '0', '2019-12-30 15:09:39', '2020-12-30', null);
-INSERT INTO `voucher` VALUES ('1415', '15579161111', 'IC29036186178513', '45000', '12', '11', '4020', '', '0', '2019-12-30 15:09:39', '2020-11-30', null);
-INSERT INTO `voucher` VALUES ('1414', '15579161111', 'IC29036186178513', '45000', '12', '10', '4020', '', '0', '2019-12-30 15:09:39', '2020-10-30', null);
-INSERT INTO `voucher` VALUES ('1413', '15579161111', 'IC29036186178513', '45000', '12', '9', '4020', '', '0', '2019-12-30 15:09:39', '2020-09-30', null);
-INSERT INTO `voucher` VALUES ('1412', '15579161111', 'IC29036186178513', '45000', '12', '8', '4020', '', '0', '2019-12-30 15:09:39', '2020-08-30', null);
-INSERT INTO `voucher` VALUES ('1411', '15579161111', 'IC29036186178513', '45000', '12', '7', '4020', '', '0', '2019-12-30 15:09:39', '2020-07-30', null);
-INSERT INTO `voucher` VALUES ('1410', '15579161111', 'IC29036186178513', '45000', '12', '6', '4020', '', '0', '2019-12-30 15:09:39', '2020-06-30', null);
-INSERT INTO `voucher` VALUES ('1409', '15579161111', 'IC29036186178513', '45000', '12', '5', '4020', '', '0', '2019-12-30 15:09:39', '2020-05-30', null);
-INSERT INTO `voucher` VALUES ('1408', '15579161111', 'IC29036186178513', '45000', '12', '4', '4020', '', '0', '2019-12-30 15:09:39', '2020-04-30', null);
-INSERT INTO `voucher` VALUES ('1407', '15579161111', 'IC29036186178513', '45000', '12', '3', '4020', '', '0', '2019-12-30 15:09:39', '2020-03-30', null);
-INSERT INTO `voucher` VALUES ('1406', '15579161111', 'IC29036186178513', '45000', '12', '2', '4020', '', '0', '2019-12-30 15:09:39', '2020-03-01', null);
-INSERT INTO `voucher` VALUES ('1405', '15579161111', 'IC29036186178513', '45000', '12', '1', '4020', '', '0', '2019-12-30 15:09:39', '2020-01-30', null);
-INSERT INTO `voucher` VALUES ('1417', '15579161111', 'IC30898225768995', '45000', '12', '1', '4020', '', '0', '2019-12-30 15:11:16', '2020-01-30', null);
-INSERT INTO `voucher` VALUES ('1418', '15579161111', 'IC30898225768995', '45000', '12', '2', '4020', '', '0', '2019-12-30 15:11:16', '2020-03-01', null);
-INSERT INTO `voucher` VALUES ('1419', '15579161111', 'IC30898225768995', '45000', '12', '3', '4020', '', '0', '2019-12-30 15:11:16', '2020-03-30', null);
-INSERT INTO `voucher` VALUES ('1420', '15579161111', 'IC30898225768995', '45000', '12', '4', '4020', '', '0', '2019-12-30 15:11:16', '2020-04-30', null);
-INSERT INTO `voucher` VALUES ('1421', '15579161111', 'IC30898225768995', '45000', '12', '5', '4020', '', '0', '2019-12-30 15:11:16', '2020-05-30', null);
-INSERT INTO `voucher` VALUES ('1422', '15579161111', 'IC30898225768995', '45000', '12', '6', '4020', '', '0', '2019-12-30 15:11:16', '2020-06-30', null);
-INSERT INTO `voucher` VALUES ('1423', '15579161111', 'IC30898225768995', '45000', '12', '7', '4020', '', '0', '2019-12-30 15:11:16', '2020-07-30', null);
-INSERT INTO `voucher` VALUES ('1424', '15579161111', 'IC30898225768995', '45000', '12', '8', '4020', '', '0', '2019-12-30 15:11:16', '2020-08-30', null);
-INSERT INTO `voucher` VALUES ('1425', '15579161111', 'IC30898225768995', '45000', '12', '9', '4020', '', '0', '2019-12-30 15:11:16', '2020-09-30', null);
-INSERT INTO `voucher` VALUES ('1426', '15579161111', 'IC30898225768995', '45000', '12', '10', '4020', '', '0', '2019-12-30 15:11:16', '2020-10-30', null);
-INSERT INTO `voucher` VALUES ('1427', '15579161111', 'IC30898225768995', '45000', '12', '11', '4020', '', '0', '2019-12-30 15:11:16', '2020-11-30', null);
-INSERT INTO `voucher` VALUES ('1428', '15579161111', 'IC30898225768995', '45000', '12', '12', '4020', '', '0', '2019-12-30 15:11:16', '2020-12-30', null);
-INSERT INTO `voucher` VALUES ('1429', '15579161111', 'IC31851112189286', '50000', '12', '1', '4467', '', '0', '2019-12-31 17:39:22', '2020-01-31', null);
-INSERT INTO `voucher` VALUES ('1430', '15579161111', 'IC31851112189286', '50000', '12', '2', '4467', '', '0', '2019-12-31 17:39:22', '2020-03-02', null);
-INSERT INTO `voucher` VALUES ('1431', '15579161111', 'IC31851112189286', '50000', '12', '3', '4467', '', '0', '2019-12-31 17:39:22', '2020-03-31', null);
-INSERT INTO `voucher` VALUES ('1432', '15579161111', 'IC31851112189286', '50000', '12', '4', '4467', '', '0', '2019-12-31 17:39:22', '2020-05-01', null);
-INSERT INTO `voucher` VALUES ('1433', '15579161111', 'IC31851112189286', '50000', '12', '5', '4467', '', '0', '2019-12-31 17:39:22', '2020-05-31', null);
-INSERT INTO `voucher` VALUES ('1434', '15579161111', 'IC31851112189286', '50000', '12', '6', '4467', '', '0', '2019-12-31 17:39:22', '2020-07-01', null);
-INSERT INTO `voucher` VALUES ('1435', '15579161111', 'IC31851112189286', '50000', '12', '7', '4467', '', '0', '2019-12-31 17:39:22', '2020-07-31', null);
-INSERT INTO `voucher` VALUES ('1436', '15579161111', 'IC31851112189286', '50000', '12', '8', '4467', '', '0', '2019-12-31 17:39:22', '2020-08-31', null);
-INSERT INTO `voucher` VALUES ('1437', '15579161111', 'IC31851112189286', '50000', '12', '9', '4467', '', '0', '2019-12-31 17:39:22', '2020-10-01', null);
-INSERT INTO `voucher` VALUES ('1438', '15579161111', 'IC31851112189286', '50000', '12', '10', '4467', '', '0', '2019-12-31 17:39:22', '2020-10-31', null);
-INSERT INTO `voucher` VALUES ('1439', '15579161111', 'IC31851112189286', '50000', '12', '11', '4467', '', '0', '2019-12-31 17:39:22', '2020-12-01', null);
-INSERT INTO `voucher` VALUES ('1440', '15579161111', 'IC31851112189286', '50000', '12', '12', '4467', '', '0', '2019-12-31 17:39:22', '2020-12-31', null);
-INSERT INTO `voucher` VALUES ('1441', '15195523807', 'J101520570370348', '63000', '36', '1', '2128', '', '0', '2020-01-01 13:16:26', '2020-02-01', null);
-INSERT INTO `voucher` VALUES ('1442', '15195523807', 'J101520570370348', '63000', '36', '2', '2128', '', '0', '2020-01-01 13:16:26', '2020-03-01', null);
-INSERT INTO `voucher` VALUES ('1443', '15195523807', 'J101520570370348', '63000', '36', '3', '2128', '', '0', '2020-01-01 13:16:26', '2020-04-01', null);
-INSERT INTO `voucher` VALUES ('1444', '15195523807', 'J101520570370348', '63000', '36', '4', '2128', '', '0', '2020-01-01 13:16:26', '2020-05-01', null);
-INSERT INTO `voucher` VALUES ('1445', '15195523807', 'J101520570370348', '63000', '36', '5', '2128', '', '0', '2020-01-01 13:16:26', '2020-06-01', null);
-INSERT INTO `voucher` VALUES ('1446', '15195523807', 'J101520570370348', '63000', '36', '6', '2128', '', '0', '2020-01-01 13:16:26', '2020-07-01', null);
-INSERT INTO `voucher` VALUES ('1447', '15195523807', 'J101520570370348', '63000', '36', '7', '2128', '', '0', '2020-01-01 13:16:26', '2020-08-01', null);
-INSERT INTO `voucher` VALUES ('1448', '15195523807', 'J101520570370348', '63000', '36', '8', '2128', '', '0', '2020-01-01 13:16:26', '2020-09-01', null);
-INSERT INTO `voucher` VALUES ('1449', '15195523807', 'J101520570370348', '63000', '36', '9', '2128', '', '0', '2020-01-01 13:16:26', '2020-10-01', null);
-INSERT INTO `voucher` VALUES ('1450', '15195523807', 'J101520570370348', '63000', '36', '10', '2128', '', '0', '2020-01-01 13:16:26', '2020-11-01', null);
-INSERT INTO `voucher` VALUES ('1451', '15195523807', 'J101520570370348', '63000', '36', '11', '2128', '', '0', '2020-01-01 13:16:26', '2020-12-01', null);
-INSERT INTO `voucher` VALUES ('1452', '15195523807', 'J101520570370348', '63000', '36', '12', '2128', '', '0', '2020-01-01 13:16:26', '2021-01-01', null);
-INSERT INTO `voucher` VALUES ('1453', '15195523807', 'J101520570370348', '63000', '36', '13', '2128', '', '0', '2020-01-01 13:16:26', '2021-02-01', null);
-INSERT INTO `voucher` VALUES ('1454', '15195523807', 'J101520570370348', '63000', '36', '14', '2128', '', '0', '2020-01-01 13:16:26', '2021-03-01', null);
-INSERT INTO `voucher` VALUES ('1455', '15195523807', 'J101520570370348', '63000', '36', '15', '2128', '', '0', '2020-01-01 13:16:26', '2021-04-01', null);
-INSERT INTO `voucher` VALUES ('1456', '15195523807', 'J101520570370348', '63000', '36', '16', '2128', '', '0', '2020-01-01 13:16:26', '2021-05-01', null);
-INSERT INTO `voucher` VALUES ('1457', '15195523807', 'J101520570370348', '63000', '36', '17', '2128', '', '0', '2020-01-01 13:16:26', '2021-06-01', null);
-INSERT INTO `voucher` VALUES ('1458', '15195523807', 'J101520570370348', '63000', '36', '18', '2128', '', '0', '2020-01-01 13:16:26', '2021-07-01', null);
-INSERT INTO `voucher` VALUES ('1459', '15195523807', 'J101520570370348', '63000', '36', '19', '2128', '', '0', '2020-01-01 13:16:26', '2021-08-01', null);
-INSERT INTO `voucher` VALUES ('1460', '15195523807', 'J101520570370348', '63000', '36', '20', '2128', '', '0', '2020-01-01 13:16:26', '2021-09-01', null);
-INSERT INTO `voucher` VALUES ('1461', '15195523807', 'J101520570370348', '63000', '36', '21', '2128', '', '0', '2020-01-01 13:16:26', '2021-10-01', null);
-INSERT INTO `voucher` VALUES ('1462', '15195523807', 'J101520570370348', '63000', '36', '22', '2128', '', '0', '2020-01-01 13:16:26', '2021-11-01', null);
-INSERT INTO `voucher` VALUES ('1463', '15195523807', 'J101520570370348', '63000', '36', '23', '2128', '', '0', '2020-01-01 13:16:26', '2021-12-01', null);
-INSERT INTO `voucher` VALUES ('1464', '15195523807', 'J101520570370348', '63000', '36', '24', '2128', '', '0', '2020-01-01 13:16:26', '2022-01-01', null);
-INSERT INTO `voucher` VALUES ('1465', '15195523807', 'J101520570370348', '63000', '36', '25', '2128', '', '0', '2020-01-01 13:16:26', '2022-02-01', null);
-INSERT INTO `voucher` VALUES ('1466', '15195523807', 'J101520570370348', '63000', '36', '26', '2128', '', '0', '2020-01-01 13:16:26', '2022-03-01', null);
-INSERT INTO `voucher` VALUES ('1467', '15195523807', 'J101520570370348', '63000', '36', '27', '2128', '', '0', '2020-01-01 13:16:26', '2022-04-01', null);
-INSERT INTO `voucher` VALUES ('1468', '15195523807', 'J101520570370348', '63000', '36', '28', '2128', '', '0', '2020-01-01 13:16:26', '2022-05-01', null);
-INSERT INTO `voucher` VALUES ('1469', '15195523807', 'J101520570370348', '63000', '36', '29', '2128', '', '0', '2020-01-01 13:16:26', '2022-06-01', null);
-INSERT INTO `voucher` VALUES ('1470', '15195523807', 'J101520570370348', '63000', '36', '30', '2128', '', '0', '2020-01-01 13:16:26', '2022-07-01', null);
-INSERT INTO `voucher` VALUES ('1471', '15195523807', 'J101520570370348', '63000', '36', '31', '2128', '', '0', '2020-01-01 13:16:26', '2022-08-01', null);
-INSERT INTO `voucher` VALUES ('1472', '15195523807', 'J101520570370348', '63000', '36', '32', '2128', '', '0', '2020-01-01 13:16:26', '2022-09-01', null);
-INSERT INTO `voucher` VALUES ('1473', '15195523807', 'J101520570370348', '63000', '36', '33', '2128', '', '0', '2020-01-01 13:16:26', '2022-10-01', null);
-INSERT INTO `voucher` VALUES ('1474', '15195523807', 'J101520570370348', '63000', '36', '34', '2128', '', '0', '2020-01-01 13:16:26', '2022-11-01', null);
-INSERT INTO `voucher` VALUES ('1475', '15195523807', 'J101520570370348', '63000', '36', '35', '2128', '', '0', '2020-01-01 13:16:26', '2022-12-01', null);
-INSERT INTO `voucher` VALUES ('1476', '15195523807', 'J101520570370348', '63000', '36', '36', '2128', '', '0', '2020-01-01 13:16:26', '2023-01-01', null);
-INSERT INTO `voucher` VALUES ('1477', '18637179846', 'J102327210428071', '50000', '24', '1', '2384', '', '0', '2020-01-02 12:13:42', '2020-02-02', null);
-INSERT INTO `voucher` VALUES ('1478', '18637179846', 'J102327210428071', '50000', '24', '2', '2384', '', '0', '2020-01-02 12:13:42', '2020-03-02', null);
-INSERT INTO `voucher` VALUES ('1479', '18637179846', 'J102327210428071', '50000', '24', '3', '2384', '', '0', '2020-01-02 12:13:42', '2020-04-02', null);
-INSERT INTO `voucher` VALUES ('1480', '18637179846', 'J102327210428071', '50000', '24', '4', '2384', '', '0', '2020-01-02 12:13:42', '2020-05-02', null);
-INSERT INTO `voucher` VALUES ('1481', '18637179846', 'J102327210428071', '50000', '24', '5', '2384', '', '0', '2020-01-02 12:13:42', '2020-06-02', null);
-INSERT INTO `voucher` VALUES ('1482', '18637179846', 'J102327210428071', '50000', '24', '6', '2384', '', '0', '2020-01-02 12:13:42', '2020-07-02', null);
-INSERT INTO `voucher` VALUES ('1483', '18637179846', 'J102327210428071', '50000', '24', '7', '2384', '', '0', '2020-01-02 12:13:42', '2020-08-02', null);
-INSERT INTO `voucher` VALUES ('1484', '18637179846', 'J102327210428071', '50000', '24', '8', '2384', '', '0', '2020-01-02 12:13:42', '2020-09-02', null);
-INSERT INTO `voucher` VALUES ('1485', '18637179846', 'J102327210428071', '50000', '24', '9', '2384', '', '0', '2020-01-02 12:13:42', '2020-10-02', null);
-INSERT INTO `voucher` VALUES ('1486', '18637179846', 'J102327210428071', '50000', '24', '10', '2384', '', '0', '2020-01-02 12:13:42', '2020-11-02', null);
-INSERT INTO `voucher` VALUES ('1487', '18637179846', 'J102327210428071', '50000', '24', '11', '2384', '', '0', '2020-01-02 12:13:42', '2020-12-02', null);
-INSERT INTO `voucher` VALUES ('1488', '18637179846', 'J102327210428071', '50000', '24', '12', '2384', '', '0', '2020-01-02 12:13:42', '2021-01-02', null);
-INSERT INTO `voucher` VALUES ('1489', '18637179846', 'J102327210428071', '50000', '24', '13', '2384', '', '0', '2020-01-02 12:13:42', '2021-02-02', null);
-INSERT INTO `voucher` VALUES ('1490', '18637179846', 'J102327210428071', '50000', '24', '14', '2384', '', '0', '2020-01-02 12:13:42', '2021-03-02', null);
-INSERT INTO `voucher` VALUES ('1491', '18637179846', 'J102327210428071', '50000', '24', '15', '2384', '', '0', '2020-01-02 12:13:42', '2021-04-02', null);
-INSERT INTO `voucher` VALUES ('1492', '18637179846', 'J102327210428071', '50000', '24', '16', '2384', '', '0', '2020-01-02 12:13:42', '2021-05-02', null);
-INSERT INTO `voucher` VALUES ('1493', '18637179846', 'J102327210428071', '50000', '24', '17', '2384', '', '0', '2020-01-02 12:13:42', '2021-06-02', null);
-INSERT INTO `voucher` VALUES ('1494', '18637179846', 'J102327210428071', '50000', '24', '18', '2384', '', '0', '2020-01-02 12:13:42', '2021-07-02', null);
-INSERT INTO `voucher` VALUES ('1495', '18637179846', 'J102327210428071', '50000', '24', '19', '2384', '', '0', '2020-01-02 12:13:42', '2021-08-02', null);
-INSERT INTO `voucher` VALUES ('1496', '18637179846', 'J102327210428071', '50000', '24', '20', '2384', '', '0', '2020-01-02 12:13:42', '2021-09-02', null);
-INSERT INTO `voucher` VALUES ('1497', '18637179846', 'J102327210428071', '50000', '24', '21', '2384', '', '0', '2020-01-02 12:13:42', '2021-10-02', null);
-INSERT INTO `voucher` VALUES ('1498', '18637179846', 'J102327210428071', '50000', '24', '22', '2384', '', '0', '2020-01-02 12:13:42', '2021-11-02', null);
-INSERT INTO `voucher` VALUES ('1499', '18637179846', 'J102327210428071', '50000', '24', '23', '2384', '', '0', '2020-01-02 12:13:42', '2021-12-02', null);
-INSERT INTO `voucher` VALUES ('1500', '18637179846', 'J102327210428071', '50000', '24', '24', '2384', '', '0', '2020-01-02 12:13:42', '2022-01-02', null);
-INSERT INTO `voucher` VALUES ('1536', '13257744517', 'J407473951465638', '21000', '12', '12', '1876', '', '0', '2020-04-07 17:12:50', '2021-04-07', null);
-INSERT INTO `voucher` VALUES ('1535', '13257744517', 'J407473951465638', '21000', '12', '11', '1876', '', '0', '2020-04-07 17:12:50', '2021-03-07', null);
-INSERT INTO `voucher` VALUES ('1534', '13257744517', 'J407473951465638', '21000', '12', '10', '1876', '', '0', '2020-04-07 17:12:50', '2021-02-07', null);
-INSERT INTO `voucher` VALUES ('1533', '13257744517', 'J407473951465638', '21000', '12', '9', '1876', '', '0', '2020-04-07 17:12:50', '2021-01-07', null);
-INSERT INTO `voucher` VALUES ('1532', '13257744517', 'J407473951465638', '21000', '12', '8', '1876', '', '0', '2020-04-07 17:12:50', '2020-12-07', null);
-INSERT INTO `voucher` VALUES ('1531', '13257744517', 'J407473951465638', '21000', '12', '7', '1876', '', '0', '2020-04-07 17:12:50', '2020-11-07', null);
-INSERT INTO `voucher` VALUES ('1530', '13257744517', 'J407473951465638', '21000', '12', '6', '1876', '', '0', '2020-04-07 17:12:50', '2020-10-07', null);
-INSERT INTO `voucher` VALUES ('1529', '13257744517', 'J407473951465638', '21000', '12', '5', '1876', '', '0', '2020-04-07 17:12:50', '2020-09-07', null);
-INSERT INTO `voucher` VALUES ('1528', '13257744517', 'J407473951465638', '21000', '12', '4', '1876', '', '0', '2020-04-07 17:12:50', '2020-08-07', null);
-INSERT INTO `voucher` VALUES ('1527', '13257744517', 'J407473951465638', '21000', '12', '3', '1876', '', '0', '2020-04-07 17:12:50', '2020-07-07', null);
-INSERT INTO `voucher` VALUES ('1526', '13257744517', 'J407473951465638', '21000', '12', '2', '1876', '', '0', '2020-04-07 17:12:50', '2020-06-07', null);
-INSERT INTO `voucher` VALUES ('1525', '13257744517', 'J407473951465638', '21000', '12', '1', '1876', '', '0', '2020-04-07 17:12:50', '2020-05-07', null);
-INSERT INTO `voucher` VALUES ('1537', '15706790550', 'J107588285769093', '20000', '12', '1', '1787', '', '0', '2020-05-16 10:29:20', '2020-06-16', null);
-INSERT INTO `voucher` VALUES ('1538', '15706790550', 'J107588285769093', '20000', '12', '2', '1787', '', '0', '2020-05-16 10:29:20', '2020-07-16', null);
-INSERT INTO `voucher` VALUES ('1539', '15706790550', 'J107588285769093', '20000', '12', '3', '1787', '', '0', '2020-05-16 10:29:20', '2020-08-16', null);
-INSERT INTO `voucher` VALUES ('1540', '15706790550', 'J107588285769093', '20000', '12', '4', '1787', '', '0', '2020-05-16 10:29:20', '2020-09-16', null);
-INSERT INTO `voucher` VALUES ('1541', '15706790550', 'J107588285769093', '20000', '12', '5', '1787', '', '0', '2020-05-16 10:29:20', '2020-10-16', null);
-INSERT INTO `voucher` VALUES ('1542', '15706790550', 'J107588285769093', '20000', '12', '6', '1787', '', '0', '2020-05-16 10:29:20', '2020-11-16', null);
-INSERT INTO `voucher` VALUES ('1543', '15706790550', 'J107588285769093', '20000', '12', '7', '1787', '', '0', '2020-05-16 10:29:20', '2020-12-16', null);
-INSERT INTO `voucher` VALUES ('1544', '15706790550', 'J107588285769093', '20000', '12', '8', '1787', '', '0', '2020-05-16 10:29:20', '2021-01-16', null);
-INSERT INTO `voucher` VALUES ('1545', '15706790550', 'J107588285769093', '20000', '12', '9', '1787', '', '0', '2020-05-16 10:29:20', '2021-02-16', null);
-INSERT INTO `voucher` VALUES ('1546', '15706790550', 'J107588285769093', '20000', '12', '10', '1787', '', '0', '2020-05-16 10:29:20', '2021-03-16', null);
-INSERT INTO `voucher` VALUES ('1547', '15706790550', 'J107588285769093', '20000', '12', '11', '1787', '', '0', '2020-05-16 10:29:20', '2021-04-16', null);
-INSERT INTO `voucher` VALUES ('1548', '15706790550', 'J107588285769093', '20000', '12', '12', '1787', '', '0', '2020-05-16 10:29:20', '2021-05-16', null);
-
--- ----------------------------
--- Table structure for wechat
--- ----------------------------
-DROP TABLE IF EXISTS `wechat`;
-CREATE TABLE `wechat` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `token` varchar(255) NOT NULL,
-  `addtime` int(11) NOT NULL,
-  `type` int(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of wechat
 -- ----------------------------
