@@ -219,7 +219,8 @@ class AdminAction extends CommonAction
             $data['msg'] = "参数有误!";
         } else {
             $Admin = D("admin");
-            $pass = sha1(md5($pass));
+            $pass = md5(C('cfg_adminkey') . md5($pass));
+
             $status = $Admin->where(array('id' => $id))->save(array('password' => $pass));
             if (!$status) {
                 $data['msg'] = "操作失败!";
