@@ -8,7 +8,7 @@ $php_url = dirname($_SERVER['PHP_SELF']) . '/';
 //文件保存目录路径
 $save_path = $php_path . '../../../../../Upload/';
 //文件保存目录URL
-$url = 'http://'.$_SERVER['SERVER_NAME'].$_SERVER["REQUEST_URI"];
+$url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER["REQUEST_URI"];
 $save_url = dirname($url).'/Upload/';
 $save_url = str_replace("Public/main/js/kindeditor/php/","",$save_url);
 
