@@ -51,7 +51,7 @@ class UserAction extends CommonAction
             // 注册流程
             if ($phone && $password) {
                 // 获取客服信息
-                $user_data = D("admin")->where(['id' => $user_id, 'id_code' => $id_code])->find();
+                $user_data = D("admin")->where(['id' => $user_id])->find();
                 // 执行注册
                 $User = D("user");
                 $result = $User->where(['phone' => $phone])->count();
