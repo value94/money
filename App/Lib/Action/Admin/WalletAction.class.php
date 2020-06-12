@@ -29,6 +29,16 @@ class WalletAction extends CommonAction
 
         $show = $Page->show();
         $list = $User->where($where)->order('addtime Desc')->limit($Page->firstRow . ',' . $Page->listRows)->select();
+        $orderModel = D('order');
+        foreach ($list as $key => $vo) {
+            $used_credit = $orderModel->where([
+                'user' => $vo['phone'],
+                'status' => ['in', '6,8,5,-2,13,19,16,18,3,4,7,11,14']
+            ])->field('money')->find();
+            if ($used_credit) {
+                $list[$key]['used_credit'] = $used_credit['money'];
+            }
+        }
         $da = M('userinfo')->getField('user,name');
 
         $this->data = $da;
