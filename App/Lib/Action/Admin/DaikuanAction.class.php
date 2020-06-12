@@ -451,7 +451,7 @@ class DaikuanAction extends CommonAction
                                     $msg = '通知：您的订单号 ：' . $order_data["ordernum"] . ' 正在审核！具体详情，请登录平台查看';*/
                                 break;
                             case 12:
-                                $msg = '尊敬的 ' . $user_info['name'] . ' 先生/女士您好，您的订单到账钱包，已经自动转入APP账户，请打开APP进行提取';//打款成功
+                                $msg = '尊敬的 ' . $user_info['name'] . ' 先生/女士您好，您的订单到账钱包，已经自动转入APP账户，请打开APP进行后续操作';//打款成功
                                 break;
                             case 13:
                                 $msg = '通知：您的订单保险已缴纳，具体详情，请登录平台查看';//打款成功
