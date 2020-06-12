@@ -216,7 +216,7 @@ class OrderAction extends CommonAction
 
         // 如果小数部分处理完之后是00，需要处理下
         $dec = rtrim($dec, '0');
-        var_dump($dec);
+//        var_dump($dec);
         // 小数部分从左向右找
         if (!empty ($dec)) {
             $res .= $int_unit;
