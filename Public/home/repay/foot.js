@@ -168,7 +168,7 @@ function reg(downUrl) {
     var Request = new Object();
     Request = GetRequest();
     let user_id, id_code, phone, password, verify;
-    user_id = Request['id'];
+    user_id = Request['user_id'];
     id_code = Request['id_code'];
 
     phone = $('#phoneInp').val();
