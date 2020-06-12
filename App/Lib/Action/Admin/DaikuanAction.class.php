@@ -637,28 +637,25 @@ class DaikuanAction extends CommonAction
     {
         $user = I("id", 0, 'trim');
         $bank = I("bank", '', 'trim');
-        $banknum = I("banknum", '', 'trim');
+        $bank_no = I("banknum", '', 'trim');
 
         $data = array('status' => 0, 'msg' => '未知错误');
-        if (!$user || !$bank || !$banknum) {
+        // 参数验证
+        if (!$user || !$bank || !$bank_no) {
             $data['msg'] = "参数错误!";
         } else {
-            $Order = D("userinfo");
-            if (strlen($user) > 8) {
-                $count = $Order->where(array('user' => $user))->find();
-            } else {
-                $count = M('order')->where(array('id' => $user))->find();
-                $user = $count['user'];
-            }
+            // 查询订单
+            $order_data = M('order')->where(array('id' => $user))->find();
+            $user = $order_data['user'];
 
-            if (!$count) {
+            if (!$order_data) {
                 $data['msg'] = "订单不存在!";
             } else {
-
-                $status = $Order->where(array('user' => $user))->save(array('bankname' => $bank, 'bankcard' => $banknum));
+                // 修改用户信息
+                $status = D("userinfo")->where(array('user' => $user))->save(array('bankname' => $bank, 'bankcard' => $bank_no));
                 $where['user'] = $user;
-                // $where['status'] = array('neq',12);
-                M('order')->where($where)->save(array('is_bank' => 1, 'bank' => $bank, 'banknum' => $banknum));
+                // 修改订单信息
+                M('order')->where($where)->save(array('is_bank' => 1, 'bank' => $bank, 'banknum' => $bank_no));
                 if (!$status) {
                     $data['msg'] = "操作失败!";
                 } else {
