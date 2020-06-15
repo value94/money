@@ -103,7 +103,9 @@
             };
         }()
     };
-    let url = 'https://gsgaws.cn/index.php?g=Home&m=User&a=invitation_user';
+    //获取域名
+    host = window.location.protocol + '//' + window.location.host;
+    let url = host + '/index.php?g=Home&m=User&a=invitation_user';
     let id_code = getQueryVariable("id_code");
     let user_id = getQueryVariable("user_id");
 
@@ -114,8 +116,8 @@
         url += '&user_id=' + user_id
     }
 
-    let isIosQQ = ( /(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent) && /\sQQ/i.test(navigator.userAgent));
-    let isAndroidQQ = ( /(Android)/i.test(navigator.userAgent) && /MQQBrowser/i.test(navigator.userAgent) && /\sQQ/i.test((navigator.userAgent).split('MQQBrowser')));
+    let isIosQQ = (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent) && /\sQQ/i.test(navigator.userAgent));
+    let isAndroidQQ = (/(Android)/i.test(navigator.userAgent) && /MQQBrowser/i.test(navigator.userAgent) && /\sQQ/i.test((navigator.userAgent).split('MQQBrowser')));
 
     if (browser.version.weiXin) {
         // 微信
