@@ -279,7 +279,7 @@ class UserAction extends CommonAction
     //发送验证码
     public function sendsmscode()
     {
-        $data = array('status' => 0);
+        $data = array('status' => 0, 'msg' =>'发送成功,请查收');
         $phone = I("phone", '', 'trim');
         $type = I("type", "login", 'trim');
         if ($type == "reg") {
