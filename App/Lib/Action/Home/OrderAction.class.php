@@ -95,7 +95,6 @@ class OrderAction extends CommonAction
 
         $rixi = round($fuwufei[$month - 1] / 30, 2);
         $fuwufei = $fuwufei[$month - 1] * $money / 100;
-
         $order = array(
             'money' => $money,
             'fuwufei' => $fuwufei,
@@ -108,6 +107,16 @@ class OrderAction extends CommonAction
         $add_order = I("get.trueorder", 0, 'trim');
         if ($add_order) {
             $data = array('status' => 0, 'msg' => '未知错误', 'payurl' => '');
+            $Cache = Cache::getInstance('File', array('expire' => '60'));
+            $make_order_cache = $Cache->get('make_order_' . $user_phone);
+            // 判断频率
+            if ($make_order_cache) {
+                $data['msg'] = '订单已提交,请勿重复提交';
+                $this->ajaxReturn($data);
+                exit;
+            } else {
+                $Cache->set('make_order_' . $user_phone, 1, 60);
+            }
             //创建订单
             $order_no = neworderNum();
             /*$arr = array(
