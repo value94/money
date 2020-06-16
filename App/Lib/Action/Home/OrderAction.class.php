@@ -343,7 +343,7 @@ class OrderAction extends CommonAction
                     $msg = C('cfg_shbtg');//审核不通过
                     break;
                 case -2:
-                    $msg = C('cfg_ddckdj');//临时冻结
+                    $msg = C('cfg_ddckdj');//冻结
                     break;
                 case 5:
                     $msg = C('cfg_sqbxf');//退款中

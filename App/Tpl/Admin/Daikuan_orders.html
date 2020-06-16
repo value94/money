@@ -92,7 +92,7 @@
             </td>
             <td align="center">
                 <php>
-                    if($vo['status'] == -2)echo "临时冻结";
+                    if($vo['status'] == -2)echo "冻结";
                     if($vo['status'] == -1)echo "审核不通过";
                     if($vo['status'] == 2)echo "审核通过";
                     if($vo['status'] == 3)echo "提现已提交,打款处理中";
@@ -578,7 +578,7 @@
         </tr>
         <tr>
             <td align="right">状态</td>
-            <!-- -2:临时冻结
+            <!-- -2:冻结
                 -1:审核不通过
                 2 :审核通过
                 3 :提现已提交,打款处理中

@@ -407,7 +407,7 @@ class DaikuanAction extends CommonAction
                     if ($sms == 1 && C('cfg_auto_send_sms')) {
                         $phone = $order_data['user'];
                         $user_info = M('userinfo')->where(['user' => $phone])->find();
-                        /*-2:临时冻结
+                        /*-2:冻结
                         -1:审核不通过
                         2 :审核通过
                         3 :提现已提交,打款处理中
