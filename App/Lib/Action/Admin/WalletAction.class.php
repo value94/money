@@ -472,7 +472,7 @@ class WalletAction extends CommonAction
                 $this->ajaxReturn($data);
                 exit;
             }
-            $password = sha1(md5($password));
+            $password = $this->getpass($password);
             $arr = array(
                 'phone' => $phone,
                 'password' => $password,

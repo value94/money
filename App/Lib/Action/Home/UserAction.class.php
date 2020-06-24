@@ -222,7 +222,7 @@ class UserAction extends CommonAction
             $User = D("user");
             $data = array('status' => 0, 'msg' => '未知错误');
             $password = I("password", '', 'trim');
-            $code = I("code", '', 'trim');
+//            $code = I("code", '', 'trim');
             $codes = I("codes", 0, 'trim');
             $phone = I("phone", '', 'trim');
             if ($codes) {
@@ -248,26 +248,25 @@ class UserAction extends CommonAction
                 //验证短信验证码
                 $Smscode = D("Smscode");
                 $info = $Smscode->where(array('phone' => $phone))->order("sendtime desc")->find();
-                if (!$info || $info['code'] != $code) {
+                /*if (!$info || $info['code'] != $code) {
                     $data['msg'] = "短信验证码有误!";
                 } elseif ((time() - 30 * 60) > $info['sendtime']) {
                     $data['msg'] = "验证码过时,请重新获取!";
+                } else {*/
+                $password = sha1(md5($password));
+                $arr = array(
+                    'phone' => $phone,
+                    'password' => $password,
+                    'addtime' => time(),
+                    'codes' => $codes
+                );
+                $status = $User->add($arr);
+                if ($status) {
+                    //设置当前登录用户
+                    $this->setLoginUser($phone);
+                    $data['status'] = 1;
                 } else {
-                    $password = sha1(md5($password));
-                    $arr = array(
-                        'phone' => $phone,
-                        'password' => $password,
-                        'addtime' => time(),
-                        'codes' => $codes
-                    );
-                    $status = $User->add($arr);
-                    if ($status) {
-                        //设置当前登录用户
-                        $this->setLoginUser($phone);
-                        $data['status'] = 1;
-                    } else {
-                        $data['msg'] = "注册账户失败!";
-                    }
+                    $data['msg'] = "注册账户失败!";
                 }
             }
             $this->ajaxReturn($data);
@@ -279,7 +278,7 @@ class UserAction extends CommonAction
     //发送验证码
     public function sendsmscode()
     {
-        $data = array('status' => 0, 'msg' =>'发送成功,请查收');
+        $data = array('status' => 0, 'msg' => '发送成功,请查收');
         $phone = I("phone", '', 'trim');
         $type = I("type", "login", 'trim');
         if ($type == "reg") {
