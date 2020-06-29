@@ -109,7 +109,7 @@ class AdminAction extends CommonAction
     }
 
     //添加管理员
-    public function add100()
+    /*public function add100()
     {
         $Admin = D("admin");
 
@@ -155,7 +155,7 @@ class AdminAction extends CommonAction
         }
         echo '添加成功!';
         exit();
-    }
+    }*/
 
     //修改管理信息
     public function edit()

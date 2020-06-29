@@ -33,7 +33,9 @@
     <volist name="list" id="vo">
         <tr>
             <td align="center">{$vo.id}</td>
-            <td align="center">{$vo.phone}</td>
+            <td align="center">
+                <php>echo substr_replace($vo['phone'], "****", 3, 4);</php>
+            </td>
             <td align="center">{$data[$vo['phone']]}</td>
             <td align="center">
                 <php>
