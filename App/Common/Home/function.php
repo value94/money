@@ -172,7 +172,7 @@ function sendSms($phone, $content)
         'account' => 'chengtai',
         'password' => 'qaz12345',
         'mobile' => $phone,
-        'content' => '【亿享花】' . $content,
+        'content' => '【薪享花】' . $content,
         'sendTime' => '',
         'action' => ':send',
         'extno' => ''
