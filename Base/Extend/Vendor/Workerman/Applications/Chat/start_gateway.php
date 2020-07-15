@@ -20,8 +20,8 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 
 $context = array(
     'ssl' => array(
-        'local_cert' => '/www/server/panel/vhost/cert/needsth.wang/fullchain.pem', // 也可以是crt文件
-        'local_pk' => '/www/server/panel/vhost/cert/needsth.wang/privkey.pem',
+        'local_cert' => '/www/server/panel/vhost/cert/chitianshi.top/fullchain.pem', // 也可以是crt文件
+        'local_pk' => '/www/server/panel/vhost/cert/chitianshi.top/privkey.pem',
         'verify_peer' => false,
     )
 );
